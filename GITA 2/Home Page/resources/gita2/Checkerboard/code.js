@@ -1,0 +1,88 @@
+
+            var canvasWidth = 500;
+            var canvasHeight = 500;
+
+            var width = 0;
+            var height = 0;
+
+            var black = "#000000";
+            var white = "#FFFFFF";
+            
+            var size = 25;
+
+            function initialize(){
+                var canvas = document.getElementById("myCanvas");
+                var context = canvas.getContext("2d");
+
+                //context.fillStyle = "#ADD8E6";
+                //context.fillRect(0, 0, canvasWidth, canvasHeight);
+
+                width = dimensions.width.value;
+                height = dimensions.height.value;
+            }
+
+            function drawSquare(x, y, size, color){
+                var canvas = document.getElementById("myCanvas");
+                var context = canvas.getContext("2d");
+
+                context.fillStyle = color;
+                context.fillRect(x, y, size, size);
+            }
+
+            function resetBackground(){
+                var canvas = document.getElementById("myCanvas");
+                var context = canvas.getContext("2d");
+
+                context.fillStyle = "#ADD8E6";
+                context.fillRect(0, 0 ,canvasWidth, canvasHeight);
+            }
+
+            function drawBoard(){
+                var canvas = document.getElementById("myCanvas");
+                var context = canvas.getContext("2d");
+
+                initialize();
+                resetBackground();
+
+                var x = 0;
+                var y = 0;
+
+                var startWithBlack = true;
+
+                for(var a = 0; a < height; a++){
+
+                    if(startWithBlack){
+
+                        for(var i = 0; i < width; i ++){
+                    
+                            var color = i % 2 == 0 ? black : white;
+
+
+                            drawSquare(x, y, size, color);
+
+                            x += size;
+                    
+                        }
+
+                        startWithBlack = false;
+                    }
+
+                    else{
+                        for(var i = 0; i < width; i ++){
+                    
+                            var color = i % 2 == 0 ? white : black;
+
+
+                            drawSquare(x, y, size, color);
+
+                            x += size;
+            
+                        }
+
+                        startWithBlack = true;
+                    }
+
+                    x = 0;
+                    y += size;
+                }
+            }

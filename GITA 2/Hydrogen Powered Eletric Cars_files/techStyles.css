@@ -1,0 +1,33 @@
+h1{
+    font-family: 'Monoton', cursive;
+    color: black;
+    font-size: 70px;
+    text-align:center;
+}
+h2{
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    font-size: 18px;
+}
+.imgLeftTop{
+    float: left;
+    width: 50%;
+    height: 55%;
+    padding-right:2%;
+    padding-bottom: 2%;
+}
+.imgLeftBottom{
+    float: left;
+    width: 50%;
+    height: 55%;
+    padding-top: 6%;
+    padding-right:2%;
+}
+.imgRight{
+    float: right;
+    width: 45%;
+    height: 55%;
+    padding-top:15%;
+    padding-left:2%;
+    padding-bottom: 4%;
+}

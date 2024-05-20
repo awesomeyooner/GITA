@@ -1,0 +1,106 @@
+<html>
+
+    <head>
+        <title>Merchandise Store</title>
+    </head>
+
+    
+    <script language="javascript">
+        var strings = new Array();
+
+        function add(){
+            var totalString = "";
+
+            var currentInput = document.inputForm.input.value;
+            strings[strings.length] = currentInput;
+    
+
+            for(var i = 0; i < strings.length; i++){
+                var currentString = strings[i];
+                totalString += currentString + "\n";
+            }
+
+            document.outputForm.list.value = totalString;
+        }
+
+        function update(){
+            var shortest = strings[0];
+            var longest = strings[0];
+            var bob = "";
+
+            for(var i = 0; i < strings.length; i++){
+                var current = strings[i];
+
+                if(current.length < shortest.length){
+                    shortest = current;
+                }
+
+                if(current.length > longest.length){
+                    longest = current;
+                }
+            }
+
+            document.outputForm.output.value = 
+            "Longest: " + longest + "\n" +
+            "Shortest: " + shortest + "\n" + 
+            "Concatenated: " + longest + shortest + "\n";
+
+        }
+
+    </script>
+
+    <body>
+
+        <form name="inputForm">
+            <label style="position:absolute; left:100px; top: 400px;">Enter Any Text</label>
+            <input type="text" name="input" style="position: absolute; left: 100px; top: 500px;"> 
+
+            <input type="button" value="Add" 
+            onclick="add()"
+            style="
+                position: absolute;
+                top: 300px;
+                left: 100px;
+                width: 100px;
+                height: 60px;
+                font-size: 1.5em;">
+         
+            <input type="button" value="Action!" 
+            onclick="update()"
+            style="
+                position: absolute;
+                top: 200px;
+                left: 100px;
+                width: 100px;
+                height: 60px;
+                font-size: 1.5em;">
+          
+
+        </form>
+
+        <form name="outputForm">
+            <textarea readonly name="list"
+                rows="20"
+                cols="40"
+                style="
+                position: absolute;
+                top: 200px;
+                right: 50px;">
+            </textarea>
+
+            <textarea readonly name="output"
+                rows="20"
+                cols="40"
+                style="
+                position: absolute;
+                top: 200px;
+                right: 400px;">
+            </textarea>
+
+        </form>
+
+    </body>
+
+
+
+</html>

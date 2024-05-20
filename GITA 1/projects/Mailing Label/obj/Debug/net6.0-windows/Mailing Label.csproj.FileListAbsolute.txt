@@ -1,0 +1,17 @@
+C:\Users\aweso\Desktop\GITA 1\projects\Mailing Label\bin\Debug\net6.0-windows\Mailing Label.exe
+C:\Users\aweso\Desktop\GITA 1\projects\Mailing Label\bin\Debug\net6.0-windows\Mailing Label.deps.json
+C:\Users\aweso\Desktop\GITA 1\projects\Mailing Label\bin\Debug\net6.0-windows\Mailing Label.runtimeconfig.json
+C:\Users\aweso\Desktop\GITA 1\projects\Mailing Label\bin\Debug\net6.0-windows\Mailing Label.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Mailing Label\bin\Debug\net6.0-windows\Mailing Label.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Mailing Label\obj\Debug\net6.0-windows\Mailing Label.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Mailing Label\obj\Debug\net6.0-windows\Mailing_Label.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\Mailing Label\obj\Debug\net6.0-windows\Mailing Label.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Mailing Label\obj\Debug\net6.0-windows\Mailing Label.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aweso\Desktop\GITA 1\projects\Mailing Label\obj\Debug\net6.0-windows\Mailing Label.AssemblyInfoInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Mailing Label\obj\Debug\net6.0-windows\Mailing Label.AssemblyInfo.cs
+C:\Users\aweso\Desktop\GITA 1\projects\Mailing Label\obj\Debug\net6.0-windows\Mailing Label.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Mailing Label\obj\Debug\net6.0-windows\Mailing Label.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Mailing Label\obj\Debug\net6.0-windows\refint\Mailing Label.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Mailing Label\obj\Debug\net6.0-windows\Mailing Label.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Mailing Label\obj\Debug\net6.0-windows\Mailing Label.genruntimeconfig.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Mailing Label\obj\Debug\net6.0-windows\ref\Mailing Label.dll

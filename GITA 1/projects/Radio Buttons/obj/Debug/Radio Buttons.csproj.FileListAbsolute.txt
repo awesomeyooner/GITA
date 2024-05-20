@@ -1,0 +1,11 @@
+C:\Users\aweso\Desktop\GITA 1\projects\Radio Buttons\bin\Debug\Radio Buttons.exe.config
+C:\Users\aweso\Desktop\GITA 1\projects\Radio Buttons\bin\Debug\Radio Buttons.exe
+C:\Users\aweso\Desktop\GITA 1\projects\Radio Buttons\bin\Debug\Radio Buttons.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Radio Buttons\obj\Debug\Radio Buttons.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Radio Buttons\obj\Debug\Radio Buttons.csproj.SuggestedBindingRedirects.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Radio Buttons\obj\Debug\Radio_Buttons.radio_button.resources
+C:\Users\aweso\Desktop\GITA 1\projects\Radio Buttons\obj\Debug\Radio_Buttons.Properties.Resources.resources
+C:\Users\aweso\Desktop\GITA 1\projects\Radio Buttons\obj\Debug\Radio Buttons.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Radio Buttons\obj\Debug\Radio Buttons.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Radio Buttons\obj\Debug\Radio Buttons.exe
+C:\Users\aweso\Desktop\GITA 1\projects\Radio Buttons\obj\Debug\Radio Buttons.pdb

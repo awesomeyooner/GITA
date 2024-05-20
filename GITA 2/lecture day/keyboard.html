@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Canvas Test</title>
+
+<script language="javascript">
+var canvas= null;
+var ctx = null;
+
+var x = 50*1;
+var y= 100*1;
+
+var dx = 5 * 1;
+var dy = 5 * 1;
+
+var WIDTH = 300;
+var HEIGHT = 200;
+
+var onOff = 0*1;
+
+//coordinates for the bullet
+var bulletX = 0 * 1;
+var bulletY = 0 * 1;
+
+
+window.addEventListener('keydown', function(event){
+    switch(event.key){
+        case "ArrowUp":
+            return;
+    }
+}, true);
+
+
+
+
+
+function init(){
+
+	draw();
+//return 
+}
+
+//move object with key presses
+
+
+
+
+
+
+
+function draw() {
+canvas = document.getElementById("canvas");
+ctx = canvas.getContext("2d");
+
+	ctx.canvas.width = 500;
+	ctx.canvas.height = 200;
+	//pick background fill color
+	ctx.fillStyle="#000000";
+	ctx.fillRect(0,0,WIDTH,HEIGHT);
+	
+
+//draw circle
+	ctx.fillStyle="#888888";
+	ctx.beginPath();
+	ctx.arc(x,y,15,0,Math.PI*2,true);
+	ctx.closePath();
+	ctx.fill();
+	
+//draw bullet.
+	if(onOff == 1)
+	{
+	ctx.fillStyle="#888888";
+	ctx.beginPath();
+	ctx.arc(bulletX,bulletY,5,0,Math.PI*2,true);
+	ctx.closePath();
+	ctx.fill();
+	}
+
+}
+
+
+
+
+
+
+</script>
+</head>
+
+<body onload="init()">
+<center>
+<h1>How to do key press</h1></br></br>
+<canvas id="canvas" width="300" height="200">
+This text is displayed if your browser does not support HTML5 Canvas.
+</canvas>
+</center>
+</body>
+</html>

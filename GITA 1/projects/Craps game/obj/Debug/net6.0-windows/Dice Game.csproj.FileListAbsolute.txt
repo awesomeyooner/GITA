@@ -1,0 +1,36 @@
+C:\Users\aweso\Desktop\GITA 1\projects\Dice Game\bin\Debug\net6.0-windows\Dice Game.exe
+C:\Users\aweso\Desktop\GITA 1\projects\Dice Game\bin\Debug\net6.0-windows\Dice Game.deps.json
+C:\Users\aweso\Desktop\GITA 1\projects\Dice Game\bin\Debug\net6.0-windows\Dice Game.runtimeconfig.json
+C:\Users\aweso\Desktop\GITA 1\projects\Dice Game\bin\Debug\net6.0-windows\Dice Game.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Dice Game\bin\Debug\net6.0-windows\Dice Game.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Dice Game\obj\Debug\net6.0-windows\Dice Game.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Dice Game\obj\Debug\net6.0-windows\Dice_Game.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\Dice Game\obj\Debug\net6.0-windows\Dice Game.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Dice Game\obj\Debug\net6.0-windows\Dice Game.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aweso\Desktop\GITA 1\projects\Dice Game\obj\Debug\net6.0-windows\Dice Game.AssemblyInfoInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Dice Game\obj\Debug\net6.0-windows\Dice Game.AssemblyInfo.cs
+C:\Users\aweso\Desktop\GITA 1\projects\Dice Game\obj\Debug\net6.0-windows\Dice Game.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Dice Game\obj\Debug\net6.0-windows\Dice Game.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Dice Game\obj\Debug\net6.0-windows\refint\Dice Game.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Dice Game\obj\Debug\net6.0-windows\Dice Game.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Dice Game\obj\Debug\net6.0-windows\Dice Game.genruntimeconfig.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Dice Game\obj\Debug\net6.0-windows\ref\Dice Game.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Dice Game\obj\Debug\net6.0-windows\Dice_Game.Properties.Resources.resources
+C:\Users\aweso\Desktop\GITA 1\projects\Craps game\bin\Debug\net6.0-windows\Dice Game.exe
+C:\Users\aweso\Desktop\GITA 1\projects\Craps game\bin\Debug\net6.0-windows\Dice Game.deps.json
+C:\Users\aweso\Desktop\GITA 1\projects\Craps game\bin\Debug\net6.0-windows\Dice Game.runtimeconfig.json
+C:\Users\aweso\Desktop\GITA 1\projects\Craps game\bin\Debug\net6.0-windows\Dice Game.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Craps game\bin\Debug\net6.0-windows\Dice Game.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Craps game\obj\Debug\net6.0-windows\Dice Game.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Craps game\obj\Debug\net6.0-windows\Dice_Game.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\Craps game\obj\Debug\net6.0-windows\Dice_Game.Properties.Resources.resources
+C:\Users\aweso\Desktop\GITA 1\projects\Craps game\obj\Debug\net6.0-windows\Dice Game.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Craps game\obj\Debug\net6.0-windows\Dice Game.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aweso\Desktop\GITA 1\projects\Craps game\obj\Debug\net6.0-windows\Dice Game.AssemblyInfoInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Craps game\obj\Debug\net6.0-windows\Dice Game.AssemblyInfo.cs
+C:\Users\aweso\Desktop\GITA 1\projects\Craps game\obj\Debug\net6.0-windows\Dice Game.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Craps game\obj\Debug\net6.0-windows\Dice Game.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Craps game\obj\Debug\net6.0-windows\refint\Dice Game.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Craps game\obj\Debug\net6.0-windows\Dice Game.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Craps game\obj\Debug\net6.0-windows\Dice Game.genruntimeconfig.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Craps game\obj\Debug\net6.0-windows\ref\Dice Game.dll

@@ -1,0 +1,11 @@
+C:\Users\aweso\Desktop\GITA 1\projects\concatination\bin\Debug\concatination.exe.config
+C:\Users\aweso\Desktop\GITA 1\projects\concatination\bin\Debug\concatination.exe
+C:\Users\aweso\Desktop\GITA 1\projects\concatination\bin\Debug\concatination.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\concatination\obj\Debug\concatination.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\concatination\obj\Debug\concatination.csproj.SuggestedBindingRedirects.cache
+C:\Users\aweso\Desktop\GITA 1\projects\concatination\obj\Debug\concatination.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\concatination\obj\Debug\concatination.Properties.Resources.resources
+C:\Users\aweso\Desktop\GITA 1\projects\concatination\obj\Debug\concatination.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\concatination\obj\Debug\concatination.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\concatination\obj\Debug\concatination.exe
+C:\Users\aweso\Desktop\GITA 1\projects\concatination\obj\Debug\concatination.pdb

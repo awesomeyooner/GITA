@@ -1,0 +1,11 @@
+C:\Users\aweso\Desktop\GITA 1\projects\about me page\bin\Debug\about me page.exe.config
+C:\Users\aweso\Desktop\GITA 1\projects\about me page\bin\Debug\about me page.exe
+C:\Users\aweso\Desktop\GITA 1\projects\about me page\bin\Debug\about me page.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\about me page\obj\Debug\about me page.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\about me page\obj\Debug\about me page.csproj.SuggestedBindingRedirects.cache
+C:\Users\aweso\Desktop\GITA 1\projects\about me page\obj\Debug\about_me_page.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\about me page\obj\Debug\about_me_page.Properties.Resources.resources
+C:\Users\aweso\Desktop\GITA 1\projects\about me page\obj\Debug\about me page.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\about me page\obj\Debug\about me page.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\about me page\obj\Debug\about me page.exe
+C:\Users\aweso\Desktop\GITA 1\projects\about me page\obj\Debug\about me page.pdb

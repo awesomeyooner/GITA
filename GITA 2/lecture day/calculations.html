@@ -1,0 +1,66 @@
+<html>
+<!--9 / 12 / 23-->
+<head>
+
+    <title>Calculations</title>
+
+    <style type="text/css">
+        label{
+            color:blue;
+            font-size: 25px;
+        }
+    </style>
+
+    <script language="javascript">
+        //this function calculates simple interest
+        function calculate(nameString, rateDecimal, timeInteger, principleDecimal){
+            var yourInterestDecimal = 0 * 1;
+            //multiply by 1 to tell the variable that its gonna be a number
+
+            yourInterestDecimal = rateDecimal * timeInteger * principleDecimal;
+            //output answer to textarea
+            document.outputForm.txtaOutputField.value = "Hi " + nameString + " your interest is " + yourInterestDecimal;
+        }
+    </script>
+
+
+    <body>
+        <center>
+        <h1>calculating simple interest</h1>
+        </center>
+        </br>
+        </br>
+        </br>
+
+        <form name="nameForm">
+            <label>Enter Your Name</label>
+            <input type="text" name="textname" value=""/>
+
+            <label>Enter a Rate (decimal)</label>
+            <input type="text" name="textRate" value=""/>
+
+            <label>Enter Years</label>
+            <input type="text" name="textYears" value=""/>
+
+            <label>Enter principle</label>
+            <input type="text" name="textPrinciple" value=""/>
+
+            <input type="button" name="btnCalculate" value="calculate"
+                onclick="calculate(
+                    nameForm.textname.value,
+                    nameForm.textRate.value,
+                    nameForm.textYears.value,
+                    nameForm.textPrinciple.value)"/>
+        </form> 
+        </br>
+
+        <form name="outputForm">
+            <textarea name="txtaOutputField" id="outputField" 
+                rows="20"
+                cols="20">
+            </textarea>
+        </form>
+
+    </body>
+</head>
+</html>

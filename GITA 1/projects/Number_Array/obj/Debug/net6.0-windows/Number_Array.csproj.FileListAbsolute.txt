@@ -1,0 +1,17 @@
+C:\Users\aweso\Desktop\GITA 1\projects\Number_Array\bin\Debug\net6.0-windows\Number_Array.exe
+C:\Users\aweso\Desktop\GITA 1\projects\Number_Array\bin\Debug\net6.0-windows\Number_Array.deps.json
+C:\Users\aweso\Desktop\GITA 1\projects\Number_Array\bin\Debug\net6.0-windows\Number_Array.runtimeconfig.json
+C:\Users\aweso\Desktop\GITA 1\projects\Number_Array\bin\Debug\net6.0-windows\Number_Array.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Number_Array\bin\Debug\net6.0-windows\Number_Array.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Number_Array\obj\Debug\net6.0-windows\Number_Array.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Number_Array\obj\Debug\net6.0-windows\Number_Array.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\Number_Array\obj\Debug\net6.0-windows\Number_Array.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Number_Array\obj\Debug\net6.0-windows\Number_Array.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aweso\Desktop\GITA 1\projects\Number_Array\obj\Debug\net6.0-windows\Number_Array.AssemblyInfoInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Number_Array\obj\Debug\net6.0-windows\Number_Array.AssemblyInfo.cs
+C:\Users\aweso\Desktop\GITA 1\projects\Number_Array\obj\Debug\net6.0-windows\Number_Array.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Number_Array\obj\Debug\net6.0-windows\Number_Array.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Number_Array\obj\Debug\net6.0-windows\refint\Number_Array.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Number_Array\obj\Debug\net6.0-windows\Number_Array.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Number_Array\obj\Debug\net6.0-windows\Number_Array.genruntimeconfig.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Number_Array\obj\Debug\net6.0-windows\ref\Number_Array.dll

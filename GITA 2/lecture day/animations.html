@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <title>Canvas</title>
+
+        <script language="javascript">
+            //global variables
+            var moveX = 10*1;
+            var moveY = 10*1;
+            var xCoord = Math.floor(Math.random() * 450) + 50;
+            var yCoord = Math.floor(Math.random() * 150) + 50;
+
+            var onOff = 0;
+            
+
+            //paints a circle on the canvas
+            function drawCircle(){
+                var canvas = document.getElementById("myCanvas");
+                var context = canvas.getContext("2d");
+                //paint the background of the canvas
+                context.fillStyle="#000000";
+                context.fillRect(0, 0, 500, 200);
+
+                //draw the circle
+                context.fillStyle="#888888";
+
+                context.beginPath();
+                context.arc(xCoord, yCoord, 15, 0, 2 * Math.PI, true);
+                context.closePath();
+                context.fill();
+            }
+
+            function move(){
+                //momves circle ~10px
+
+                if(xCoord > 485 || xCoord < 15){
+                    moveX = -Math.sign(moveX) * Math.floor(Math.random() * 10);
+                    //moveX *= -1;
+                }
+                
+                if(yCoord > 185 || yCoord < 15){
+                    moveY = -Math.sign(moveY) * Math.floor(Math.random() * 10);
+                    //moveY *= -1;
+                }
+
+                
+                xCoord += moveX;
+                yCoord += moveY;
+
+                drawCircle();
+            }
+
+            function toggleTimer(){
+                if(onOff == 0){
+                    timer = setInterval("move()", 50);
+                    onOff = 1*1;
+                }
+                else if(onOff == 1){
+                    clearInterval(timer);
+                    onOff == 0;
+                }
+            }
+        </script>
+    </head>
+
+    <body onload="drawCircle()">
+        <center>
+            <h1>Basic Animations</h1>
+        
+    </br>
+    </br>
+
+        <canvas id="myCanvas" width="500" height="200"
+            style="border:2px solid rgb(195, 195, 195);">
+            Your browser does not suppport the canvas element
+        </canvas>
+
+    </br>
+    </br>
+        <input type="button" name="Play" value="MOVE"
+            onclick="move()"/>
+
+        <input type="button" name="Auto" value="AUTO"
+            onclick="toggleTimer()"/>
+        </center>
+    </body>
+</html>

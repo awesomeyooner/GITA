@@ -1,0 +1,220 @@
+<html>
+
+<head>
+    <title>Home Page</title>
+
+    <style type="text/css" media="all">
+        #container{
+            text-align:center;
+        }
+
+        #img-gpt{
+            padding: 0 0 0 0;
+            width: 500px;
+            height: 500px;
+            float: right;
+        }
+
+        #img-what{
+            padding: 0 0 0 0;
+            width: 500px;
+            height: 500px;
+            float: left;
+        }
+        
+        #img-brain{
+            padding: 0 0 0 0;
+            width: 500px;
+            height: 500px;
+            float: right;
+        }
+
+        #header{
+            background-color: lightblue;
+            margin:0;
+        }
+
+        h1{
+            margin:0;
+            padding: 0px 0 0 150px;
+            font-size: 3em;
+        }
+        
+        #content{
+            background-color: violet;
+            height:500px;
+            padding:20px;
+            font-family:arial;
+            font-size:25px;
+            color:blue;
+            font-weight:bold;
+        }
+
+        #contentTitle{
+            font-size: 2em;
+            font-family:arial;
+            color:red;
+            font-weight: bold;
+            text-align: left;
+            padding: 0 0 0 10px;
+        }
+
+        #contentParagraphRight{
+            font-size: 1.5em;
+            font-family: arial;
+            color:lime;
+            font-weight: normal;
+            text-align: left;
+            float: right;
+            width: 900px;
+            padding: 100px 0 0 10px;
+        }
+
+        #contentParagraphLeft{
+            font-size: 1.5em;
+            font-family: arial;
+            color:lime;
+            font-weight: normal;
+            text-align: left;
+            float: left;
+            width: 900px;
+            padding: 100px 0 0 10px;
+        }
+
+        #footer{
+            background:#FFA500;
+            clear:both;
+            text-align: center;
+        }
+
+        #menu{
+            background-color:#FFA700;
+            height:550px;
+            width:180px;
+            float:left;
+        }
+
+        #link1, #link2, #link3{
+            font-family:arial;
+            font-size: 25px;
+            font-weight: bold;
+            color:blue;
+
+        }
+    </style>
+
+    <script language="javascript">
+        //create two functions to change the text color
+        //on the links and then change it back
+    
+        function linkHover(linkVar){
+            document.getElementById(linkVar).style.color = "red";
+            document.getElementById(linkVar).style.textDecoration = "none";
+        }
+
+        function linkLeave(linkVar){
+            document.getElementById(linkVar).style.color = "blue";
+            document.getElementById(linkVar).style.textDecoration = "underline";
+        }
+
+        function linkClick(linkVar){
+            document.getElementById(linkVar).style.color = "green";
+            document.getElementById(linkVar).style.textDecoration = "none";
+        }
+
+        function changePic(thePic){
+            document.getElementById(thePic).src="resources/gptLogo.png";
+        }
+
+        function changeBack(thePic2){
+            document.getElementById(thePic2).src="resources/big brain.jpg";
+        }
+
+        function dynamicPic(thePic, newPic){
+            document.getElementById(thePic).src = newPic;
+        }
+    </script>
+
+</head>
+
+<body>
+    <div id="container">
+
+        <div id="header">
+            <h1>New Technology: AI</h1>
+        </div>
+
+     
+        <div id="content">
+
+            <a href = "https://en.wikipedia.org/wiki/ChatGPT">
+                <img src="resources/gptLogo.png" 
+                    onmouseover="dynamicPic(this.id, 'resources/big brain.jpg')" 
+                    onmouseout="dynamicPic(this.id, 'resources/gptLogo.png')" 
+                    id="img-gpt">
+            </a>
+           
+
+            <div id = "contentParagraphLeft">
+                Artificial Intelligence has started to rise up in it's popularity, mainly from ChatBots like ChatGPT. 
+                There are many different ways the idea of AI is being used, the mostly known one is for ChatBots. 
+                Other ways include, learning to play a game, being able to recognize letters and numbers, autonomous driving, 
+                vision pipelines, and many more. 
+            </div>
+        
+        </div>
+
+        <!-- ========================================================================= -->
+
+        <div id="content">
+
+            <a href = "https://en.wikipedia.org/wiki/ChatGPT">
+                <img src="resources/big brain.jpg" 
+                    onmouseout="dynamicPic(this.id, 'resources/big brain.jpg')" 
+                    onmouseover="dynamicPic(this.id, 'resources/gptLogo.png')" 
+                    id="img-what">
+            </a>
+           
+
+            <div id = "contentParagraphRight">
+                Artificial Intelligence has started to rise up in it's popularity, mainly from ChatBots like ChatGPT. 
+                There are many different ways the idea of AI is being used, the mostly known one is for ChatBots. 
+                Other ways include, learning to play a game, being able to recognize letters and numbers, autonomous driving, 
+                vision pipelines, and many more. 
+            </div>
+        
+        </div>
+
+        <!-- ========================================================================= -->  
+
+        <div id="content">
+
+            <a href = "https://en.wikipedia.org/wiki/ChatGPT">
+                <img src="resources/another.jpg" 
+                    onmouseover="dynamicPic(this.id, 'resources/brain.jpg')" 
+                    onmouseout="dynamicPic(this.id, 'resources/another.jpg')" 
+                    id="img-brain">
+            </a>
+           
+
+            <div id = "contentParagraphRight">
+                Artificial Intelligence has started to rise up in it's popularity, mainly from ChatBots like ChatGPT. 
+                There are many different ways the idea of AI is being used, the mostly known one is for ChatBots. 
+                Other ways include, learning to play a game, being able to recognize letters and numbers, autonomous driving, 
+                vision pipelines, and many more. 
+            </div>
+        
+        </div>
+
+        <!-- ========================================================================= --> 
+        
+
+        
+
+        <div id="footer">
+        Copyright globalitacademy.us
+        </div>
+    </div>
+</body>
+
+</html>

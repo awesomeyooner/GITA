@@ -1,0 +1,17 @@
+C:\Users\aweso\Desktop\GITA 1\projects\Madlibs\bin\Debug\net6.0-windows\Madlibs.exe
+C:\Users\aweso\Desktop\GITA 1\projects\Madlibs\bin\Debug\net6.0-windows\Madlibs.deps.json
+C:\Users\aweso\Desktop\GITA 1\projects\Madlibs\bin\Debug\net6.0-windows\Madlibs.runtimeconfig.json
+C:\Users\aweso\Desktop\GITA 1\projects\Madlibs\bin\Debug\net6.0-windows\Madlibs.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Madlibs\bin\Debug\net6.0-windows\Madlibs.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Madlibs\obj\Debug\net6.0-windows\Madlibs.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Madlibs\obj\Debug\net6.0-windows\Madlibs.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\Madlibs\obj\Debug\net6.0-windows\Madlibs.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Madlibs\obj\Debug\net6.0-windows\Madlibs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aweso\Desktop\GITA 1\projects\Madlibs\obj\Debug\net6.0-windows\Madlibs.AssemblyInfoInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Madlibs\obj\Debug\net6.0-windows\Madlibs.AssemblyInfo.cs
+C:\Users\aweso\Desktop\GITA 1\projects\Madlibs\obj\Debug\net6.0-windows\Madlibs.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Madlibs\obj\Debug\net6.0-windows\Madlibs.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Madlibs\obj\Debug\net6.0-windows\refint\Madlibs.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Madlibs\obj\Debug\net6.0-windows\Madlibs.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Madlibs\obj\Debug\net6.0-windows\Madlibs.genruntimeconfig.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Madlibs\obj\Debug\net6.0-windows\ref\Madlibs.dll

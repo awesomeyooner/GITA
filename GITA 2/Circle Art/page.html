@@ -1,0 +1,134 @@
+<html>
+    <head>
+        <title>Canvas</title>
+
+        <script language="javascript">
+            //makes variables for each circle
+
+            var colorMain = "#0000FF";
+            var colorShade = "808080";
+
+            //defines the boundaries of the canvas as varaibles to make it easier to hot swap
+            var canvasBoundX = 500;
+            var canvasBoundY = 500;
+            
+            var currentAngle = 0;
+
+            var angleCap = 2 * Math.PI;
+
+            var isOn = false;
+
+            var circlesAppear = new Array(8);
+
+            var index = 0;
+            
+            for(var i = 0; i < circlesAppear.length; i++){
+                circlesAppear[i] = false;
+            }
+     
+            //paints a circle on the canvas
+            function drawCircle(){
+                var canvas = document.getElementById("myCanvas");
+                var context = canvas.getContext("2d");
+
+                currentAngle = 0;
+
+                angleCap = inputForm.circles.value * (Math.PI / 3);
+                //paint the background of the canvas
+                context.fillStyle="#ADD8E6";
+                context.fillRect(0, 0, canvasBoundX, canvasBoundY);
+
+                //draw the main circle;
+
+                if(circlesAppear[0]){
+                    context.strokeStyle = colorMain;
+                    context.beginPath();
+                    context.arc(canvasBoundX / 2, canvasBoundY / 2, 200, 0, 2 * Math.PI, true);
+                    context.closePath();
+                    context.stroke();
+                }
+
+                if(circlesAppear[1]){
+                    context.strokeStyle = colorMain;
+                    context.beginPath();
+                    context.arc(canvasBoundX / 2, canvasBoundY / 2, 75, 0, 2 * Math.PI, true);
+                    context.closePath();
+                    context.stroke();
+                }
+
+                for(var i = 0; i < 2 * Math.PI; i += Math.PI / 3){
+                    if(circlesAppear[(i / (Math.PI / 3)) + 2]){
+                        context.strokeStyle = colorMain;
+                        context.beginPath();
+                        context.arc((canvasBoundX / 2) + (100 * Math.cos(currentAngle)), (canvasBoundY / 2) - (100 * Math.sin(currentAngle)), 100, 0, 2 * Math.PI, true);
+                        context.closePath();
+                        context.stroke();
+                    
+                        currentAngle += Math.PI / 3;
+                    }
+                }
+                
+            }
+
+            function changeAppear(){
+                if(!circlesAppear[index])
+                    circlesAppear[index] = true;
+
+                index++;
+
+                drawCircle();
+
+                if(index == circlesAppear.length){
+                    toggleTimer();
+                    
+                    for(var i = 0; i < circlesAppear.length; i++){
+                        circlesAppear[i] = false;
+                    }
+
+                    index = 0;
+                }
+            }
+
+            function toggleTimer(){
+                //if the timer is on the turn it off, if its not then turn it on
+                isOn ? turnOff() : turnOn();
+            }
+
+            function turnOn(){
+                //turns the timer on
+                timer = setInterval("changeAppear()", 500);
+                isOn = true;
+            }
+
+            function turnOff(){
+                //turns the timer off
+                clearInterval(timer);
+                isOn = false;
+            }
+        
+        </script>
+    </head>
+
+    <body onload="drawCircle()">
+        <center>
+            <h1>Basic Animations</h1>
+        
+    </br>
+    </br>
+
+        <canvas id="myCanvas" width="500" height="500"
+            style="border:2px solid rgb(195, 195, 195);">
+            Your browser does not suppport the canvas element
+        </canvas>
+
+    </br>
+    </br>
+    <form name="inputForm">
+        <input type="button" name="Play" value="Play"
+            onclick="toggleTimer()"/>
+
+        <input type="text" name="circles">
+    </form>
+        </center>
+    </body>
+</html>

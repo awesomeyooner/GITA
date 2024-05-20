@@ -1,0 +1,45 @@
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\coffeeShop\coffeeShop\bin\Debug\coffeeShop.exe
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\coffeeShop\coffeeShop\bin\Debug\coffeeShop.pdb
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\coffeeShop\coffeeShop\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\coffeeShop\coffeeShop\obj\x86\Debug\coffeeShop.frmMain.resources
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\coffeeShop\coffeeShop\obj\x86\Debug\coffeeShop.Properties.Resources.resources
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\coffeeShop\coffeeShop\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\coffeeShop\coffeeShop\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\coffeeShop\coffeeShop\obj\x86\Debug\coffeeShop.exe
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\coffeeShop\coffeeShop\obj\x86\Debug\coffeeShop.pdb
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\coffeeShopWF\coffeeShop\obj\x86\Debug\coffeeShop.exe
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\coffeeShopWF\coffeeShop\obj\x86\Debug\coffeeShop.pdb
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\coffeeShopWF\coffeeShop\bin\Debug\coffeeShop.exe
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\coffeeShopWF\coffeeShop\bin\Debug\coffeeShop.pdb
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\coffeeShopWF\coffeeShop\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\coffeeShopWF\coffeeShop\obj\x86\Debug\coffeeShop.frmMain.resources
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\coffeeShopWF\coffeeShop\obj\x86\Debug\coffeeShop.Properties.Resources.resources
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\coffeeShopWF\coffeeShop\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\coffeeShopWF\coffeeShop\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\aaaC1415\coffeeShopWF\coffeeShopWF\coffeeShop\obj\x86\Debug\coffeeShop.exe
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\aaaC1415\coffeeShopWF\coffeeShopWF\coffeeShop\obj\x86\Debug\coffeeShop.pdb
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\aaaC1415\coffeeShopWF\coffeeShopWF\coffeeShop\bin\Debug\coffeeShop.exe
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\aaaC1415\coffeeShopWF\coffeeShopWF\coffeeShop\bin\Debug\coffeeShop.pdb
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\aaaC1415\coffeeShopWF\coffeeShopWF\coffeeShop\obj\x86\Debug\coffeeShop.csprojResolveAssemblyReference.cache
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\aaaC1415\coffeeShopWF\coffeeShopWF\coffeeShop\obj\x86\Debug\coffeeShop.frmMain.resources
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\aaaC1415\coffeeShopWF\coffeeShopWF\coffeeShop\obj\x86\Debug\coffeeShop.Properties.Resources.resources
+C:\Users\Ykselas\Documents\AAAOldComputer\aaVisualC\aaaC1415\coffeeShopWF\coffeeShopWF\coffeeShop\obj\x86\Debug\coffeeShop.csproj.GenerateResource.Cache
+C:\Users\Brea\Documents\AAAOldComputer\aaVisualC\aaaC1415\coffeeShopWF\coffeeShopWF\coffeeShop\obj\x86\Debug\coffeeShop.pdb
+C:\Users\Brea\Documents\AAAOldComputer\aaVisualC\aaaC1415\coffeeShopWF\coffeeShopWF\coffeeShop\bin\Debug\coffeeShop.exe
+C:\Users\Brea\Documents\AAAOldComputer\aaVisualC\aaaC1415\coffeeShopWF\coffeeShopWF\coffeeShop\bin\Debug\coffeeShop.pdb
+C:\Users\Brea\Documents\AAAOldComputer\aaVisualC\aaaC1415\coffeeShopWF\coffeeShopWF\coffeeShop\obj\x86\Debug\coffeeShop.csprojResolveAssemblyReference.cache
+C:\Users\Brea\Documents\AAAOldComputer\aaVisualC\aaaC1415\coffeeShopWF\coffeeShopWF\coffeeShop\obj\x86\Debug\coffeeShop.frmMain.resources
+C:\Users\Brea\Documents\AAAOldComputer\aaVisualC\aaaC1415\coffeeShopWF\coffeeShopWF\coffeeShop\obj\x86\Debug\coffeeShop.Properties.Resources.resources
+C:\Users\Brea\Documents\AAAOldComputer\aaVisualC\aaaC1415\coffeeShopWF\coffeeShopWF\coffeeShop\obj\x86\Debug\coffeeShop.csproj.GenerateResource.Cache
+C:\Users\Brea\Documents\AAAOldComputer\aaVisualC\aaaC1415\coffeeShopWF\coffeeShopWF\coffeeShop\obj\x86\Debug\coffeeShop.exe
+C:\Users\aweso\Desktop\GITA 1\projects\kekw\coffeeShop\bin\Debug\coffeeShop.exe.config
+C:\Users\aweso\Desktop\GITA 1\projects\kekw\coffeeShop\bin\Debug\coffeeShop.exe
+C:\Users\aweso\Desktop\GITA 1\projects\kekw\coffeeShop\bin\Debug\coffeeShop.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\kekw\coffeeShop\obj\x86\Debug\coffeeShop.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\kekw\coffeeShop\obj\x86\Debug\coffeeShop.csproj.SuggestedBindingRedirects.cache
+C:\Users\aweso\Desktop\GITA 1\projects\kekw\coffeeShop\obj\x86\Debug\coffeeShop.frmMain.resources
+C:\Users\aweso\Desktop\GITA 1\projects\kekw\coffeeShop\obj\x86\Debug\coffeeShop.Properties.Resources.resources
+C:\Users\aweso\Desktop\GITA 1\projects\kekw\coffeeShop\obj\x86\Debug\coffeeShop.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\kekw\coffeeShop\obj\x86\Debug\coffeeShop.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\kekw\coffeeShop\obj\x86\Debug\coffeeShop.exe
+C:\Users\aweso\Desktop\GITA 1\projects\kekw\coffeeShop\obj\x86\Debug\coffeeShop.pdb

@@ -1,0 +1,17 @@
+C:\Users\aweso\Desktop\GITA 1\projects\Test_Score_Program\bin\Debug\net6.0-windows\Test_Score_Program.exe
+C:\Users\aweso\Desktop\GITA 1\projects\Test_Score_Program\bin\Debug\net6.0-windows\Test_Score_Program.deps.json
+C:\Users\aweso\Desktop\GITA 1\projects\Test_Score_Program\bin\Debug\net6.0-windows\Test_Score_Program.runtimeconfig.json
+C:\Users\aweso\Desktop\GITA 1\projects\Test_Score_Program\bin\Debug\net6.0-windows\Test_Score_Program.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Test_Score_Program\bin\Debug\net6.0-windows\Test_Score_Program.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Test_Score_Program\obj\Debug\net6.0-windows\Test_Score_Program.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Test_Score_Program\obj\Debug\net6.0-windows\Test_Score_Program.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\Test_Score_Program\obj\Debug\net6.0-windows\Test_Score_Program.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Test_Score_Program\obj\Debug\net6.0-windows\Test_Score_Program.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aweso\Desktop\GITA 1\projects\Test_Score_Program\obj\Debug\net6.0-windows\Test_Score_Program.AssemblyInfoInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Test_Score_Program\obj\Debug\net6.0-windows\Test_Score_Program.AssemblyInfo.cs
+C:\Users\aweso\Desktop\GITA 1\projects\Test_Score_Program\obj\Debug\net6.0-windows\Test_Score_Program.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Test_Score_Program\obj\Debug\net6.0-windows\Test_Score_Program.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Test_Score_Program\obj\Debug\net6.0-windows\refint\Test_Score_Program.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Test_Score_Program\obj\Debug\net6.0-windows\Test_Score_Program.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Test_Score_Program\obj\Debug\net6.0-windows\Test_Score_Program.genruntimeconfig.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Test_Score_Program\obj\Debug\net6.0-windows\ref\Test_Score_Program.dll

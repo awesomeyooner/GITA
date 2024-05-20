@@ -1,0 +1,303 @@
+//makes variables for each circle
+var invaderSpeedX = 5;
+var invaderSpeedY = 40;
+
+var invaderHealth = 10;
+
+var colorOne = "#0000FF";
+var colorTwo = "#FF0000";
+
+//defines the boundaries of the canvas as varaibles to make it easier to hot swap
+var canvasBoundX = 700;
+var canvasBoundY = 500;
+
+var speed = 6;
+
+//places circles in random locations
+var xCoordOne = Math.floor(Math.random() * (canvasBoundX - 100)) + 50;
+var yCoordOne = Math.floor(Math.random() * (canvasBoundY - 100)) + 50;
+
+var xCoordTwo = Math.floor(Math.random() * (canvasBoundX - 100)) + 50;
+var yCoordTwo = Math.floor(Math.random() * (canvasBoundY - 100)) + 50;
+
+var xDef = 350;
+var yDef = 450;
+
+var xInvaders = 350;
+var yInvaders = 50;
+
+var currentMovement = "none";
+
+var bulletShot = false;
+var initialPositionX = 0;
+var bulletY = 0;
+
+var isOn = false;
+//used for timer to determine if it is on or not
+
+window.addEventListener("keydown", function(event){
+    
+
+    switch(event.key){
+        case "a":
+            currentMovement = "left";
+            break;
+        case "d":
+            currentMovement = "right";
+            break;
+        default:
+            currentMovement = "none";
+            break;
+    }
+    
+}, true);
+
+window.addEventListener("keyup", function(event){
+    currentMovement = "none";
+    
+}, true);
+
+
+function initialize(){
+    var canvas = document.getElementById("myCanvas");
+    var context = canvas.getContext("2d");
+
+    context.fillStyle="#ADD8E6";
+    context.fillRect(0, 0, canvasBoundX, canvasBoundY);
+
+    turnOn();
+}
+
+function update(){
+    resetBackground();
+    writeText(invaderHealth);
+    moveDef();
+    moveBullet();
+    moveInvaders();
+    checkWinLoss();
+
+}
+
+function checkWinLoss(){
+    if(invaderHealth <= 0){
+            resetBackground();
+            writeText("You Win!");
+            toggleTimer();
+        }
+    
+    if(yInvaders >= 400){
+        resetBackground();
+            writeText("You Lose!");
+            toggleTimer();
+    }
+}
+
+//for debugging
+function writeText(text){
+    var canvas = document.getElementById("myCanvas");
+    var context = canvas.getContext("2d");
+
+    context.font = "30px Arial";
+    context.fillStyle = "#FF0000";
+    context.fillText(text, 10, 50);
+}
+
+function moveBullet(){
+    if(bulletShot == true){
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext("2d");
+
+        bulletY -= 10;
+
+        context.lineWidth = 5;
+        context.strokeStyle = "red";
+        context.beginPath();
+        context.moveTo(initialPositionX, bulletY);
+        context.lineTo(initialPositionX, bulletY - 20);
+        context.stroke();
+
+        if(bulletY <= 10 || hitInvader()){
+            context.strokeStyle = "#ADD8E6";
+            context.stroke();
+            bulletShot = false; 
+        }
+
+        if(hitInvader())
+            invaderHealth -= 1;
+    }
+}
+
+function fireBullet(){
+    if(!bulletShot){
+        initialPositionX = xDef;
+        bulletY = yDef;
+    }
+
+    bulletShot = true;
+    
+}
+
+function moveDef(){
+    switch(currentMovement){
+        case "left":
+            if(xDef > 20)
+                xDef -= speed;
+            moveDefender(xDef, yDef, -1);
+            break;
+        case "right":
+            if(xDef < canvasBoundX - 20)
+                xDef += speed;
+            moveDefender(xDef, yDef, 1);
+            break;
+        default:
+            moveDefender(xDef, yDef, 0);
+            break;
+
+    }
+}
+
+function resetBackground(){
+    var canvas = document.getElementById("myCanvas");
+    var context = canvas.getContext("2d");
+    //paint the background of the canvas
+    context.fillStyle="#ADD8E6";
+    context.fillRect(0, 0, canvasBoundX, canvasBoundY);
+}
+
+function moveDefender(x, y, direction){
+    var canvas = document.getElementById("myCanvas");
+    var context = canvas.getContext("2d");
+
+    context.fillStyle = colorOne;
+    context.beginPath();
+    context.arc(x, y, 15, 0, 2 * Math.PI, true);
+    context.closePath();
+    context.fill();
+    
+    context.fillStyle = colorOne;
+    context.beginPath();
+    context.arc(x + (15 * direction), y, 7.5, 0, 2 * Math.PI, true);
+    context.closePath();
+    context.fill();
+}
+
+function moveInvaders(){
+    var canvas = document.getElementById("myCanvas");
+    var context = canvas.getContext("2d");
+
+    context.fillStyle = "#FFFFFF";
+    context.beginPath();
+    context.arc(xInvaders, yInvaders, 40, 0, 2 * Math.PI, true);
+    context.closePath();
+    context.fill();
+
+    if(xInvaders >= canvasBoundX - 40 || xInvaders <= 40){
+        invaderSpeedX *= -1;
+        yInvaders += invaderSpeedY;
+    }
+    xInvaders += invaderSpeedX;
+}
+
+function hitInvader(){
+     return (Math.abs(xInvaders - initialPositionX) <= 40 && Math.abs(yInvaders - bulletY) <= 40)
+}
+
+//paints a circle on the canvas
+function drawCircle(){
+    var canvas = document.getElementById("myCanvas");
+    var context = canvas.getContext("2d");
+    //paint the background of the canvas
+    context.fillStyle="#ADD8E6";
+    context.fillRect(0, 0, canvasBoundX, canvasBoundY);
+
+    //draw the circle one
+    context.fillStyle = colorOne;
+    context.beginPath();
+    context.arc(xCoordOne, yCoordOne, 15, 0, 2 * Math.PI, true);
+    context.closePath();
+    context.fill();
+
+    //draw circle two
+    context.fillStyle = colorTwo;
+    context.beginPath();
+    context.arc(xCoordTwo, yCoordTwo, 15, 0, 2 * Math.PI, true);
+    context.closePath();
+    context.fill();
+}
+
+
+function move(){
+    //momves circle ~10px
+
+    //if circle hits horizontal edge then change x direction
+    if(xCoordOne > (canvasBoundX - 15) || xCoordOne < 15){
+        //moveXOne = -Math.sign(moveXOne) * Math.floor(Math.random() * 10);
+        moveXOne *= -1;
+    }
+    
+    //if circle hits vertical edge then change y direction
+    if(yCoordOne > (canvasBoundY - 15) || yCoordOne < 15){
+        //moveYOne = -Math.sign(moveYOne) * Math.floor(Math.random() * 10);
+        moveYOne *= -1;
+    }
+
+    if(xCoordTwo > (canvasBoundX - 15) || xCoordTwo < 15){
+        //moveXOne = -Math.sign(moveXOne) * Math.floor(Math.random() * 10);
+        moveXTwo *= -1;
+    }
+    
+    if(yCoordTwo > (canvasBoundY - 15) || yCoordTwo < 15){
+        //moveYOne = -Math.sign(moveYOne) * Math.floor(Math.random() * 10);
+        moveYTwo *= -1;
+    }
+
+    //if the circle contact then change direction for both circles and toggle the color
+    if(contact()){
+        moveXOne *= -1;
+        moveYOne *= -1;
+        moveXTwo *= -1;
+        moveYTwo *= -1;
+
+        toggleColor();
+    }
+
+    //change the coordinates of the circles
+    xCoordOne += moveXOne;
+    yCoordOne += moveYOne;
+
+    xCoordTwo += moveXTwo;
+    yCoordTwo += moveYTwo;
+
+    //moves cirlces to new coordinates
+    drawCircle();
+}
+
+function contact(){
+    //if the circles are within a circle threshold then return true
+    return Math.abs(xCoordOne - xCoordTwo) <= 20 && Math.abs(yCoordOne - yCoordTwo) <= 20;
+}
+
+function toggleColor(){
+    //if the color is blue then make it green, if no then make it blue
+    (colorOne == "#0000FF") ? colorOne = "#008000" : colorOne = "#0000FF";
+
+    //if the color is red then make it purple, if not then make it red
+    (colorTwo == "#FF0000") ? colorTwo = "#800080" : colorTwo = "#FF0000";
+}
+
+function toggleTimer(){
+    //if the timer is on the turn it off, if its not then turn it on
+    isOn ? turnOff() : turnOn();
+}
+
+function turnOn(){
+    //turns the timer on
+    timer = setInterval("update()", 20);
+    isOn = true;
+}
+
+function turnOff(){
+    //turns the timer off
+    clearInterval(timer);
+    isOn = false;
+}

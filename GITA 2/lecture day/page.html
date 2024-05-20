@@ -1,0 +1,124 @@
+<html>
+
+<head>
+    <title>Home Page</title>
+
+    <style type="text/css" media="all">
+        #container{
+            width:800px;
+            text-align:center;
+        }
+
+        #header{
+            background-color:#FFA500;
+        }
+        
+        #content{
+            background-color:yellow;
+            height:510px;
+            width:600px;
+            padding:20px;
+            font-family:arial;
+            font-size:25px;
+            color:blue;
+            font-weight:bold;
+        }
+
+        #footer{
+            background:#FFA500;
+            clear:both;
+            text-align: center;
+        }
+
+        #menu{
+            background-color:#FFA700;
+            height:550px;
+            width:180px;
+            float:left;
+        }
+
+        #link1, #link2, #link3{
+            font-family:arial;
+            font-size: 25px;
+            font-weight: bold;
+        }
+    </style>
+
+    <script language="javascript">
+        //create two functions to change the text color
+        //on the links and then change it back
+
+        function linkHover(linkVar){
+            document.getElementById(linkVar).style.color = "red";
+            document.getElementById(linkVar).style.textDecoration = "none";
+        }
+
+        function linkLeave(linkVar){
+            document.getElementById(linkVar).style.color = "purple";
+            document.getElementById(linkVar).style.textDecoration = "underline";
+        }
+
+        function linkClick(linkVar){
+            document.getElementById(linkVar).style.color = "green";
+            document.getElementById(linkVar).style.textDecoration = "none";
+        }
+
+        function changePic(thePic){
+            document.getElementById(thePic).src="resources/alice.jpg";
+        }
+
+        function changeBack(thePic){
+            document.getElementById(thePic).src="resources/aliceWhite.jpg"
+        }
+    </script>
+
+</head>
+
+<body>
+    <div id="container">
+
+        <div id="header">
+            <h1 style="margin:0">Welcome to my page!</h1>
+        </div>
+
+        <div id="menu">
+            </br>
+            </br>
+            <a href="https://classroom.google.com/u/1/h" id="link1" onmouseover="linkHover(this.id)" onmouseleave="linkLeave(this.id)" >HTML</a>
+
+            </br>
+            </br>
+            <a href="#" id="link2" onmouseover="linkHover(this.id)" onmouseleave="linkLeave(this.id)">CSS</a>
+
+            </br>
+            </br>
+            <a href="#" id="link3" onmouseover="linkHover(this.id)" onmouseleave="linkLeave(this.id)">Javascript</a>
+
+
+            <nav>
+                <a href="headass.html">Headass page</a>  
+            </nav>
+        </div>
+
+        <div id="content">
+
+            </br>
+            My site is pickels 
+            </br>
+
+            <img src="resources/alice.jpg" onmouseover="changeBack(this.id)" onmouseout="changePic(this.id)">
+            </br>
+
+            <p>
+                The milkman came by and gave us milk, however it wasn't milk! It was some magical substance
+                that once consumed would turn you into a file cabinet. 
+            </p>
+        </div>
+
+        <div id="footer">
+        Copyright globalitacademy.us
+        </div>
+    </div>
+</body>
+
+</html>

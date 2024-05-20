@@ -1,0 +1,11 @@
+C:\Users\aweso\Desktop\GITA 1\projects\Taco Truck Tuesday\obj\Debug\Taco Truck Tuesday.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Taco Truck Tuesday\obj\Debug\Taco Truck Tuesday.csproj.SuggestedBindingRedirects.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Taco Truck Tuesday\obj\Debug\Taco_Truck_Tuesday.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\Taco Truck Tuesday\obj\Debug\Taco_Truck_Tuesday.Properties.Resources.resources
+C:\Users\aweso\Desktop\GITA 1\projects\Taco Truck Tuesday\obj\Debug\Taco Truck Tuesday.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Taco Truck Tuesday\obj\Debug\Taco Truck Tuesday.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Taco Truck Tuesday\bin\Debug\Taco Truck Tuesday.exe.config
+C:\Users\aweso\Desktop\GITA 1\projects\Taco Truck Tuesday\bin\Debug\Taco Truck Tuesday.exe
+C:\Users\aweso\Desktop\GITA 1\projects\Taco Truck Tuesday\bin\Debug\Taco Truck Tuesday.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Taco Truck Tuesday\obj\Debug\Taco Truck Tuesday.exe
+C:\Users\aweso\Desktop\GITA 1\projects\Taco Truck Tuesday\obj\Debug\Taco Truck Tuesday.pdb

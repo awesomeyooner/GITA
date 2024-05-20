@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Canvas</title>
+
+        <script language="javascript">
+            function _0x33b6(){var _0x37793d=['5167485SkZmmq','573684RMkCUq','myCanvas','213975WRkLmx','fill','#800080','floor','97BsZyYL','2047360ApQfQC','1776EADnjD','4pnFBGO','beginPath','move()','getElementById','fillStyle','2103150uDPFIM','#FF0000','#008000','random','abs','getContext','845664kbXYjz','#0000FF','arc'];_0x33b6=function(){return _0x37793d;};return _0x33b6();}var _0x2c77b1=_0x1b00;(function(_0x5c005d,_0x152401){var _0x2b3b63=_0x1b00,_0x12d5d5=_0x5c005d();while(!![]){try{var _0xcc61f4=parseInt(_0x2b3b63(0x196))/0x1*(parseInt(_0x2b3b63(0x198))/0x2)+parseInt(_0x2b3b63(0x1a8))/0x3+-parseInt(_0x2b3b63(0x199))/0x4*(-parseInt(_0x2b3b63(0x1aa))/0x5)+-parseInt(_0x2b3b63(0x19e))/0x6+parseInt(_0x2b3b63(0x197))/0x7+-parseInt(_0x2b3b63(0x1a4))/0x8+parseInt(_0x2b3b63(0x1a7))/0x9;if(_0xcc61f4===_0x152401)break;else _0x12d5d5['push'](_0x12d5d5['shift']());}catch(_0x26ab6b){_0x12d5d5['push'](_0x12d5d5['shift']());}}}(_0x33b6,0xb25cb));var moveXOne=0xa*0x1,moveYOne=0xa*0x1,moveXTwo=-0xa*0x1,moveYTwo=-0xa*0x1,colorOne=_0x2c77b1(0x1a5),colorTwo=_0x2c77b1(0x19f),canvasBoundX=0x1f4,canvasBoundY=0xc8,xCoordOne=Math['floor'](Math[_0x2c77b1(0x1a1)]()*(canvasBoundX-0x64))+0x32,yCoordOne=Math[_0x2c77b1(0x195)](Math[_0x2c77b1(0x1a1)]()*(canvasBoundY-0x64))+0x32,xCoordTwo=Math[_0x2c77b1(0x195)](Math['random']()*(canvasBoundX-0x64))+0x32,yCoordTwo=Math[_0x2c77b1(0x195)](Math['random']()*(canvasBoundY-0x64))+0x32,isOn=![];function drawCircle(){var _0x4c0927=_0x2c77b1,_0x42850d=document[_0x4c0927(0x19c)](_0x4c0927(0x1a9)),_0x2e5b51=_0x42850d[_0x4c0927(0x1a3)]('2d');_0x2e5b51['fillStyle']='#ADD8E6',_0x2e5b51['fillRect'](0x0,0x0,canvasBoundX,canvasBoundY),_0x2e5b51[_0x4c0927(0x19d)]=colorOne,_0x2e5b51[_0x4c0927(0x19a)](),_0x2e5b51[_0x4c0927(0x1a6)](xCoordOne,yCoordOne,0xf,0x0,0x2*Math['PI'],!![]),_0x2e5b51['closePath'](),_0x2e5b51[_0x4c0927(0x1ab)](),_0x2e5b51['fillStyle']=colorTwo,_0x2e5b51[_0x4c0927(0x19a)](),_0x2e5b51[_0x4c0927(0x1a6)](xCoordTwo,yCoordTwo,0xf,0x0,0x2*Math['PI'],!![]),_0x2e5b51['closePath'](),_0x2e5b51[_0x4c0927(0x1ab)]();}function _0x1b00(_0x33d1ec,_0x5cee94){var _0x33b670=_0x33b6();return _0x1b00=function(_0x1b003b,_0x454025){_0x1b003b=_0x1b003b-0x194;var _0x18d81a=_0x33b670[_0x1b003b];return _0x18d81a;},_0x1b00(_0x33d1ec,_0x5cee94);}function move(){(xCoordOne>canvasBoundX-0xf||xCoordOne<0xf)&&(moveXOne*=-0x1),(yCoordOne>canvasBoundY-0xf||yCoordOne<0xf)&&(moveYOne*=-0x1),(xCoordTwo>canvasBoundX-0xf||xCoordTwo<0xf)&&(moveXTwo*=-0x1),(yCoordTwo>canvasBoundY-0xf||yCoordTwo<0xf)&&(moveYTwo*=-0x1),contact()&&(moveXOne*=-0x1,moveYOne*=-0x1,moveXTwo*=-0x1,moveYTwo*=-0x1,toggleColor()),xCoordOne+=moveXOne,yCoordOne+=moveYOne,xCoordTwo+=moveXTwo,yCoordTwo+=moveYTwo,drawCircle();}function contact(){var _0x3c0d71=_0x2c77b1;return Math['abs'](xCoordOne-xCoordTwo)<=0x14&&Math[_0x3c0d71(0x1a2)](yCoordOne-yCoordTwo)<=0x14;}function toggleColor(){var _0x2d3873=_0x2c77b1;colorOne==_0x2d3873(0x1a5)?colorOne=_0x2d3873(0x1a0):colorOne=_0x2d3873(0x1a5),colorTwo==_0x2d3873(0x19f)?colorTwo=_0x2d3873(0x194):colorTwo=_0x2d3873(0x19f);}function toggleTimer(){isOn?turnOff():turnOn();}function turnOn(){var _0x42c257=_0x2c77b1;timer=setInterval(_0x42c257(0x19b),0x32),isOn=!![];}function turnOff(){clearInterval(timer),isOn=![];}
+        </script>
+    </head>
+
+    <body onload="drawCircle()">
+        <center>
+            <h1>Basic Animations</h1>
+        
+    </br>
+    </br>
+
+        <canvas id="myCanvas" width="500" height="200"
+            style="border:2px solid rgb(195, 195, 195);">
+            Your browser does not suppport the canvas element
+        </canvas>
+
+    </br>
+    </br>
+        <input type="button" name="Play" value="MOVE"
+            onclick="move()"/>
+
+        <input type="button" name="Auto" value="AUTO"
+            onclick="toggleTimer()"/>
+        </center>
+    </body>
+</html>

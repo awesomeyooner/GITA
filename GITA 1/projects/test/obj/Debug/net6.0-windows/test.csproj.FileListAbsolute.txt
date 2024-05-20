@@ -1,0 +1,17 @@
+C:\Users\aweso\Desktop\GITA 1\projects\test\bin\Debug\net6.0-windows\test.exe
+C:\Users\aweso\Desktop\GITA 1\projects\test\bin\Debug\net6.0-windows\test.deps.json
+C:\Users\aweso\Desktop\GITA 1\projects\test\bin\Debug\net6.0-windows\test.runtimeconfig.json
+C:\Users\aweso\Desktop\GITA 1\projects\test\bin\Debug\net6.0-windows\test.dll
+C:\Users\aweso\Desktop\GITA 1\projects\test\bin\Debug\net6.0-windows\test.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\test\obj\Debug\net6.0-windows\test.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\test\obj\Debug\net6.0-windows\test.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\test\obj\Debug\net6.0-windows\test.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\test\obj\Debug\net6.0-windows\test.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aweso\Desktop\GITA 1\projects\test\obj\Debug\net6.0-windows\test.AssemblyInfoInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\test\obj\Debug\net6.0-windows\test.AssemblyInfo.cs
+C:\Users\aweso\Desktop\GITA 1\projects\test\obj\Debug\net6.0-windows\test.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\test\obj\Debug\net6.0-windows\test.dll
+C:\Users\aweso\Desktop\GITA 1\projects\test\obj\Debug\net6.0-windows\refint\test.dll
+C:\Users\aweso\Desktop\GITA 1\projects\test\obj\Debug\net6.0-windows\test.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\test\obj\Debug\net6.0-windows\test.genruntimeconfig.cache
+C:\Users\aweso\Desktop\GITA 1\projects\test\obj\Debug\net6.0-windows\ref\test.dll

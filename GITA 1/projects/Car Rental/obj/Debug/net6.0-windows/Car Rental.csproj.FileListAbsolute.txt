@@ -1,0 +1,17 @@
+C:\Users\aweso\Desktop\GITA 1\projects\Car Rental\bin\Debug\net6.0-windows\Car Rental.exe
+C:\Users\aweso\Desktop\GITA 1\projects\Car Rental\bin\Debug\net6.0-windows\Car Rental.deps.json
+C:\Users\aweso\Desktop\GITA 1\projects\Car Rental\bin\Debug\net6.0-windows\Car Rental.runtimeconfig.json
+C:\Users\aweso\Desktop\GITA 1\projects\Car Rental\bin\Debug\net6.0-windows\Car Rental.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Car Rental\bin\Debug\net6.0-windows\Car Rental.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Car Rental\obj\Debug\net6.0-windows\Car Rental.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Car Rental\obj\Debug\net6.0-windows\Car_Rental.CarRental.resources
+C:\Users\aweso\Desktop\GITA 1\projects\Car Rental\obj\Debug\net6.0-windows\Car Rental.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Car Rental\obj\Debug\net6.0-windows\Car Rental.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aweso\Desktop\GITA 1\projects\Car Rental\obj\Debug\net6.0-windows\Car Rental.AssemblyInfoInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Car Rental\obj\Debug\net6.0-windows\Car Rental.AssemblyInfo.cs
+C:\Users\aweso\Desktop\GITA 1\projects\Car Rental\obj\Debug\net6.0-windows\Car Rental.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Car Rental\obj\Debug\net6.0-windows\Car Rental.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Car Rental\obj\Debug\net6.0-windows\refint\Car Rental.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Car Rental\obj\Debug\net6.0-windows\Car Rental.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Car Rental\obj\Debug\net6.0-windows\Car Rental.genruntimeconfig.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Car Rental\obj\Debug\net6.0-windows\ref\Car Rental.dll

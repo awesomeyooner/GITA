@@ -1,0 +1,17 @@
+C:\Users\aweso\Desktop\GITA 1\projects\firestorm\bin\Debug\net6.0-windows\firestorm.exe
+C:\Users\aweso\Desktop\GITA 1\projects\firestorm\bin\Debug\net6.0-windows\firestorm.deps.json
+C:\Users\aweso\Desktop\GITA 1\projects\firestorm\bin\Debug\net6.0-windows\firestorm.runtimeconfig.json
+C:\Users\aweso\Desktop\GITA 1\projects\firestorm\bin\Debug\net6.0-windows\firestorm.dll
+C:\Users\aweso\Desktop\GITA 1\projects\firestorm\bin\Debug\net6.0-windows\firestorm.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\firestorm\obj\Debug\net6.0-windows\firestorm.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\firestorm\obj\Debug\net6.0-windows\firestorm.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\firestorm\obj\Debug\net6.0-windows\firestorm.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\firestorm\obj\Debug\net6.0-windows\firestorm.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aweso\Desktop\GITA 1\projects\firestorm\obj\Debug\net6.0-windows\firestorm.AssemblyInfoInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\firestorm\obj\Debug\net6.0-windows\firestorm.AssemblyInfo.cs
+C:\Users\aweso\Desktop\GITA 1\projects\firestorm\obj\Debug\net6.0-windows\firestorm.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\firestorm\obj\Debug\net6.0-windows\firestorm.dll
+C:\Users\aweso\Desktop\GITA 1\projects\firestorm\obj\Debug\net6.0-windows\refint\firestorm.dll
+C:\Users\aweso\Desktop\GITA 1\projects\firestorm\obj\Debug\net6.0-windows\firestorm.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\firestorm\obj\Debug\net6.0-windows\firestorm.genruntimeconfig.cache
+C:\Users\aweso\Desktop\GITA 1\projects\firestorm\obj\Debug\net6.0-windows\ref\firestorm.dll

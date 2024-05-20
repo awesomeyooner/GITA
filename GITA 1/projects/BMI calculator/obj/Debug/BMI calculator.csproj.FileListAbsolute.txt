@@ -1,0 +1,11 @@
+C:\Users\aweso\Desktop\GITA 1\projects\BMI calculator\bin\Debug\BMI calculator.exe.config
+C:\Users\aweso\Desktop\GITA 1\projects\BMI calculator\bin\Debug\BMI calculator.exe
+C:\Users\aweso\Desktop\GITA 1\projects\BMI calculator\bin\Debug\BMI calculator.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\BMI calculator\obj\Debug\BMI calculator.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\BMI calculator\obj\Debug\BMI calculator.csproj.SuggestedBindingRedirects.cache
+C:\Users\aweso\Desktop\GITA 1\projects\BMI calculator\obj\Debug\BMI_calculator.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\BMI calculator\obj\Debug\BMI_calculator.Properties.Resources.resources
+C:\Users\aweso\Desktop\GITA 1\projects\BMI calculator\obj\Debug\BMI calculator.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\BMI calculator\obj\Debug\BMI calculator.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\BMI calculator\obj\Debug\BMI calculator.exe
+C:\Users\aweso\Desktop\GITA 1\projects\BMI calculator\obj\Debug\BMI calculator.pdb

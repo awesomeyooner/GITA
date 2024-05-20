@@ -1,0 +1,134 @@
+<html>
+<head>
+<title>Calculations</title>
+<script language="javascript">
+
+//declare an array object to hold integers
+var numberArray = new Array();
+
+//creates an object to hold how many numbers the array can hold
+var arrayCap = 1000;
+	
+    //function that takes in a number to find and outputs various different data about the array
+	function calculate(inputNum)
+	{	
+        resetArray(); //resets the array (fills it with different numbers)
+
+        //blank variable to hold the output, the string to say.
+        var myNumbers = "";
+
+        //variable that represents the highest number in the array
+        var highest = 0;
+
+        //variable that represents the lowest number in the array
+        var lowest = 1000;
+
+        //variable that holds the total value of the array
+        var total = 0;
+
+        //variable that holds the total numebr of EVEN numbers in the array
+        var even = 0;
+
+        //variable that holds the total number of ODD numbers in the array
+        var odd = 0;
+
+        //variable that says whether or not the chosen input is inside the array
+        var inputAppeared = false;
+
+        //variable that tells the position at which the chosen number was first found
+        var position = 0;
+
+        //total number of times that the chosen number is inside the array
+        var totalInputCount = 0;
+
+        //searching throughout the entire array 
+        for(var i = 0; i < numberArray.length; i++){
+
+            //makes a variable to access the current index
+            currentNumber = numberArray[i];
+
+            //adds the current number to the total to find average later
+            total += currentNumber;
+
+            //if the current number is divisable by 2, then it is even. If it isnt then it is odd
+            if(currentNumber % 2 == 0)
+                even++; //adds to the total even count if it is
+            else
+                odd++; //adds to the total odd count if it isnt
+
+            //if the current number is higher than the current highest number, then make that the new highest
+            if(currentNumber > highest)
+                highest = currentNumber;
+            
+            //if the current number is lower than the current lowest number, then make that the new lowest
+            if(currentNumber < lowest)
+                lowest = currentNumber;
+
+            //if the current number is equal to the input num then add to the total input appearances,
+            //if the position has not been changed yet then change it;
+            if(currentNumber == inputNum){
+                totalInputCount++;
+                
+                //if the input has not appeared yet, then make the current index the position at where it has been found
+                if(!inputAppeared){
+                    inputAppeared = true; //say that the chosen number has been found
+                    position = i; //set the position to the current index
+                }
+            }
+            
+        }
+        
+        //have if the number was not in the array then say it was not in the array instead of saying -1 as the position
+		var positionText = inputAppeared ? position.toString() : "Not in array";
+
+        //output the text
+		document.outputForm.txaoutputField.value =
+			"Chosen Number: " + inputNum + "\n" +
+            "First Position: " + positionText + "\n" + 
+            "Total Chosen Number Appearances: " + totalInputCount + "\n" +
+            "Highest Number Found: " + highest + "\n" +
+            "Lowest Number Found: " + lowest + "\n" +
+            "Average Value: " + (total / 1000) + "\n" + 
+            "Odd Numbers: " + odd + "\n" +
+            "Even Numbers: " + even + "\n";
+
+        
+	}
+
+    function resetArray(){
+        //resets the array / fills the array with random numbers
+        for(var i = 0; i < arrayCap; i++){
+            numberArray[i] = Math.floor(Math.random() * 1000) + 1;
+        }
+    }
+</script>
+<style type="text/css">
+	label{color:blue;
+		font-size:25px;}
+</style>
+</head>
+    <body>
+        <center>
+            <h1>Calculations and Functions</h1>
+                </br>
+                </br>
+                <form name = "inputForm" onload="resetArray()">
+
+                    <input type="button" name="btnCalculate" value="Calculate"
+                            onclick="calculate(inputForm.textBox.value)"/>
+
+                    <input type="button" name="btnReset" value="Reset"
+                            onclick="resetArray()"/>
+
+                    <input type="text" name="textBox">
+
+                </form>
+                </br>
+                <form name = "outputForm">
+                    <textarea readonly name = "txaoutputField" id="outputField"
+                        rows="30" cols="70">
+                    </textarea>
+                </form>
+        </center>
+    </body>
+</html>

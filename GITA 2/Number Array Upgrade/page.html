@@ -1,0 +1,138 @@
+<html>
+<head>
+<title>Calculations</title>
+<script language="javascript">
+//Programmer: Aaron Yoon
+//Project: calculate certain things about numbers in an array
+//Date: 12/12/23
+
+//declare an array object to hold integers
+var numberArray = new Array();
+
+//creates an object to hold how many numbers the array can hold
+var arrayCap = 5000;
+	
+    //function that takes in a number to find and outputs various different data about the array
+	function calculate()
+	{	
+        resetArray();
+
+        var totalLoopsBrute = 0;
+        var totalLoopsBinary = 0;
+
+        var validLoopsBrute = 0;
+        var validLoopsBinary = 0;
+
+        for(var i = 0; i < 5000; i++){
+            var bruteCount = searchArray(numberArray);
+        
+            if(bruteCount){
+                totalLoopsBrute += bruteCount;
+                validLoopsBrute++;
+            }
+
+            var sorted = numberArray.sort(function(a, b){return a - b})
+
+            var binaryCount = binarySearch(sorted);
+            
+            if(binaryCount){
+                totalLoopsBinary += binaryCount;
+                validLoopsBinary++;
+            }
+
+            //resetArray();
+        }
+
+        //output the text
+		document.outputForm.txaoutputField.value =
+            "Average loop counts with brute force: " + (totalLoopsBrute / validLoopsBrute) + "\n" +
+            "Average loop acounts with binary search: " + (totalLoopsBinary / validLoopsBinary);
+        
+	}
+
+    //brute force method
+    function searchArray(array){
+        var inputNum = Math.floor(Math.random() * (arrayCap));
+
+        var inputAppeared = false;
+
+        var loopCount = 1;
+
+        for(var i = 0; i < array.length; i++){
+
+            currentNumber = array[i];
+   
+            if(currentNumber == inputNum){
+                return loopCount;
+            }
+            else
+                loopCount++;
+        }
+
+        return null;
+    }
+
+    function binarySearch(array) {
+        var inputNum = Math.floor(Math.random() * arrayCap);
+        
+        var start = 0;
+        var end = array.length - 1;
+
+        var loopCount = 1;
+
+        while (start <= end) {
+            var mid = Math.floor((start + end) / 2);
+
+            if (array[mid] == inputNum) {
+                return loopCount;
+            }
+            else
+                loopCount++;
+
+            if (inputNum < array[mid]) {
+                end = mid - 1;
+            } 
+            else{
+                start = mid + 1;
+            }
+        }
+
+        return null;
+    }
+
+    function resetArray(){
+        //resets the array / fills the array with random numbers
+        for(var i = 0; i < arrayCap; i++){
+            numberArray[i] = Math.floor(Math.random() * arrayCap) + 1;
+        }
+    }
+</script>
+<style type="text/css">
+	label{color:blue;
+		font-size:25px;}
+</style>
+</head>
+    <body>
+        <center>
+            <h1>Calculations and Functions</h1>
+                </br>
+                </br>
+                <form name = "inputForm" onload="resetArray()">
+
+                    <input type="button" name="btnCalculate" value="Calculate"
+                            onclick="calculate()"/>
+
+                    <input type="button" name="btnReset" value="Reset"
+                            onclick="resetArray()"/>
+
+                  
+                </form>
+                </br>
+                <form name = "outputForm">
+                    <textarea readonly name = "txaoutputField" id="outputField"
+                        rows="30" cols="70">
+                    </textarea>
+                </form>
+        </center>
+    </body>
+</html>

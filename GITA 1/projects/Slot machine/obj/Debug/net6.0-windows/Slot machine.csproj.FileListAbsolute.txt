@@ -1,0 +1,18 @@
+C:\Users\aweso\Desktop\GITA 1\projects\Slot machine\bin\Debug\net6.0-windows\Slot machine.exe
+C:\Users\aweso\Desktop\GITA 1\projects\Slot machine\bin\Debug\net6.0-windows\Slot machine.deps.json
+C:\Users\aweso\Desktop\GITA 1\projects\Slot machine\bin\Debug\net6.0-windows\Slot machine.runtimeconfig.json
+C:\Users\aweso\Desktop\GITA 1\projects\Slot machine\bin\Debug\net6.0-windows\Slot machine.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Slot machine\bin\Debug\net6.0-windows\Slot machine.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Slot machine\obj\Debug\net6.0-windows\Slot machine.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Slot machine\obj\Debug\net6.0-windows\Slot_machine.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\Slot machine\obj\Debug\net6.0-windows\Slot machine.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Slot machine\obj\Debug\net6.0-windows\Slot machine.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aweso\Desktop\GITA 1\projects\Slot machine\obj\Debug\net6.0-windows\Slot machine.AssemblyInfoInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Slot machine\obj\Debug\net6.0-windows\Slot machine.AssemblyInfo.cs
+C:\Users\aweso\Desktop\GITA 1\projects\Slot machine\obj\Debug\net6.0-windows\Slot machine.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Slot machine\obj\Debug\net6.0-windows\Slot machine.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Slot machine\obj\Debug\net6.0-windows\refint\Slot machine.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Slot machine\obj\Debug\net6.0-windows\Slot machine.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Slot machine\obj\Debug\net6.0-windows\Slot machine.genruntimeconfig.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Slot machine\obj\Debug\net6.0-windows\ref\Slot machine.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Slot machine\obj\Debug\net6.0-windows\Slot_machine.Properties.Resources.resources

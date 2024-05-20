@@ -1,0 +1,123 @@
+<html>
+<head>
+<title>
+Objects
+</title>
+<script language="javascript">
+
+    //global level variables
+    var onOff = 0;
+    var circles = new Array();
+
+    //define the properties of our objects
+    // create a function with 5 parameters
+    
+    function circleInfo(x, y, velX, velY, color){
+        this.x = x;
+        this.y = y;
+        this.velX = velX;
+        this.velY = velY;
+        this.color = color;
+    }
+    //fill array with its properties
+    for(var i = 0; i < 10; i++){
+        var xCoord = Math.floor(Math.random() * 450);
+        var yCoord = Math.floor(Math.random() * 450);
+        var myColor = "#FF0000";
+
+        circles[i] = new circleInfo(xCoord, yCoord, 3, 3, myColor);
+    }
+
+
+	function init()
+	{
+		drawCircle();
+	}
+
+    function update(){
+        moveCircles();
+    }
+	
+	function drawCircle()
+	{
+        var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+			
+		//paint canvas
+		context.fillStyle="#000000";
+		context.fillRect(0,0,500,500);
+
+			for(var i = 0; i < 10; i++){
+                context.fillStyle = circles[i].color;
+                context.beginPath();
+                context.arc(circles[i].x, circles[i].y, 15, 0, Math.PI * 2, true);
+                context.closePath();
+                context.fill();
+            }
+			
+	}
+
+    function moveCircles(){
+
+
+        for(var i = 0; i < 10; i++){
+            
+
+            if(circles[i].x > 485 || circles[i].x < 15){
+                circles[i].velX *= -1;
+            }
+
+            if(circles[i].y > 485 || circles[i].y < 15){
+                circles[i].velY *= -1;
+            }
+            circles[i].x += circles[i].velX;
+            circles[i].y += circles[i].velY;
+
+        }
+
+        drawCircle();
+    }
+
+    function resetBackground(){
+        var canvas = document.getElementById("myCanvas");
+			var context = canvas.getContext("2d");
+			
+			//paint canvas
+			context.fillStyle="#000000";
+			context.fillRect(0,0,500,500);
+    }
+	
+	
+
+function theTimer()
+	{
+		
+		if(onOff == 0)
+		{// In between brackets is a block of code
+			timer = setInterval("update()",20);
+			onOff = 1*1;
+		}
+		else if(onOff == 1)
+		{
+			clearInterval(timer);
+			onOff = 0 * 1;
+		}
+	}
+</script>
+</head>
+<body onload="init()">
+<center>
+<h1>Circle Objects</h1>
+</br>
+</br>
+<canvas id="myCanvas" width="500" height="500"
+			style="border: 2px solid rgb(195,195,195);">
+		</canvas>
+</br>
+</br>
+<input type="button" value="Move" onclick="moveCircles()">
+<input type="button" name="Auto" value="Auto Move"
+			onclick="theTimer()"/>
+</center>
+</body>
+</html>

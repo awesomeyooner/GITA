@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taco Truck Tuesday", "Taco Truck Tuesday.csproj", "{F0554F91-DE52-4238-9A4B-2C5899D9B484}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F0554F91-DE52-4238-9A4B-2C5899D9B484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0554F91-DE52-4238-9A4B-2C5899D9B484}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0554F91-DE52-4238-9A4B-2C5899D9B484}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0554F91-DE52-4238-9A4B-2C5899D9B484}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7335AD18-074D-42D0-981E-4FEC544AF22D}
+	EndGlobalSection
+EndGlobal

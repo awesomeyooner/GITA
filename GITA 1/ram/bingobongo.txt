@@ -1,0 +1,5 @@
+tic tac toe
+-have 3 x 3 pic boxes or whatever
+-make it so that when a picture box it clicked the corresponding image shows up (ie x if its x players turn)
+-alternate turns
+-check who won using for loops and ifs

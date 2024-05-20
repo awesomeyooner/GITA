@@ -1,0 +1,17 @@
+C:\Users\aweso\Desktop\GITA 1\projects\Bookstore\bin\Debug\net6.0-windows\Bookstore.exe
+C:\Users\aweso\Desktop\GITA 1\projects\Bookstore\bin\Debug\net6.0-windows\Bookstore.deps.json
+C:\Users\aweso\Desktop\GITA 1\projects\Bookstore\bin\Debug\net6.0-windows\Bookstore.runtimeconfig.json
+C:\Users\aweso\Desktop\GITA 1\projects\Bookstore\bin\Debug\net6.0-windows\Bookstore.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Bookstore\bin\Debug\net6.0-windows\Bookstore.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Bookstore\obj\Debug\net6.0-windows\Bookstore.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Bookstore\obj\Debug\net6.0-windows\Bookstore.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\Bookstore\obj\Debug\net6.0-windows\Bookstore.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Bookstore\obj\Debug\net6.0-windows\Bookstore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aweso\Desktop\GITA 1\projects\Bookstore\obj\Debug\net6.0-windows\Bookstore.AssemblyInfoInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Bookstore\obj\Debug\net6.0-windows\Bookstore.AssemblyInfo.cs
+C:\Users\aweso\Desktop\GITA 1\projects\Bookstore\obj\Debug\net6.0-windows\Bookstore.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Bookstore\obj\Debug\net6.0-windows\Bookstore.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Bookstore\obj\Debug\net6.0-windows\refint\Bookstore.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Bookstore\obj\Debug\net6.0-windows\Bookstore.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Bookstore\obj\Debug\net6.0-windows\Bookstore.genruntimeconfig.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Bookstore\obj\Debug\net6.0-windows\ref\Bookstore.dll

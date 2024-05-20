@@ -1,0 +1,36 @@
+C:\Users\aweso\Desktop\GITA 1\projects\BasicAI\bin\Debug\net6.0-windows\BasicAI.exe
+C:\Users\aweso\Desktop\GITA 1\projects\BasicAI\bin\Debug\net6.0-windows\BasicAI.deps.json
+C:\Users\aweso\Desktop\GITA 1\projects\BasicAI\bin\Debug\net6.0-windows\BasicAI.runtimeconfig.json
+C:\Users\aweso\Desktop\GITA 1\projects\BasicAI\bin\Debug\net6.0-windows\BasicAI.dll
+C:\Users\aweso\Desktop\GITA 1\projects\BasicAI\bin\Debug\net6.0-windows\BasicAI.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\BasicAI\obj\Debug\net6.0-windows\BasicAI.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\BasicAI\obj\Debug\net6.0-windows\BasicAI.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\BasicAI\obj\Debug\net6.0-windows\BasicAI.Properties.Resources.resources
+C:\Users\aweso\Desktop\GITA 1\projects\BasicAI\obj\Debug\net6.0-windows\BasicAI.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\BasicAI\obj\Debug\net6.0-windows\BasicAI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aweso\Desktop\GITA 1\projects\BasicAI\obj\Debug\net6.0-windows\BasicAI.AssemblyInfoInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\BasicAI\obj\Debug\net6.0-windows\BasicAI.AssemblyInfo.cs
+C:\Users\aweso\Desktop\GITA 1\projects\BasicAI\obj\Debug\net6.0-windows\BasicAI.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\BasicAI\obj\Debug\net6.0-windows\BasicAI.dll
+C:\Users\aweso\Desktop\GITA 1\projects\BasicAI\obj\Debug\net6.0-windows\refint\BasicAI.dll
+C:\Users\aweso\Desktop\GITA 1\projects\BasicAI\obj\Debug\net6.0-windows\BasicAI.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\BasicAI\obj\Debug\net6.0-windows\BasicAI.genruntimeconfig.cache
+C:\Users\aweso\Desktop\GITA 1\projects\BasicAI\obj\Debug\net6.0-windows\ref\BasicAI.dll
+C:\Users\aweso\Desktop\GITA 1\projects\pursuit tracking\bin\Debug\net6.0-windows\BasicAI.exe
+C:\Users\aweso\Desktop\GITA 1\projects\pursuit tracking\bin\Debug\net6.0-windows\BasicAI.deps.json
+C:\Users\aweso\Desktop\GITA 1\projects\pursuit tracking\bin\Debug\net6.0-windows\BasicAI.runtimeconfig.json
+C:\Users\aweso\Desktop\GITA 1\projects\pursuit tracking\bin\Debug\net6.0-windows\BasicAI.dll
+C:\Users\aweso\Desktop\GITA 1\projects\pursuit tracking\bin\Debug\net6.0-windows\BasicAI.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\pursuit tracking\obj\Debug\net6.0-windows\BasicAI.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\pursuit tracking\obj\Debug\net6.0-windows\BasicAI.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\pursuit tracking\obj\Debug\net6.0-windows\BasicAI.Properties.Resources.resources
+C:\Users\aweso\Desktop\GITA 1\projects\pursuit tracking\obj\Debug\net6.0-windows\BasicAI.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\pursuit tracking\obj\Debug\net6.0-windows\BasicAI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aweso\Desktop\GITA 1\projects\pursuit tracking\obj\Debug\net6.0-windows\BasicAI.AssemblyInfoInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\pursuit tracking\obj\Debug\net6.0-windows\BasicAI.AssemblyInfo.cs
+C:\Users\aweso\Desktop\GITA 1\projects\pursuit tracking\obj\Debug\net6.0-windows\BasicAI.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\pursuit tracking\obj\Debug\net6.0-windows\BasicAI.dll
+C:\Users\aweso\Desktop\GITA 1\projects\pursuit tracking\obj\Debug\net6.0-windows\refint\BasicAI.dll
+C:\Users\aweso\Desktop\GITA 1\projects\pursuit tracking\obj\Debug\net6.0-windows\BasicAI.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\pursuit tracking\obj\Debug\net6.0-windows\BasicAI.genruntimeconfig.cache
+C:\Users\aweso\Desktop\GITA 1\projects\pursuit tracking\obj\Debug\net6.0-windows\ref\BasicAI.dll

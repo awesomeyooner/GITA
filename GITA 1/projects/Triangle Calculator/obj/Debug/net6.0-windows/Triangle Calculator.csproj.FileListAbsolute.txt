@@ -1,0 +1,17 @@
+C:\Users\aweso\Desktop\GITA 1\projects\Triangle Calculator\bin\Debug\net6.0-windows\Triangle Calculator.exe
+C:\Users\aweso\Desktop\GITA 1\projects\Triangle Calculator\bin\Debug\net6.0-windows\Triangle Calculator.deps.json
+C:\Users\aweso\Desktop\GITA 1\projects\Triangle Calculator\bin\Debug\net6.0-windows\Triangle Calculator.runtimeconfig.json
+C:\Users\aweso\Desktop\GITA 1\projects\Triangle Calculator\bin\Debug\net6.0-windows\Triangle Calculator.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Triangle Calculator\bin\Debug\net6.0-windows\Triangle Calculator.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Triangle Calculator\obj\Debug\net6.0-windows\Triangle Calculator.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Triangle Calculator\obj\Debug\net6.0-windows\Triangle_Calculator.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\Triangle Calculator\obj\Debug\net6.0-windows\Triangle Calculator.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Triangle Calculator\obj\Debug\net6.0-windows\Triangle Calculator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aweso\Desktop\GITA 1\projects\Triangle Calculator\obj\Debug\net6.0-windows\Triangle Calculator.AssemblyInfoInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Triangle Calculator\obj\Debug\net6.0-windows\Triangle Calculator.AssemblyInfo.cs
+C:\Users\aweso\Desktop\GITA 1\projects\Triangle Calculator\obj\Debug\net6.0-windows\Triangle Calculator.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Triangle Calculator\obj\Debug\net6.0-windows\Triangle Calculator.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Triangle Calculator\obj\Debug\net6.0-windows\refint\Triangle Calculator.dll
+C:\Users\aweso\Desktop\GITA 1\projects\Triangle Calculator\obj\Debug\net6.0-windows\Triangle Calculator.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\Triangle Calculator\obj\Debug\net6.0-windows\Triangle Calculator.genruntimeconfig.cache
+C:\Users\aweso\Desktop\GITA 1\projects\Triangle Calculator\obj\Debug\net6.0-windows\ref\Triangle Calculator.dll

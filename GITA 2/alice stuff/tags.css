@@ -1,0 +1,23 @@
+
+        h1{
+            color:orange;
+            font-size:3em;
+            font-weight:normal;
+        }
+
+        p{
+            color:rgb(0, 0, 255);
+            line-height:1.5;
+            text-indent:3em;
+        }
+
+        body{
+            background:white url('resources/alice23a.gif')no-repeat;
+        }
+        body{
+            padding:220px 0 0 180px;
+        }
+        .chapterTitle{
+            font-family:Perpentuna, Georgia, serif;
+            letter-spacing: .1em;
+        }

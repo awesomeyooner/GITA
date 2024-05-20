@@ -1,0 +1,17 @@
+C:\Users\aweso\Desktop\GITA 1\projects\StarField\bin\Debug\net6.0-windows\StarField.exe
+C:\Users\aweso\Desktop\GITA 1\projects\StarField\bin\Debug\net6.0-windows\StarField.deps.json
+C:\Users\aweso\Desktop\GITA 1\projects\StarField\bin\Debug\net6.0-windows\StarField.runtimeconfig.json
+C:\Users\aweso\Desktop\GITA 1\projects\StarField\bin\Debug\net6.0-windows\StarField.dll
+C:\Users\aweso\Desktop\GITA 1\projects\StarField\bin\Debug\net6.0-windows\StarField.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\StarField\obj\Debug\net6.0-windows\StarField.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\StarField\obj\Debug\net6.0-windows\StarField.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\StarField\obj\Debug\net6.0-windows\StarField.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\StarField\obj\Debug\net6.0-windows\StarField.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aweso\Desktop\GITA 1\projects\StarField\obj\Debug\net6.0-windows\StarField.AssemblyInfoInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\StarField\obj\Debug\net6.0-windows\StarField.AssemblyInfo.cs
+C:\Users\aweso\Desktop\GITA 1\projects\StarField\obj\Debug\net6.0-windows\StarField.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\StarField\obj\Debug\net6.0-windows\StarField.dll
+C:\Users\aweso\Desktop\GITA 1\projects\StarField\obj\Debug\net6.0-windows\refint\StarField.dll
+C:\Users\aweso\Desktop\GITA 1\projects\StarField\obj\Debug\net6.0-windows\StarField.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\StarField\obj\Debug\net6.0-windows\StarField.genruntimeconfig.cache
+C:\Users\aweso\Desktop\GITA 1\projects\StarField\obj\Debug\net6.0-windows\ref\StarField.dll

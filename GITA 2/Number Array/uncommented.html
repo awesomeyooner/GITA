@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>Calculations</title>
+<script language="javascript">
+
+var numberArray = new Array();
+
+var arrayCap = 1000;
+
+	function calculate(inputNum)
+	{	
+        resetArray();
+
+        var myNumbers = "";
+        var highest = 0;
+        var lowest = 1000;
+        var total = 0;
+        var even = 0;
+        var odd = 0;
+        var inputAppeared = false;
+        var position = 0;
+        var totalInputCount = 0;
+
+        for(var i = 0; i < numberArray.length; i++){
+            currentNumber = numberArray[i];
+
+            total += currentNumber;
+
+            if(currentNumber % 2 == 0)
+                even++; 
+            else
+                odd++;
+
+            if(currentNumber > highest)
+                highest = currentNumber;
+   
+            if(currentNumber < lowest)
+                lowest = currentNumber;
+
+            if(currentNumber == inputNum){
+                totalInputCount++;
+       
+                if(!inputAppeared){
+                    inputAppeared = true;
+                    position = i; 
+                }
+            }  
+        }
+    
+		var positionText = inputAppeared ? position.toString() : "Not in array";
+
+		document.outputForm.txaoutputField.value =
+			"Chosen Number: " + inputNum + "\n" +
+            "First Position: " + positionText + "\n" + 
+            "Total Chosen Number Appearances: " + totalInputCount + "\n" +
+            "Highest Number Found: " + highest + "\n" +
+            "Lowest Number Found: " + lowest + "\n" +
+            "Average Value: " + (total / 1000) + "\n" + 
+            "Odd Numbers: " + odd + "\n" +
+            "Even Numbers: " + even + "\n";
+
+        
+	}
+
+    function resetArray(){
+        
+        for(var i = 0; i < arrayCap; i++){
+            numberArray[i] = Math.floor(Math.random() * 1000) + 1;
+        }
+    }
+</script>
+<style type="text/css">
+	label{color:blue;
+		font-size:25px;}
+</style>
+</head>
+    <body>
+        <center>
+            <h1>Calculations and Functions</h1>
+                </br>
+                </br>
+                <form name = "inputForm" onload="resetArray()">
+
+                    <input type="button" name="btnCalculate" value="Calculate"
+                            onclick="calculate(inputForm.textBox.value)"/>
+
+                    <input type="button" name="btnReset" value="Reset"
+                            onclick="resetArray()"/>
+
+                    <input type="text" name="textBox">
+
+                </form>
+                </br>
+                <form name = "outputForm">
+                    <textarea readonly name = "txaoutputField" id="outputField"
+                        rows="30" cols="70">
+                    </textarea>
+                </form>
+        </center>
+    </body>
+</html>

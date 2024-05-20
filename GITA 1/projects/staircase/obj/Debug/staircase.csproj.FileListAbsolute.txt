@@ -1,0 +1,11 @@
+C:\Users\aweso\Desktop\GITA 1\projects\staircase\bin\Debug\staircase.exe.config
+C:\Users\aweso\Desktop\GITA 1\projects\staircase\bin\Debug\staircase.exe
+C:\Users\aweso\Desktop\GITA 1\projects\staircase\bin\Debug\staircase.pdb
+C:\Users\aweso\Desktop\GITA 1\projects\staircase\obj\Debug\staircase.csproj.AssemblyReference.cache
+C:\Users\aweso\Desktop\GITA 1\projects\staircase\obj\Debug\staircase.csproj.SuggestedBindingRedirects.cache
+C:\Users\aweso\Desktop\GITA 1\projects\staircase\obj\Debug\staircase.Form1.resources
+C:\Users\aweso\Desktop\GITA 1\projects\staircase\obj\Debug\staircase.Properties.Resources.resources
+C:\Users\aweso\Desktop\GITA 1\projects\staircase\obj\Debug\staircase.csproj.GenerateResource.cache
+C:\Users\aweso\Desktop\GITA 1\projects\staircase\obj\Debug\staircase.csproj.CoreCompileInputs.cache
+C:\Users\aweso\Desktop\GITA 1\projects\staircase\obj\Debug\staircase.exe
+C:\Users\aweso\Desktop\GITA 1\projects\staircase\obj\Debug\staircase.pdb

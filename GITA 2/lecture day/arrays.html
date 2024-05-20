@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>Calculations</title>
+<script language="javascript">
+
+//declare an array object to hold integers
+var numberArray = new Array();
+	
+var arrayCap = 10;
+	
+	function calculate()
+	{	
+         var myNumbers = "";
+
+         //fill up the array with 10 numbers
+
+         for(var i = 0; i < arrayCap; i++){
+            numberArray[i] = Math.floor(Math.random() * 10) + 1;
+         }
+
+         //searching for something 
+
+         //output the numbers
+         for(var i = 0; i < numberArray.length; i++){
+            myNumbers += numberArray[i] + "\n";
+         }
+		
+		document.outputForm.txaoutputField.value =
+			myNumbers;
+		
+	
+	}
+</script>
+<style type="text/css">
+	label{color:blue;
+		font-size:25px;}
+</style>
+</head>
+<body>
+<center>
+<h1>Calculations and Functions</h1>
+</br>
+</br>
+<form>
+<input type="button" name="btnCalculate" value="Calculate"
+		onclick="calculate()"/>
+
+</form>
+</br>
+<form name = "outputForm">
+	<textarea name = "txaoutputField" id="outputField"
+		rows="20" cols="20"/>
+	</textarea>
+</form>
+</center>
+</body>
+</html>

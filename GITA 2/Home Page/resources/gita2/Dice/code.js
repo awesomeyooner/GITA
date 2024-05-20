@@ -1,0 +1,100 @@
+
+        var totalRolls = 0 + 0;
+        var rollTwo = 0 + 0;
+        var rollThree = 0 + 0;
+        var rollFour = 0 + 0;
+        var rollFive = 0 + 0;
+        var rollSix = 0 + 0;
+        var rollSeven = 0 + 0;
+        var rollEight = 0 + 0;
+        var rollNine = 0 + 0;
+        var rollTen = 0 + 0;
+        var rollEleven = 0 + 0;
+        var rollTwelve = 0 + 0;
+
+	    function roll()
+	    {
+            var leftRoll = Math.floor((Math.random() * 6) + 1); 
+            var rightRoll = Math.floor((Math.random() * 6) + 1); 
+           
+            document.getElementById("leftLabel").innerHTML = leftRoll;
+            document.getElementById("rightLabel").innerHTML = rightRoll;
+            document.getElementById("sumLabel").innerHTML = (leftRoll + rightRoll);
+
+            totalRolls += 1;
+            var sum = leftRoll + rightRoll;
+
+            if(sum == 2)
+                rollTwo++;
+            else if(sum == 3)
+                rollThree++;
+
+            else if(sum == 4)
+                rollFour++;
+
+            else if(sum == 5)
+                rollFive++;
+
+            else if(sum == 6)
+                rollSix++;
+
+            else if(sum == 7)
+                rollSeven++;
+
+            else if(sum == 8)
+                rollEight++;
+
+            else if(sum == 9)
+                rollNine++;
+
+            else if(sum == 10)
+                rollTen++;
+
+            else if(sum == 11)
+                rollEleven++;
+
+            else if(sum == 12)
+                rollTwelve++;
+            
+            if(leftRoll == 1)
+                leftDice.src = "resources/dice1.png";
+            else if(leftRoll == 2)
+                leftDice.src = "resources/dice2.png";
+            else if(leftRoll == 3)
+                leftDice.src = "resources/dice3.png";
+            else if(leftRoll == 4)
+                leftDice.src = "resources/dice4.png";
+            else if(leftRoll == 5)
+                leftDice.src = "resources/dice5.png";
+            else if(leftRoll == 6)
+                leftDice.src = "resources/dice6.png";
+
+            if(rightRoll == 1)
+                rightDice.src = "resources/dice1.png";
+            else if(rightRoll == 2)
+                rightDice.src = "resources/dice2.png";
+            else if(rightRoll == 3)
+                rightDice.src = "resources/dice3.png";
+            else if(rightRoll == 4)
+                rightDice.src = "resources/dice4.png";
+            else if(rightRoll == 5)
+                rightDice.src = "resources/dice5.png";
+            else if(rightRoll == 6)
+                rightDice.src = "resources/dice6.png";
+        
+            document.outputForm.outputBox.value = "Probability of 2: " + prob(rollTwo) + "\n" + "\n" +
+                "Probability of 3: " + prob(rollThree) + "\n" + "\n" +
+                "Probability of 4: " + prob(rollFour) + "\n" + "\n" +
+                "Probability of 5: " + prob(rollFive) + "\n" + "\n" +
+                "Probability of 6: " + prob(rollSix) + "\n" + "\n" +
+                "Probability of 7: " + prob(rollSeven) + "\n" + "\n" +
+                "Probability of 8: " + prob(rollEight) + "\n" + "\n" +
+                "Probability of 9: " + prob(rollNine) + "\n" + "\n" +
+                "Probability of 10: " + prob(rollTen) + "\n" + "\n" +
+                "Probability of 11: " + prob(rollEleven) + "\n" + "\n" +
+                "Probability of 12: " + prob(rollTwelve);
+	    }
+
+        function prob(number){
+            return (Math.round((number / totalRolls) * 10000) / 100)  + "%";
+        }

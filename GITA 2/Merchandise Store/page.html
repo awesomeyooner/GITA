@@ -1,0 +1,282 @@
+<html>
+
+    <head>
+        <title>Merchandise Store</title>
+    </head>
+
+    <style type="text/css" media="all">
+
+        .inputContainer{
+            padding-left: 100px;
+            padding-top: 30px;
+        
+        }
+        
+        .tabs{
+            background-color: lightblue;
+            width: 500px;
+            height: 800px;
+            float: left;
+        }
+
+        .purchasing{
+            background-color: lightgreen;
+            float: right;
+            width: 1003px;
+            height: 800px;
+        }
+
+        .menuItems{
+            font-size: 2em;
+            padding-bottom: 50px;
+            padding-top: 20px;
+            padding-left: 80px;
+            display: inline-block;
+        }
+
+    </style>
+    
+    <script language="javascript">
+
+        var totalOrdersPlaced = 0 + 0;
+        var totalMoney = 0 + 0;
+        var averagePrice = 0 + 0;   
+
+        function outputReceipt(){
+            //make variables to access them easier
+            var name = inputForm.name.value;
+            var street = inputForm.street.value;
+            var city = inputForm.city.value;
+            var state = inputForm.state.value;
+            var zip = inputForm.zip.value;
+
+            document.outputForm.receiptField.value = 
+            name + "\n" +
+            street + "\n" +
+            city + "\n" +
+            state + "\n" +
+            zip + "\n" + 
+            "\n" + "\n" +
+            getFood();
+
+            document.outputForm.statsField.value = 
+            "Total Orders: " + totalOrdersPlaced + "\n" +
+            "Total Money Gained: $" + totalMoney + "\n" +
+            "Average Price: $" + averagePrice;
+
+        }
+
+        function getFood(){
+            //make quantities into variables to access them easier
+            var burgers = inputForm.quantityCheeseBurger.value;
+            var fries = inputForm.quantityFries.value;
+            var cups = inputForm.quantityCups.value;
+            var milkshakes = inputForm.quantityMilkshakes.value;
+
+            var totalCost = 0 + 0;
+
+            //placeholders for what to say
+            var burgerOrder = "";
+            var friesOrder = "";
+            var cupsOrder = "";
+            var milkshakesOrder = "";
+
+            //if you ordered something then output a line that says what you ordered, how many, and the price
+            //if you didn't order something then it wont say it
+            if(burgers > 0){
+                burgerOrder = burgers + " Burgers: $" + (burgers * 4);
+                totalCost += burgers * 4;
+            }
+            if(fries > 0){
+                friesOrder = fries + " Fries: $" + (fries * 2);
+                totalCost += fries * 2;
+            }
+                
+            if(cups > 0){
+                cupsOrder = cups + " Cups: $" + (cups * 1);
+                totalCost += cups * 1;
+            }
+
+            if(milkshakes > 0){
+                milkshakesOrder = milkshakes + " MilkShakes: $" + (milkshakes * 2);
+                totalCost += milkshakes * 2;
+            }
+
+            //if at least something was ordered then output the phrases
+            if(burgers > 0 || fries > 0 || cups > 0 || milkshakes > 0){
+                totalMoney += totalCost;
+                totalOrdersPlaced += 1;
+                averagePrice = totalMoney / totalOrdersPlaced;
+
+                return burgerOrder + "\n" + 
+                    friesOrder + "\n" +
+                    cupsOrder + "\n" +
+                    milkshakesOrder + "\n" + "\n" +
+                    "Your Total Is: $" + totalCost; 
+            }
+            //if you didnt order anything say this
+            else
+                return "Nothing Ordered: $0";
+
+        }
+
+    </script>
+
+    <body>
+
+        <form name="inputForm">
+
+            <div class="tabs">
+
+                <label style="font-size: 2.5em; padding-left: 100px; text-decoration: underline;">INFORMATION</label>
+
+                <div class="inputContainer">
+                    <label>Name: </label>
+                </br>
+                    <input type="text" name="name" style="height: 40px; font-size: 1.5em; color: blue;"> 
+                </div>
+
+            </br>
+            </br>
+
+                <div class="inputContainer">
+                    <label>Street Address: </label>
+                </br>
+                    <input type="text" name="street" style="height: 40px; font-size: 1.5em; color: blue;">
+                </div>
+        
+            </br>
+            </br>
+
+                <div class="inputContainer">
+                    <label>City: </label>
+                </br>
+                    <input type="text" name="city" style="height: 40px; font-size: 1.5em; color: blue;">
+                </div>
+        
+            </br>
+            </br>
+
+                <div class="inputContainer">
+                    <label>State: </label>
+                </br>
+                    <input type="text" name="state" style="height: 40px; font-size: 1.5em; color: blue;">
+                </div>
+        
+            </br>  
+            </br> 
+        
+                <div class="inputContainer">
+                    <label>Zip Code: </label>
+                </br>
+                    <input type="text" name="zip" style="height: 40px; font-size: 1.5em; color: blue;">
+                </div>
+
+        </div>
+
+        <div class="purchasing">
+
+            <label style="font-size: 3em; text-decoration: underline; padding-left: 400px;">MENU</label >
+
+            </br>
+
+            <div class="menuItems">
+                <label>CHEESE BURGER $4</label>
+            </br>
+                <img src="resources/burger.jpg" class="images">
+
+                </br>
+
+                <label>Quantity: </label>
+                <input type="number" name="quantityCheeseBurger">
+
+            </div>
+
+
+            <div class="menuItems">
+                <label>FRENCH FRIES $2</label>
+            </br>
+                <img src="resources/fries.jpg" class="images">
+
+                </br>
+
+                <label>Baskets: </label>
+                <input type="number" name="quantityFries">
+
+            </div>
+
+ 
+            <div class="menuItems">
+                <label>DRINK CUP $1</label>
+            </br>
+                <img src="resources/soda.jpg" class="images">
+
+                </br>
+
+                <label>Cups: </label>
+                <input type="number" name="quantityCups">
+
+            </div>
+
+            <div class="menuItems">
+                <label>MILKSHAKES $2</label>
+            </br>
+                <img src="resources/milkshake.jpg" class="images">
+
+                </br>
+
+                <label>Glasses: </label>
+                <input type="number" name="quantityMilkshakes">
+
+            </div>
+           
+        </div>
+
+        </form>
+
+        <form name="outputForm">
+            <label style="
+            font-size: 1.5em;
+            position: absolute;
+            top: 370px;
+            right: 70px;">RECEIPT</label>
+
+            <textarea readonly name="receiptField"
+                rows="20"
+                cols="20"
+                style="
+                position: absolute;
+                top: 400px;
+                right: 20px;">
+            </textarea>
+
+            <input type="button" value="FINISH" 
+            style="
+                position: absolute;
+                top: 720px;
+                right: 60px;
+                width: 100px;
+                height: 60px;
+                font-size: 1.5em;" onclick="outputReceipt()">
+
+            <label style="
+            font-size: 1.5em;
+            position: absolute;
+            top: 70px;
+            right: 70px;">STATS</label>
+
+            <textarea readonly name="statsField"
+                rows="3"
+                cols="25"
+                style="
+                position: absolute;
+                top: 100px;
+                right: 20px;">
+            </textarea>
+        </form>
+
+    </body>
+
+
+
+</html>
