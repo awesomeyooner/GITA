@@ -1,171 +1,172 @@
-class Hornet{
+// class Hornet{
 
-    constructor(canvasBoundX, canvasBoundY){
-        this.canvas = null;
-        this.context = null;
+//     constructor(canvasBoundX, canvasBoundY){
+//         this.canvas = null;
+//         this.context = null;
 
-        this.canvasBoundX = canvasBoundX;
-        this.canvasBoundY = canvasBoundY;
+//         this.canvasBoundX = canvasBoundX;
+//         this.canvasBoundY = canvasBoundY;
 
-        this.speed = 2;
-        this.isActive = false;
+//         this.speed = 2;
+//         this.isActive = false;
     
-        this.x = Math.floor(Math.random() * this.canvasBoundX) - (this.canvasBoundX / 2)
-        this.y = Math.floor(Math.random() * this.canvasBoundY) - (this.canvasBoundY / 2)
-        this.strength = Math.floor(Math.random() * 25);
+//         this.x = Math.floor(Math.random() * this.canvasBoundX) - (this.canvasBoundX / 2)
+//         this.y = Math.floor(Math.random() * this.canvasBoundY) - (this.canvasBoundY / 2)
+//         this.strength = Math.floor(Math.random() * 25);
 
-        this.image = new Image();       
-        this.stinger = new Image();
+//         this.image = new Image();       
+//         this.stinger = new Image();
 
-        this.image.src = "resources/hornet left.png";
-        this.stinger.src = "resources/stinger left.png";
-    }
+//         this.image.src = "resources/hornet left.png";
+//         this.stinger.src = "resources/stinger left.png";
+//     }
 
-    writeText(text, x, y){
-        context.font = "30px Arial";
-        context.fillStyle = "#FF0000";
-        context.fillText(text, x, y);
-    }
+//     writeText(text, x, y){
+//         context.font = "30px Arial";
+//         context.fillStyle = "#FF0000";
+//         context.fillText(text, x, y);
+//     }
 
-    update(meat, hornets){
-        if(this.isActive){
+//     update(meat, hornets){
+//         if(this.isActive){
 
-            if(this.isStrongest(hornets) && this.getActiveHornets(hornets) > 1){
-                this.pursuitWeakest(hornets);
-            }
-            else{
-                this.speed = 1;
-                this.pursuit(meat.x, meat.y);
-            }
-        }
+//             if(this.isStrongest(hornets) && this.getActiveHornets(hornets) > 1){
+//                 this.pursuitWeakest(hornets);
+//             }
+//             else{
+//                 this.speed = 1;
+//                 this.pursuit(meat.x, meat.y);
+//             }
+//         }
 
-    }
+//     }
 
-    pursuitWeakest(hornets){
-        var lowestStrength = 100;
-        var hornetID = -1;
+//     pursuitWeakest(hornets){
+//         var lowestStrength = 100;
+//         var hornetID = -1;
 
-        for(var i = 0; i < hornets.length; i++){
-            var currentHornet = hornets[i];
+//         for(var i = 0; i < hornets.length; i++){
+//             var currentHornet = hornets[i];
             
-            if(currentHornet.strength < lowestStrength && currentHornet.isActive){
-                lowestStrength = currentHornet.strength;
-                hornetID = i;
-            }
-        }
+//             if(currentHornet.strength < lowestStrength && currentHornet.isActive){
+//                 lowestStrength = currentHornet.strength;
+//                 hornetID = i;
+//             }
+//         }
 
-        this.speed = 1;
-        this.pursuit(hornets[hornetID].x, hornets[hornetID].y);
-    }
+//         this.speed = 1;
+//         this.pursuit(hornets[hornetID].x, hornets[hornetID].y);
+//     }
 
-    pursuit(targetX, targetY){
-        var deltaX = this.x - targetX;
-        var deltaY = this.y - targetY;
+//     pursuit(targetX, targetY){
+//         var deltaX = this.x - targetX;
+//         var deltaY = this.y - targetY;
 
-        var angle;
+//         var angle;
         
-        angle = Math.PI + Math.atan2(deltaY, deltaX);
+//         angle = Math.PI + Math.atan2(deltaY, deltaX);
 
-        var xSpeed = Math.cos(angle) * this.speed;
-        var ySpeed = Math.sin(angle) * this.speed;
+//         var xSpeed = Math.cos(angle) * this.speed;
+//         var ySpeed = Math.sin(angle) * this.speed;
 
-        if(xSpeed && ySpeed){
-            this.move(xSpeed, ySpeed);
-            var x = 0;
-        }
-        else{
-            this.place(this.x, this.y);
-        }
-    }
+//         if(xSpeed && ySpeed){
+//             this.move(xSpeed, ySpeed);
+//             var x = 0;
+//         }
+//         else{
+//             this.place(this.x, this.y);
+//         }
+//     }
 
-    move(xSpeed, ySpeed){
-        if(xSpeed > 0){
-            this.image.src = "resources/hornet right.png";
-            this.stinger.src = "resources/stinger right.png";
-        }
-        else{
-            this.image.src = "resources/hornet left.png";
-            this.stinger.src = "resources/stinger left.png";
-        }
+//     move(xSpeed, ySpeed){
+//         if(xSpeed > 0){
+//             this.image.src = "resources/hornet right.png";
+//             this.stinger.src = "resources/stinger right.png";
+//         }
+//         else{
+//             this.image.src = "resources/hornet left.png";
+//             this.stinger.src = "resources/stinger left.png";
+//         }
 
-        this.x += xSpeed;
-        this.y += ySpeed;
+//         this.x += xSpeed;
+//         this.y += ySpeed;
 
-        this.place(this.x, this.y);
-    }
+//         this.place(this.x, this.y);
+//     }
 
-    place(x, y){
-        this.x = x;
-        this.y = y;
+//     place(x, y){
+//         this.x = x;
+//         this.y = y;
 
-        this.context.drawImage(
-            this.image,
-            (this.x + (this.canvasBoundX / 2)) - 25, 
-            -(this.y - (this.canvasBoundY / 2)) - 25, 
-            50, 
-            50
-            );
+//         this.context.drawImage(
+//             this.image,
+//             (this.x + (this.canvasBoundX / 2)) - 25, 
+//             -(this.y - (this.canvasBoundY / 2)) - 25, 
+//             50, 
+//             50
+//             );
 
-        this.context.drawImage(
-            this.stinger,
-            (this.x + (this.canvasBoundX / 2)) - this.strength + 5, 
-            -(this.y - (this.canvasBoundY / 2)) - this.strength + 35, 
-            this.strength, 
-            this.strength
-            );
-    }
+//         this.context.drawImage(
+//             this.stinger,
+//             (this.x + (this.canvasBoundX / 2)) - this.strength + 5, 
+//             -(this.y - (this.canvasBoundY / 2)) - this.strength + 35, 
+//             this.strength, 
+//             this.strength
+//             );
+//     }
 
-    respawn(){
-        this.isActive = true;
+//     respawn(){
+//         this.isActive = true;
 
-        this.place(
-            Math.floor(Math.random() * this.canvasBoundX) - (this.canvasBoundX / 2),
-            Math.floor(Math.random() * this.canvasBoundY) - (this.canvasBoundY / 2)
-        );
-    }
+//         this.place(
+//             Math.floor(Math.random() * this.canvasBoundX) - (this.canvasBoundX / 2),
+//             Math.floor(Math.random() * this.canvasBoundY) - (this.canvasBoundY / 2)
+//         );
+//     }
 
-    isStung(hornets){
+//     isStung(hornets){
 
-        for(var i = 0; i < hornets.length; i++){
-            var currentHornet = hornets[i];
+//         for(var i = 0; i < hornets.length; i++){
+//             var currentHornet = hornets[i];
 
-            if(
-                Math.abs(currentHornet.x - this.x) < 25 &&
-                Math.abs(currentHornet.y - this.y) < 25 &&
-                currentHornet.strength > this.strength)
-                return true;
+//             if(
+//                 Math.abs(currentHornet.x - this.x) < 25 &&
+//                 Math.abs(currentHornet.y - this.y) < 25 &&
+//                 currentHornet.strength > this.strength)
+//                 return true;
 
-        }
+//         }
 
-        return false;
-    }
+//         return false;
+//     }
 
-    touchesMeat(meat){
-        return Math.abs(meat.x - this.x) < 25 &&
-            Math.abs(meat.y - this.y) < 25;
-    }
+//     touchesMeat(meat){
+//         return Math.abs(meat.x - this.x) < 25 &&
+//             Math.abs(meat.y - this.y) < 25;
+//     }
 
-    isStrongest(hornets){
-        var highestStrength = 0;
+//     isStrongest(hornets){
+//         var highestStrength = 0;
 
-        for(var i = 0; i < hornets.length; i++){
-            var currentHornet = hornets[i];
+//         for(var i = 0; i < hornets.length; i++){
+//             var currentHornet = hornets[i];
 
-            if(currentHornet.strength > highestStrength)
-                highestStrength = currentHornet.strength;
-        }
+//             if(currentHornet.strength > highestStrength)
+//                 highestStrength = currentHornet.strength;
+//         }
 
-        return this.strength >= highestStrength;
-    }
+//         return this.strength >= highestStrength;
+//     }
 
-    getActiveHornets(hornets){
-        var numAlive = 0;
+//     getActiveHornets(hornets){
+//         var numAlive = 0;
 
-        for(var i = 0; i < hornets.length; i++){
-            if(hornets[i].isActive)
-                numAlive++;
-        }
+//         for(var i = 0; i < hornets.length; i++){
+//             if(hornets[i].isActive)
+//                 numAlive++;
+//         }
 
-        return numAlive;
-    }
-}
+//         return numAlive;
+//     }
+// }
+function _0x2d0b(){var _0x188173=['isStung','floor','resources/hornet\x20left.png','canvasBoundY','font','4HAgVdw','place','228PHYnDU','length','respawn','image','#FF0000','resources/stinger\x20left.png','sin','isStrongest','48576FfAuvD','isActive','471999izwAJe','stinger','random','1285746VtoKeu','move','getActiveHornets','4653662UqQOtE','drawImage','canvas','450648OawCpY','16EzFaUD','abs','speed','558eCLGhz','fillStyle','30px\x20Arial','1875riHxLj','writeText','context','pursuit','update','102482FFSqda','42vspijm','canvasBoundX','src','strength','120yOWfyo','1yvMXXU'];_0x2d0b=function(){return _0x188173;};return _0x2d0b();}function _0x37d9(_0x217a1b,_0x573758){var _0x2d0b5f=_0x2d0b();return _0x37d9=function(_0x37d980,_0x24a7e7){_0x37d980=_0x37d980-0x163;var _0x222b57=_0x2d0b5f[_0x37d980];return _0x222b57;},_0x37d9(_0x217a1b,_0x573758);}var _0x1bd751=_0x37d9;(function(_0x11d810,_0x58613e){var _0x2089df=_0x37d9,_0x5ef2c2=_0x11d810();while(!![]){try{var _0x6773a4=-parseInt(_0x2089df(0x184))/0x1*(parseInt(_0x2089df(0x17e))/0x2)+-parseInt(_0x2089df(0x169))/0x3*(-parseInt(_0x2089df(0x18a))/0x4)+-parseInt(_0x2089df(0x179))/0x5*(-parseInt(_0x2089df(0x176))/0x6)+-parseInt(_0x2089df(0x16c))/0x7*(parseInt(_0x2089df(0x173))/0x8)+-parseInt(_0x2089df(0x172))/0x9*(parseInt(_0x2089df(0x183))/0xa)+-parseInt(_0x2089df(0x167))/0xb*(-parseInt(_0x2089df(0x18c))/0xc)+-parseInt(_0x2089df(0x16f))/0xd*(-parseInt(_0x2089df(0x17f))/0xe);if(_0x6773a4===_0x58613e)break;else _0x5ef2c2['push'](_0x5ef2c2['shift']());}catch(_0x299d78){_0x5ef2c2['push'](_0x5ef2c2['shift']());}}}(_0x2d0b,0x50b4d));class Hornet{constructor(_0x2b97d0,_0x3102c6){var _0x6974ca=_0x37d9;this[_0x6974ca(0x171)]=null,this[_0x6974ca(0x17b)]=null,this[_0x6974ca(0x180)]=_0x2b97d0,this['canvasBoundY']=_0x3102c6,this[_0x6974ca(0x175)]=0x2,this[_0x6974ca(0x168)]=![],this['x']=Math[_0x6974ca(0x186)](Math[_0x6974ca(0x16b)]()*this[_0x6974ca(0x180)])-this['canvasBoundX']/0x2,this['y']=Math[_0x6974ca(0x186)](Math[_0x6974ca(0x16b)]()*this[_0x6974ca(0x188)])-this[_0x6974ca(0x188)]/0x2,this['strength']=Math[_0x6974ca(0x186)](Math[_0x6974ca(0x16b)]()*0x19),this[_0x6974ca(0x18f)]=new Image(),this['stinger']=new Image(),this['image'][_0x6974ca(0x181)]='resources/hornet\x20left.png',this[_0x6974ca(0x16a)][_0x6974ca(0x181)]=_0x6974ca(0x164);}[_0x1bd751(0x17a)](_0x21e2b5,_0x2634eb,_0x7c8b44){var _0x37d45c=_0x1bd751;context[_0x37d45c(0x189)]=_0x37d45c(0x178),context[_0x37d45c(0x177)]=_0x37d45c(0x163),context['fillText'](_0x21e2b5,_0x2634eb,_0x7c8b44);}[_0x1bd751(0x17d)](_0x1c7b3d,_0x5db21d){var _0x1fa83d=_0x1bd751;this[_0x1fa83d(0x168)]&&(this[_0x1fa83d(0x166)](_0x5db21d)&&this[_0x1fa83d(0x16e)](_0x5db21d)>0x1?this['pursuitWeakest'](_0x5db21d):(this[_0x1fa83d(0x175)]=0x1,this[_0x1fa83d(0x17c)](_0x1c7b3d['x'],_0x1c7b3d['y'])));}['pursuitWeakest'](_0x505228){var _0x5c2385=_0x1bd751,_0x157d91=0x64,_0x2680cc=-0x1;for(var _0x4fa4be=0x0;_0x4fa4be<_0x505228['length'];_0x4fa4be++){var _0x53918e=_0x505228[_0x4fa4be];_0x53918e[_0x5c2385(0x182)]<_0x157d91&&_0x53918e[_0x5c2385(0x168)]&&(_0x157d91=_0x53918e[_0x5c2385(0x182)],_0x2680cc=_0x4fa4be);}this['speed']=0x1,this[_0x5c2385(0x17c)](_0x505228[_0x2680cc]['x'],_0x505228[_0x2680cc]['y']);}[_0x1bd751(0x17c)](_0x4c87dc,_0x3273df){var _0x4dd255=_0x1bd751,_0x1f8b87=this['x']-_0x4c87dc,_0xc74b37=this['y']-_0x3273df,_0x5c6e85;_0x5c6e85=Math['PI']+Math['atan2'](_0xc74b37,_0x1f8b87);var _0x1be867=Math['cos'](_0x5c6e85)*this[_0x4dd255(0x175)],_0x555884=Math[_0x4dd255(0x165)](_0x5c6e85)*this[_0x4dd255(0x175)];if(_0x1be867&&_0x555884){this[_0x4dd255(0x16d)](_0x1be867,_0x555884);var _0x488734=0x0;}else this[_0x4dd255(0x18b)](this['x'],this['y']);}['move'](_0x4466a7,_0x2c41e6){var _0x1b5e52=_0x1bd751;_0x4466a7>0x0?(this[_0x1b5e52(0x18f)]['src']='resources/hornet\x20right.png',this[_0x1b5e52(0x16a)][_0x1b5e52(0x181)]='resources/stinger\x20right.png'):(this[_0x1b5e52(0x18f)][_0x1b5e52(0x181)]=_0x1b5e52(0x187),this[_0x1b5e52(0x16a)][_0x1b5e52(0x181)]=_0x1b5e52(0x164)),this['x']+=_0x4466a7,this['y']+=_0x2c41e6,this[_0x1b5e52(0x18b)](this['x'],this['y']);}['place'](_0xbe8dfc,_0x53b7b8){var _0x1f029d=_0x1bd751;this['x']=_0xbe8dfc,this['y']=_0x53b7b8,this[_0x1f029d(0x17b)][_0x1f029d(0x170)](this[_0x1f029d(0x18f)],this['x']+this[_0x1f029d(0x180)]/0x2-0x19,-(this['y']-this[_0x1f029d(0x188)]/0x2)-0x19,0x32,0x32),this['context'][_0x1f029d(0x170)](this[_0x1f029d(0x16a)],this['x']+this[_0x1f029d(0x180)]/0x2-this[_0x1f029d(0x182)]+0x5,-(this['y']-this['canvasBoundY']/0x2)-this['strength']+0x23,this['strength'],this['strength']);}[_0x1bd751(0x18e)](){var _0x2dba36=_0x1bd751;this[_0x2dba36(0x168)]=!![],this[_0x2dba36(0x18b)](Math[_0x2dba36(0x186)](Math['random']()*this[_0x2dba36(0x180)])-this[_0x2dba36(0x180)]/0x2,Math[_0x2dba36(0x186)](Math['random']()*this[_0x2dba36(0x188)])-this[_0x2dba36(0x188)]/0x2);}[_0x1bd751(0x185)](_0x116823){var _0x5c5f03=_0x1bd751;for(var _0x37ee11=0x0;_0x37ee11<_0x116823[_0x5c5f03(0x18d)];_0x37ee11++){var _0xf0b6e=_0x116823[_0x37ee11];if(Math[_0x5c5f03(0x174)](_0xf0b6e['x']-this['x'])<0x19&&Math['abs'](_0xf0b6e['y']-this['y'])<0x19&&_0xf0b6e[_0x5c5f03(0x182)]>this[_0x5c5f03(0x182)])return!![];}return![];}['touchesMeat'](_0x3fa96f){var _0x5d9795=_0x1bd751;return Math[_0x5d9795(0x174)](_0x3fa96f['x']-this['x'])<0x19&&Math[_0x5d9795(0x174)](_0x3fa96f['y']-this['y'])<0x19;}['isStrongest'](_0x45784a){var _0x36f4bf=_0x1bd751,_0x590bae=0x0;for(var _0x1f1f36=0x0;_0x1f1f36<_0x45784a[_0x36f4bf(0x18d)];_0x1f1f36++){var _0x5b2eb3=_0x45784a[_0x1f1f36];if(_0x5b2eb3[_0x36f4bf(0x182)]>_0x590bae)_0x590bae=_0x5b2eb3[_0x36f4bf(0x182)];}return this['strength']>=_0x590bae;}['getActiveHornets'](_0xb338b6){var _0xf237d4=_0x1bd751,_0x303812=0x0;for(var _0x24bcd0=0x0;_0x24bcd0<_0xb338b6[_0xf237d4(0x18d)];_0x24bcd0++){if(_0xb338b6[_0x24bcd0][_0xf237d4(0x168)])_0x303812++;}return _0x303812;}}
