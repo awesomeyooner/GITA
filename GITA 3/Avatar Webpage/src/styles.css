@@ -1,0 +1,46 @@
+label{
+    color:blue;
+    font-size: 25px;
+}
+
+h1{
+    color: blue;
+    font-size: 4em;
+}
+
+p{
+    color:yellow;
+    font-size: 3em;
+}
+
+#container{
+    background-color: turquoise;
+    height: 100%;
+    width:50%;
+    text-align: center;
+    float: left;
+}
+
+#information{
+    background-color: magenta;
+    height: 100%;
+    width: 50%;
+    text-align: right;
+    float: right;
+}
+
+
+#img{
+    width: 500px;
+    height: 500px;
+    padding-left: 10%;
+    padding-top: 0%;
+}
+
+#img-qr{
+    width: 250px;
+    height: 250px;
+    padding-right: 25%;
+    padding-bottom: 20px;
+    float:none;
+}
