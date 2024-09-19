@@ -16,11 +16,21 @@ function setup() {
   
   nextButton = createButton("Next");
   nextButton.mousePressed(nextPage);
-  nextButton.position(0, 0);
+  nextButton.position(width, 0);
+  nextButton.size(100, 100);
   
   previousButton = createButton("Previous");
   previousButton.mousePressed(previousPage);
-  previousButton.position(0, 20);
+  previousButton.position(width, 100);
+  previousButton.size(100, 100);
+}
+
+function showPageIndex(){
+  push();
+  fill("black");
+  textSize(20);
+  text(pageIndex, 0, height);
+  pop(); 
 }
 
 function nextPage(){
@@ -38,5 +48,8 @@ function previousPage(){
 }
 
 function draw() {
-  pages[pageIndex].update();
+  if(pages[pageIndex] != null)
+    pages[pageIndex].update();
+
+  showPageIndex();
 }
