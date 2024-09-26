@@ -1,6 +1,0 @@
-class Page{
-
-    constructor(){}
-
-    update(){}
-}
