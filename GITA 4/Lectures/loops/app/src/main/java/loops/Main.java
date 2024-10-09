@@ -92,9 +92,19 @@ public static void main(String[]args) {
 		{
 			
 		}
-		else if(objSource == btnWhile) 
-		{
+		else if(objSource == btnWhile) {
 			
+			messageString = "";
+
+			int myRandom2 = 0;
+
+			while(myRandom2 < 9){
+				myRandom2 = (int)(Math.random() * 10 + 1);
+
+				messageString += myRandom2 + "\n";
+			}
+
+			txaOutput.setText(messageString);
 		}
 		else if(objSource == btnWhile2)
 		{

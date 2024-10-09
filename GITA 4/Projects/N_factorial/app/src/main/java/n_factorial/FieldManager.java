@@ -36,7 +36,7 @@ public class FieldManager extends JFrame implements ActionListener{
     private final FieldLabel[] fields = {nField};
 
     //text to display, width, height
-    private final JTextArea outputArea = new JTextArea("", 10, 30);
+    private final JTextArea outputArea = new JTextArea("", 10, 100);
 
     //button
     private final JButton actionButton = new JButton("Calculate");
@@ -68,57 +68,77 @@ public class FieldManager extends JFrame implements ActionListener{
     public void calculate(){
         int n = (int)nField.getDouble();
 
-        String summation = String.valueOf(getSummation(n));
-        String evenSummation = String.valueOf(getEvenSummation(n));
-        String oddSummation = String.valueOf(getOddSummation(n));
-        String factorial = String.valueOf(getFactorial(n));
+        Entry summation = getSummation(n);
+        Entry evenSummation = getEvenSummation(n);
+        Entry oddSummation = getOddSummation(n);
+        Entry factorial = getFactorial(n);
 
         outputArea.setText(
-            "Summation: " + summation + Constants.LINEBREAK + 
-            "Summation of even: " + evenSummation + Constants.LINEBREAK + 
-            "Summation of odd: " + oddSummation + Constants.LINEBREAK +
-            "Factorial: " + factorial
+            "Summation: " + summation.output + Constants.LINEBREAK + 
+            "Summation of even: " + evenSummation.output + Constants.LINEBREAK + 
+            "Summation of odd: " + oddSummation.output + Constants.LINEBREAK +
+            "Factorial: " + factorial.output
         );
     }
 
-    public int getSummation(int n){
+    public Entry getSummation(int n){
         int sum = 0;
+        String output = "";
 
         for(int i = 1; i < n + 1; i++){
             sum += i;
+
+            output += i + " + ";
         }
 
-        return sum;
+        output += " = " + sum;
+
+        return new Entry(sum, output);
     }
 
-    public int getEvenSummation(int n){
+    public Entry getEvenSummation(int n){
         int sum = 0;
+        String output = "";
 
         for(int i = 1; i < n + 1; i++){
             sum += 2 * i;
+
+            output += (2 * i) + " + ";
         }
 
-        return sum;
+        output += " = " + sum;
+
+        return new Entry(sum, output);
     }
 
-    public int getOddSummation(int n){
+    public Entry getOddSummation(int n){
         int sum = 0;
+        String output = "";
 
         for(int i = 1; i < n + 1; i++){
             sum += (2 * i) - 1;
+
+            output += ((2 * i) - 1) + " + ";
         }
 
-        return sum;
+        output += " = " + sum;
+
+        return new Entry(sum, output);
     }
 
-    public int getFactorial(int n){
+    public Entry getFactorial(int n){
         int factorial = 1;
+        String output = "";
 
         for(int i = 1; i < n + 1; i++){
             factorial *= i;
+
+            output += i + " * ";
         }
 
-        return factorial;
+        output += " = " + factorial;
+
+        return new Entry(factorial, output);
     }
 
     public void addComponents(){

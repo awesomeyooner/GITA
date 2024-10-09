@@ -4,28 +4,12 @@ import java.util.HashMap;
 
 public class Entry {
 
-    public int rolls;
-    public double possibility;
+    public final int value;
+    public final String output;
 
-    public Entry(int rolls, double possibility){
-        this.rolls = rolls;
-        this.possibility = possibility;
+    public Entry(int value, String output){
+        this.value = value;
+        this.output = output;
     }
-
-    public Entry addRoll(){
-        rolls++;
-        return this;
-    }
-
-    public Entry addPossibility(int totalRolls){
-        possibility = rolls / totalRolls;
-        return this;
-    }
-
-    public double getPossibility(int totalRolls){
-        possibility = 100 * (rolls / (double)totalRolls);
-        return CommonConversion.round(possibility, 2);
-    }
-
 
 }
