@@ -1,0 +1,41 @@
+package project.util;
+
+public class Vector {
+    
+    private double dx, dy;
+
+    public Vector(double dx, double dy){
+        this.dx = dx;
+        this.dy = dy;
+    }
+
+    public Vector(){
+        this(0, 0);
+    }
+
+    public Vector getUnitVector(){
+        double magnitude = getMagnitude();
+
+        return new Vector(getX() / magnitude, getY() / magnitude);
+    }
+
+    public double getX(){
+        return dx;
+    }
+
+    public double getY(){
+        return dy;
+    }
+
+    public double getAngle(){
+        return Math.atan2(dy, dx);
+    }
+
+    public double getMagnitude(){
+        return Math.sqrt((dx * dx) + (dy * dy));
+    }
+
+    public Vector times(double scalar){
+        return new Vector(getX() * scalar, getY() * scalar);
+    }
+}
