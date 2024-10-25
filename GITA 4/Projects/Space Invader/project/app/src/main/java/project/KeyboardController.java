@@ -65,10 +65,10 @@ public class KeyboardController implements KeyListener{
             if(!keys.get(key)) // if its not pressed
                 continue;
 
-            if(key.equals("w"))
-                y += 1;
-            else if(key.equals("s"))
-                y -= 1;
+            // if(key.equals("w"))
+            //     y += 1;
+            // else if(key.equals("s"))
+            //     y -= 1;
 
             else if(key.equals("a"))
                 x -= 1;
@@ -76,7 +76,7 @@ public class KeyboardController implements KeyListener{
                 x += 1;
         }
 
-        return new Vector(x, y);
+        return new Vector(x, y).getUnitVector();
     }
 
     public void update(){

@@ -36,8 +36,6 @@ public class FieldManager extends JFrame implements ActionListener{
         //apply settings
         configureSettings();
         
-        //add components to the frame
-
         addKeyListener(KeyboardController.getInstance());
 
         timer.start();

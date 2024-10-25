@@ -64,8 +64,6 @@ public class GameManager {
     public void update(JFrame frame, Graphics graphics){
         controller.update();
 
-        // checkCollisions();
-
         defender.setHeading(controller.getHeading().times(10));
         defender.update(frame, graphics);
 
@@ -82,8 +80,12 @@ public class GameManager {
     }
 
     public void checkCollisions(Invader invader){
+        if(!invader.isActive())
+            return;
+
         if(defender.getBullet().collides(invader)){
             defender.getBullet().setActive(false);
+            invader.setActive(false);
         }
     }
 }

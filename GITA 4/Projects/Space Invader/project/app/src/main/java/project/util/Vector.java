@@ -16,6 +16,9 @@ public class Vector {
     public Vector getUnitVector(){
         double magnitude = getMagnitude();
 
+        if(magnitude == 0)
+            return new Vector();
+            
         return new Vector(getX() / magnitude, getY() / magnitude);
     }
 

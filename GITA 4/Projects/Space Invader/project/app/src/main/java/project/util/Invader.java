@@ -17,6 +17,9 @@ public class Invader extends Entity{
     public void update(JFrame frame, Graphics graphics) {
         super.update(frame, graphics);
 
+        if(!isActive())
+            return;
+
         graphics.setColor(Color.RED);
 
         graphics.fillRect(
