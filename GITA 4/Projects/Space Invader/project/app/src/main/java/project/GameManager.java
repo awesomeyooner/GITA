@@ -32,6 +32,8 @@ public class GameManager {
 
     private final Invader invaders[] = new Invader[10];
 
+    private boolean isGameActive = true;
+
     // private final Invader invader = new Invader(100, 100, true);
 
     public GameManager(){
@@ -41,7 +43,7 @@ public class GameManager {
     public void initialize(JFrame frame){
 
         for(int i = 0; i < 10; i++){
-            invaders[i] = new Invader(100, 100, true);
+            invaders[i] = new Invader(100, 100, 3, true);
 
             invaders[i].setX(((i + 1) * (int)(invaders[i].getWidth() * 1.5)) + -frame.getWidth() / 2);
             invaders[i].setY((int)(-invaders[i].getWidth() * 1.5) + frame.getHeight() / 2);
@@ -62,6 +64,7 @@ public class GameManager {
     }
 
     public void update(JFrame frame, Graphics graphics){
+
         controller.update();
 
         defender.setHeading(controller.getHeading().times(10));
@@ -70,22 +73,35 @@ public class GameManager {
         for(Invader invader : invaders){
             if(invader.isOutOfBounds(frame.getWidth(), frame.getHeight())){
                 invader.setY(invader.getCartesianY() - (int)(invader.getHeight() * 1.5));
-                invader.setHeading(invader.getHeading().times(-1));
+                invader.setHeading(invader.getHeading().times(-1.25));
             }
     
             invader.update(frame, graphics);
 
             checkCollisions(invader);
+
+            if(invader.getCartesianY() < 0)
+                isGameActive = false;
         }
+
+        if(isGameActive)
+            isGameActive = Entity.areActive(invaders);
+    }
+
+    public boolean isGameActive(){
+        return isGameActive;
     }
 
     public void checkCollisions(Invader invader){
         if(!invader.isActive())
             return;
 
+        if(!defender.getBullet().isActive())
+            return;
+
         if(defender.getBullet().collides(invader)){
             defender.getBullet().setActive(false);
-            invader.setActive(false);
+            invader.setHealth(invader.getHealth() - 1);
         }
     }
 }

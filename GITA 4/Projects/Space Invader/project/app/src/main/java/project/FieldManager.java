@@ -2,6 +2,7 @@ package project;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -55,7 +56,23 @@ public class FieldManager extends JFrame implements ActionListener{
     public void paint(Graphics graphics) {
         super.paint(graphics);
 
-        GameManager.getInstance().update(this, graphics);
+        if(GameManager.getInstance().isGameActive())
+            GameManager.getInstance().update(this, graphics);
+        else{
+            showGameOver(graphics);
+        }
+    }
+
+    public void showGameOver(Graphics graphics){
+        graphics.setFont(new Font("Arial", Font.PLAIN, 100));
+
+        graphics.setColor(Color.BLACK);
+
+        graphics.drawString(
+            "Game Over!", 
+            CommonConversion.cartesianToNativeX(0, getWidth()), 
+            CommonConversion.cartesianToNativeY(0, getHeight())
+        );
     }
 
     public void configureSettings(){

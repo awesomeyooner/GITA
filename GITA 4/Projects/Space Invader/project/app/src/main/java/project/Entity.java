@@ -44,6 +44,18 @@ public class Entity extends Point{
         move();
     }
 
+    public static boolean areActive(Entity[] entities){
+        boolean allDead = true;
+
+        for(Entity entity : entities){
+            if(entity.isActive()){
+                allDead = false;
+            }
+        }
+
+        return !allDead;
+    }
+
     public boolean isActive(){
         return isActive;
     }

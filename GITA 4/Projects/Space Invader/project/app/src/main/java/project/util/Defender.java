@@ -13,7 +13,7 @@ public class Defender extends Entity{
     public Defender(int width, int height){
         super(width, height, true);
 
-        bullet.setHeading(new Vector(0, 50));
+        bullet.setHeading(new Vector(0, 20));
     }
 
     public Bullet getBullet(){
