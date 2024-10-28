@@ -12,6 +12,12 @@ class Entity extends Point{
         this.#active = true;
     }
 
+    update(){
+        fill("red");
+        this.move();
+        circle(this.getNativeX(), this.getNativeY(), this.#size);
+    }
+
     setSize(newSize){
         this.#size = newSize;
     }

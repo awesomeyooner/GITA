@@ -132,7 +132,23 @@ public static void main(String[]args) {
 		}
 		if(objSource == btnArray)
 		{
-			
+			int numberHolder[] = new int[5];
+
+			messageString = "";
+
+			txaOutput.setText("");
+
+			for(int i = 0; i < numberHolder.length; i++){
+				numberHolder[i] = (int)(Math.random() * 100 + 1);
+			}
+
+			messageString += "My Array: " + "\n";
+
+			for(int i = 0; i < numberHolder.length; i++){
+				messageString += numberHolder[i] + "\n";
+			}
+
+			txaOutput.append(messageString);
 			
 		}
 		

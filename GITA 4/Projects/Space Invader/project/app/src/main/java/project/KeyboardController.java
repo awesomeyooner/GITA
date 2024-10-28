@@ -38,11 +38,13 @@ public class KeyboardController implements KeyListener{
     public void keyReleased(KeyEvent event) {
         String currentKey = String.valueOf(event.getKeyChar());
         
-        for(String key : keys.keySet()){
+        // for(String key : keys.keySet()){
 
-            if(key.equals(currentKey))
-                keys.put(key, false);
-        }
+        //     if(key.equals(currentKey))
+        //         keys.put(key, false);
+        // }
+
+        keys.put(currentKey, false);
     }
 
     @Override
