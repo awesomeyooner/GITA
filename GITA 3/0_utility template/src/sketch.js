@@ -2,7 +2,6 @@
 var mouse = new Mouse();
 var keyboard = new KeyboardController();
 
-
 function setup() {
   createCanvas(1280, 720);
   frameRate(60);
@@ -20,7 +19,6 @@ function draw(){
   background(220);
 
   mouse.update(mouseIsPressed);
-
 }
 
 function logData(){
