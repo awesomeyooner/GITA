@@ -2,6 +2,7 @@
 var mouse = new Mouse();
 var keyboard = new KeyboardController();
 
+var helicopter = new Helicopter(20);
 
 function setup() {
   createCanvas(1280, 720);
@@ -20,6 +21,8 @@ function draw(){
   background(220);
 
   mouse.update(mouseIsPressed);
+
+  helicopter.update();
 
 }
 
