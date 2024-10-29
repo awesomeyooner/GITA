@@ -45,11 +45,18 @@ class GameManager{
                 break;
 
             case GameState.SLASHING:
+                background("lightblue");
                 break;
 
             case GameState.END:
                 this.objectmanager.update();
-                this.getCollisions();
+                Utility.textCenter(
+                    "Hit: " + this.getCollisions() + "\n" +
+                    "Out of: " + this.objectmanager.getObjects().length,
+                    Utility.cartesianToNativeX(0),
+                    Utility.cartesianToNativeY(0),
+                    150
+                );
                 break;
         }
     }
@@ -65,6 +72,8 @@ class GameManager{
     getCollisions(){
         var points = this.slashmanager.getPoints();
         var objects = this.objectmanager.getObjects();
+
+        var objectsHit = 0;
 
         for(var object of objects){
             
@@ -82,6 +91,11 @@ class GameManager{
                 if(distance < object.getSize() / 2)
                     object.setActive(false);
             }
+
+            if(!object.isActive())
+                objectsHit++;
         }
+
+        return objectsHit;
     }
 }

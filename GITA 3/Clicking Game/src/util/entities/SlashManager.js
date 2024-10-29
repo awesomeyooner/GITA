@@ -5,9 +5,9 @@ class SlashManager{
     constructor(buffer){
         this.buffer = buffer;
 
-        for(var i = 0; i < buffer; i++){
-            this.#points[i] = new Point(-5000, -5000);
-        }
+        // for(var i = 0; i < buffer; i++){
+        //     this.#points[i] = new Point(-5000, -5000);
+        // }
     }
 
     update(){
@@ -21,8 +21,14 @@ class SlashManager{
     append(point){
         // this.#points.push(point);
         // this.#points.shift();
-        this.#points.unshift(point);
-        this.#points.pop();
+        if(this.#points[this.buffer] == null){
+            this.#points.unshift(point);
+            //this.#points.pop();
+        }
+    }
+
+    isFull(){
+        return this.#points[this.buffer] != null;
     }
 
     reset(){

@@ -37,8 +37,12 @@ function draw(){
 
   // slashmanager.append(new Point(mouse.getCartesianX(), mouse.getCartesianY()));
 
-  if(mouse.isPressed() && gamemanager.getState() == GameState.SLASHING)
+  if(mouse.isPressed() && gamemanager.getState() == GameState.SLASHING){
     slashmanager.append(new Point(mouse.getCartesianX(), mouse.getCartesianY()));
+
+    if(slashmanager.isFull())
+        gamemanager.setState(GameState.END);
+  }
 
     slashmanager.update();  
 
