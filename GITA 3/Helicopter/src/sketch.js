@@ -2,7 +2,8 @@
 var mouse = new Mouse();
 var keyboard = new KeyboardController();
 
-var helicopter = new Helicopter(20);
+var helicopter = new Helicopter(100);
+var bird = new Bird(20);
 
 function setup() {
   createCanvas(1280, 720);
@@ -11,10 +12,10 @@ function setup() {
   keyboard.initialize(window);
   keyboard.configureBinding("c", () => print("hello"));
 
-  mouse.configureBinding(() => print("PRESS"), MouseState.ON_PRESS);
-  mouse.configureBinding(() => print("RELEASE"), MouseState.ON_RELEASE);
-  mouse.configureBinding(() => print("NEUTRAL"), MouseState.WHILE_UP);
-  mouse.configureBinding(() => print("HELD"), MouseState.WHILE_DOWN);
+  // mouse.configureBinding(() => print("PRESS"), MouseState.ON_PRESS);
+  // mouse.configureBinding(() => print("RELEASE"), MouseState.ON_RELEASE);
+  // mouse.configureBinding(() => print("NEUTRAL"), MouseState.WHILE_UP);
+  // mouse.configureBinding(() => print("HELD"), MouseState.WHILE_DOWN);
 }
 
 function draw(){
@@ -22,7 +23,15 @@ function draw(){
 
   mouse.update(mouseIsPressed);
 
+  helicopter.setHeading(keyboard.getHeading().times(4));
+
+  if(helicopter.getDistance(bird) < 300)
+    bird.setHeading(bird.getVector(helicopter).getUnitVector().times(2));
+  else
+    bird.setHeading(new Vector());
+
   helicopter.update();
+  bird.update();
 
 }
 

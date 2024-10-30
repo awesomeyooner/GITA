@@ -24,12 +24,20 @@ class Vector {
         return new Vector(this.getX() / magnitude, this.getY() / magnitude);
     }
 
+    getVector(){
+        return this;
+    }
+
     setX(x){
         this.#dx = x;
+
+        return this.getVector();
     }
 
     setY(y){
         this.#dy = y;
+
+        return this.getVector();
     }
 
     getX(){

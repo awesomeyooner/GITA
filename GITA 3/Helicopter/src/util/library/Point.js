@@ -51,6 +51,13 @@ class Point{
         return Math.sqrt((deltaX * deltaX) + (deltaY + deltaY));
     }
 
+    getVector(otherPoint){
+        var deltaX = this.getCartesianX() - otherPoint.getCartesianX();
+        var deltaY = this.getCartesianY() - otherPoint.getCartesianY();
+
+        return new Vector(deltaX, deltaY);
+    }
+
     isOutOfBounds(w = width, h = height){
         if(this.getCartesianX() > w / 2 || this.getCartesianX() < -w / 2)
             return true;
