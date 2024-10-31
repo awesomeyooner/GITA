@@ -25,6 +25,14 @@ class Entity extends Point{
     setHeading(newHeading){
         this.#movement = newHeading;
     }
+    
+    setHeadingX(newX){
+        this.#movement.setX(newX);
+    }
+
+    setHeadingY(newY){
+        this.#movement.setY(newY);
+    }
 
     getHeading(){
         return this.#movement;

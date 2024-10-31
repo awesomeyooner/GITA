@@ -11,7 +11,7 @@ class GameManager{
             var size = 20;
             var x = (Math.random() * width - (2 * size)) - (width / 2);
             var y = (Math.random() * height - (2 * size)) - (height / 2);
-            
+
             this.#birds[i] = new Bird(size, x, y);
         }
     }
@@ -19,10 +19,12 @@ class GameManager{
     update(){
 
         for(var bird of this.#birds){
+            bird.setHeadingX(2);
+            
             if(this.getHelicopter().getDistance(bird) < 150)
-                bird.setHeading(bird.getVector(this.getHelicopter()).getUnitVector().times(4));
+                bird.setHeadingY(bird.getVector(this.getHelicopter()).getUnitVector().times(4).getY());
               else
-                bird.setHeading(new Vector());
+                bird.setHeadingY(0);
             
             bird.update();
         }
