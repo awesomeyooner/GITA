@@ -48,7 +48,7 @@ class Point{
         var deltaX = this.getCartesianX() - otherPoint.getCartesianX();
         var deltaY = this.getCartesianY() - otherPoint.getCartesianY();
 
-        return Math.sqrt((deltaX * deltaX) + (deltaY + deltaY));
+        return Math.sqrt((deltaX * deltaX) + (deltaY * deltaY));
     }
 
     getVector(otherPoint){

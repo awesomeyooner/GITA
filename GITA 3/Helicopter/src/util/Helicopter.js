@@ -6,7 +6,7 @@ class Helicopter extends Entity{
 
     update(){
         fill("red");
-        if(this.getHeading().getY() == 0)
+        if(this.getHeading().getY() <= 0)
             this.getHeading().setY(-1);
 
         this.move();

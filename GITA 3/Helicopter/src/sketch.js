@@ -2,6 +2,8 @@
 var mouse = new Mouse();
 var keyboard = new KeyboardController();
 
+var gameManager = new GameManager();
+
 var helicopter = new Helicopter(100);
 var bird = new Bird(20);
 
@@ -23,12 +25,14 @@ function draw(){
 
   mouse.update(mouseIsPressed);
 
-  helicopter.setHeading(keyboard.getHeading().times(4));
+  helicopter.setHeading(keyboard.getHeading().times(5));
 
-  if(helicopter.getDistance(bird) < 300)
+  if(helicopter.getDistance(bird) < 150)
     bird.setHeading(bird.getVector(helicopter).getUnitVector().times(2));
   else
     bird.setHeading(new Vector());
+
+  print(helicopter.getDistance(bird));
 
   helicopter.update();
   bird.update();
