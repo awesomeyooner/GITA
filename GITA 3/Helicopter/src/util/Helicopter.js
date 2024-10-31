@@ -9,6 +9,7 @@ class Helicopter extends Entity{
         if(this.getHeading().getY() <= 0)
             this.getHeading().setY(-1);
 
+        this.constrainMovement();
         this.move();
         circle(this.getNativeX(), this.getNativeY(), this.getSize());
     }

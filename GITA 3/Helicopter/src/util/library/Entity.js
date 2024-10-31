@@ -43,6 +43,20 @@ class Entity extends Point{
         this.setY(Math.round(this.getCartesianY() + heading.getY()));
     }
 
+    constrainMovement(heading = this.#movement, w = width, h = height){ 
+        if(this.getCartesianX() + (this.getSize() / 2) > w / 2 && heading.getX() > 0) //right
+            heading.setX(0);
+    
+        else if(this.getCartesianX() - (this.getSize() / 2) < -w / 2 && heading.getX() < 0) //left
+            heading.setX(0);
+            
+        if(this.getCartesianY() + (this.getSize() / 2) > h / 2 && heading.getY() > 0) //up
+            heading.setY(0);
+
+        if(this.getCartesianY() - (this.getSize() / 2)< -h / 2 && heading.getY() < 0)
+            heading.setY(0);
+    }
+
     collides(otherEntity){
         var maxDistance = this.getSize() + otherEntity.getSize();
 

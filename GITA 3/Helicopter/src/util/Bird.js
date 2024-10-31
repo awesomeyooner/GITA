@@ -1,13 +1,12 @@
 class Bird extends Entity{
 
-    constructor(size){
-        super(size, 0, 0);
+    constructor(size, x = 0, y = 0){
+        super(size, x, y);
     }
 
     update(){
-        this.move();
-
         fill("blue");
+        this.constrainMovement();
         this.move();
         circle(this.getNativeX(), this.getNativeY(), this.getSize());
     }
