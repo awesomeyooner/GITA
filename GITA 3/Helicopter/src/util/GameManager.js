@@ -18,13 +18,17 @@ class GameManager{
 
     update(){
 
+        var distanceThreshold = 150;
+        var birdSpeed = 2;
+
         for(var bird of this.#birds){
-            bird.setHeadingX(2);
             
-            if(this.getHelicopter().getDistance(bird) < 150)
-                bird.setHeadingY(bird.getVector(this.getHelicopter()).getUnitVector().times(4).getY());
+            if(this.getHelicopter().getDistance(bird) < distanceThreshold)
+                bird.setHeading(bird.getVector(this.getHelicopter()).getUnitVector().times(2));
               else
-                bird.setHeadingY(0);
+                bird.setHeading(
+                    new Vector(birdSpeed, 2 * (Math.sin((millis() / 2000) * Math.PI)))
+                );
             
             bird.update();
         }

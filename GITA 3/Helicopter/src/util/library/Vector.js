@@ -59,4 +59,14 @@ class Vector {
     times(scalar){
         return new Vector(this.getX() * scalar, this.getY() * scalar);
     }
+
+    timesX(scalar){
+        this.#dx *= scalar;
+        return this.getVector();
+    }
+
+    timesY(scalar){
+        this.#dy *= scalar;
+        return this.getVector();
+    }
 }

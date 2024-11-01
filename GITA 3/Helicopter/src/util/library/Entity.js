@@ -47,8 +47,8 @@ class Entity extends Point{
     }
 
     move(heading = this.#movement){
-        this.setX(Math.round(this.getCartesianX() + heading.getX()));
-        this.setY(Math.round(this.getCartesianY() + heading.getY()));
+        this.setX((this.getCartesianX() + heading.getX()));
+        this.setY((this.getCartesianY() + heading.getY()));
     }
 
     constrainMovement(heading = this.#movement, w = width, h = height){ 
