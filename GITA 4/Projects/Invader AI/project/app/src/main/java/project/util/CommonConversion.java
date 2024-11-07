@@ -20,26 +20,26 @@ public class CommonConversion {
         return pounds * 0.454;
     }
 
-    public static int nativeToCartesianX(int x, int width){
-        int cartesianX = x - Math.round(width / 2);
+    public static double  nativeToCartesianX(double  x, double  width){
+        double  cartesianX = x - Math.round(width / 2);
 
         return cartesianX;
     }
 
-    public static int nativeToCartesianY(int y, int height){
-        int cartesianY = -y + Math.round(height / 2);
+    public static double  nativeToCartesianY(double  y, double  height){
+        double  cartesianY = -y + Math.round(height / 2);
 
         return cartesianY;
     }
 
-    public static int cartesianToNativeX(int x, int width){
-        int nativeX = x + Math.round(width / 2);
+    public static double  cartesianToNativeX(double  x, double  width){
+        double  nativeX = x + Math.round(width / 2);
 
         return nativeX;
     }
 
-    public static int cartesianToNativeY(int y, int height){
-        int nativeY = -y + Math.round(height / 2);
+    public static double  cartesianToNativeY(double  y, double  height){
+        double  nativeY = -y + Math.round(height / 2);
 
         return nativeY;
     }

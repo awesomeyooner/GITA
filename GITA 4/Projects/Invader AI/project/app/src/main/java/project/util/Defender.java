@@ -47,12 +47,13 @@ public class Defender extends Entity{
 
         graphics.setColor(Color.GREEN);
 
-        graphics.fillRect(
-            getNativeX(frame.getWidth()) - Math.round(getWidth() / 2),
-            getNativeY(frame.getHeight()) - Math.round(getHeight() / 2),
-            getWidth(),
-            getHeight()
-        );
+        // Utility.drawCircle(
+        //         graphics, frame, 
+        //         (int)getNativeX(frame.getWidth()), 
+        //         (int)getNativeY(frame.getHeight()), 
+        //         (int)getWidth(), 
+        //         (int)getHeight()
+        //     );
 
         
     }

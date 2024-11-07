@@ -23,13 +23,12 @@ public class Bullet extends Entity{
             
         graphics.setColor(Color.GREEN);
 
-        graphics.fillArc(
-            getNativeX(frame.getWidth()), 
-            getNativeY(frame.getHeight()), 
-            getWidth(), 
-            getHeight(), 
-            0,
-            360
+        Utility.drawCircle(
+            graphics, frame, 
+            (int)getNativeX(frame.getWidth()), 
+            (int)getNativeY(frame.getHeight()), 
+            (int)getWidth(), 
+            (int)getHeight()
         );
 
         if(isOutOfBounds(frame.getWidth(), frame.getHeight()))

@@ -2,10 +2,10 @@ package project.util;
 
 public class Point {
     
-    private int x;
-    private int y;
+    private double x;
+    private double y;
 
-    public Point(int x, int y){
+    public Point(double x, double y){
         this.x = x;
         this.y = y;
     }
@@ -14,27 +14,27 @@ public class Point {
         this(0, 0);
     }
 
-    public void setX(int newX){
+    public void setX(double newX){
         x = newX;
     }
 
-    public void setY(int newY){
+    public void setY(double newY){
         y = newY;
     }
 
-    public int getCartesianX(){
+    public double getCartesianX(){
         return x;
     }
 
-    public int getCartesianY(){
+    public double getCartesianY(){
         return y;
     }
 
-    public int getNativeX(int width){
+    public double getNativeX(double width){
         return CommonConversion.cartesianToNativeX(x, width);
     }
 
-    public int getNativeY(int height){
+    public double getNativeY(double height){
         return CommonConversion.cartesianToNativeY(y, height);
     }
 
@@ -43,15 +43,15 @@ public class Point {
     }
 
     public Vector getVector(Point point){
-        int deltaX = getCartesianX() - point.getCartesianX();
-        int deltaY = getCartesianY() - point.getCartesianY();
+        double deltaX = getCartesianX() - point.getCartesianX();
+        double deltaY = getCartesianY() - point.getCartesianY();
 
         return new Vector(deltaX, deltaY);
     }
 
     public double getDistance(Point point){
-        int deltaX = getCartesianX() - point.getCartesianX();
-        int deltaY = getCartesianY() - point.getCartesianY();
+        double deltaX = getCartesianX() - point.getCartesianX();
+        double deltaY = getCartesianY() - point.getCartesianY();
 
         return Math.sqrt((deltaX * deltaX) + (deltaY * deltaY));
     }

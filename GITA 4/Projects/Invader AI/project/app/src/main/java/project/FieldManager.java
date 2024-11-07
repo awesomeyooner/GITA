@@ -68,8 +68,8 @@ public class FieldManager extends JFrame implements ActionListener{
 
         graphics.drawString(
             "Game Over!", 
-            CommonConversion.cartesianToNativeX(0, getWidth()), 
-            CommonConversion.cartesianToNativeY(0, getHeight())
+            (int)CommonConversion.cartesianToNativeX(0, getWidth()), 
+            (int)CommonConversion.cartesianToNativeY(0, getHeight())
         );
     }
 

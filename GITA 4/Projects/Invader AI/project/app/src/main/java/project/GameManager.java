@@ -22,6 +22,7 @@ import project.util.CommonConversion;
 import project.util.Constants;
 import project.util.Defender;
 import project.util.Invader;
+import project.util.Utility;
 import project.util.Vector;
 
 public class GameManager {
@@ -82,6 +83,13 @@ public class GameManager {
 
         defender.setHeading(controller.getHeading().times(10));
         defender.update(frame, graphics);
+
+        graphics.drawLine(
+            (int)defender.getNativeX(frame.getWidth()), 
+            (int)defender.getNativeY(frame.getHeight()), 
+            (int)mouse.getPoint().getNativeX(frame.getWidth()), 
+            (int)mouse.getPoint().getNativeY(frame.getHeight())
+            );
 
         for(Invader invader : invaders){
             if(invader.isOutOfBounds(frame.getWidth(), frame.getHeight())){
