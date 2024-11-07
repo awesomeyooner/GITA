@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 import project.MouseController.MouseEvent;
+import project.util.Bullet;
 import project.util.CommonConversion;
 import project.util.Constants;
 import project.util.Defender;
@@ -61,7 +62,13 @@ public class GameManager {
     }
 
     public void configureBinding(){
-        mouse.configureBinding(MouseEvent.ON_CLICK, () -> defender.shoot(mouse.getPoint().getVector(defender).getUnitVector().times(20)));
+        //controller.configureBinding(" ", () -> defender.shoot(mouse.getPoint().getVector(defender).getUnitVector().times(20)));
+        mouse.configureBinding(
+            MouseEvent.ON_CLICK, 
+            () -> defender.shoot(
+                        mouse.getPoint().getVector(defender).getUnitVector().times(20)
+                    )
+            );
     }
 
     public static GameManager getInstance(){
@@ -102,12 +109,21 @@ public class GameManager {
         if(!invader.isActive())
             return;
 
-        if(!defender.getBullet().isActive())
-            return;
+        Bullet[] bullets = defender.getBullets();
 
-        if(defender.getBullet().collides(invader)){
-            defender.getBullet().setActive(false);
-            invader.setHealth(invader.getHealth() - 1);
+        for(int i = 0; i < bullets.length; i ++){
+            Bullet currentBullet = bullets[i];
+
+            if(!currentBullet.isActive())
+                continue;
+
+            if(currentBullet.collides(invader)){
+                currentBullet.setActive(false);
+                invader.setHealth(invader.getHealth() - 1);
         }
+        }
+       
+
+        
     }
 }

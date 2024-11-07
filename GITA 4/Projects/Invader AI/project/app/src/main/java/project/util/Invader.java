@@ -44,13 +44,14 @@ public class Invader extends Entity{
         else
             graphics.setColor(Color.PINK);
 
-        graphics.fillRect(
-            getNativeX(frame.getWidth()) - Math.round(getWidth() / 2),
-            getNativeY(frame.getHeight()) - Math.round(getHeight() / 2),
-            getWidth(),
-            getHeight()
+        graphics.fillArc(
+            getNativeX(frame.getWidth()), 
+            getNativeY(frame.getHeight()), 
+            getWidth(), 
+            getHeight(), 
+            0,
+            360
         );
 
-        
     }
 }

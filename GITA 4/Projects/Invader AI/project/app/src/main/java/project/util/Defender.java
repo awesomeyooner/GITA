@@ -13,8 +13,8 @@ public class Defender extends Entity{
     public Defender(int width, int height){
         super(width, height, true);
 
-        for(Bullet bullet : bullets){
-            bullet = new Bullet(20, 20, false);
+        for(int i = 0; i < bullets.length; i++){
+            bullets[i] = new Bullet(20, 20, false);
         }
     }
 
