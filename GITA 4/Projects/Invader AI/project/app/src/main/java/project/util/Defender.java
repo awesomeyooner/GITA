@@ -11,7 +11,15 @@ public class Defender extends Entity{
     private Bullet bullets[] = new Bullet[20];
     
     public Defender(int width, int height){
-        super(width, height, true);
+        this(width, height, 1, true);
+    }
+
+    public Defender(int width, int height, int health){
+        this(width, height, health, true);
+    }
+
+    public Defender(int width, int height, int health, boolean isActive){
+        super(width, height, health, isActive);
 
         for(int i = 0; i < bullets.length; i++){
             bullets[i] = new Bullet(20, 20, false);
@@ -45,15 +53,22 @@ public class Defender extends Entity{
             bullet.update(frame, graphics);
         }
 
-        graphics.setColor(Color.GREEN);
+        if(getHealth() == 1)
+            graphics.setColor(Color.RED);
+        else if(getHealth() == 2)
+            graphics.setColor(Color.ORANGE);
+        else if(getHealth() == 3)
+            graphics.setColor(Color.YELLOW);
+        else
+            graphics.setColor(Color.PINK);
 
-        // Utility.drawCircle(
-        //         graphics, frame, 
-        //         (int)getNativeX(frame.getWidth()), 
-        //         (int)getNativeY(frame.getHeight()), 
-        //         (int)getWidth(), 
-        //         (int)getHeight()
-        //     );
+        Utility.drawCircle(
+            graphics, frame, 
+            (int)getNativeX(frame.getWidth()), 
+            (int)getNativeY(frame.getHeight()), 
+            (int)getWidth(), 
+            (int)getHeight()
+        );
 
         
     }

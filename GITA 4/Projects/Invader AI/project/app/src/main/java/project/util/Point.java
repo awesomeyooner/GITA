@@ -14,6 +14,13 @@ public class Point {
         this(0, 0);
     }
 
+    public static Point getRandom(int maxX, int maxY){
+        double randomX = (Math.random() * maxX) - (maxX / 2);
+        double randomY = (Math.random() * maxY) - (maxY / 2);
+
+        return new Point((int)randomX, (int)randomY);
+    }
+
     public void setX(double newX){
         x = newX;
     }

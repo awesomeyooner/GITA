@@ -12,20 +12,7 @@ public class Invader extends Entity{
     private int health;
 
     public Invader(int width, int height, int health, boolean isActive){
-        super(width, height, isActive);
-
-        this.health = health;
-    }
-
-    public int getHealth(){
-        return health;
-    }
-
-    public void setHealth(int health){
-        this.health = health;
-        
-        if(this.health <= 0)
-            setActive(false);
+        super(width, height, health, isActive);
     }
 
     @Override
@@ -35,11 +22,11 @@ public class Invader extends Entity{
         if(!isActive())
             return;
 
-        if(health == 1)
+        if(getHealth() == 1)
             graphics.setColor(Color.RED);
-        else if(health == 2)
+        else if(getHealth() == 2)
             graphics.setColor(Color.ORANGE);
-        else if(health == 3)
+        else if(getHealth() == 3)
             graphics.setColor(Color.YELLOW);
         else
             graphics.setColor(Color.PINK);

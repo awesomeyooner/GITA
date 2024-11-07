@@ -19,6 +19,8 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
+import org.checkerframework.checker.units.qual.min;
+
 import project.util.CommonConversion;
 import project.util.Constants;
 
@@ -27,14 +29,22 @@ public class Entity extends Point{
     private boolean isActive;
 
     private int width, height;
+    private int health;
+    private int maximumHealth;
 
     private Vector movement = new Vector();
     
-    public Entity(int width, int height, boolean active){
+    public Entity(int width, int height, int health, boolean active){
         super(0, 0);
         this.width = width;
         this.height = height;
+        maximumHealth = health;
+        this.health = health;
         this.isActive = active;
+    }
+
+    public Entity(int width, int height, boolean active){
+        this(width, height, 1, active);
     }
 
     public void update(JFrame frame, Graphics graphics){
@@ -62,6 +72,30 @@ public class Entity extends Point{
 
     public void setActive(boolean active){
         isActive = active;
+    }
+
+    public int getHealth(){
+        return health;
+    }
+
+    public void setHealth(int health){
+        this.health = health;
+        
+        if(this.health <= 0)
+            setActive(false);
+    }
+
+    public void reset(Point point){
+        setX(point.getCartesianX());
+        setY(point.getCartesianY());
+
+        health = maximumHealth;
+        isActive = true;
+    }
+
+    public void reset(){
+        health = maximumHealth;
+        isActive = true;
     }
 
     public int getWidth(){
@@ -93,8 +127,8 @@ public class Entity extends Point{
     }
 
     public void move(Vector heading){
-        this.setX((int)(getCartesianX() + heading.getX()));
-        this.setY((int)(getCartesianY() + heading.getY()));
+        this.setX((getCartesianX() + heading.getX()));
+        this.setY((getCartesianY() + heading.getY()));
     }
 
     public void move(double dx, double dy){
@@ -112,13 +146,17 @@ public class Entity extends Point{
     }
 
     public boolean collides(Entity entity){
-        double deltaX = Math.abs(getCartesianX() - entity.getCartesianX());
-        double deltaY = Math.abs(getCartesianY() - entity.getCartesianY());
+        // double deltaX = Math.abs(getCartesianX() - entity.getCartesianX());
+        // double deltaY = Math.abs(getCartesianY() - entity.getCartesianY());
 
-        if(deltaX < Math.abs(getWidth() - entity.getWidth()) && deltaY < Math.abs(getHeight() - entity.getHeight())){
-            return true;
-        }
-        else
-            return false;
+        // if(deltaX < Math.abs(getWidth() - entity.getWidth()) && deltaY < Math.abs(getHeight() - entity.getHeight())){
+        //     return true;
+        // }
+        // else
+        //     return false;
+
+        double minDistance = (getWidth() + entity.getWidth() + getHeight() + entity.getHeight()) / 4;
+
+        return getDistance(entity) < minDistance;
     }
 }

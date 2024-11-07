@@ -22,6 +22,7 @@ import project.util.CommonConversion;
 import project.util.Constants;
 import project.util.Defender;
 import project.util.Invader;
+import project.util.Point;
 import project.util.Utility;
 import project.util.Vector;
 
@@ -32,7 +33,7 @@ public class GameManager {
     
     private static GameManager instance = new GameManager();
 
-    private final Defender defender = new Defender(100, 75);
+    private final Defender defender = new Defender(100, 100, 5, true);
 
     private final Invader invaders[] = new Invader[10];
 
@@ -52,14 +53,15 @@ public class GameManager {
         for(int i = 0; i < 10; i++){
             invaders[i] = new Invader(100, 100, 3, true);
 
-            invaders[i].setX(((i + 1) * (int)(invaders[i].getWidth() * 1.5)) + -frame.getWidth() / 2);
-            invaders[i].setY((int)(-invaders[i].getWidth() * 1.5) + frame.getHeight() / 2);
+            double randomX = (Math.random() * frame.getWidth()) - (frame.getWidth() / 2);
+            double randomY = (Math.random() * frame.getHeight()) - (frame.getHeight() / 2);
 
-            invaders[i].setHeading(new Vector(2, 0));
+            invaders[i].setX(randomX);
+            invaders[i].setY(randomY);
         }
 
         defender.setX(0);
-        defender.setY(200 + -frame.getHeight() / 2);
+        defender.setY(0);
     }
 
     public void configureBinding(){
@@ -84,25 +86,26 @@ public class GameManager {
         defender.setHeading(controller.getHeading().times(10));
         defender.update(frame, graphics);
 
-        graphics.drawLine(
-            (int)defender.getNativeX(frame.getWidth()), 
-            (int)defender.getNativeY(frame.getHeight()), 
-            (int)mouse.getPoint().getNativeX(frame.getWidth()), 
-            (int)mouse.getPoint().getNativeY(frame.getHeight())
-            );
+        // graphics.drawLine(
+        //     (int)defender.getNativeX(frame.getWidth()), 
+        //     (int)defender.getNativeY(frame.getHeight()), 
+        //     (int)mouse.getPoint().getNativeX(frame.getWidth()), 
+        //     (int)mouse.getPoint().getNativeY(frame.getHeight())
+        //     );
 
         for(Invader invader : invaders){
-            if(invader.isOutOfBounds(frame.getWidth(), frame.getHeight())){
-                invader.setY(invader.getCartesianY() - (int)(invader.getHeight() * 1.5));
-                invader.setHeading(invader.getHeading().times(-1.25));
-            }
-    
+            if(!invader.isActive())
+                continue;
+
+            invader.setHeading(defender.getVector(invader).getUnitVector().times(2));            
             invader.update(frame, graphics);
 
             checkCollisions(invader);
 
-            if(invader.getCartesianY() < 0)
-                isGameActive = false;
+            if(invader.collides(defender)){
+                invader.reset(Point.getRandom(frame.getWidth(), frame.getHeight()));
+                defender.setHealth(defender.getHealth() - 1);
+            }
         }
 
         if(isGameActive)
@@ -127,8 +130,9 @@ public class GameManager {
 
             if(currentBullet.collides(invader)){
                 currentBullet.setActive(false);
+
                 invader.setHealth(invader.getHealth() - 1);
-        }
+            }
         }
        
 
