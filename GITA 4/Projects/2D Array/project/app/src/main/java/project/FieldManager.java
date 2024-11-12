@@ -24,16 +24,20 @@ public class FieldManager extends JFrame implements ActionListener{
     private final JPanel panel = new JPanel(new GridLayout(0, 2));
 
     //declare components
-    private final FieldLabel nTestsField = new FieldLabel("Number of Scores: ", true);
+    private final FieldLabel rowField = new FieldLabel("Rows: ", true);
+    private final FieldLabel columnField = new FieldLabel("Columns: ", true);
 
-    private final FieldLabel[] fields = {nTestsField};
-    private final ArrayList<Entry> entries = new ArrayList<>();
+    private final FieldLabel[] fields = {rowField, columnField};
+
+    //project specific
+    private final int maxCellValue = 100;
+    private final int lowestCellValue = 1;
+    private int grid[][];
+    private int occurences[] = new int[maxCellValue];
 
     //text to display, width, height
-    private final JTextArea forwardArea = new JTextArea("", 10, 30);
-    private final JTextArea reverseArea = new JTextArea("", 10, 30);
     private final JTextArea summaryArea = new JTextArea("" + Constants.LINEBREAK, 10, 30);
-
+    private final JTextArea occurenceArea = new JTextArea("" + Constants.LINEBREAK, 10, 75);
 
     //button
     private final JButton btnAdd = new JButton("Calculate");
@@ -47,6 +51,8 @@ public class FieldManager extends JFrame implements ActionListener{
         
         //add components to the frame
         addComponents();
+
+        resetOccurences();
     }
 
     public static void initialize(){
@@ -62,6 +68,26 @@ public class FieldManager extends JFrame implements ActionListener{
             handleCalculate();
     }
 
+    public void resetOccurences(){
+        for(int i = lowestCellValue; i < maxCellValue; i++){
+            occurences[i] = 0;
+        }
+    }
+
+    public void fillArray(int rows, int columns){
+
+        grid = new int[rows][columns];
+
+        for(int r = 0; r < rows; r++){ //for every row
+
+            for(int c = 0; c < columns; c++){ //for each cell within this row
+                int rng = (int)((Math.random() * (maxCellValue - lowestCellValue)) + lowestCellValue); //create a random number
+
+                grid[r][c] =  rng; //set the cell equal to the random number
+            }
+        }
+    }
+
     public void handleCalculate(){
         String error = FieldLabel.getAccumulatedErrors(fields);
 
@@ -70,44 +96,49 @@ public class FieldManager extends JFrame implements ActionListener{
             return;
         }
 
-        entries.removeAll(entries);
+        int rows = (int)rowField.getDouble();
+        int columns = (int)columnField.getDouble();
 
-        for(int i = 0; i < (int)nTestsField.getDouble(); i++){
-            appendEntry();
-            update();
+        if(rows <= 0 || columns <= 0){
+            summaryArea.setText("Please put a number greater than 0");
+            return;
         }
-        
-    }
+        resetOccurences();
+        fillArray(rows, columns);
 
-    public void appendEntry(){
-        entries.add(new Entry(CommonConversion.round((Math.random() * 50 + 50), 2)));
-    
-        forwardArea.setText("");
-        reverseArea.setText("");
+        int highest = lowestCellValue;
+        int lowest = maxCellValue;
+        int total = 0;
+        int elements = rows * columns; //rows times columns
 
-        for(int i = 0; i < entries.size(); i++){
-            forwardArea.append(entries.get(i).toText());
-            reverseArea.append(entries.get((entries.size() - 1) - i).toText());
+        for(int[] row : grid){
+            for(int cell : row){
+                if(cell > highest)
+                    highest = cell;
+
+                if(cell < lowest)
+                    lowest = cell;
+
+                total += cell;
+
+                occurences[cell] += 1;
+            }
         }
-
-
-    }
-
-    public void update(){
-        double highest = 0;
-
-        for(Entry entry : entries){
-            if(entry.score > highest)
-                highest = entry.score;
-        }
-
-        double average = CommonConversion.round(Entry.getAccumulatedScore(entries) / entries.size(), 2);
 
         summaryArea.setText(
-            "Highest Score: " + highest + Constants.LINEBREAK +
-            "Average: " + average + Constants.LINEBREAK + 
-            "Total Scores: " + entries.size()
+            "Highest: " + highest + "\n" +
+            "Lowest: " + lowest + "\n" +
+            "Average: " + CommonConversion.round((double)total / (double)elements, 3) + "\n"
         );
+
+        occurenceArea.setText("Occurences of Each Value: " + "\n");
+
+        for(int index = lowestCellValue; index < maxCellValue; index++){
+            if(occurences[index] == 0)
+                continue;
+                
+            occurenceArea.append(index + ": " + occurences[index] + Constants.TAB);
+        }
     }
 
     public void addComponents(){
@@ -120,10 +151,8 @@ public class FieldManager extends JFrame implements ActionListener{
         }
 
         //text area
-        add(forwardArea);
-        add(reverseArea);
-
         add(summaryArea);
+        add(occurenceArea);
 
         //panel
         add(panel);
@@ -142,17 +171,13 @@ public class FieldManager extends JFrame implements ActionListener{
         setLayout(new FlowLayout());
 
         //text area
-        forwardArea.setEditable(false);
-        forwardArea.setLineWrap(true);
-        forwardArea.setWrapStyleWord(true);
-        
-        reverseArea.setEditable(false);
-        reverseArea.setLineWrap(true);
-        reverseArea.setWrapStyleWord(true);
-
         summaryArea.setEditable(false);
         summaryArea.setLineWrap(true);
         summaryArea.setWrapStyleWord(true);
+
+        occurenceArea.setEditable(false);
+        occurenceArea.setLineWrap(true);
+        occurenceArea.setWrapStyleWord(true);
     }
 
 }
