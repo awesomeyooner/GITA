@@ -25,9 +25,9 @@ class GameManager{
             
             if(this.getHelicopter().getDistance(bird) < distanceThreshold)
                 bird.setHeading(bird.getVector(this.getHelicopter()).getUnitVector().times(2));
-              else
+            else
                 bird.setHeading(
-                    new Vector(birdSpeed, 2 * (Math.sin((millis() / 2000) * Math.PI)))
+                    bird.getHeading().setAngle(1 * (Math.sin(((millis()) / 2000) * Math.PI)))
                 );
             
             bird.update();

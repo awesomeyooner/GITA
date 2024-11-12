@@ -48,6 +48,24 @@ class Vector {
         return this.#dy;
     }
 
+    setAngle(theta){
+        var magnitude = this.getMagnitude();
+
+        this.setX(magnitude * Math.cos(theta));
+        this.setY(magnitude * Math.sin(theta));
+
+        return this.getVector();
+    }
+
+    setMagnitude(magnitude){
+        var theta = this.getAngle();
+
+        this.setX(magnitude * Math.cos(theta));
+        this.setY(magnitude * Math.sin(theta));
+
+        return this.getVector();
+    }
+
     getAngle(){
         return Math.atan2(this.#dy, this.#dx);
     }

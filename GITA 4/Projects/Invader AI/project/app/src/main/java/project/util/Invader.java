@@ -9,8 +9,6 @@ import javax.swing.JFrame;
 
 public class Invader extends Entity{
 
-    private int health;
-
     public Invader(int width, int height, int health, boolean isActive){
         super(width, height, health, isActive);
     }
