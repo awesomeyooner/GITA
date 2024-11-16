@@ -144,8 +144,12 @@ public static void main(String[]args) {
 
 			messageString += "My Array: " + "\n";
 
-			for(int i = 0; i < numberHolder.length; i++){
-				messageString += numberHolder[i] + "\n";
+			// for(int i = 0; i < numberHolder.length; i++){
+			// 	messageString += numberHolder[i] + "\n";
+			// }
+
+			for(int number : numberHolder){
+				messageString += number + "\n";
 			}
 
 			txaOutput.append(messageString);

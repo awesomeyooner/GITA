@@ -10,7 +10,7 @@ public class Main {
     
     public static void main(String[] args){
         //First method to run 
-        FieldManager.initialize();
+        //FieldManager.initialize();
     }
 
 
