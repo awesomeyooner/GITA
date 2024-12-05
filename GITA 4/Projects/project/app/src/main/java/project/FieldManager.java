@@ -16,6 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 import project.util.Bar;
+import project.util.Button;
 import project.util.CommonConversion;
 import project.util.Constants;
 import project.util.Dice;
@@ -32,12 +33,17 @@ public class FieldManager extends JFrame implements ActionListener{
     private final JPanel panel = new JPanel(new GridLayout(0, 2));
 
     //declare components
+    private final FieldLabel myField = new FieldLabel("My Field: ", true);
+
+    private final FieldLabel[] fields = {myField};
 
     //text to display, width, height
     private final JTextArea outputArea = new JTextArea("", 10, 30);
 
     //button
-    private final JButton actionButton = new JButton("Calculate");
+    private final Button actionButton = new Button("Action!", this::action);
+
+    private final Button[] buttons = {actionButton};
 
     public FieldManager(){
         //Put titlebar on frame
@@ -59,8 +65,9 @@ public class FieldManager extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent event){
         Object objSource = event.getSource();
         
-        if(objSource == actionButton)
-            action();
+        for(Button button : buttons){
+            button.run(objSource);
+        }
     }
 
     public void action(){
@@ -68,6 +75,17 @@ public class FieldManager extends JFrame implements ActionListener{
     }
 
     public void addComponents(){
+        
+        //add components to frame
+        for(FieldLabel field : fields){
+            field.label.setHorizontalAlignment(SwingConstants.RIGHT);
+            field.add(panel);
+            field.addListener(this);
+        }
+
+        for(Button button : buttons){
+            button.initialize(this, this);
+        }
 
         //text area
         add(outputArea);
