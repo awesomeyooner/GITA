@@ -65,8 +65,8 @@ class Entity extends Point{
         return this.#color;
     }
 
-    setHeading(newHeading){
-        this.#movement = newHeading;
+    setHeading(newHeading, useSpeed){
+        this.#movement = useSpeed ? newHeading.getUnitVector().times(this.#speed) : newHeading;
     }
     
     setHeadingX(newX){

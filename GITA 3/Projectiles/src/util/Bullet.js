@@ -1,21 +1,11 @@
 class Bullet extends Entity{
 
-    #speed;
     #bounces = 0;
     #maxBounces;
 
     constructor(size, maxBounces = 5, speed = 3){
-        super(size, 0, 0, false);
+        super(size, 0, 0, false, speed);
         this.#maxBounces = maxBounces;
-        this.#speed = speed;
-    }
-
-    getSpeed(){
-        return this.#speed;
-    }
-
-    setSpeed(newSpeed){
-        this.#speed = newSpeed;
     }
 
     getBounces(){

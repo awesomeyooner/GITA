@@ -24,7 +24,7 @@ function draw(){
 
   mouse.update(mouseIsPressed);
 
-  gameManager.getPlayer().setHeading(keyboard.getHeading().times(5));
+  gameManager.getPlayer().setHeading(keyboard.getHeading(), true);
 
   gameManager.update();
 }
