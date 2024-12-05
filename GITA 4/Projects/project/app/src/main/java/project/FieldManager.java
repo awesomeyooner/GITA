@@ -1,26 +1,14 @@
 package project;
 
-import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.constant.Constable;
-import java.util.ArrayList;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
-import project.util.Bar;
 import project.util.Button;
-import project.util.CommonConversion;
-import project.util.Constants;
-import project.util.Dice;
-import project.util.Entry;
 import project.util.FieldLabel;
 import project.util.TextArea;
 
