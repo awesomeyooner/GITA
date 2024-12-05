@@ -22,6 +22,7 @@ import project.util.Constants;
 import project.util.Dice;
 import project.util.Entry;
 import project.util.FieldLabel;
+import project.util.TextArea;
 
 //Programmer: Aaron Yoon
 //Date: August 27
@@ -31,19 +32,25 @@ public class FieldManager extends JFrame implements ActionListener{
 
     //declare panel
     private final JPanel panel = new JPanel(new GridLayout(0, 2));
+    
 
-    //declare components
+    //field labels
     private final FieldLabel myField = new FieldLabel("My Field: ", true);
 
     private final FieldLabel[] fields = {myField};
 
-    //text to display, width, height
-    private final JTextArea outputArea = new JTextArea("", 10, 30);
+
+    //text areas
+    private final TextArea outputArea = new TextArea();
+    
+    private final TextArea[] textAreas = {outputArea};
+
 
     //button
     private final Button actionButton = new Button("Action!", this::action);
 
     private final Button[] buttons = {actionButton};
+
 
     public FieldManager(){
         //Put titlebar on frame
@@ -76,40 +83,34 @@ public class FieldManager extends JFrame implements ActionListener{
 
     public void addComponents(){
         
-        //add components to frame
+        //add fields
         for(FieldLabel field : fields){
             field.label.setHorizontalAlignment(SwingConstants.RIGHT);
             field.add(panel);
             field.addListener(this);
         }
 
+        //add buttons
         for(Button button : buttons){
             button.initialize(this, this);
         }
 
-        //text area
-        add(outputArea);
+        //add text area
+        for(TextArea textArea : textAreas){
+            add(textArea);
+            textArea.configureDefault();
+        }
 
         //panel
         add(panel);
-
-        //button
-        add(actionButton);
-        actionButton.addActionListener(this);
     }
 
     public void configureSettings(){
-
         //frame
         setSize(500, 500);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
-
-        //text area
-        outputArea.setEditable(false);
-        outputArea.setLineWrap(true);
-        outputArea.setWrapStyleWord(true);
     }
 
 }

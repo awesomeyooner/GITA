@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.constant.Constable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -93,21 +94,6 @@ public class FieldManager extends JFrame implements ActionListener{
         strings = new String[n];
     }
 
-    public void displayOutputArray(Set<String> actual, Set<String> not){
-
-        outputArea.setText("Palindromes:" + "\n");
-
-        for(String string : actual){
-            outputArea.append(string + "\n");
-        }
-
-        outputArea.append("\n" + "Not Palindromes:" + "\n");
-
-        for(String string : not){
-            outputArea.append(string + "\n");
-        }
-    }
-
     public void push(){
 
         if(outputArea.displayError(FieldLabel.getAccumulatedErrors(fields)))
@@ -162,10 +148,9 @@ public class FieldManager extends JFrame implements ActionListener{
             
         }
 
-        outputArea.displayArray("Palindromes:", );
-
-        //displayOutputArray(actualPalindromes, notPalindromes);
-
+        outputArea.displayArray("Palindromes:", actualPalindromes, true);
+        outputArea.append("\n");
+        outputArea.displayArray("Not Palindromes:", notPalindromes, false);
     }
 
     public void addComponents(){
