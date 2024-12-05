@@ -17,15 +17,46 @@ public class TextArea extends JTextArea{
         this("");
     }
 
-    public <T> void displayArray(String header, T[] array){
-        setText(header);
+    public void configureDefault(){
+        setEditable(false);
+        setLineWrap(true);
+        setWrapStyleWord(true);
+    }
 
-        for(T item : array){
-            append(item.toString());
+    /**
+     * 
+     * @param error
+     * @return returns true if there actually were errors present
+     */
+    public boolean displayError(String error){
+        if(error == null)
+            return false;
+
+        else{
+            setText(error);
+            return true;
         }
     }
 
+    public <T> void displayArray(String header, T[] array, boolean reset){
+        if(reset)
+            setText(header + "\n");
+        else
+            append(header + "\n");
+
+        for(T item : array){
+            if(item == null)
+                continue;
+
+            append(item.toString() + "\n");
+        }
+    }
+
+    public <T> void displayArray(String header, T[] array){
+        displayArray(header, array, true);
+    }
+
     public <T> void displayArray(T[] array){
-        displayArray("", array);
+        displayArray("", array, true);
     }
 }

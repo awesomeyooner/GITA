@@ -43,8 +43,10 @@ public class FieldManager extends JFrame implements ActionListener{
     private final FieldLabel[] fields = {nStringsField, enterStringField};
 
     //text to display, width, height
-    private final JTextArea inputArea = new JTextArea("", 10, 30);
-    private final JTextArea outputArea = new JTextArea("", 10, 30);
+    private final TextArea inputArea = new TextArea();
+    private final TextArea outputArea = new TextArea();
+
+    private final TextArea[] textAreas = {inputArea, outputArea};
 
     //button
     private final Button pushButton = new Button("Push!", this::push);
@@ -91,17 +93,6 @@ public class FieldManager extends JFrame implements ActionListener{
         strings = new String[n];
     }
 
-    public void displayInputArray(){
-        inputArea.setText("Array Contents:" + "\n");
-
-        for(String string : strings){
-            if(string == null)
-                continue;
-
-            inputArea.append(string + "\n");
-        }
-    }
-
     public void displayOutputArray(Set<String> actual, Set<String> not){
 
         outputArea.setText("Palindromes:" + "\n");
@@ -118,12 +109,9 @@ public class FieldManager extends JFrame implements ActionListener{
     }
 
     public void push(){
-        String error = FieldLabel.getAccumulatedErrors(fields);
 
-        if(error != null){
-            outputArea.setText(error);
+        if(outputArea.displayError(FieldLabel.getAccumulatedErrors(fields)))
             return;
-        }
 
         changeArraySize();
 
@@ -138,7 +126,7 @@ public class FieldManager extends JFrame implements ActionListener{
 
         }
 
-        displayInputArray();
+        inputArea.displayArray("Array Contents:", strings);
         analyze();
     }
 
@@ -151,7 +139,7 @@ public class FieldManager extends JFrame implements ActionListener{
             }
         }
 
-        displayInputArray();
+        inputArea.displayArray("Array Contents:", strings);
         analyze();
     }
 
@@ -174,26 +162,31 @@ public class FieldManager extends JFrame implements ActionListener{
             
         }
 
-        displayOutputArray(actualPalindromes, notPalindromes);
+        outputArea.displayArray("Palindromes:", );
+
+        //displayOutputArray(actualPalindromes, notPalindromes);
 
     }
 
     public void addComponents(){
         
-        //add components to frame
+        //add fields
         for(FieldLabel field : fields){
             field.label.setHorizontalAlignment(SwingConstants.RIGHT);
             field.add(panel);
             field.addListener(this);
         }
 
+        //add buttons
         for(Button button : buttons){
             button.initialize(this, this);
         }
 
-        //text area
-        add(outputArea);
-        add(inputArea);
+        //add text area
+        for(TextArea textArea : textAreas){
+            add(textArea);
+            textArea.configureDefault();
+        }
 
         //panel
         add(panel);
@@ -206,11 +199,6 @@ public class FieldManager extends JFrame implements ActionListener{
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
-
-        //text area
-        outputArea.setEditable(false);
-        outputArea.setLineWrap(true);
-        outputArea.setWrapStyleWord(true);
     }
 
 }
