@@ -4,14 +4,15 @@ class Player extends Entity{
 
     #maxBullets;
 
-    constructor(size, maxBullets = 10, maxHealth = 3){
+    constructor(size, maxBullets = 10, maxHealth = 3, color = "blue"){
         super(
             size, //size
             0, //x
             0, //y
             true, //is active at start
             5, //speed
-            maxHealth //max health
+            maxHealth, //max health
+            color //color
         );
 
         this.#maxBullets = maxBullets;
@@ -24,7 +25,8 @@ class Player extends Entity{
             this.#bullets[i] = new Bullet(
                 10, //size
                 4, //bounces
-                10 //speed
+                10, //speed
+                this.color //color
             );
         }
     }
@@ -37,7 +39,7 @@ class Player extends Entity{
         var total = 0;
 
         for(var bullet of this.#bullets){
-            if(!bullet.isActive())
+            if(!bullet.isActive)
                 total++;
         }
 
@@ -46,44 +48,43 @@ class Player extends Entity{
 
     shoot(direction){
         for(var bullet of this.#bullets){
-            if(bullet.isActive())
+            if(bullet.isActive)
                 continue;
             else{
                 bullet.setPoint(this);
-                bullet.setHeading(direction.times(bullet.getSpeed()));
-                bullet.setActive(true);
-                bullet.setBounces(0);
+                bullet.setHeading(direction.times(bullet.speed));
+                bullet.isActive = true;
+                bullet.bounces = 0;
                 break;
             }
         }
     }
 
-    update(){
-
-        if(!this.isActive())
+    update(enemy){
+        if(!super.update())
             return;
 
+        //moving
         this.constrainMovement(Constants.BOUNDING_WIDTH, Constants.BOUNDING_HEIGHT);
         this.move();
+        this.drawEntity();
 
-        fill("blue");
-        circle(this.getNativeX(), this.getNativeY(), this.getSize());
-    
         for(var bullet of this.#bullets){
-            if(!bullet.isActive())
+            if(!bullet.isActive)
                 continue;
 
             bullet.update();
-            
-            if(bullet.collides(this) && bullet.getBounces() > 0){
-                bullet.setActive(false);
-                this.setHealth(this.getHealth() - 1);
 
-                if(this.getHealth() <= 0)
-                    this.setActive(false);
+            bullet.collides(
+                this, //collides with player?
+                () => this.health--, //if yes, remove health
+                (bullet) => bullet.bounces > 0 //additional condition
+            );
 
-                break;
-            }
+            bullet.collides(
+                enemy, //collides with enemy?
+                () => enemy.health-- //if yes, remove health
+            );
         }
     }   
 }

@@ -2,33 +2,31 @@ class GameManager{
 
     #player = new Player(
         50, //size
-        20, //max bullets
+        100, //max bullets
         5, //max health
+        "blue" //color
     );
 
     #enemy = new Enemy(
         50, //size
         20, //max bullets
-        5, //max health
+        100, //max health
+        "red" //color
     );
 
- 
-    constructor(){
-    }
-
     initialize(){
-
+        this.#enemy.initialize();
     }
 
     update(){
 
-        if(!this.#player.isActive()){
+        if(!this.#player.isActive || !this.#enemy.isActive){
             this.drawGameOver();
             return;
         }
 
-        this.#player.update();
-        this.#enemy.update();
+        this.#player.update(this.#enemy);
+        this.#enemy.update(this.#player);
         
         this.drawCage();
         this.drawHUD();
@@ -44,9 +42,9 @@ class GameManager{
 
     drawHUD(){
         Utility.textCorner("Bullets: " + this.getPlayer().getInactiveBullets(), 20, 100, 30);
-        Utility.textCorner("Health: " + this.getPlayer().getHealth(), 20, 50, 30);
+        Utility.textCorner("Health: " + this.getPlayer().health, 20, 50, 30);
 
-        Utility.textCorner("Enemy Health: " + this.getEnemy().getHealth(), 20, 150, 30);
+        Utility.textCorner("Enemy Health: " + this.getEnemy().health, 20, 150, 30);
     }
 
     drawGameOver(){

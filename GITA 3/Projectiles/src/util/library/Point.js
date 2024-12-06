@@ -58,6 +58,10 @@ class Point{
         return new Vector(deltaX, deltaY);
     }
 
+    toVector(){
+        return new Vector(this.#x, this.#y);
+    }
+
     isOutOfBounds(w = width, h = height){
         if(this.getCartesianX() > w / 2 || this.getCartesianX() < -w / 2)
             return true;

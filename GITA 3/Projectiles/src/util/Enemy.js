@@ -4,13 +4,17 @@ class Enemy extends Entity{
 
     #maxBullets;
 
-    constructor(size, maxBullets = 10, maxHealth = 3){
+    #path = new Array();
+
+    constructor(size, maxBullets = 10, maxHealth = 3, color = "blue"){
         super(
             size, //size
             0, //x
             0, //y
             true, //is active at start
-            maxHealth //max health
+            5, //speed
+            maxHealth, //max health
+            color //color
         );
 
         this.#maxBullets = maxBullets;
@@ -18,12 +22,27 @@ class Enemy extends Entity{
         this.resetBullets();
     }
 
+    initialize(){
+        var offset = -100;
+        var w = (width / 2) + offset;
+        var h = (height / 2) + offset;
+
+        this.#path = [
+            new Point(-w, h),
+            new Point(w, h),
+            new Point(w, -h),
+            new Point(-w, -h)
+        ];
+    }
+    
+
     resetBullets(){
         for(var i = 0; i < this.#maxBullets; i++){
             this.#bullets[i] = new Bullet(
                 10, //size
                 4, //bounces
-                10 //speed
+                5, //speed
+                this.color //color
             );
         }
     }
@@ -36,7 +55,7 @@ class Enemy extends Entity{
         var total = 0;
 
         for(var bullet of this.#bullets){
-            if(!bullet.isActive())
+            if(!bullet.isActive)
                 total++;
         }
 
@@ -45,43 +64,71 @@ class Enemy extends Entity{
 
     shoot(direction){
         for(var bullet of this.#bullets){
-            if(bullet.isActive())
+            if(bullet.isActive)
                 continue;
             else{
                 bullet.setPoint(this);
-                bullet.setHeading(direction.times(bullet.getSpeed()));
-                bullet.setActive(true);
-                bullet.setBounces(0);
+                bullet.setHeading(direction.times(bullet.speed));
+                bullet.isActive = true;
+                bullet.bounces = 0;
                 break;
             }
         }
     }
 
-    update(){
+    pursuitPath(lookahead = 50){
 
-        if(!this.isActive())
+        for(var i = 0; i < this.#path.length; i++){
+            var initial = this.#path[i].toVector();
+            var final;
+
+            if(i == this.#path.length - 1){ //if its the last one basically
+                final = this.#path[0].toVector(); //make the last connect with first
+            }
+            else
+                final = this.#path[i + 1].toVector(); //if not, then just make it the next
+
+            var vector = final.plus(initial.times(-1));
+
+            var radicand = 
+                (Math.pow(lookahead, 2) / Math.pow(vector.getMagnitude(), 2)) - 
+                (Math.pow(initial.getMagnitude(), 2) / Math.pow(vector.getMagnitude(), 2)) + 
+                Math.pow(initial.dot(vector) / Math.pow(vector.getMagnitude(), 2), 2);
+            
+            var time = 
+            Math.sqrt(radicand) - 
+            (initial.dot(vector) / Math.pow(vector.getMagnitude(), 2));
+            
+            print(time);
+        }
+
+
+    }
+
+    update(player){
+        if(!super.update())
             return;
 
+        //moving
+        this.constrainMovement(width, height);
         this.move();
+        this.drawEntity();
 
-        fill("red");
-        circle(this.getNativeX(), this.getNativeY(), this.getSize());
-    
+        if(millis() % 500 < 20)
+            this.shoot(player.getVector(this).getUnitVector());
+
         for(var bullet of this.#bullets){
-            if(!bullet.isActive())
+            if(!bullet.isActive)
                 continue;
 
             bullet.update();
-            
-            if(bullet.collides(this) && bullet.getBounces() > 0){
-                bullet.setActive(false);
-                this.setHealth(this.getHealth() - 1);
 
-                if(this.getHealth() <= 0)
-                    this.setActive(false);
-
-                break;
-            }
+            bullet.collides(
+                player, //collides with player?
+                () => player.health-- //if yes, remove health
+            );
         }
+
+        this.pursuitPath();
     }   
 }

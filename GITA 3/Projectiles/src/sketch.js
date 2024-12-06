@@ -5,11 +5,11 @@ var keyboard = new KeyboardController();
 var gameManager = new GameManager();
 
 function setup() {
-  createCanvas(1280, 720);
+  createCanvas(1600, 800);
   frameRate(60);
 
   keyboard.initialize(window);
-  keyboard.configureBinding("c", () => print("hello"));
+  keyboard.configureBinding(" ", () => gameManager.getPlayer().shoot(mouse.getVector(gameManager.getPlayer()).getUnitVector()));
 
   mouse.configureBinding(() => gameManager.getPlayer().shoot(mouse.getVector(gameManager.getPlayer()).getUnitVector()), MouseState.ON_PRESS);
   // mouse.configureBinding(() => print("RELEASE"), MouseState.ON_RELEASE);
@@ -23,16 +23,9 @@ function draw(){
   background(220);
 
   mouse.update(mouseIsPressed);
+  keyboard.update();
 
   gameManager.getPlayer().setHeading(keyboard.getHeading(), true);
 
   gameManager.update();
-}
-
-function logData(){
-  // for(var key of keyboard.getKeys().keys()){
-  //   print(key + ": " + keyboard.getKeys().get(key));
-  // }
-  Utility.textCorner("Bullets: " + gameManager.getPlayer().getInactiveBullets(), 20, 100, 30);
-  Utility.textCorner("Health: " + gameManager.getPlayer().getHealth(), 20, 50, 30);
 }
