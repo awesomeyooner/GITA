@@ -78,12 +78,16 @@ class Enemy extends Entity{
 
     pursuitPath(lookahead = 50){
 
+        var actualPursuited;
+        var indexOfPursuited;
+        var timeOfPursuited;
 
         for(var i = 0; i < this.#path.length; i++){
             var initial = this.#path[i].toVector();
             var deltaInitialAndReference = this.#path[i].minus(this).toVector();
             var final;
             var pursuited;
+            var time;
 
             if(i == this.#path.length - 1){ //if its the last one basically
                 final = this.#path[0].toVector(); //make the last connect with first
@@ -99,22 +103,45 @@ class Enemy extends Entity{
                 Math.pow(deltaInitialAndReference.dot(vector) / Math.pow(vector.getMagnitude(), 2), 2);
 
             if(radicand >= 0){
-                var time = 
-                Math.sqrt(radicand) - 
-                (deltaInitialAndReference.dot(vector) / Math.pow(vector.getMagnitude(), 2));
-                
+                time = 
+                    Math.sqrt(radicand) - 
+                    (deltaInitialAndReference.dot(vector) / Math.pow(vector.getMagnitude(), 2));
+                    
+                if(time > 1)
+                    time = 1;
+                else if(time < 0)
+                    time = 0;
+
                 pursuited = vector.times(time).plus(initial).toPoint();
             }
             else{
-                var time = -deltaInitialAndReference.dot(vector) / (vector.dot(vector));
+                time = -deltaInitialAndReference.dot(vector) / (vector.dot(vector));
+
+                if(time > 1)
+                    time = 1;
+                else if(time < 0)
+                    time = 0;
 
                 pursuited = vector.times(time).plus(initial).toPoint();
             }
 
-            circle(pursuited.getNativeX(), pursuited.getNativeY(), 10);
+            var doesntBacktrack = i - indexOfPursuited == 1 || (indexOfPursuited == this.#path.length - 1 && i == 0);
+
+            if(actualPursuited == null || this.getVector(actualPursuited).getMagnitude() > this.getVector(pursuited).getMagnitude() || (timeOfPursuited == 1 && (i - indexOfPursuited == 1 || (indexOfPursuited == this.#path.length - 1 && i == 0)))){
+                actualPursuited = pursuited;
+                indexOfPursuited = i;
+                timeOfPursuited = time;
+            }
+
+            //circle(pursuited.getNativeX(), pursuited.getNativeY(), 10);
         }
 
+        var debug = actualPursuited;
+        circle(debug.getNativeX(), debug.getNativeY(), 10);
 
+        print(timeOfPursuited);
+
+        this.setHeading(this.getVector(actualPursuited).getUnitVector().times(-5));
     }
 
     drawPath(path){
