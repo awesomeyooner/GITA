@@ -80,13 +80,15 @@ class Enemy extends Entity{
 
         for(var i = 0; i < this.#path.length; i++){
             var initial = this.#path[i].toVector();
+            var deltaInitialAndReference = this.#path[i].minus(this).toVector();
             var final;
+            var pursuited;
 
             if(i == this.#path.length - 1){ //if its the last one basically
-                final = this.#path[0].toVector(); //make the last connect with first
+                final = this.#path[0].minus(this).toVector(); //make the last connect with first
             }
             else
-                final = this.#path[i + 1].toVector(); //if not, then just make it the next
+                final = this.#path[i + 1].minus(this).toVector(); //if not, then just make it the next
 
             var vector = final.plus(initial.times(-1));
 
@@ -94,12 +96,19 @@ class Enemy extends Entity{
                 (Math.pow(lookahead, 2) / Math.pow(vector.getMagnitude(), 2)) - 
                 (Math.pow(initial.getMagnitude(), 2) / Math.pow(vector.getMagnitude(), 2)) + 
                 Math.pow(initial.dot(vector) / Math.pow(vector.getMagnitude(), 2), 2);
-            
-            var time = 
-            Math.sqrt(radicand) - 
-            (initial.dot(vector) / Math.pow(vector.getMagnitude(), 2));
-            
-            print(time);
+
+            if(radicand >= 0){
+                var time = 
+                Math.sqrt(radicand) - 
+                (initial.dot(vector) / Math.pow(vector.getMagnitude(), 2));
+                
+                pursuited = vector.times(time).plus(initial);
+            }
+            else{
+                var time = -initial.dot(vector) / (vector.dot(vector));
+
+                pursuited = initial
+            }
         }
 
 

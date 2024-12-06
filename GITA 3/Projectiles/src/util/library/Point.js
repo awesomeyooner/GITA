@@ -62,6 +62,20 @@ class Point{
         return new Vector(this.#x, this.#y);
     }
 
+    plus(otherPoint){
+        var sumX = this.#x + otherPoint.getCartesianX();
+        var sumY = this.#y + otherPoint.getCartesianY()
+
+        return new Point(sumX, sumY);
+    }
+
+    minus(otherPoint){
+        var deltaX = this.#x - otherPoint.getCartesianX();
+        var deltaY = this.#y - otherPoint.getCartesianY()
+
+        return new Point(deltaX, deltaY);
+    }
+
     isOutOfBounds(w = width, h = height){
         if(this.getCartesianX() > w / 2 || this.getCartesianX() < -w / 2)
             return true;
