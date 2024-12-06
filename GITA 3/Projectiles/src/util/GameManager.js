@@ -10,7 +10,7 @@ class GameManager{
     #enemy = new Enemy(
         50, //size
         20, //max bullets
-        100, //max health
+        20, //max health
         "red" //color
     );
 
@@ -20,8 +20,12 @@ class GameManager{
 
     update(){
 
-        if(!this.#player.isActive || !this.#enemy.isActive){
-            this.drawGameOver();
+        if(!this.#enemy.isActive){
+            this.drawEndScreen("You Win!");
+            return;
+        }
+        else if(!this.#player.isActive){
+            this.drawEndScreen("You Lose!");
             return;
         }
 
@@ -45,11 +49,12 @@ class GameManager{
         Utility.textCorner("Health: " + this.getPlayer().health, 20, 50, 30);
 
         Utility.textCorner("Enemy Health: " + this.getEnemy().health, 20, 150, 30);
+        Utility.textCorner("Time: " + Math.round(millis() / 10) / 100, 20, 200, 30);
     }
 
-    drawGameOver(){
+    drawEndScreen(text = "Game Over!"){
         Utility.textCenter(
-            "Game Over!", 
+            text, 
             Utility.cartesianToNativeX(0), 
             Utility.cartesianToNativeY(0), 
             100

@@ -5,6 +5,9 @@ class Enemy extends Entity{
     #maxBullets;
 
     #path = new Array();
+    #pursuitedPoint;
+    #indexOfPursuited;
+    #timeOfPursuited;
 
     constructor(size, maxBullets = 10, maxHealth = 3, color = "blue"){
         super(
@@ -33,6 +36,9 @@ class Enemy extends Entity{
             new Point(w, -h),
             new Point(-w, -h)
         ];
+
+        this.setX(this.#path[0].getCartesianX());
+        this.setY(this.#path[0].getCartesianY());
     }
     
 
@@ -78,10 +84,6 @@ class Enemy extends Entity{
 
     pursuitPath(lookahead = 50){
 
-        var actualPursuited;
-        var indexOfPursuited;
-        var timeOfPursuited;
-
         for(var i = 0; i < this.#path.length; i++){
             var initial = this.#path[i].toVector();
             var deltaInitialAndReference = this.#path[i].minus(this).toVector();
@@ -125,36 +127,49 @@ class Enemy extends Entity{
                 pursuited = vector.times(time).plus(initial).toPoint();
             }
 
-            var doesntBacktrack = i - indexOfPursuited == 1 || (indexOfPursuited == this.#path.length - 1 && i == 0);
+            if(this.#pursuitedPoint == null){
+                this.#pursuitedPoint = pursuited;
+                this.#indexOfPursuited = i;
+                this.#timeOfPursuited = time;
 
-            if(actualPursuited == null || this.getVector(actualPursuited).getMagnitude() > this.getVector(pursuited).getMagnitude() || (timeOfPursuited == 1 && (i - indexOfPursuited == 1 || (indexOfPursuited == this.#path.length - 1 && i == 0)))){
-                actualPursuited = pursuited;
-                indexOfPursuited = i;
-                timeOfPursuited = time;
+                continue;
             }
 
-            //circle(pursuited.getNativeX(), pursuited.getNativeY(), 10);
+            if(i == this.#indexOfPursuited){
+                this.#pursuitedPoint = pursuited;
+                this.#timeOfPursuited = time;
+            }
+
+            if(i == this.#indexOfPursuited)
+                this.#timeOfPursuited == time;
+
+            var atEndOfPath = this.#timeOfPursuited == 1;
+            var isLookingAtNext = i - this.#indexOfPursuited == 1 || (this.#indexOfPursuited == this.#path.length - 1 && i == 0);
+            var analyzedIsShorter = i != this.#indexOfPursuited && this.getVector(this.#pursuitedPoint).getMagnitude() > this.getVector(pursuited).getMagnitude();
+
+            if(isLookingAtNext && (analyzedIsShorter || atEndOfPath)){
+                this.#pursuitedPoint = pursuited;
+                this.#indexOfPursuited = i;
+                this.#timeOfPursuited = time;
+            }
         }
 
-        var debug = actualPursuited;
-        circle(debug.getNativeX(), debug.getNativeY(), 10);
+        //circle(this.#pursuitedPoint.getNativeX(), this.#pursuitedPoint.getNativeY(), 10);
 
-        print(timeOfPursuited);
-
-        this.setHeading(this.getVector(actualPursuited).getUnitVector().times(-5));
+        this.setHeading(this.getVector(this.#pursuitedPoint).getUnitVector().times(-5));
     }
 
     drawPath(path){
 
-        for(var i = 0; i < this.#path.length; i++){
-            var initial = this.#path[i];
+        for(var i = 0; i < path.length; i++){
+            var initial = path[i];
             var final;
 
-            if(i == this.#path.length - 1){ //if its the last one basically
-                final = this.#path[0]; //make the last connect with first
+            if(i == path.length - 1){ //if its the last one basically
+                final = path[0]; //make the last connect with first
             }
             else
-                final = this.#path[i + 1]; //if not, then just make it the next
+                final = path[i + 1]; //if not, then just make it the next
 
                 Utility.drawLine(
                     initial,
@@ -172,8 +187,8 @@ class Enemy extends Entity{
         this.move();
         this.drawEntity();
 
-        // if(millis() % 500 < 20)
-        //     this.shoot(player.getVector(this).getUnitVector());
+        if(millis() % 500 < 20)
+            this.shoot(player.getVector(this).getUnitVector());
 
         for(var bullet of this.#bullets){
             if(!bullet.isActive)
@@ -187,7 +202,7 @@ class Enemy extends Entity{
             );
         }
 
-        this.drawPath(this.#path);
+        //this.drawPath(this.#path);
         this.pursuitPath();
     }   
 }
