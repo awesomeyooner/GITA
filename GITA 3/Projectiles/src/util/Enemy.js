@@ -78,6 +78,7 @@ class Enemy extends Entity{
 
     pursuitPath(lookahead = 50){
 
+
         for(var i = 0; i < this.#path.length; i++){
             var initial = this.#path[i].toVector();
             var deltaInitialAndReference = this.#path[i].minus(this).toVector();
@@ -85,33 +86,54 @@ class Enemy extends Entity{
             var pursuited;
 
             if(i == this.#path.length - 1){ //if its the last one basically
-                final = this.#path[0].minus(this).toVector(); //make the last connect with first
+                final = this.#path[0].toVector(); //make the last connect with first
             }
             else
-                final = this.#path[i + 1].minus(this).toVector(); //if not, then just make it the next
+                final = this.#path[i + 1].toVector(); //if not, then just make it the next
 
             var vector = final.plus(initial.times(-1));
 
             var radicand = 
                 (Math.pow(lookahead, 2) / Math.pow(vector.getMagnitude(), 2)) - 
-                (Math.pow(initial.getMagnitude(), 2) / Math.pow(vector.getMagnitude(), 2)) + 
-                Math.pow(initial.dot(vector) / Math.pow(vector.getMagnitude(), 2), 2);
+                (Math.pow(deltaInitialAndReference.getMagnitude(), 2) / Math.pow(vector.getMagnitude(), 2)) + 
+                Math.pow(deltaInitialAndReference.dot(vector) / Math.pow(vector.getMagnitude(), 2), 2);
 
             if(radicand >= 0){
                 var time = 
                 Math.sqrt(radicand) - 
-                (initial.dot(vector) / Math.pow(vector.getMagnitude(), 2));
+                (deltaInitialAndReference.dot(vector) / Math.pow(vector.getMagnitude(), 2));
                 
-                pursuited = vector.times(time).plus(initial);
+                pursuited = vector.times(time).plus(initial).toPoint();
             }
             else{
-                var time = -initial.dot(vector) / (vector.dot(vector));
+                var time = -deltaInitialAndReference.dot(vector) / (vector.dot(vector));
 
-                pursuited = initial
+                pursuited = vector.times(time).plus(initial).toPoint();
             }
+
+            circle(pursuited.getNativeX(), pursuited.getNativeY(), 10);
         }
 
 
+    }
+
+    drawPath(path){
+
+        for(var i = 0; i < this.#path.length; i++){
+            var initial = this.#path[i];
+            var final;
+
+            if(i == this.#path.length - 1){ //if its the last one basically
+                final = this.#path[0]; //make the last connect with first
+            }
+            else
+                final = this.#path[i + 1]; //if not, then just make it the next
+
+                Utility.drawLine(
+                    initial,
+                    final
+                );
+        }
     }
 
     update(player){
@@ -123,8 +145,8 @@ class Enemy extends Entity{
         this.move();
         this.drawEntity();
 
-        if(millis() % 500 < 20)
-            this.shoot(player.getVector(this).getUnitVector());
+        // if(millis() % 500 < 20)
+        //     this.shoot(player.getVector(this).getUnitVector());
 
         for(var bullet of this.#bullets){
             if(!bullet.isActive)
@@ -138,6 +160,7 @@ class Enemy extends Entity{
             );
         }
 
+        this.drawPath(this.#path);
         this.pursuitPath();
     }   
 }

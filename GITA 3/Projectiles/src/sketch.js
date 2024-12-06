@@ -26,6 +26,7 @@ function draw(){
   keyboard.update();
 
   gameManager.getPlayer().setHeading(keyboard.getHeading(), true);
+  gameManager.getEnemy().setHeading(keyboard.getHeading(), true);
 
   gameManager.update();
 }

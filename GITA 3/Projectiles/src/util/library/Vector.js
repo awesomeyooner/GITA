@@ -88,6 +88,10 @@ class Vector {
         return this.getVector();
     }
 
+    toPoint(){
+        return new Point(this.#dx, this.#dy);
+    }
+
     dot(otherVector){
         var sum = (this.getX() * otherVector.getX()) + (this.getY() * otherVector.getY());
 
