@@ -1,6 +1,6 @@
 package project.util;
 
-public class CommonConversion {
+public class Utility {
     
     /**
      * Rounds input to the nearest decimal
@@ -19,4 +19,24 @@ public class CommonConversion {
     public static double poundToKilos(double pounds){
         return pounds * 0.454;
     }
+
+    public static <T> void append(T[] array, T thingToAppend){
+        for(int i = 0; i < array.length; i++){
+            if(array[i] == null){
+                array[i] = thingToAppend;
+                break;
+            }
+        }
+    }
+
+    public static <T> void pop(T[] array){
+        for(int i = array.length; i >= 0; i--){
+            if(array[i] != null){
+                array[i] = null;
+                break;
+            }
+        }
+    }
+
+    
 }

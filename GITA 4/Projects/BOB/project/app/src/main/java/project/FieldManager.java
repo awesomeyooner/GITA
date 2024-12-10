@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 import project.util.Button;
 import project.util.FieldLabel;
 import project.util.TextArea;
+import project.util.Utility;
 
 //Programmer: Aaron Yoon
 //Date: August 27
@@ -23,9 +24,9 @@ public class FieldManager extends JFrame implements ActionListener{
     
 
     //field labels
-    private final FieldLabel myField = new FieldLabel("My Field: ", true);
+    private final FieldLabel inputField = new FieldLabel("Enter String: ", false);
 
-    private final FieldLabel[] fields = {myField};
+    private final FieldLabel[] fields = {inputField};
 
 
     //text areas
@@ -68,6 +69,43 @@ public class FieldManager extends JFrame implements ActionListener{
     public void action(){
         if(outputArea.displayError(FieldLabel.getAccumulatedErrors(fields)))
             return;
+
+        String input = inputField.getText();
+        String modifiedInput = input.toLowerCase();
+
+        Integer[] indices = new Integer[input.length()];
+        
+        //find where bob is 
+        for(int i = 1; i < modifiedInput.length() - 1; i++){ //not start nor end
+            char previous = modifiedInput.charAt(i - 1);
+            char current = modifiedInput.charAt(i);
+            char next = modifiedInput.charAt(i + 1);
+
+            if(previous == 'b' && current == 'o' && next == 'b'){
+                Utility.append(indices, i);
+            }
+        }
+
+        //remove bob
+        StringBuilder stringHelper = new StringBuilder(input);
+        
+        for(int i = 0; i < indices.length; i++){
+            Integer index = indices[i];
+
+            if(index == null)
+                continue;
+
+            stringHelper.deleteCharAt(index.intValue() - 1 - (i * 3)); //delete b
+            stringHelper.deleteCharAt(index.intValue() - 1 - (i * 3)); //delete o
+            stringHelper.deleteCharAt(index.intValue() - 1 - (i * 3)); //delete b
+
+            stringHelper.append(input.charAt(index - 1)); //add b
+            stringHelper.append(input.charAt(index)); //add o
+            stringHelper.append(input.charAt(index + 1)); //add b
+        }   
+
+        outputArea.setText("Input: " + input + "\n");
+        outputArea.append("Output: " + stringHelper.toString());
     }
 
     public void addComponents(){
