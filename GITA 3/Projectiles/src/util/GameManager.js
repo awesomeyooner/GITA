@@ -1,5 +1,7 @@
 class GameManager{
 
+    #timeElapsed = 0;
+
     #player = new Player(
         50, //size
         100, //max bullets
@@ -14,18 +16,23 @@ class GameManager{
         "red" //color
     );
 
+    #isActive = true;
+
     initialize(){
         this.#enemy.initialize();
     }
 
     update(){
 
+        if(this.#enemy.isActive && this.#player.isActive)
+            this.#timeElapsed = Math.round(100 * millis() / 1000) / 100;
+
         if(!this.#enemy.isActive){
-            this.drawEndScreen("You Win!");
+            this.drawEndScreen("You Win!" + "\n" + `Lasted ${this.#timeElapsed} seconds`);
             return;
         }
         else if(!this.#player.isActive){
-            this.drawEndScreen("You Lose!");
+            this.drawEndScreen("You Lose!" + "\n" + `Lasted ${this.#timeElapsed} seconds`);
             return;
         }
 
@@ -49,7 +56,7 @@ class GameManager{
         Utility.textCorner("Health: " + this.getPlayer().health, 20, 50, 30);
 
         Utility.textCorner("Enemy Health: " + this.getEnemy().health, 20, 150, 30);
-        Utility.textCorner("Time: " + Math.round(millis() / 10) / 100, 20, 200, 30);
+        Utility.textCorner("Time: " + this.#timeElapsed, 20, 200, 30);
     }
 
     drawEndScreen(text = "Game Over!"){
