@@ -20,13 +20,16 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     width: 400px;
+    height: 600px;
     text-align: center;
     overflow: hidden;
 }
 
 .widget img {
-    width: 200px;
-    height: auto;
+    height: 300px;
+    width: auto;
+
+    padding-bottom: 20px;
 }
 
 .widget h1 {
@@ -34,9 +37,18 @@
     font-size: 1.2em;
 }
 
+.widget h2 {
+    margin: 10px 0;
+    font-size: 1em;
+
+    padding-bottom: 20px;
+}
+
 .widget p {
     margin: 10px 0;
     font-size: 1.2em;
+    overflow-y: auto;
+    height: 175px
 }
 
 .widget a {

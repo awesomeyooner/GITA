@@ -42,6 +42,7 @@ class ProjectHandler{
                     <a href="${widget.link}">
                         <img src="${widget.image}" alt="${widget.header}">
                         <h1>${widget.header}</h1>
+                        <h2>${widget.date}</h2>
                         <p>${widget.description}</p>
                     </a>
                 `;
