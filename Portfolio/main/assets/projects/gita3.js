@@ -81,7 +81,7 @@ const jsonData =
         "header": "Projectiles",
         "image": "assets/projects/GITA3/Projectiles/image.png",
         "link": "assets/projects/GITA3/Projectiles/index.html",
-        "date": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "date": "12/13/2024",
         "description": "My favorite so far, avoid the enemy and shoot it down!"
     },
 ]
