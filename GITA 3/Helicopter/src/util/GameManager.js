@@ -1,6 +1,6 @@
 class GameManager{
 
-    #helicopter = new Helicopter(100);
+    #helicopter = new Helicopter(100, 5);
     #birds = new Array();
 
     constructor(){
@@ -9,29 +9,50 @@ class GameManager{
     initializeBirds(){
         for(var i = 0; i < 10; i++){
             var size = 20;
-            var x = (Math.random() * width - (2 * size)) - (width / 2);
-            var y = (Math.random() * height - (2 * size)) - (height / 2);
 
-            this.#birds[i] = new Bird(size, x, y);
+            var x = Utility.random(
+                -((width / 2) - (size / 2)), 
+                ((width / 2) - (size / 2))
+            );
+
+            var y = Utility.random(
+                -((height / 2) - (size / 2)), 
+                ((height / 2) - (size / 2))
+            );
+
+            var speed = Utility.random(1, 4);
+
+            var dx = Utility.random(-1, 1);
+            var dy = Utility.random(-1, 1);
+            var heading = new Vector(dx, dy).getUnitVector();
+
+            var timeOffset = Utility.random(0, 2000);
+
+            this.#birds[i] = new Bird(size, x, y, speed, timeOffset);
+            this.#birds[i].setHeading(heading);
         }
     }
 
     update(){
+        this.#helicopter.update();
 
         var distanceThreshold = 150;
-        var birdSpeed = 2;
 
         for(var bird of this.#birds){
             
             if(this.getHelicopter().getDistance(bird) < distanceThreshold)
-                bird.setHeading(bird.getVector(this.getHelicopter()).getUnitVector().times(2));
-            else
-                bird.setHeading(
-                    bird.getHeading().setAngle(1 * (Math.sin(((millis()) / 2000) * Math.PI)))
-                );
-            
+                bird.setHeading(bird.getVector(this.#helicopter).getUnitVector());
+            else{
+                
+            }
+
+
             bird.update();
         }
+    }
+
+    moveHelicopter(direction){
+        this.#helicopter.setHeading(direction.times(this.#helicopter.speed));
     }
 
     getHelicopter(){

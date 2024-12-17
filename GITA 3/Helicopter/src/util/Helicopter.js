@@ -1,7 +1,7 @@
 class Helicopter extends Entity{
 
-    constructor(size){
-        super(size, 0, 0);
+    constructor(size, speed = 5){
+        super(size, 0, 0, true, speed);
     }
 
     update(){
@@ -12,6 +12,6 @@ class Helicopter extends Entity{
 
         this.constrainMovement();
         this.move();
-        circle(this.getNativeX(), this.getNativeY(), this.getSize());
+        circle(this.getNativeX(), this.getNativeY(), this.size);
     }
 }

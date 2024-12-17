@@ -5,7 +5,7 @@ var keyboard = new KeyboardController();
 var gameManager = new GameManager();
 
 function setup() {
-  createCanvas(1280, 720);
+  createCanvas(1600, 800);
   frameRate(60);
 
   keyboard.initialize(window);
@@ -24,9 +24,7 @@ function draw(){
 
   mouse.update(mouseIsPressed);
 
-  gameManager.getHelicopter().setHeading(keyboard.getHeading().times(5));
-
-  gameManager.getHelicopter().update();
+  gameManager.moveHelicopter(keyboard.getHeading().getUnitVector());
 
   gameManager.update();
 }

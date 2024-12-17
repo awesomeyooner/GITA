@@ -10,6 +10,10 @@ class Utility{
         pop();
     }
 
+    static random(lowerBound, upperBound){
+        return (Math.random() * (upperBound - lowerBound)) + lowerBound;
+    }
+
     static cycle(){
         return ((sin(millis() * 0.1) + 1) / 2);
     }
@@ -22,6 +26,16 @@ class Utility{
         rotate(degrees);
         text(text_to_use, 0, 0);
         pop();
+    }
+
+    static drawLine(pointA, pointB){
+        line(
+            pointA.getNativeX(),
+            pointA.getNativeY(),
+
+            pointB.getNativeX(),
+            pointB.getNativeY()
+        );
     }
 
     static rectCenter(x, y, w, h){

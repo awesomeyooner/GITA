@@ -26,6 +26,12 @@ class KeyboardController{
         }
     }
 
+    printKeys(){
+        for(var key of keyboard.getKeys().keys()){
+            print(key + ": " + keyboard.getKeys().get(key));
+        }
+    }
+
     keyUp(key){
         this.#keys.set(key, false);
     }
