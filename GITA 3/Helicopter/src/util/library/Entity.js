@@ -64,13 +64,23 @@ class Entity extends Point{
     }
 
     isFullyOutOfBounds(w = width, h = height){
-        if(Math.abs(this.getCartesianX() - (this.size / 2)) > w / 2)
+        if(Math.abs(this.getCartesianX() + (this.size / 2)) > w / 2)
             return true;
         
-        if(Math.abs(this.getCartesianY() - (this.size / 2)) < -h / 2)
+        if(Math.abs(this.getCartesianY() + (this.size / 2)) < -h / 2)
             return true;
 
         return false;
+    }
+
+    isOutOfBoundsAndGoingInside(w = width, h = height){
+        var isGoingInsideRight = this.getCartesianX() > (w / 2) - (this.size / 2) && this.getHeading().getX() < 0;
+        var isGoingInsideLeft = this.getCartesianX() < -(w / 2) + (this.size / 2) && this.getHeading().getX() > 0;
+
+        var isGoingInsideTop = this.getCartesianY() > (h / 2) - (this.size / 2) && this.getHeading().getY() < 0;
+        var isGoingInsideBottom = this.getCartesianY() < -(h / 2) + (this.size / 2) && this.getHeading().getY() > 0;
+
+        return isGoingInsideRight || isGoingInsideLeft || isGoingInsideTop || isGoingInsideBottom;
     }
 
     collides(otherEntity){
