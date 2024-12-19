@@ -17,10 +17,14 @@ class Bird extends Entity{
 
     drawEntity(){
 
-        translate(Utility.cartesianToNativeX(100), Utility.cartesianToNativeY(100));
-        
-        //draw body
         push();
+
+        translate(
+            this.getCartesianX(), 
+            -this.getCartesianY()
+        );
+
+        //draw body
         fill("brown");
         ellipse(
             Utility.cartesianToNativeX(0), 
@@ -28,10 +32,8 @@ class Bird extends Entity{
             80, 
             40
         );
-        pop();
 
         //draw tail
-        push();
         fill("white");
         triangle(
             Utility.cartesianToNativeX(-60),
@@ -43,10 +45,8 @@ class Bird extends Entity{
             Utility.cartesianToNativeX(-40),
             Utility.cartesianToNativeY(0)
         );
-        pop();
 
         //draw feet
-        push();
         fill("yellow");
         rect(
             Utility.cartesianToNativeX(-15),
@@ -61,10 +61,8 @@ class Bird extends Entity{
             10,
             20
         );
-        pop();
 
         //draw head
-        push();
         fill("white");
         ellipse(
             Utility.cartesianToNativeX(40), 
@@ -72,10 +70,8 @@ class Bird extends Entity{
             30, 
             40
         );
-        pop();
 
         //draw beak
-        push();
         fill("yellow");
         triangle(
             Utility.cartesianToNativeX(40),
@@ -87,10 +83,8 @@ class Bird extends Entity{
             Utility.cartesianToNativeX(55),
             Utility.cartesianToNativeY(15)
         );
-        pop();
 
         //draw eyes
-        push();
         fill("black");
         circle(
             Utility.cartesianToNativeX(35),
@@ -151,14 +145,14 @@ class Bird extends Entity{
 
             if(this.isOutOfBoundsAndGoingOutside()){
                 //debug printing
-                print("Initial X: " + initialX);
-                print("Initial Y: " + initialY);
-                print("i: " + i);
-                print("time: " + time)
-                print("vx: " + vx);
-                print("vy: " + vy);
-                print("X: " + newX);
-                print("Y: " + newY);
+                // print("Initial X: " + initialX);
+                // print("Initial Y: " + initialY);
+                // print("i: " + i);
+                // print("time: " + time)
+                // print("vx: " + vx);
+                // print("vy: " + vy);
+                // print("X: " + newX);
+                // print("Y: " + newY);
                 this.set(newX, newY);
             }
         }
