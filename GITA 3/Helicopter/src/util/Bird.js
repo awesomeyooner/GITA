@@ -17,18 +17,24 @@ class Bird extends Entity{
 
     drawEntity(){
 
-        push();
+        // this.setHeadingX(-1);
+        // this.setHeadingY(1);
 
+        push();
         translate(
-            this.getCartesianX(), 
-            -this.getCartesianY()
+            this.getNativeX(), 
+            this.getNativeY()
         );
+
+        // rotate(-this.getHeading().getAngle());
+
+        var mirror = this.getHeading().getX() == 0 ? 1 : Math.sign(this.getHeading().getX());
 
         //draw body
         fill("brown");
         ellipse(
-            Utility.cartesianToNativeX(0), 
-            Utility.cartesianToNativeY(0), 
+            0, 
+            0, 
             80, 
             40
         );
@@ -36,28 +42,28 @@ class Bird extends Entity{
         //draw tail
         fill("white");
         triangle(
-            Utility.cartesianToNativeX(-60),
-            Utility.cartesianToNativeY(-40),
+            mirror * -60,
+            -40,
 
-            Utility.cartesianToNativeX(-60),
-            Utility.cartesianToNativeY(40),
+            mirror * -60,
+            40,
 
-            Utility.cartesianToNativeX(-40),
-            Utility.cartesianToNativeY(0)
+            mirror * -40,
+            0
         );
 
         //draw feet
         fill("yellow");
         rect(
-            Utility.cartesianToNativeX(-15),
-            Utility.cartesianToNativeY(-20),
+            mirror * -15,
+            20,
             10,
             20
         );
 
         rect(
-            Utility.cartesianToNativeX(5),
-            Utility.cartesianToNativeY(-20),
+            mirror * 5,
+            20,
             10,
             20
         );
@@ -65,8 +71,8 @@ class Bird extends Entity{
         //draw head
         fill("white");
         ellipse(
-            Utility.cartesianToNativeX(40), 
-            Utility.cartesianToNativeY(20), 
+            mirror * 40, 
+            -20, 
             30, 
             40
         );
@@ -74,26 +80,26 @@ class Bird extends Entity{
         //draw beak
         fill("yellow");
         triangle(
-            Utility.cartesianToNativeX(40),
-            Utility.cartesianToNativeY(10),
+            mirror * 40,
+            -10,
 
-            Utility.cartesianToNativeX(40),
-            Utility.cartesianToNativeY(20),
+            mirror * 40,
+            -20,
 
-            Utility.cartesianToNativeX(55),
-            Utility.cartesianToNativeY(15)
+            mirror * 55,
+            -15
         );
 
         //draw eyes
         fill("black");
         circle(
-            Utility.cartesianToNativeX(35),
-            Utility.cartesianToNativeY(22),
+            mirror * 35,
+            -22,
             5
         );
         circle(
-            Utility.cartesianToNativeX(49),
-            Utility.cartesianToNativeY(22),
+            mirror * 49,
+            -22,
             5
         );
         pop();
@@ -127,6 +133,9 @@ class Bird extends Entity{
 
             //vector between corners
             var r = new Vector(deltaCornerX, deltaCornerY); 
+
+            if(i == 1 && initialY < currentCornerY)
+                this.setHeading(this.getHeading().times(-1));
             
             time = (initialX - currentCornerX) / (vx + r.getX());
 

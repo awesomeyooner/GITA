@@ -65,7 +65,7 @@ const jsonData =
     },
     {
         "header": "Helicopter",
-        "image": "assets/projects/GITA3/Helicopter",
+        "image": "assets/projects/GITA3/Helicopter/image.png",
         "link": "assets/projects/GITA3/Helicopter/index.html",
         "date": "11/13/2024",
         "description": "Helicopters! Birds! Bombs!"

@@ -10,8 +10,23 @@ class Utility{
         pop();
     }
 
+    static random(lowerBound, upperBound){
+        return (Math.random() * (upperBound - lowerBound)) + lowerBound;
+    }
+
     static cycle(){
         return ((sin(millis() * 0.1) + 1) / 2);
+    }
+
+    static getCenterBoxCorners(w = width, h = height){
+        var corners = [
+            new Point(w / 2, h / 2),
+            new Point(w / 2, -h / 2),
+            new Point(-w / 2, -h / 2),
+            new Point(-w / 2, h / 2)
+        ];
+
+        return corners;
     }
 
     static textCorner(text_to_use, x, y, size = 20, degrees = 0, color = "black"){
@@ -22,6 +37,16 @@ class Utility{
         rotate(degrees);
         text(text_to_use, 0, 0);
         pop();
+    }
+
+    static drawLine(pointA, pointB){
+        line(
+            pointA.getNativeX(),
+            pointA.getNativeY(),
+
+            pointB.getNativeX(),
+            pointB.getNativeY()
+        );
     }
 
     static rectCenter(x, y, w, h){

@@ -87,4 +87,21 @@ class Vector {
         this.#dy *= scalar;
         return this.getVector();
     }
+
+    toPoint(){
+        return new Point(this.#dx, this.#dy);
+    }
+
+    dot(otherVector){
+        var sum = (this.getX() * otherVector.getX()) + (this.getY() * otherVector.getY());
+
+        return sum;
+    }
+
+    plus(otherVector){
+        var sumX = this.getX() + otherVector.getX();
+        var sumY = this.getY() + otherVector.getY();
+
+        return new Vector(sumX, sumY);
+    }
 }

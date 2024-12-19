@@ -6,7 +6,7 @@ var gameManager = new GameManager();
 
 function setup() {
   createCanvas(1600, 800);
-  angleMode(DEGREES);
+  //angleMode(DEGREES);
   frameRate(60);
 
   keyboard.initialize(window);

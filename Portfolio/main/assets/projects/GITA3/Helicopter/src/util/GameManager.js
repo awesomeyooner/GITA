@@ -1,37 +1,67 @@
 class GameManager{
 
-    #helicopter = new Helicopter(100);
+    #corners;
+
+    #helicopter = new Helicopter(100, 5);
+    #fuelPacks = new Array();
     #birds = new Array();
 
     constructor(){
     }
 
-    initializeBirds(){
+    initialize(){
+        this.#corners = Utility.getCenterBoxCorners(width, height);
+
         for(var i = 0; i < 10; i++){
             var size = 20;
-            var x = (Math.random() * width - (2 * size)) - (width / 2);
-            var y = (Math.random() * height - (2 * size)) - (height / 2);
 
-            this.#birds[i] = new Bird(size, x, y);
+            var x = Utility.random(
+                -((width / 2) - (size / 2)), 
+                ((width / 2) - (size / 2))
+            );
+
+            var y = Utility.random(
+                -((height / 2) - (size / 2)), 
+                ((height / 2) - (size / 2))
+            );
+
+            var speed = Utility.random(4, 10);
+
+            var dx = Utility.random(-1, 1);
+            var dy = Utility.random(-1, 1);
+            var heading = new Vector(dx, dy).getUnitVector();
+
+            var timeOffset = Utility.random(0, 2000);
+
+            this.#birds[i] = new Bird(size, x, y, speed, timeOffset);
+            this.#birds[i].setHeading(heading);
+        }
+
+        for(var i = 0; i < 10; i++){
+            
         }
     }
 
     update(){
+        this.#helicopter.update();
 
         var distanceThreshold = 150;
-        var birdSpeed = 2;
 
         for(var bird of this.#birds){
             
             if(this.getHelicopter().getDistance(bird) < distanceThreshold)
-                bird.setHeading(bird.getVector(this.getHelicopter()).getUnitVector().times(2));
-            else
-                bird.setHeading(
-                    bird.getHeading().setAngle(1 * (Math.sin(((millis()) / 2000) * Math.PI)))
-                );
-            
-            bird.update();
+                bird.setHeading(bird.getVector(this.#helicopter).getUnitVector());
+            else{
+
+            }
+
+
+            bird.update(this.#corners);
         }
+    }
+
+    moveHelicopter(direction){
+        this.#helicopter.setHeading(direction.times(this.#helicopter.speed));
     }
 
     getHelicopter(){

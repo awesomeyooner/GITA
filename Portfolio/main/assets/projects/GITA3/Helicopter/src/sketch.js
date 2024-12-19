@@ -5,7 +5,8 @@ var keyboard = new KeyboardController();
 var gameManager = new GameManager();
 
 function setup() {
-  createCanvas(1280, 720);
+  createCanvas(1600, 800);
+  //angleMode(DEGREES);
   frameRate(60);
 
   keyboard.initialize(window);
@@ -16,7 +17,7 @@ function setup() {
   // mouse.configureBinding(() => print("NEUTRAL"), MouseState.WHILE_UP);
   // mouse.configureBinding(() => print("HELD"), MouseState.WHILE_DOWN);
 
-  gameManager.initializeBirds();
+  gameManager.initialize();
 }
 
 function draw(){
@@ -24,9 +25,7 @@ function draw(){
 
   mouse.update(mouseIsPressed);
 
-  gameManager.getHelicopter().setHeading(keyboard.getHeading().times(5));
-
-  gameManager.getHelicopter().update();
+  gameManager.moveHelicopter(keyboard.getHeading().getUnitVector());
 
   gameManager.update();
 }

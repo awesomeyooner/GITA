@@ -3,17 +3,14 @@ class GameManager{
     #corners;
 
     #helicopter = new Helicopter(100, 5);
+    #fuelPacks = new Array();
     #birds = new Array();
-
-    #testBird;
 
     constructor(){
     }
 
     initialize(){
         this.#corners = Utility.getCenterBoxCorners(width, height);
-
-        this.#testBird = new Bird(20, 0, 0, 0);
 
         for(var i = 0; i < 10; i++){
             var size = 20;
@@ -39,14 +36,16 @@ class GameManager{
             this.#birds[i] = new Bird(size, x, y, speed, timeOffset);
             this.#birds[i].setHeading(heading);
         }
+
+        for(var i = 0; i < 10; i++){
+            
+        }
     }
 
     update(){
         this.#helicopter.update();
 
         var distanceThreshold = 150;
-
-        this.#testBird.update(this.#corners);
 
         for(var bird of this.#birds){
             
