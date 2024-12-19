@@ -12,10 +12,97 @@ class Bird extends Entity{
         this.move(this.getHeading().times(this.speed));
 
         circle(this.getNativeX(), this.getNativeY(), this.size);
+        this.drawEntity();
     }
 
     drawEntity(){
 
+        translate(Utility.cartesianToNativeX(100), Utility.cartesianToNativeY(100));
+        
+        //draw body
+        push();
+        fill("brown");
+        ellipse(
+            Utility.cartesianToNativeX(0), 
+            Utility.cartesianToNativeY(0), 
+            80, 
+            40
+        );
+        pop();
+
+        //draw tail
+        push();
+        fill("white");
+        triangle(
+            Utility.cartesianToNativeX(-60),
+            Utility.cartesianToNativeY(-40),
+
+            Utility.cartesianToNativeX(-60),
+            Utility.cartesianToNativeY(40),
+
+            Utility.cartesianToNativeX(-40),
+            Utility.cartesianToNativeY(0)
+        );
+        pop();
+
+        //draw feet
+        push();
+        fill("yellow");
+        rect(
+            Utility.cartesianToNativeX(-15),
+            Utility.cartesianToNativeY(-20),
+            10,
+            20
+        );
+
+        rect(
+            Utility.cartesianToNativeX(5),
+            Utility.cartesianToNativeY(-20),
+            10,
+            20
+        );
+        pop();
+
+        //draw head
+        push();
+        fill("white");
+        ellipse(
+            Utility.cartesianToNativeX(40), 
+            Utility.cartesianToNativeY(20), 
+            30, 
+            40
+        );
+        pop();
+
+        //draw beak
+        push();
+        fill("yellow");
+        triangle(
+            Utility.cartesianToNativeX(40),
+            Utility.cartesianToNativeY(10),
+
+            Utility.cartesianToNativeX(40),
+            Utility.cartesianToNativeY(20),
+
+            Utility.cartesianToNativeX(55),
+            Utility.cartesianToNativeY(15)
+        );
+        pop();
+
+        //draw eyes
+        push();
+        fill("black");
+        circle(
+            Utility.cartesianToNativeX(35),
+            Utility.cartesianToNativeY(22),
+            5
+        );
+        circle(
+            Utility.cartesianToNativeX(49),
+            Utility.cartesianToNativeY(22),
+            5
+        );
+        pop();
     }
 
     constrainMovement(corners, w = width, h = height){ 
