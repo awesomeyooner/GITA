@@ -18,6 +18,17 @@ class Utility{
         return ((sin(millis() * 0.1) + 1) / 2);
     }
 
+    static getCenterBoxCorners(w = width, h = height){
+        var corners = [
+            new Point(w / 2, h / 2),
+            new Point(w / 2, -h / 2),
+            new Point(-w / 2, -h / 2),
+            new Point(-w / 2, h / 2)
+        ];
+
+        return corners;
+    }
+
     static textCorner(text_to_use, x, y, size = 20, degrees = 0, color = "black"){
         push();
         fill(color);

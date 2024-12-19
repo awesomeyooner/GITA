@@ -1,13 +1,21 @@
 class GameManager{
 
-    #helicopter = new Helicopter(100, 20);
+    #corners;
+
+    #helicopter = new Helicopter(100, 5);
     #birds = new Array();
+
+    #testBird;
 
     constructor(){
     }
 
-    initializeBirds(){
-        for(var i = 0; i < 1; i++){
+    initialize(){
+        this.#corners = Utility.getCenterBoxCorners(width, height);
+
+        this.#testBird = new Bird(20, 0, 0, 0);
+
+        for(var i = 0; i < 10; i++){
             var size = 20;
 
             var x = Utility.random(
@@ -20,7 +28,7 @@ class GameManager{
                 ((height / 2) - (size / 2))
             );
 
-            var speed = Utility.random(1, 4);
+            var speed = Utility.random(4, 10);
 
             var dx = Utility.random(-1, 1);
             var dy = Utility.random(-1, 1);
@@ -38,6 +46,8 @@ class GameManager{
 
         var distanceThreshold = 150;
 
+        this.#testBird.update(this.#corners);
+
         for(var bird of this.#birds){
             
             if(this.getHelicopter().getDistance(bird) < distanceThreshold)
@@ -47,7 +57,7 @@ class GameManager{
             }
 
 
-            bird.update();
+            bird.update(this.#corners);
         }
     }
 

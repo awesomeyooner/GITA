@@ -83,6 +83,16 @@ class Entity extends Point{
         return isGoingInsideRight|| isGoingInsideLeft || isGoingInsideTop || isGoingInsideBottom;
     }
 
+    isOutOfBoundsAndGoingOutside(w = width, h = height){
+        var isGoingOutsideRight = this.getCartesianX() > (w / 2) && this.getHeading().getX() > 0;
+        var isGoingOutsideLeft = this.getCartesianX() < -(w / 2) && this.getHeading().getX() < 0;
+
+        var isGoingOutsideTop = this.getCartesianY() > (h / 2) && this.getHeading().getY() > 0;
+        var isGoingOutsideBottom = this.getCartesianY() < -(h / 2) && this.getHeading().getY() < 0;
+
+        return isGoingOutsideRight|| isGoingOutsideLeft || isGoingOutsideTop || isGoingOutsideBottom;
+    }
+
     collides(otherEntity){
         var maxDistance = (this.size / 2) + (otherEntity.size / 2);
 

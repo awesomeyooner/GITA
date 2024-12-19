@@ -6,39 +6,74 @@ class Bird extends Entity{
         this.timeOffset = timeOffset;
     }
 
-    update(){
+    update(corners){
         fill("blue");
-        this.constrainMovement();
+        this.constrainMovement(corners);
         this.move(this.getHeading().times(this.speed));
+
         circle(this.getNativeX(), this.getNativeY(), this.size);
     }
 
-    constrainMovement(w = width, h = height){ 
-        var dx = this.getHeading().getUnitVector().getX();
-        var dy = this.getHeading().getUnitVector().getY();
+    drawEntity(){
 
-        var deltaX = 0;
-        var deltaY = 0;
+    }
 
-        var rightOOB = this.getCartesianX() > (w / 2);
-        var leftOOB = this.getCartesianX() < -(w / 2);
+    constrainMovement(corners, w = width, h = height){ 
+        var initialX = this.getCartesianX();
+        var initialY = this.getCartesianY();
 
-        var topOOB = this.getCartesianY() > (h / 2);
-        var bottomOOB = this.getCartesianY() < -(h / 2);
+        var vx = this.getHeading().getUnitVector().getX();
+        var vy = this.getHeading().getUnitVector().getY();
 
-        if(leftOOB || rightOOB){ //horizontal
-            console.log("horizontal");
-            deltaX = Math.sign(this.getCartesianX()) * w;
-            deltaY = deltaX * (dy / dx);
+        var time;
+
+        for(var i = 0; i < corners.length; i++){
+
+            var currentCorner = corners[i];
+            var nextCorner;
+
+            //if its the last element, then the "next" corner is index 0 
+            if(i == corners.length - 1)
+                nextCorner = corners[0];
+            else 
+                nextCorner = corners[i + 1];
+
+            var currentCornerX = currentCorner.getCartesianX();
+            var currentCornerY = currentCorner.getCartesianY();
+
+            var deltaCornerX = nextCorner.getCartesianX() - currentCorner.getCartesianX();
+            var deltaCornerY = nextCorner.getCartesianY() - currentCorner.getCartesianY();
+
+            //vector between corners
+            var r = new Vector(deltaCornerX, deltaCornerY); 
+            
+            time = (initialX - currentCornerX) / (vx + r.getX());
+
+            if(Math.abs(time) < 100)
+                time = (initialY - currentCornerY) / (vy + r.getY());
+
+            //if its negative then it doesn't have a solution, if its less than 20 then its too close, which means youre comparing the wrong line, skip
+            if(time < 100)
+                continue;
+
+            var newX = initialX - (vx * time);
+            var newY = initialY - (vy * time);
+
+            if(Math.abs(newX) > w / 2 || Math.abs(newY) > h / 2)
+                continue;
+
+            if(this.isOutOfBoundsAndGoingOutside()){
+                //debug printing
+                print("Initial X: " + initialX);
+                print("Initial Y: " + initialY);
+                print("i: " + i);
+                print("time: " + time)
+                print("vx: " + vx);
+                print("vy: " + vy);
+                print("X: " + newX);
+                print("Y: " + newY);
+                this.set(newX, newY);
+            }
         }
-
-        else if(topOOB || bottomOOB){ //vertical
-            console.log("vertical")
-            deltaY = Math.sign(this.getCartesianY()) * h;
-            deltaX = deltaY * (dx / dy);
-        }
-
-        this.setX(this.getCartesianX() - deltaX);
-        this.setY(this.getCartesianY() - deltaY);
     }
 }

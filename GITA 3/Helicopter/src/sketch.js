@@ -16,7 +16,7 @@ function setup() {
   // mouse.configureBinding(() => print("NEUTRAL"), MouseState.WHILE_UP);
   // mouse.configureBinding(() => print("HELD"), MouseState.WHILE_DOWN);
 
-  gameManager.initializeBirds();
+  gameManager.initialize();
 }
 
 function draw(){
