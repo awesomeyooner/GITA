@@ -14,25 +14,31 @@ class Bird extends Entity{
     }
 
     constrainMovement(w = width, h = height){ 
-        var deltaX = this.getHeading().getUnitVector().getX() * (w);
-        var deltaY = this.getHeading().getUnitVector().getY() * (h);
+        var dx = this.getHeading().getUnitVector().getX();
+        var dy = this.getHeading().getUnitVector().getY();
 
-        if(this.isFullyOutOfBounds() && !this.isOutOfBoundsAndGoingInside()){
-            console.log("boom");
-            this.setX(0);
-            this.setY(0);
+        var deltaX = 0;
+        var deltaY = 0;
+
+        var rightOOB = this.getCartesianX() > (w / 2);
+        var leftOOB = this.getCartesianX() < -(w / 2);
+
+        var topOOB = this.getCartesianY() > (h / 2);
+        var bottomOOB = this.getCartesianY() < -(h / 2);
+
+        if(leftOOB || rightOOB){ //horizontal
+            console.log("horizontal");
+            deltaX = Math.sign(this.getCartesianX()) * w;
+            deltaY = deltaX * (dy / dx);
         }
 
-        // if(Math.abs(this.getCartesianY()) > (h / 2) - (this.size / 2))
-        //     this.setHeading(this.getHeading().timesY(-1));
-    
-        // else if(this.getCartesianX() + (this.getSize() / 2) < -w / 2) //left
-        //     this.setHeadingX(2);
-            
-        // if(this.getCartesianY() - (this.getSize() / 2) > h / 2) //up
-        //     this.setY(this.getCartesianY() * -1);
+        else if(topOOB || bottomOOB){ //vertical
+            console.log("vertical")
+            deltaY = Math.sign(this.getCartesianY()) * h;
+            deltaX = deltaY * (dx / dy);
+        }
 
-        // if(this.getCartesianY() + (this.getSize() / 2)< -h / 2) //down
-        //     this.setY(this.getCartesianY() * -1);
+        this.setX(this.getCartesianX() - deltaX);
+        this.setY(this.getCartesianY() - deltaY);
     }
 }

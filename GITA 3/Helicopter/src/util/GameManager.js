@@ -1,13 +1,13 @@
 class GameManager{
 
-    #helicopter = new Helicopter(100, 5);
+    #helicopter = new Helicopter(100, 20);
     #birds = new Array();
 
     constructor(){
     }
 
     initializeBirds(){
-        for(var i = 0; i < 10; i++){
+        for(var i = 0; i < 1; i++){
             var size = 20;
 
             var x = Utility.random(
@@ -43,7 +43,7 @@ class GameManager{
             if(this.getHelicopter().getDistance(bird) < distanceThreshold)
                 bird.setHeading(bird.getVector(this.#helicopter).getUnitVector());
             else{
-                
+
             }
 
 
