@@ -10,9 +10,9 @@ function setup() {
   frameRate(60);
 
   keyboard.initialize(window);
-  keyboard.configureBinding("c", () => print("hello"));
+  //keyboard.configureBinding("c", () => print("hello"));
 
-  // mouse.configureBinding(() => print("PRESS"), MouseState.ON_PRESS);
+  mouse.configureBinding(() => gameManager.getHelicopter().shoot(new Vector(0, -1)), MouseState.ON_PRESS);
   // mouse.configureBinding(() => print("RELEASE"), MouseState.ON_RELEASE);
   // mouse.configureBinding(() => print("NEUTRAL"), MouseState.WHILE_UP);
   // mouse.configureBinding(() => print("HELD"), MouseState.WHILE_DOWN);
@@ -21,7 +21,11 @@ function setup() {
 }
 
 function draw(){
-  background(220);
+
+  if(gameManager.weather == Weather.RAINING)
+    background("darkblue");
+  else
+    background("lightblue");
 
   mouse.update(mouseIsPressed);
 

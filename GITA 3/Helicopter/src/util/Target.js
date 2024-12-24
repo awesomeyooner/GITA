@@ -1,20 +1,15 @@
-class Bullet extends Entity{
+class Target extends Entity{
 
-    #maxBounces;
-
-    constructor(size, maxBounces = 0, speed = 3, color = "blue"){
+    constructor(size, speed = 3, color = "blue"){
         super(
             size, //size
             0, //x
             0, //y
-            false, //is active
+            true, //is active
             speed, //speed
-            1, //health
+            100, //health
             color //color
         );
-
-        this.bounces = 0;
-        this.#maxBounces = maxBounces;
     }
 
     constrainMovement(w = width, h = height){ 
@@ -36,11 +31,6 @@ class Bullet extends Entity{
         
         this.move();
         this.constrainMovement();
-
-        if(this.bounces > this.#maxBounces){
-            this.isActive = false;
-            this.bounces = 0;
-        }
 
         this.drawEntity();
     }   
