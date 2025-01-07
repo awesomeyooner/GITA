@@ -14,14 +14,14 @@ public class FieldLabel {
     public final JLabel label;
     public final String error;
     
-    public final Supplier<Boolean> validCondition;
+    public Supplier<Boolean> validCondition;
 
     public FieldLabel(String text, int size, boolean useNumeric){
         field = new JTextField(size);
         label = new JLabel(text);
         error = "Please enter " + label.getText() + Constants.LINEBREAK;
 
-        validCondition = useNumeric ? this::isDouble : this::hasText;
+        toggleValidCondition(useNumeric);
     }
 
     public FieldLabel(String text, boolean useNumeric){
@@ -30,6 +30,10 @@ public class FieldLabel {
 
     public FieldLabel(String text){
         this(text, 20, false);
+    }
+
+    public void toggleValidCondition(boolean useNumeric){
+        validCondition = useNumeric ? this::isDouble : this::hasText;
     }
 
     public void toggleVisibility(boolean enable){

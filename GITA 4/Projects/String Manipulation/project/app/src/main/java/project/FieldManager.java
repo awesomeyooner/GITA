@@ -19,43 +19,61 @@ import project.util.TextArea;
 
 public class FieldManager extends JFrame implements ActionListener{
 
+    public enum ProgramState{
+        ENTER_STRINGS("Enter Two Strings: "),
+
+        ENTER_INDEXES_FIRST("Enter Start and End Indexes for First String: "),
+        ENTER_INDEXES_SECOND("Enter Start and End Indexes for Second String: "),
+
+        ENTER_SUBSTRINGS("Enter Two Substrings for each of your Original Strings: "),
+
+        FINISHED("Click Action to Reset!");
+
+        private final String prompt;
+        private ProgramState(String prompt){
+            this.prompt = prompt;
+        }
+    }
+
+    private ProgramState state = ProgramState.ENTER_STRINGS;
+
     //declare panel
     private final JPanel panel = new JPanel(new GridLayout(0, 2));
 
     //field labels
-    private final FieldLabel stringFirstField = new FieldLabel("First String: ", false);
-    private final FieldLabel stringSecondField = new FieldLabel("Second String: ", false);
-
-    private final FieldLabel startIndexFirstField = new FieldLabel("Start Index String One: ", true);
-    private final FieldLabel endIndexFirstField = new FieldLabel("End Index String One: ", true);
-    private final FieldLabel startIndexSecondField = new FieldLabel("Start Index String Two: ", true);
-    private final FieldLabel endIndexSecondField = new FieldLabel("End Index String Two: ", true);
-
-    private final FieldLabel subSearchField = new FieldLabel("Substring Search: ", false);
-
-    private final FieldLabel[] fields = {
-        stringFirstField,
-        stringSecondField,
-
-        startIndexFirstField,
-        endIndexFirstField,
-
-        startIndexSecondField,
-        endIndexSecondField,
-
-        subSearchField
-    };
+    private final FieldLabel inputFieldA = new FieldLabel("Enter: ", false);
+    private final FieldLabel inputFieldB = new FieldLabel("Enter: ", false);
+    private final FieldLabel[] fields = {inputFieldA, inputFieldB};
 
     //text areas
     private final TextArea outputArea = new TextArea();
-    
     private final TextArea[] textAreas = {outputArea};
 
     //button
     private final Button actionButton = new Button("Action!", this::action);
-
     private final Button[] buttons = {actionButton};
 
+    private boolean actionPressed = false;
+
+    private final Thread inputThread = new Thread(() -> {
+        
+        while(true){
+            if(actionPressed){
+                actionPressed = false;
+            }
+
+            
+
+
+            try{
+                Thread.sleep(10);
+            } 
+            catch(InterruptedException exception){
+                exception.printStackTrace();
+            }
+        }
+    
+    });
 
     public FieldManager(){
         //Put titlebar on frame
@@ -66,6 +84,8 @@ public class FieldManager extends JFrame implements ActionListener{
         
         //add components to the frame
         addComponents();
+
+        inputThread.start();
     }
 
     public static void initialize(){
@@ -86,21 +106,41 @@ public class FieldManager extends JFrame implements ActionListener{
         if(outputArea.displayError(FieldLabel.getAccumulatedErrors(fields)))
             return;
 
-        String firstString = stringFirstField.getText();
-        String secondString = stringSecondField.getText();
+        actionPressed = true;
 
-        int startIndexFirst = (int)startIndexFirstField.getDouble();
+        switch(state){
+            case ENTER_STRINGS:
+                state = ProgramState.ENTER_INDEXES_FIRST;
+                break;
 
-        outputArea.setText(
-            "Original Strings" + "\n" +
-            "First String: " + firstString + "\n" +
-            "Second String: " + secondString + "\n" +
-            "\n" +
-            "String Lengths" + "\n" + 
-            "First Length: " + String.valueOf(firstString.length()) + "\n" + 
-            "Second Length: " + String.valueOf(secondString.length()) + "\n" +
-            "\n"
-        );
+            case ENTER_INDEXES_FIRST:
+                state = ProgramState.ENTER_INDEXES_SECOND;
+                break;
+
+            case ENTER_INDEXES_SECOND:
+                state = ProgramState.ENTER_SUBSTRINGS;
+                break;
+
+            case ENTER_SUBSTRINGS:
+                state = ProgramState.FINISHED;
+                break;
+
+            case FINISHED:
+                reset();
+                break;
+        }
+    }
+
+    public void reset(){
+        state = ProgramState.ENTER_STRINGS;
+
+        inputFieldA.toggleValidCondition(false);
+        inputFieldB.toggleValidCondition(false);
+
+        inputFieldA.toggleVisibility(true);
+        inputFieldB.toggleVisibility(true);
+
+        outputArea.setText(state.prompt);
     }
 
     public void addComponents(){
