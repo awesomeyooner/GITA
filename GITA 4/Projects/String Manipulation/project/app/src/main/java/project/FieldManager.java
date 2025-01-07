@@ -81,13 +81,15 @@ public class FieldManager extends JFrame implements ActionListener{
             button.run(objSource);
         }
     }
-    
+
     public void action(){
         if(outputArea.displayError(FieldLabel.getAccumulatedErrors(fields)))
             return;
 
         String firstString = stringFirstField.getText();
         String secondString = stringSecondField.getText();
+
+        int startIndexFirst = (int)startIndexFirstField.getDouble();
 
         outputArea.setText(
             "Original Strings" + "\n" +
