@@ -18,7 +18,7 @@ import java.awt.event.*;
 
 public class KeyboardController implements KeyListener{
 
-    public enum KeyState{
+    public enum BindType{
         ON_PRESS,
         ON_RELEASE,
         
@@ -26,7 +26,26 @@ public class KeyboardController implements KeyListener{
         WHILE_RELEASED
     }
 
-    public static record Binding(Runnable runnable, KeyState keyState){}
+    public static class Keybind{
+
+        public final String key;
+        public final Runnable action;
+        public final BindType bindType;
+
+        public boolean state = false;
+        public boolean previousState = false;
+
+        public Keybind(String key, Runnable action, BindType bindType){
+            this.key = key;
+            this.action = action;
+            this.bindType = bindType;
+        }
+
+        public void refresh(boolean newState){
+            previousState = state;
+            state = newState;
+        }
+    }
 
     private HashMap<String, Boolean> keys = new HashMap<>();
     private HashMap<String, Runnable> bindings = new HashMap<>();
@@ -106,7 +125,7 @@ public class KeyboardController implements KeyListener{
         }
     }
 
-    public void configureBinding(String key, Runnable method, KeyState keyState){
+    public void configureBinding(String key, Runnable method, BindType keyState){
         bindings.put(key, method);
     }
 
