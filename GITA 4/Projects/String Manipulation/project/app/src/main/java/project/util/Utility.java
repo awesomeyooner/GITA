@@ -37,4 +37,13 @@ public class Utility {
             }
         }
     }
+
+    public static void sleep(int millis){
+        try{
+            Thread.sleep(10);
+        } 
+        catch(InterruptedException exception){
+            exception.printStackTrace();
+        }
+    }
 }

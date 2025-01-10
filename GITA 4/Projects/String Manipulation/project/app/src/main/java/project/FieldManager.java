@@ -12,6 +12,7 @@ import javax.swing.SwingUtilities;
 import project.util.Button;
 import project.util.FieldLabel;
 import project.util.TextArea;
+import project.util.Utility;
 
 //Programmer: Aaron Yoon
 //Date: August 27
@@ -24,8 +25,6 @@ public class FieldManager extends JFrame implements ActionListener{
 
         ENTER_INDEXES_FIRST("Enter Start and End Indexes for First String: "),
         ENTER_INDEXES_SECOND("Enter Start and End Indexes for Second String: "),
-
-        ENTER_SUBSTRINGS("Enter Two Substrings for each of your Original Strings: "),
 
         FINISHED("Click Action to Reset!");
 
@@ -46,7 +45,7 @@ public class FieldManager extends JFrame implements ActionListener{
     private final FieldLabel[] fields = {inputFieldA, inputFieldB};
 
     //text areas
-    private final TextArea outputArea = new TextArea();
+    private final TextArea outputArea = new TextArea("", 50, 50);
     private final TextArea[] textAreas = {outputArea};
 
     //button
@@ -58,19 +57,135 @@ public class FieldManager extends JFrame implements ActionListener{
     private final Thread inputThread = new Thread(() -> {
         
         while(true){
-            if(actionPressed){
+
+            String stringA = "";
+            String stringB = "";
+
+            int startIndexA = 0;
+            int startIndexB = 0;
+
+            int endIndexA = 0;
+            int endIndexB = 0;
+
+            String substringSearchA = "";
+            String substringSearchB = "";
+            
+            while(state == ProgramState.ENTER_STRINGS){
+                Utility.sleep(10);
+
+                if(!actionPressed)
+                    continue;
+
                 actionPressed = false;
+                
+                stringA = inputFieldA.getText();
+                stringB = inputFieldB.getText();
+
+                outputArea.append("\n" + stringA);
+                outputArea.append("\n" + stringB);
+
+                outputArea.append("\n" + "\n" + "String Lengths: ");
+                outputArea.append("\n" + "String A Length: " + stringA.length());
+                outputArea.append("\n" + "String B Length: " + stringB.length());
+
+                outputArea.append("\n" + "\n" + "Substring Extraction: ");
+                inputFieldA.label.setText("\n" + "Enter Start Index for String A");
+                inputFieldB.label.setText("Enter End Index for String A");
+                FieldLabel.clearFields(fields);
+
+                state = ProgramState.ENTER_INDEXES_FIRST;
+                outputArea.append("\n" + "\n" + state.prompt);
             }
 
+            while(state == ProgramState.ENTER_INDEXES_FIRST){
+                Utility.sleep(10);
+
+                if(!actionPressed)
+                    continue;
+
+                actionPressed = false;
+
+                startIndexA = (int)inputFieldA.getDouble();
+                endIndexA = (int)inputFieldB.getDouble();
+
+                outputArea.append("\n" + String.format("Start A: %d", startIndexA));
+                outputArea.append("\t" + String.format("End A: %d", endIndexA));
+
+                try{
+                    substringSearchA = stringA.substring(startIndexA, endIndexA);
+                    outputArea.append("\n" + "Substring in A: " + substringSearchA);
+                }
+                catch(Exception exception){
+                    outputArea.append("\n" + "Could not find substring for A");
+                    exception.printStackTrace();
+                }
+
+                inputFieldA.label.setText("\n" + "Enter Start Index for String B");
+                inputFieldB.label.setText("Enter End Index for String B");
+                FieldLabel.clearFields(fields);
+
+                state = ProgramState.ENTER_INDEXES_SECOND;
+                outputArea.append("\n" + "\n" + state.prompt);
+            }
+
+            while(state == ProgramState.ENTER_INDEXES_SECOND){
+                Utility.sleep(10);
+
+                if(!actionPressed)
+                    continue;
+
+                actionPressed = false;
+
+                startIndexB = (int)inputFieldA.getDouble();
+                endIndexB = (int)inputFieldB.getDouble();
+
+                outputArea.append("\n" + String.format("Start A: %d", startIndexB));
+                outputArea.append("\t" + String.format("End A: %d", endIndexB));
+
+                try{
+                    substringSearchB = stringB.substring(startIndexB, endIndexB);
+                    outputArea.append("\n" + "Substring in B: " + substringSearchB);
+                }
+                catch(Exception exception){
+                    outputArea.append("\n" + "Could not find substring for B");
+                    exception.printStackTrace();
+                }
+
+                outputArea.append("\n" + "\n" + "String Equality: ");
+                outputArea.append("\n" + "Are Strings Equal?: " + stringA.equals(stringB));
+
+                outputArea.append("\n" + "\n" + "Lexicographical Comparison: ");
+
+                int lexi = stringA.compareTo(stringB);
+
+                if(lexi == 0)
+                    outputArea.append("\n" + "Both Strings are Lexicongraphically the Same");
+                else if(lexi < 0)
+                    outputArea.append("\n" + "String A is less than String B");
+                else if(lexi > 0)
+                    outputArea.append("\n" + "String A is greater than String B");
+
+                FieldLabel.clearFields(fields);
+                inputFieldA.toggleVisibility(false);
+                inputFieldB.toggleVisibility(false);
+
+                state = ProgramState.FINISHED;
+                outputArea.append("\n" + "\n" + state.prompt);
+            }
+
+            while(state == ProgramState.FINISHED){
+                Utility.sleep(10);
+
+                if(!actionPressed)
+                    continue;
+
+                actionPressed = false;
+
+                reset();
+            }
             
 
-
-            try{
-                Thread.sleep(10);
-            } 
-            catch(InterruptedException exception){
-                exception.printStackTrace();
-            }
+            Utility.sleep(10);
         }
     
     });
@@ -85,6 +200,7 @@ public class FieldManager extends JFrame implements ActionListener{
         //add components to the frame
         addComponents();
 
+        reset();
         inputThread.start();
     }
 
@@ -103,32 +219,10 @@ public class FieldManager extends JFrame implements ActionListener{
     }
 
     public void action(){
-        if(outputArea.displayError(FieldLabel.getAccumulatedErrors(fields)))
+        if(state != ProgramState.FINISHED && FieldLabel.getAccumulatedErrors(fields) != null)
             return;
 
         actionPressed = true;
-
-        switch(state){
-            case ENTER_STRINGS:
-                state = ProgramState.ENTER_INDEXES_FIRST;
-                break;
-
-            case ENTER_INDEXES_FIRST:
-                state = ProgramState.ENTER_INDEXES_SECOND;
-                break;
-
-            case ENTER_INDEXES_SECOND:
-                state = ProgramState.ENTER_SUBSTRINGS;
-                break;
-
-            case ENTER_SUBSTRINGS:
-                state = ProgramState.FINISHED;
-                break;
-
-            case FINISHED:
-                reset();
-                break;
-        }
     }
 
     public void reset(){
@@ -139,6 +233,9 @@ public class FieldManager extends JFrame implements ActionListener{
 
         inputFieldA.toggleVisibility(true);
         inputFieldB.toggleVisibility(true);
+
+        inputFieldA.label.setText("Enter String A: ");
+        inputFieldB.label.setText("Enter String B: ");
 
         outputArea.setText(state.prompt);
     }
@@ -169,7 +266,7 @@ public class FieldManager extends JFrame implements ActionListener{
 
     public void configureSettings(){
         //frame
-        setSize(500, 500);
+        setSize(1000, 1000);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
