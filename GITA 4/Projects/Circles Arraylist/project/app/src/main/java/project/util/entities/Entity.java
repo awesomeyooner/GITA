@@ -8,12 +8,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JFrame;
 
+import org.checkerframework.checker.units.qual.min;
+
 public class Entity extends Point{
 
-    private boolean isActive;
-
-    private int width, height;
-    private int health;
+    public boolean isActive;
+    public int width, height;
+    public int health;
     private int maximumHealth;
 
     private Vector movement = new Vector();
@@ -32,7 +33,10 @@ public class Entity extends Point{
     }
 
     public void update(JFrame frame, Graphics graphics){
-        if(!isActive())
+        if(health <= 0)
+            isActive = false;
+
+        if(!isActive)
             return;
 
         move();
@@ -55,31 +59,12 @@ public class Entity extends Point{
         boolean allDead = true;
 
         for(Entity entity : entities){
-            if(entity.isActive()){
+            if(entity.isActive){
                 allDead = false;
             }
         }
 
         return !allDead;
-    }
-
-    public boolean isActive(){
-        return isActive;
-    }
-
-    public void setActive(boolean active){
-        isActive = active;
-    }
-
-    public int getHealth(){
-        return health;
-    }
-
-    public void setHealth(int health){
-        this.health = health;
-        
-        if(this.health <= 0)
-            setActive(false);
     }
 
     public void reset(Point point){
@@ -123,6 +108,11 @@ public class Entity extends Point{
         move(movement);
     }
 
+    public void set(Point newPoint){
+        this.setX(newPoint.getCartesianX());
+        this.setY(newPoint.getCartesianY());
+    }
+
     public void move(Vector heading){
         this.setX((getCartesianX() + heading.getX()));
         this.setY((getCartesianY() + heading.getY()));
@@ -132,14 +122,22 @@ public class Entity extends Point{
         move(new Vector(dx, dy));
     }
 
-    public boolean isOutOfBounds(int width, int height){
-        if(getCartesianX() > width / 2 || getCartesianX() < -width / 2)
+    public boolean isOutOfBoundsHorizontal(int width){
+        if(getCartesianX() > (width / 2) - (this.width / 2) || getCartesianX() < -((width / 2) - (this.width / 2)))
             return true;
-        
-        if(getCartesianY() > height / 2 || getCartesianY() < -height / 2)
-            return true;
+        else
+            return false;
+    }
 
-        return false;
+    public boolean isOutOfBoundsVertical(int height){
+        if(getCartesianY() > (height / 2) - (this.height / 2) || getCartesianY() < -((height / 2) - (this.height / 2)))
+            return true;
+        else
+            return false;
+    }
+
+    public boolean isOutOfBounds(int width, int height){
+        return isOutOfBoundsHorizontal(width) || isOutOfBoundsVertical(height);
     }
 
     public boolean collides(Entity entity){
@@ -155,5 +153,11 @@ public class Entity extends Point{
         double minDistance = (getWidth() + entity.getWidth() + getHeight() + entity.getHeight()) / 4;
 
         return getDistance(entity) < minDistance;
+    }
+
+    public boolean collides(Point point){
+        double minDistance = Math.max(getHeight(), getWidth());
+
+        return getDistance(point) < minDistance;
     }
 }

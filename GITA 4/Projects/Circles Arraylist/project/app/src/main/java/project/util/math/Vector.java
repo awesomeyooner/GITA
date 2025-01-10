@@ -41,4 +41,12 @@ public class Vector {
     public Vector times(double scalar){
         return new Vector(getX() * scalar, getY() * scalar);
     }
+
+    public Vector timesX(double scalar){
+        return new Vector(getX() * scalar, getY());
+    }
+
+    public Vector timesY(double scalar){
+        return new Vector(getX(), getY() * scalar);
+    }
 }

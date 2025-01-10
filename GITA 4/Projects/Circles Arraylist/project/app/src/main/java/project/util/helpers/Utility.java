@@ -16,4 +16,8 @@ public class Utility {
             360
         );
     }
+
+    public static double random(double lowerBound, double upperBound){
+        return (Math.random() * (upperBound - lowerBound)) + lowerBound;
+    }
 }

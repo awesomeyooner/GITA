@@ -19,7 +19,7 @@ public class Bullet extends Entity{
     public void update(JFrame frame, Graphics graphics) {
         super.update(frame, graphics);
 
-        if(!isActive())
+        if(!isActive)
             return;
             
         graphics.setColor(Color.GREEN);
@@ -33,6 +33,6 @@ public class Bullet extends Entity{
         );
 
         if(isOutOfBounds(frame.getWidth(), frame.getHeight()))
-            setActive(false);
+            isActive = false;
     }
 }

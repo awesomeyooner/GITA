@@ -1,3 +1,28 @@
+const BindType = {
+    ON_PRESS: "on_press",
+    ON_RELEASE: "on_release",
+
+    WHILE_PRESSED: "while_pressed",
+    WHILE_RELEASED: "while_released"
+}
+
+class Keybind{
+
+    constructor(key, action, bindType){
+        this.key = key;
+        this.action = action;
+        this.bindType = bindType;
+
+        this.state = false;
+        this.previousState = false;
+    }
+
+    refresh(newState){
+        this.previousState = this.state;
+        this.state = newState;
+    }
+}
+
 class KeyboardController{
 
     #keys = new Map();
@@ -18,11 +43,37 @@ class KeyboardController{
     }
 
     update(){
-        for(var binding of this.#bindings.keys()){
-            if(this.#keys.get(binding) == null || !this.#keys.get(binding))
+        for(var key of this.#bindings.keys()){
+            if(this.#keys.get(key) == null || this.#bindings.get(key) == null)
                 continue;
+
+            this.#bindings.get(key).refresh(this.#keys.get(key)); //refresh the value at each binding with the state of the key
             
-            this.#bindings.get(binding)();
+            var bind = this.#bindings.get(key);
+
+            switch(this.#bindings.get(key).bindType){
+                case BindType.ON_PRESS:
+                    if(bind.state && !bind.previousState) //if pressed and previously not pressed
+                        bind.action();
+                    break;
+
+                case BindType.ON_RELEASE:
+                    if(!bind.state && bind.previousState) //if not pressed and previously pressed
+                        bind.action();
+                    break;
+                
+                case BindType.WHILE_PRESSED:
+                    if(bind.state)
+                        bind.action();
+                    break;
+
+                case BindType.WHILE_RELEASED:
+                    if(!bind.state)
+                        bind.action();
+                    break;
+            }
+
+            this.#bindings.get(key)();
         }
     }
 
@@ -66,8 +117,8 @@ class KeyboardController{
         return new Vector(dx, dy).getUnitVector();
     }
 
-    configureBinding(key, runnable){
-        this.#bindings.set(key, runnable);
+    configureBinding(key, action, bindType){
+        this.#bindings.set(key, new Keybind(key, action, bindType));
     }
 
 }
