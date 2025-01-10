@@ -1,4 +1,6 @@
-package project.util;
+package project.util.math;
+
+import project.util.helpers.CommonConversion;
 
 public class Point {
     

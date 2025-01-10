@@ -1,7 +1,8 @@
-package project;
+package project.util.entities;
 
-import project.util.Point;
-import project.util.Vector;
+import project.util.helpers.CommonConversion;
+import project.util.math.Point;
+import project.util.math.Vector;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -21,7 +22,6 @@ import javax.swing.Timer;
 
 import org.checkerframework.checker.units.qual.min;
 
-import project.util.CommonConversion;
 import project.util.Constants;
 
 public class Entity extends Point{

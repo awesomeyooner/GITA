@@ -1,4 +1,4 @@
-package project.util;
+package project.util.math;
 
 public class Vector {
     

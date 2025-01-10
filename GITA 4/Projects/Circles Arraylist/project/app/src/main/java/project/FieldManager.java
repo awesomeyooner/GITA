@@ -17,8 +17,8 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
-import project.util.CommonConversion;
 import project.util.Constants;
+import project.util.helpers.CommonConversion;
 
 //Programmer: Aaron Yoon
 //Date: August 27
@@ -54,11 +54,7 @@ public class FieldManager extends JFrame implements ActionListener{
     public void paint(Graphics graphics) {
         super.paint(graphics);
 
-        if(GameManager.getInstance().isGameActive())
-            GameManager.getInstance().update(this, graphics);
-        else
-            showGameOver(graphics);
-        
+        GameManager.getInstance().update(this, graphics);        
     }
 
     public void showGameOver(Graphics graphics){

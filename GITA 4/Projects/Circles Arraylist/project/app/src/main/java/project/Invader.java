@@ -1,11 +1,11 @@
-package project.util;
+package project;
 
-import project.Entity;
 import java.awt.Graphics;
-
-import project.Entity;
 import java.awt.Color;
 import javax.swing.JFrame;
+
+import project.util.entities.Entity;
+import project.util.helpers.Utility;
 
 public class Invader extends Entity{
 

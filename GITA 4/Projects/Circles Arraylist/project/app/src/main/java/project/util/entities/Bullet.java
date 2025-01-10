@@ -1,10 +1,11 @@
-package project.util;
+package project.util.entities;
 
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
 
-import project.Entity;
+import project.util.helpers.Utility;
+
 import java.awt.Color;
 
 public class Bullet extends Entity{

@@ -1,9 +1,9 @@
-package project;
+package project.util.lib;
 
 import javax.swing.*;
 
-import project.util.CommonConversion;
-import project.util.Point;
+import project.util.helpers.CommonConversion;
+import project.util.math.Point;
 
 import java.awt.event.*;
 

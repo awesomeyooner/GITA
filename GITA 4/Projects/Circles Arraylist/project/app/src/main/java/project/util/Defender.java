@@ -2,7 +2,11 @@ package project.util;
 
 import java.awt.Graphics;
 
-import project.Entity;
+import project.util.entities.Bullet;
+import project.util.entities.Entity;
+import project.util.helpers.Utility;
+import project.util.math.Vector;
+
 import java.awt.Color;
 import javax.swing.JFrame;
 

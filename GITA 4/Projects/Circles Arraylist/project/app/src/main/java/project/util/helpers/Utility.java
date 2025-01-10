@@ -1,4 +1,4 @@
-package project.util;
+package project.util.helpers;
 
 import java.awt.Color;
 import java.awt.Frame;
