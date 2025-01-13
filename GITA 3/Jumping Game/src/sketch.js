@@ -12,7 +12,7 @@ function setup() {
   keyboard.initialize(window);
   //keyboard.configureBinding("c", () => print("hello"));
 
-  mouse.configureBinding(() => gameManager.getHelicopter().shoot(new Vector(0, -1)), MouseState.ON_PRESS);
+  // mouse.configureBinding(() => gameManager.getHelicopter().shoot(new Vector(0, -1)), MouseState.ON_PRESS);
   // mouse.configureBinding(() => print("RELEASE"), MouseState.ON_RELEASE);
   // mouse.configureBinding(() => print("NEUTRAL"), MouseState.WHILE_UP);
   // mouse.configureBinding(() => print("HELD"), MouseState.WHILE_DOWN);
@@ -21,15 +21,11 @@ function setup() {
 }
 
 function draw(){
-
-  if(gameManager.weather == Weather.RAINING)
-    background("darkblue");
-  else
-    background("lightblue");
+  background("lightblue");
 
   mouse.update(mouseIsPressed);
 
-  gameManager.moveHelicopter(keyboard.getHeading().getUnitVector());
+  gameManager.player.setWantedHeading(keyboard.getHeading().getUnitVector(), true);
 
   gameManager.update();
 }

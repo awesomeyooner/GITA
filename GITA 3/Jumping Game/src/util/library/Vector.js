@@ -74,6 +74,10 @@ class Vector {
         return Math.sqrt((this.#dx * this.#dx) + (this.#dy * this.#dy));
     }
 
+    withMagnitude(magnitude){
+        return this.getUnitVector().times(magnitude);
+    }
+
     times(scalar){
         return new Vector(this.getX() * scalar, this.getY() * scalar);
     }
