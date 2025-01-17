@@ -53,6 +53,19 @@ class Utility{
         rect(x - (w / 2), y - (h / 2), w, h);
     }
 
+    static rectFromCartesian(x, y, w, h, color="black", strokeColor="black"){
+        push();
+        fill(color);
+        stroke(strokeColor);
+        rect(
+            this.cartesianToNativeX(x),
+            this.cartesianToNativeY(y),
+            w,
+            h
+        );
+        pop();
+    }
+
     static cartesianToNative(x, y, w = width, h = height){
         var xNew = this.cartesianToNativeX(x, w);
         var yNew = this.cartesianToNativeY(y, h);

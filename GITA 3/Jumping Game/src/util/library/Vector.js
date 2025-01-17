@@ -40,6 +40,14 @@ class Vector {
         return this.getVector();
     }
 
+    withX(x){
+        return new Vector(x, this.getY());
+    }
+
+    withY(y){
+        return new Vector(this.getX(), y);
+    }
+
     getX(){
         return this.#dx;
     }

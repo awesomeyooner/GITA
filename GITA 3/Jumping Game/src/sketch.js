@@ -21,8 +21,6 @@ function setup() {
 }
 
 function draw(){
-  background("lightblue");
-
   mouse.update(mouseIsPressed);
 
   gameManager.player.setWantedHeading(keyboard.getHeading().getUnitVector(), true);

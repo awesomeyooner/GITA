@@ -12,6 +12,8 @@ class Player extends Entity{
         );
 
         this.wantedHeading = new Vector();
+
+        this.crouching = false;
     }
 
     update(){
@@ -19,9 +21,25 @@ class Player extends Entity{
             return;
 
         this.applyGravity();
-        this.setHeadingX(this.wantedHeading.getX());
+        this.setHeadingX(this.wantedHeading.withY(0).withMagnitude(this.speed).getX());
+
+        this.crouching = this.wantedHeading.getY() < 0;
+
         this.move();
         this.drawEntity();
+    }
+
+    drawEntity(){
+        push();
+        fill(this.color);
+        circle(this.getNativeX(), this.getNativeY(), this.size);
+
+        if(!this.crouching){
+            circle(this.getNativeX(), this.getNativeY() - this.size, this.size);
+            circle(this.getNativeX(), this.getNativeY() - (2 * this.size), this.size);
+        }
+
+        pop();
     }
 
     setWantedHeading(newHeading, useSpeed = false){
@@ -34,7 +52,7 @@ class Player extends Entity{
 
     applyGravity(){
 
-        var floor = -((height / 2) - (this.size / 2));
+        var floor = GROUND_Y - (this.size / 2);//-((height / 2) - (this.size / 2));
 
         if(this.getCartesianY() > floor){ //if youre above the ground
             this.setHeadingY(this.getHeading().getY() - (.1));
