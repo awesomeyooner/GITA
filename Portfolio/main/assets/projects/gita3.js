@@ -84,6 +84,13 @@ const jsonData =
         "date": "12/13/2024",
         "description": "My favorite so far, avoid the enemy and shoot it down!"
     },
+    {
+        "header": "Jumping Game",
+        "image": "assets/projects/GITA3/Jumping Game/image.png",
+        "link": "assets/projects/GITA3/Jumping Game/index.html",
+        "date": "1/17/2025",
+        "description": "Still in progress... however its a game with gravity!"
+    },
 ]
 
 /*
