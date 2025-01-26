@@ -50,7 +50,7 @@ public class FieldManager extends JFrame implements ActionListener{
 
         double maxDividends = (dividend / divisor) + 1;
 
-        Double[] dividends = recursivelyDivide(inputField.getDouble(), divisor, new Double[(int)maxDividends]);
+        Double[] dividends = getAllDividends(inputField.getDouble(), divisor, new Double[(int)maxDividends]);
         
         for(Double number : dividends){
             if(number == null)
@@ -144,13 +144,13 @@ public class FieldManager extends JFrame implements ActionListener{
         outputArea.append(reverseString(new StringBuilder(inputField.getText())).toString());
     }
 
-    public Double[] recursivelyDivide(Double dividend, Double divisor, Double[] buffer){
+    public Double[] getAllDividends(Double dividend, Double divisor, Double[] buffer){
         Double quotient = dividend / divisor;
 
         buffer = Utility.append(buffer, dividend);
         
         if(dividend / divisor >= 1){
-            return recursivelyDivide(quotient, divisor, buffer);
+            return getAllDividends(quotient, divisor, buffer);
         } 
         else
             return buffer;
