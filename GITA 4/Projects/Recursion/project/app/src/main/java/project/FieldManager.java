@@ -44,7 +44,20 @@ public class FieldManager extends JFrame implements ActionListener{
             return;
 
         outputArea.setText("Dividing Recursively!");
-        recursivelyDivide(inputField.getDouble(), 3);
+
+        double dividend = inputField.getDouble();
+        double divisor = 3;
+
+        double maxDividends = (dividend / divisor) + 1;
+
+        Double[] dividends = recursivelyDivide(inputField.getDouble(), divisor, new Double[(int)maxDividends]);
+        
+        for(Double number : dividends){
+            if(number == null)
+                continue;
+
+            outputArea.append("\n" + String.valueOf(Utility.round(number, 2)));
+        }
     });
 
     private final Button oddNumberButton = new Button("Generate Odd Numbers!", () -> {
@@ -131,14 +144,16 @@ public class FieldManager extends JFrame implements ActionListener{
         outputArea.append(reverseString(new StringBuilder(inputField.getText())).toString());
     }
 
-    public void recursivelyDivide(double dividend, double divisor){
-        double quotient = dividend / divisor;
+    public Double[] recursivelyDivide(Double dividend, Double divisor, Double[] buffer){
+        Double quotient = dividend / divisor;
 
-        outputArea.append("\n" + String.valueOf(Utility.round(dividend, 2)));
-
+        buffer = Utility.append(buffer, dividend);
+        
         if(dividend / divisor >= 1){
-            recursivelyDivide(quotient, divisor);
+            return recursivelyDivide(quotient, divisor, buffer);
         } 
+        else
+            return buffer;
 
     }
 
@@ -152,15 +167,6 @@ public class FieldManager extends JFrame implements ActionListener{
         else
             return buffer;
     }
-
-    // public void generateOddNumbers(int n){
-    //     int max = (n * 2) - 1;
-
-    //     if(max >= 1){
-    //         outputArea.append("\n" + String.valueOf(max));
-    //         generateOddNumbers(n - 1);
-    //     }
-    // }
 
     public StringBuilder reverseString(StringBuilder input){
         return reverseString(input, 0);
