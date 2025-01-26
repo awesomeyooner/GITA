@@ -50,7 +50,7 @@ public class FieldManager extends JFrame implements ActionListener{
 
         double maxDividends = (dividend / divisor) + 1;
 
-        Double[] dividends = getAllDividends(inputField.getDouble(), divisor, new Double[(int)maxDividends]);
+        Double[] dividends = Calculator.getAllDividends(inputField.getDouble(), divisor, new Double[(int)maxDividends]);
         
         for(Double number : dividends){
             if(number == null)
@@ -68,7 +68,7 @@ public class FieldManager extends JFrame implements ActionListener{
 
         outputArea.setText("Generating Odd Numbers!!");
         Integer n = (int)inputField.getDouble();
-        Integer[] oddNumbers = generateOddNumbers(n, new Integer[n]);
+        Integer[] oddNumbers = Calculator.generateOddNumbers(n, new Integer[n]);
 
         for(Integer number : oddNumbers){
             outputArea.append("\n" + number.toString());
@@ -84,7 +84,7 @@ public class FieldManager extends JFrame implements ActionListener{
         outputArea.setText("Finding Least Common Factor!");
         
         int input = (int)inputField.getDouble();
-        int lcf = findSmallestFactor(input);
+        int lcf = Calculator.findSmallestFactor(input);
 
         if(lcf == input)
             outputArea.append("\n" + String.valueOf(input) + " is Prime!");
@@ -100,13 +100,24 @@ public class FieldManager extends JFrame implements ActionListener{
 
         outputArea.setText("Getting Summation!");
         
-        outputArea.append("\n" + String.valueOf(getSum(new StringBuilder(inputField.getText()))));
+        outputArea.append("\n" + String.valueOf(Calculator.getSum(new StringBuilder(inputField.getText()))));
+    });
+
+    private final Button reverseString = new Button("Reverse String!", () -> {
+        inputField.toggleValidCondition(false);
+
+        if(outputArea.displayError(FieldLabel.getAccumulatedErrors(fields)))
+            return;
+
+        outputArea.setText("Reversing String!");
+        
+        outputArea.append("\n" + Calculator.reverseString(new StringBuilder(inputField.getText())).toString());
     });
 
     private final Button actionButton = new Button("Action!", this::action);
 
 
-    private final Button[] buttons = {divideButton, oddNumberButton, factorButton, sumationButton, actionButton};
+    private final Button[] buttons = {divideButton, oddNumberButton, factorButton, sumationButton, reverseString};
 
     public FieldManager(){
         //Put titlebar on frame
@@ -134,87 +145,6 @@ public class FieldManager extends JFrame implements ActionListener{
     }
 
     public void action(){
-        inputField.toggleValidCondition(false);
-
-        if(outputArea.displayError(FieldLabel.getAccumulatedErrors(fields)))
-            return;
-
-        outputArea.setText("");
-        
-        outputArea.append(reverseString(new StringBuilder(inputField.getText())).toString());
-    }
-
-    public Double[] getAllDividends(Double dividend, Double divisor, Double[] buffer){
-        Double quotient = dividend / divisor;
-
-        buffer = Utility.append(buffer, dividend);
-        
-        if(dividend / divisor >= 1){
-            return getAllDividends(quotient, divisor, buffer);
-        } 
-        else
-            return buffer;
-
-    }
-
-    public Integer[] generateOddNumbers(Integer n, Integer[] buffer){
-        Integer max = (n * 2) - 1;
-
-        if(max >= 1){
-            buffer = Utility.append(buffer, max);
-            return generateOddNumbers(n - 1, buffer);
-        }
-        else
-            return buffer;
-    }
-
-    public StringBuilder reverseString(StringBuilder input){
-        return reverseString(input, 0);
-    }
-
-    public StringBuilder reverseString(StringBuilder input, int index){
-        StringBuilder endpointsReversed = input;
-
-        char start = input.charAt(index);
-        char end = input.charAt((input.length() - 1) - index);
-
-        endpointsReversed.setCharAt(index, end);
-        endpointsReversed.setCharAt((input.length() -1) - index, start);
-
-        if(index >= (input.length() / 2) + (input.length() % 2)){ //if index is greater than half of the length
-            return endpointsReversed;
-        }
-        else
-            return reverseString(endpointsReversed, index + 1);
-    }
-
-    public int findSmallestFactor(int number){
-        return findSmallestFactor(number, 1);
-    }
-
-    private int findSmallestFactor(int number, int divisor){
-        //if divisor goes into number cleanly and its not 1 or itself, then number is not prime
-        if(divisor != 1 && number % divisor == 0){
-            return divisor;
-        }
-        else{
-            return findSmallestFactor(number, divisor + 1);
-        }
-    }
-
-    public int getSum(StringBuilder string){
-        return getSum(string, 0);
-    }
-
-    public int getSum(StringBuilder string, int index){
-        int add = 0;
-
-        if(index < string.length())
-            add = getSum(string, index + 1);
-        else
-            return 0;
-
-        return Character.getNumericValue(string.charAt(index)) + add;         
     }
 
     public void addComponents(){
