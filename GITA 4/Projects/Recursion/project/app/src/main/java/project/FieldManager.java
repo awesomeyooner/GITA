@@ -54,7 +54,12 @@ public class FieldManager extends JFrame implements ActionListener{
             return;
 
         outputArea.setText("Generating Odd Numbers!!");
-        generateOddNumbers((int)inputField.getDouble());
+        Integer n = (int)inputField.getDouble();
+        Integer[] oddNumbers = generateOddNumbers(n, new Integer[n]);
+
+        for(Integer number : oddNumbers){
+            outputArea.append("\n" + number.toString());
+        }
     });
 
     private final Button factorButton = new Button("Find Least Common Factor!", () -> {
@@ -142,19 +147,20 @@ public class FieldManager extends JFrame implements ActionListener{
 
         if(max >= 1){
             buffer = Utility.append(buffer, max);
-            outputArea.append("\n" + String.valueOf(max));
-            generateOddNumbers(n - 1);
+            return generateOddNumbers(n - 1, buffer);
         }
+        else
+            return buffer;
     }
 
-    public void generateOddNumbers(int n){
-        int max = (n * 2) - 1;
+    // public void generateOddNumbers(int n){
+    //     int max = (n * 2) - 1;
 
-        if(max >= 1){
-            outputArea.append("\n" + String.valueOf(max));
-            generateOddNumbers(n - 1);
-        }
-    }
+    //     if(max >= 1){
+    //         outputArea.append("\n" + String.valueOf(max));
+    //         generateOddNumbers(n - 1);
+    //     }
+    // }
 
     public StringBuilder reverseString(StringBuilder input){
         return reverseString(input, 0);
