@@ -1,6 +1,9 @@
 class Player extends Entity{
 
-    constructor(size, speed){
+    #bullets = new Array();
+    #maxBullets;
+
+    constructor(size, speed, maxBullets = 20){
         super(
             size,
             0,
@@ -11,7 +14,51 @@ class Player extends Entity{
             "blue"
         );
 
+        this.#maxBullets = maxBullets;
+
         this.crouching = false;
+
+        this.resetBullets();
+    }
+
+    resetBullets(){
+        for(var i = 0; i < this.#maxBullets; i++){
+            this.#bullets[i] = new Bullet(
+                10, //size
+                0, //bounces
+                10, //speed
+                this.color //color
+            );
+        }
+    }
+
+    getBullets(){
+        return this.#bullets;
+    }
+
+    getInactiveBullets(){
+        var total = 0;
+
+        for(var bullet of this.#bullets){
+            if(!bullet.isActive)
+                total++;
+        }
+
+        return total;
+    }
+
+    shoot(direction, offset = new Point(0, 0)){
+        for(var bullet of this.#bullets){
+            if(bullet.isActive)
+                continue;
+            else{
+                bullet.setPoint(this.plus(offset));
+                bullet.setHeading(direction.times(bullet.speed));
+                bullet.isActive = true;
+                bullet.bounces = 0;
+                break;
+            }
+        }
     }
 
     update(){
@@ -22,6 +69,13 @@ class Player extends Entity{
         
         this.move();
         this.drawEntity();
+
+        for(var bullet of this.#bullets){
+            if(!bullet.isActive)
+                continue;
+
+            bullet.update();
+        }
     }
 
     drawEntity(){
