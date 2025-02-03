@@ -1,8 +1,5 @@
 class Player extends Entity{
 
-    #bullets = new Array();
-    #maxBullets;
-
     constructor(size, speed, maxBullets = 20){
         super(
             size,
@@ -14,68 +11,24 @@ class Player extends Entity{
             "blue"
         );
 
-        this.#maxBullets = maxBullets;
-
         this.crouching = false;
 
-        this.resetBullets();
-    }
-
-    resetBullets(){
-        for(var i = 0; i < this.#maxBullets; i++){
-            this.#bullets[i] = new Bullet(
-                10, //size
-                0, //bounces
-                10, //speed
-                this.color //color
-            );
-        }
-    }
-
-    getBullets(){
-        return this.#bullets;
-    }
-
-    getInactiveBullets(){
-        var total = 0;
-
-        for(var bullet of this.#bullets){
-            if(!bullet.isActive)
-                total++;
-        }
-
-        return total;
-    }
-
-    shoot(direction, offset = new Point(0, 0)){
-        for(var bullet of this.#bullets){
-            if(bullet.isActive)
-                continue;
-            else{
-                bullet.setPoint(this.plus(offset));
-                bullet.setHeading(direction.times(bullet.speed));
-                bullet.isActive = true;
-                bullet.bounces = 0;
-                break;
-            }
-        }
+        this.bulletManager = new BulletManager(20, 10);
     }
 
     update(){
         if(!super.update())
             return;
+        this.bulletManager.update();
 
         this.applyGravity();
         
         this.move();
         this.drawEntity();
+    }
 
-        for(var bullet of this.#bullets){
-            if(!bullet.isActive)
-                continue;
-
-            bullet.update();
-        }
+    shoot(direction, offset = new Point()){
+        this.bulletManager.shoot(this.plus(offset), direction);
     }
 
     drawEntity(){
