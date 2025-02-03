@@ -72,8 +72,6 @@ class KeyboardController{
                         bind.action();
                     break;
             }
-
-            this.#bindings.get(key)();
         }
     }
 

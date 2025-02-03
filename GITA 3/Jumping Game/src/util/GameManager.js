@@ -6,6 +6,8 @@ class GameManager{
     }
 
     initialize(){
+        this.player.set(-500, GROUND_Y);
+
     }
 
     update(){

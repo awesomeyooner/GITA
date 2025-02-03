@@ -10,6 +10,18 @@ function setup() {
   frameRate(60);
 
   keyboard.initialize(window);
+  
+  keyboard.configureBinding("w", () => gameManager.player.jump(), BindType.ON_PRESS);
+  
+  keyboard.configureBinding("s", () => {
+    gameManager.player.crouching = true;
+    print("press");
+  }, BindType.ON_PRESS);
+
+  keyboard.configureBinding("s", () => {
+    gameManager.player.crouching = false;
+    print("release");
+  }, BindType.ON_RELEASE);
   //keyboard.configureBinding("c", () => print("hello"));
 
   // mouse.configureBinding(() => gameManager.getHelicopter().shoot(new Vector(0, -1)), MouseState.ON_PRESS);
@@ -22,8 +34,9 @@ function setup() {
 
 function draw(){
   mouse.update(mouseIsPressed);
+  keyboard.update();
 
-  gameManager.player.setWantedHeading(keyboard.getHeading().getUnitVector(), true);
+  // gameManager.player.setWantedHeading(keyboard.getHeading().getUnitVector(), true);
 
   gameManager.update();
 }
