@@ -1,13 +1,13 @@
 class Enemy extends Entity{
 
-    constructor(size, speed){
+    constructor(size, speed, maxHealth = 3){
         super(
             size,
             0,
             0,
             true,
             speed,
-            1,
+            maxHealth,
             "red"
         );
 
@@ -81,5 +81,5 @@ class Enemy extends Entity{
         var floor = GROUND_Y;//-((height / 2) - (this.size / 2));
 
         return this.getCartesianY() - (this.size / 2) > floor;
-    }s
+    }
 }

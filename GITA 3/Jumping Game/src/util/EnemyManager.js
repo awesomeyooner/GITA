@@ -15,11 +15,14 @@ class EnemyManager{
         }
     }
 
+    
+
     resetEnemies(){
         for(var i = 0; i < this.maxEnemies; i++){
             this.enemies[i] = new Enemy(
                 40,
                 2,
+                3
             );
 
             this.enemies[i].reset(false);
