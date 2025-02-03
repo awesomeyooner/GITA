@@ -1,4 +1,4 @@
-class Player extends Entity{
+class Enemy extends Entity{
 
     constructor(size, speed){
         super(
@@ -8,19 +8,18 @@ class Player extends Entity{
             true,
             speed,
             1,
-            "blue"
+            "red"
         );
 
         this.crouching = false;
 
-        this.bulletManager = new ProjectileManager(20, 10);
         this.bombManager = new BombManager(20, 10, 50, 5, "black");
     }
 
     update(){
         if(!super.update())
             return;
-        this.bulletManager.update();
+        
         this.bombManager.update();
 
         this.applyGravity();
@@ -29,11 +28,10 @@ class Player extends Entity{
         this.drawEntity();
     }
 
-    shoot(direction){
-        var headLevel = this.crouching ? 0 : this.size * 2;
-        var offset = new Point(0, headLevel);
+    reset(active = false){
+        this.isActive = active;
 
-        this.bulletManager.shoot(this.plus(offset), direction);
+        this.set(width / 2, GROUND_Y + (this.size / 2));
     }
 
     launchBomb(direction){
@@ -83,5 +81,5 @@ class Player extends Entity{
         var floor = GROUND_Y;//-((height / 2) - (this.size / 2));
 
         return this.getCartesianY() - (this.size / 2) > floor;
-    }
+    }s
 }

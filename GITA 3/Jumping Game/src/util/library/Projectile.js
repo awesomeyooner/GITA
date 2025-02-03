@@ -1,6 +1,4 @@
-class Bullet extends Entity{
-
-    #maxBounces;
+class Projectile extends Entity{
 
     constructor(size, maxBounces = 0, speed = 3, color = "blue"){
         super(
@@ -14,7 +12,7 @@ class Bullet extends Entity{
         );
 
         this.bounces = 0;
-        this.#maxBounces = maxBounces;
+        this.maxBounces = maxBounces;
     }
 
     constrainMovement(w = width, h = height){ 
@@ -37,13 +35,20 @@ class Bullet extends Entity{
         this.move();
         this.constrainMovement();
 
-        if(this.bounces > this.#maxBounces){
+        if(this.bounces > this.maxBounces){
             this.isActive = false;
             this.bounces = 0;
         }
 
         this.drawEntity();
     }   
+
+    shoot(origin, direction){
+        this.setPoint(origin);
+        this.setHeading(direction.withMagnitude(this.speed));
+        this.isActive = true;
+        this.bounces = 0;
+    }
 
     collides(object, runnable, extraConditional = (bullet) => true){
 

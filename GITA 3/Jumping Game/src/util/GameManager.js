@@ -2,12 +2,14 @@
 class GameManager{
 
     constructor(){
-        this.player = new Player(20, 5);
+        this.player = new Player(40, 5);
+
+        this.enemyManager = new EnemyManager(100);
     }
 
     initialize(){
         this.player.set(-500, GROUND_Y);
-
+        this.enemyManager.resetEnemies();
     }
 
     update(){
@@ -22,6 +24,8 @@ class GameManager{
         );
 
 
-       this.player.update();
+        this.player.update();
+
+        this.enemyManager.update();
     }
 }
