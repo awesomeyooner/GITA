@@ -16,7 +16,7 @@ function setup() {
   keyboard.configureBinding("s", () => gameManager.player.crouching = true, BindType.ON_PRESS);
   keyboard.configureBinding("s", () => gameManager.player.crouching = false, BindType.ON_RELEASE);
 
-  mouse.configureBinding(() => gameManager.player.shoot(new Vector(1, 0), new Point(0, 40)), MouseState.ON_PRESS);
+  mouse.configureBinding(() => gameManager.player.shoot(new Vector(1, 0)), MouseState.ON_PRESS);
   // mouse.configureBinding(() => print("RELEASE"), MouseState.ON_RELEASE);
   // mouse.configureBinding(() => print("NEUTRAL"), MouseState.WHILE_UP);
   // mouse.configureBinding(() => print("HELD"), MouseState.WHILE_DOWN);

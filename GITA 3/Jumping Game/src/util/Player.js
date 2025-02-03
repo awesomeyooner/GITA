@@ -27,7 +27,10 @@ class Player extends Entity{
         this.drawEntity();
     }
 
-    shoot(direction, offset = new Point()){
+    shoot(direction){
+        var headLevel = this.crouching ? 0 : this.size * 2;
+        var offset = new Point(0, headLevel);
+        
         this.bulletManager.shoot(this.plus(offset), direction);
     }
 
