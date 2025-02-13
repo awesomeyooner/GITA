@@ -21,6 +21,8 @@ function setup() {
 
   keyboard.configureBinding("q", () => gameManager.enemyManager.spawnEnemy(), BindType.ON_PRESS);
 
+  keyboard.configureBinding("r", () => gameManager.enemyManager.removeFeet(), BindType.ON_PRESS);
+
   // mouse.configureBinding(() => print("RELEASE"), MouseState.ON_RELEASE);
   // mouse.configureBinding(() => print("NEUTRAL"), MouseState.WHILE_UP);
   // mouse.configureBinding(() => print("HELD"), MouseState.WHILE_DOWN);

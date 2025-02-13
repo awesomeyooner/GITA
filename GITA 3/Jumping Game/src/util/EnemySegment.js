@@ -4,21 +4,27 @@ class EnemySegment extends Entity{
         super(
             size,
             point.getCartesianX(),
-            point.getCartesianY() + (size * index) * index,
+            point.getCartesianY() + (size * index),
             true,
             speed,
             health,
             color
         );
+
+        this.index = index;
+        this.numActiveBelow = index;
     }
 
-    update(){
+    update(origin){
         if(!super.update())
             return;
         
         this.applyGravity();
         
         this.move();
+
+        this.setX(origin.getCartesianX());
+        
         this.drawEntity();
     }
 
@@ -35,13 +41,13 @@ class EnemySegment extends Entity{
     }
 
     snapToFloor(){
-        var floor = GROUND_Y;
+        var floor = GROUND_Y + (this.size * this.numActiveBelow);
 
         this.setY(floor + (this.size / 2));
     }
 
     isAboveFloor(){
-        var floor = GROUND_Y + (this.size * index);//-((height / 2) - (this.size / 2));
+        var floor = GROUND_Y + (this.size * this.numActiveBelow);//-((height / 2) - (this.size / 2));
 
         return this.getCartesianY() - (this.size / 2) > floor;
     }

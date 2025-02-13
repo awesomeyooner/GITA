@@ -29,8 +29,10 @@ class Entity extends Point{
     }
 
     drawEntity(){
+        push();
         fill(this.color);
         circle(this.getNativeX(), this.getNativeY(), this.size);
+        pop();
     }
 
     setHeading(newHeading, useSpeed = false){

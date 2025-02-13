@@ -15,8 +15,6 @@ class EnemyManager{
         }
     }
 
-    
-
     resetEnemies(){
         for(var i = 0; i < this.maxEnemies; i++){
             this.enemies[i] = new Enemy(
@@ -26,6 +24,22 @@ class EnemyManager{
             );
 
             this.enemies[i].reset(false);
+        }
+    }
+
+    removeFeet(){
+        for(var enemy of this.enemies){
+            if(!enemy.isActive)
+                continue;
+
+            for(var segment of enemy.segments){
+                if(segment.isActive){
+                    segment.isActive = false;
+                    break;
+                }
+            }
+
+            enemy.refreshSegments();
         }
     }
 
