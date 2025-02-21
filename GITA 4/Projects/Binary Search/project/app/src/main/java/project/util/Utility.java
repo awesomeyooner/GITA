@@ -42,6 +42,10 @@ public class Utility {
         return array;
     }
 
+    public static double random(double lower, double upper){
+        return (Math.random() * (upper - lower)) + lower;
+    }
+
     public static void sleep(int millis){
         try{
             Thread.sleep(10);

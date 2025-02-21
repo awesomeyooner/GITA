@@ -4,7 +4,12 @@
 package project;
 
 import org.junit.jupiter.api.Test;
+
+import project.util.Utility;
+
 import static org.junit.jupiter.api.Assertions.*;
+
+import javax.swing.text.Utilities;
 
 import org.junit.jupiter.api.DisplayName;
 
@@ -12,7 +17,24 @@ class TestManager {
 
     @Test 
     @DisplayName("My Test!")
-    public void appHasAGreeting() {
+    public void compareSearchMethods() {
+
+        DataManager dataManager = new DataManager(5000);
+
+        for(int i = 0; i < 5000; i++){
+
+            dataManager.populateData(5000);
+
+            int random = (int)Utility.random(1, 5000);
+
+            int indexLinear = dataManager.findNumberLinear(random);
+            int indexBinary = dataManager.findNumberBinary(random);
+
+            // if(indexBinary != indexLinear)
+            //     fail("Not Equal! " + i);
+
+            assertEquals(indexLinear, indexBinary);
+        }
 
         //assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
         //fail("you suck");

@@ -10,6 +10,7 @@ import javax.swing.SwingConstants;
 import project.util.Button;
 import project.util.FieldLabel;
 import project.util.TextArea;
+import project.util.Utility;
 
 //Programmer: Aaron Yoon
 //Date: August 27
@@ -18,19 +19,15 @@ import project.util.TextArea;
 public class FieldManager extends JFrame implements ActionListener{
 
     //program specific
-    private final Inventory inventory = new Inventory();
+    DataManager dataManager = new DataManager(5000);
  
     //declare panel
     private final JPanel panel = new JPanel(new GridLayout(0, 2));
 
     //field labels
-    private final FieldLabel itemField = new FieldLabel("Item: ", false);
-    private final FieldLabel priceField = new FieldLabel("Price: ", true);
-    private final FieldLabel quantityField = new FieldLabel("Quantity: ", true);
-    private final FieldLabel satisfactionField = new FieldLabel("Satisfaction: ", true);
-    private final FieldLabel qualityField = new FieldLabel("Quality: ", true);
+    private final FieldLabel sizeField = new FieldLabel("Size: ", true);
 
-    private final FieldLabel[] fields = {itemField, priceField, quantityField, satisfactionField, qualityField};
+    private final FieldLabel[] fields = {sizeField};
     
     //text areas
     private final TextArea outputArea = new TextArea("", 40, 70);
@@ -39,7 +36,19 @@ public class FieldManager extends JFrame implements ActionListener{
     //button
     private final Button actionButton = new Button("Action!", this::action);
 
-    private final Button[] buttons = {actionButton};
+    private final Button populateButton = new Button("Populate!", () -> {
+        if(outputArea.displayError(FieldLabel.getAccumulatedErrors(fields)))
+            return;
+
+        int size = (int)sizeField.getDouble();
+
+        outputArea.setText("Creating Array with size: " + String.valueOf(size));
+
+        dataManager.populateData(size);
+    });
+
+
+    private final Button[] buttons = {actionButton, populateButton};
 
     public FieldManager(){
         //Put titlebar on frame
@@ -50,15 +59,6 @@ public class FieldManager extends JFrame implements ActionListener{
         
         //add components to the frame
         addComponents();
-
-        addProducts();
-    }
-
-    public void addProducts(){
-        inventory.addNewProduct("hammer", 15.95, 100, 1, 1);
-        inventory.addNewProduct("saw", 24.50, 15, 1, 1);
-        inventory.addNewProduct("drill", 139.75, 25, 1, 1);
-        inventory.addNewProduct("vise", 87.65, 10, 1, 1);
     }
 
     public static void initialize(){
@@ -79,15 +79,62 @@ public class FieldManager extends JFrame implements ActionListener{
         if(outputArea.displayError(FieldLabel.getAccumulatedErrors(fields)))
             return;
 
-        String item = itemField.getText();
-        double price = priceField.getDouble();
-        int quantity = (int)quantityField.getDouble();
-        int satisfaction = (int)satisfactionField.getDouble();
-        int quality = (int)qualityField.getDouble();
+        outputArea.setText("");
 
-        inventory.addNewProduct(item, price, quantity, satisfaction, quality);
+        iterateRecursive(5000);
+        iterateBinary(5000);
+    }
 
-        outputArea.setText(inventory.toString());
+    public void iterateBinary(int loops){
+        int totalIterations = 0;
+        int successfulFinds = 0;
+        
+        for(int i = 0; i < loops; i ++){
+            int find = (int)Utility.random(1, 5000);
+
+            int indexFound = dataManager.findNumberBinary(find);
+
+            int numIterations = indexFound;
+
+            if(indexFound == -1)
+                continue;
+            // else{
+            //     totalIterations += iterations;
+            //     successfulFinds++;
+            // }
+        }
+
+        int averageIterations = totalIterations / successfulFinds;
+
+        outputArea.append(
+            "Successful Finds: " + successfulFinds + "\n" + 
+            "Average Iterations: " + averageIterations
+        );
+    }
+
+    public void iterateRecursive(int loops){
+        int totalIterations = 0;
+        int successfulFinds = 0;
+        
+        for(int i = 0; i < loops; i ++){
+            int find = (int)Utility.random(1, 5000);
+
+            int iterations = dataManager.findNumberLinear(find);
+
+            if(iterations == -1)
+                continue;
+            else{
+                totalIterations += iterations;
+                successfulFinds++;
+            }
+        }
+
+        int averageIterations = totalIterations / successfulFinds;
+
+        outputArea.append(
+            "Successful Finds: " + successfulFinds + "\n" + 
+            "Average Iterations: " + averageIterations
+        );
     }
 
     public void addComponents(){
