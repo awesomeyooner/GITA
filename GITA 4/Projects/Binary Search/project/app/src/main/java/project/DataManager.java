@@ -12,6 +12,14 @@ public class DataManager {
         populateData(size);
     }
 
+    public DataManager(int[] array){
+        setData(array);
+    }
+
+    public void setData(int[] array){
+        data = array.clone();
+    }
+
     public int[] getData(){
         return data;
     }
@@ -55,6 +63,19 @@ public class DataManager {
         }
     }
 
+    public int getIterationsOfBinary(int indexFound, int size){
+        //iterations = log2(n) - log2(i + 1) + 1
+        int iterations = (int)(
+            (Math.log10(size) / Math.log10(2)) - (Math.log10(indexFound + 1) / Math.log10(2)) + 1
+        );
+
+        return iterations;
+    }
+
+    public int getMaxPossibleIterationsOfBinary(int size){
+        return (int)(Math.log10(size) / Math.log10(2)) + 1;
+    }
+    
     public int findNumberLinear(int find){
         int[] copy = data.clone();
 

@@ -9,35 +9,122 @@ import project.util.Utility;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import javax.swing.text.Utilities;
-
 import org.junit.jupiter.api.DisplayName;
 
 class TestManager {
 
-    @Test 
-    @DisplayName("My Test!")
-    public void compareSearchMethods() {
+    @Test
+    @DisplayName("Debug")
+    public void debug(){
+        assertEquals(1, 1);
+    }
 
-        DataManager dataManager = new DataManager(5000);
+    @Test
+    @DisplayName("Iteration Test")
+    public void testIterationCalculator(){
+        int max = 5000;
 
-        for(int i = 0; i < 5000; i++){
+        int[] data = new int[max];
 
-            dataManager.populateData(5000);
-
-            int random = (int)Utility.random(1, 5000);
-
-            int indexLinear = dataManager.findNumberLinear(random);
-            int indexBinary = dataManager.findNumberBinary(random);
-
-            // if(indexBinary != indexLinear)
-            //     fail("Not Equal! " + i);
-
-            assertEquals(indexLinear, indexBinary);
+        for(int i = 0; i < max; i++){
+            data[i] = i + 1;
         }
 
-        //assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
-        //fail("you suck");
+        DataManager dataManager = new DataManager(data);
+
+        int random = (int)Utility.random(1, max);
+
+        int indexLinear = dataManager.findNumberBinary(data, random, 0, data.length - 1);
+        int indexBinary = dataManager.findNumberLinear(data, random, 0);
+
+        int valueLinear = dataManager.getData()[indexLinear];
+        int valueBinary = dataManager.getData()[indexBinary];
+
+        boolean indexEquals = indexLinear == indexBinary;
+        boolean valuesEqual = valueLinear == random && valueBinary == random;
+
+        if(!indexEquals)
+            fail("Indexes NOT EQUAL");
         
+        if(!valuesEqual)
+            fail("Values NOT EQUAL");
+        
+    
+    }
+
+    @Test
+    @DisplayName("Systematic Array")
+    public void systematicCompare(){
+        int max = 5000;
+
+        int[] data = new int[max];
+
+        for(int i = 0; i < max; i++){
+            data[i] = i + 1;
+        }
+
+        DataManager dataManager = new DataManager(data);
+
+        int iterations = 5000;
+
+        for(int i = 0; i < iterations; i++){
+
+            int random = (int)Utility.random(1, max);
+
+            int indexLinear = dataManager.findNumberBinary(data, random, 0, data.length - 1);
+            int indexBinary = dataManager.findNumberLinear(data, random, 0);
+
+            if(indexLinear == -1 || indexBinary == -1)
+                continue;
+
+            int valueLinear = dataManager.getData()[indexLinear];
+            int valueBinary = dataManager.getData()[indexBinary];
+
+            boolean indexEquals = indexLinear == indexBinary;
+            boolean valuesEqual = valueLinear == random && valueBinary == random;
+
+            if(!indexEquals)
+                fail("Indexes NOT EQUAL");
+            
+            if(!valuesEqual)
+                fail("Values NOT EQUAL");
+            
+        }
+    }
+
+    @Test 
+    @DisplayName("Random Array")
+    public void compareSearchMethods() {
+        int max = 5000;
+
+        int[] data = new int[max];
+
+        for(int i = 0; i < max; i++){
+            data[i] = (int)Utility.random(1, max);
+        }
+
+        DataManager dataManager = new DataManager(data);
+
+        int iterations = 5000;
+
+        for(int i = 0; i < iterations; i++){
+
+            int random = (int)Utility.random(1, max);
+
+            int indexLinear = dataManager.findNumberBinary(data, random, 0, data.length - 1);
+            int indexBinary = dataManager.findNumberLinear(data, random, 0);
+
+            if(indexLinear == -1 || indexBinary == -1)
+                continue;
+                
+            int valueLinear = dataManager.getData()[indexLinear];
+            int valueBinary = dataManager.getData()[indexBinary];
+
+            boolean valuesEqual = valueLinear == random && valueBinary == random;
+
+            if(!valuesEqual)
+                fail("Values NOT EQUAL");
+            
+        }
     }
 }
