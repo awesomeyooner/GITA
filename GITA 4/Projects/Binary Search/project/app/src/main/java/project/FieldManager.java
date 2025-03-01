@@ -92,12 +92,12 @@ public class FieldManager extends JFrame implements ActionListener{
         for(int i = 0; i < loops; i ++){
             int find = (int)Utility.random(1, 5000);
 
-            int indexFound = dataManager.findNumberBinary(find);
+            //int indexFound = dataManager.findNumberBinary(find);
 
-            int numIterations = indexFound;
+            // int numIterations = indexFound;
 
-            if(indexFound == -1)
-                continue;
+            // if(indexFound == -1)
+            //     continue;
             // else{
             //     totalIterations += iterations;
             //     successfulFinds++;
@@ -119,7 +119,7 @@ public class FieldManager extends JFrame implements ActionListener{
         for(int i = 0; i < loops; i ++){
             int find = (int)Utility.random(1, 5000);
 
-            int iterations = dataManager.findNumberLinear(find);
+            int iterations = dataManager.findNumberLinear(find).value;
 
             if(iterations == -1)
                 continue;

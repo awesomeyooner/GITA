@@ -6,6 +6,32 @@ import project.util.Utility;
 
 public class DataManager {
 
+    public static class IteratedValue<T>{
+        public int iterations;
+        public T value;
+
+        public IteratedValue(int iterations, T value){
+            this.iterations = iterations;
+            this.value = value;
+        }
+
+        public IteratedValue(T value){
+            this(0, value);
+        }
+
+        public IteratedValue<T> update(T newValue){
+            value = newValue;
+            iterations++;
+
+            return this;
+        }
+
+        public IteratedValue<T> update(){
+            iterations++;
+            return this;
+        }
+    }
+
     private int[] data;
     
     public DataManager(int size){
@@ -34,27 +60,28 @@ public class DataManager {
         }
     }
     
-    public int findNumberBinary(int find){
+    public IteratedValue<Integer> findNumberBinary(int find){
         int[] copy = data.clone();
 
         Arrays.sort(copy);
 
-        return findNumberBinary(copy, find, 0, data.length - 1);
+        return findNumberBinary(copy, new IteratedValue<Integer>(find), 0, data.length - 1);
     }
 
-    public int findNumberBinary(int[] array, int find, int low, int high){
+    public IteratedValue<Integer> findNumberBinary(int[] array, IteratedValue<Integer> find, int low, int high){
+        find.update();
         
         int index = (low + high) / 2;
 
-        boolean equal = array[index] == find;
+        boolean equal = array[index] == find.value;
 
-        boolean greater = array[index] > find;
+        boolean greater = array[index] > find.value;
 
         //if you're at the last number and its not equal, return -1 indicating nothing has been found
         if(low > high)
-            return -1;
+            return new IteratedValue<Integer>(find.iterations, -1);
         else if(equal)
-            return index;
+            return new IteratedValue<Integer>(find.iterations, index);
         else{
             if(!greater)
                 return findNumberBinary(array, find, index + 1, high);
@@ -63,38 +90,27 @@ public class DataManager {
         }
     }
 
-    public int getIterationsOfBinary(int indexFound, int size){
-        //iterations = log2(n) - log2(i + 1) + 1
-        int iterations = (int)(
-            (Math.log10(size) / Math.log10(2)) - (Math.log10(indexFound + 1) / Math.log10(2)) + 1
-        );
-
-        return iterations;
-    }
-
-    public int getMaxPossibleIterationsOfBinary(int size){
-        return (int)(Math.log10(size) / Math.log10(2)) + 1;
-    }
-    
-    public int findNumberLinear(int find){
+    public IteratedValue<Integer> findNumberLinear(int find){
         int[] copy = data.clone();
 
         Arrays.sort(copy);
 
-        return findNumberLinear(copy, find, 0);
+        return findNumberLinear(copy, new IteratedValue<Integer>(find), 0);
     }
 
-    public int findNumberLinear(int[] array, int find, int index){
+    public IteratedValue<Integer> findNumberLinear(int[] array, IteratedValue<Integer> find, int index){
         if(index < 0)
             throw new IllegalArgumentException("index cannot be negative!");
 
-        boolean equal = array[index] == find;
+        find.update();
+
+        boolean equal = array[index] == find.value;
 
         //if you're at the last number and its not equal, return -1 indicating nothing has been found
         if(index == array.length - 1 && !equal)
-            return -1;
+            return new IteratedValue<Integer>(find.iterations, -1);
         else if(equal)
-            return index;
+            return new IteratedValue<Integer>(find.iterations, index);
         else
             return findNumberLinear(array, find, index + 1);
     }

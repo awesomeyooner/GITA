@@ -5,6 +5,7 @@ package project;
 
 import org.junit.jupiter.api.Test;
 
+import project.DataManager.IteratedValue;
 import project.util.Utility;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,10 +14,34 @@ import org.junit.jupiter.api.DisplayName;
 
 class TestManager {
 
+    // @Test
+    // @DisplayName("Debug")
+    // public void debug(){
+    //     assertEquals(1, 1);
+    // }
+
     @Test
-    @DisplayName("Debug")
-    public void debug(){
-        assertEquals(1, 1);
+    @DisplayName("Check Linear Iterations")
+    public void compareLinearIteration(){
+        int max = 5000;
+
+        int[] data = new int[max];
+
+        for(int i = 0; i < max; i++){
+            data[i] = i + 1;
+        }
+
+        DataManager dataManager = new DataManager(data);
+
+        int random = (int)Utility.random(1, max);
+
+        IteratedValue<Integer> resultLinear = dataManager.findNumberLinear(data, new IteratedValue<Integer>(random), 0);
+
+        int indexLinear = resultLinear.value;
+
+        int iterationsLinear = resultLinear.iterations;
+
+        assertEquals(indexLinear + 1, iterationsLinear);
     }
 
     @Test
@@ -34,8 +59,11 @@ class TestManager {
 
         int random = (int)Utility.random(1, max);
 
-        int indexLinear = dataManager.findNumberBinary(data, random, 0, data.length - 1);
-        int indexBinary = dataManager.findNumberLinear(data, random, 0);
+        IteratedValue<Integer> resultLinear = dataManager.findNumberLinear(data, new IteratedValue<Integer>(random), 0);
+        IteratedValue<Integer> resultBinary = dataManager.findNumberBinary(data, new IteratedValue<Integer>(random), 0, data.length - 1);
+        
+        int indexLinear = resultLinear.value;
+        int indexBinary = resultBinary.value;
 
         int valueLinear = dataManager.getData()[indexLinear];
         int valueBinary = dataManager.getData()[indexBinary];
@@ -43,13 +71,8 @@ class TestManager {
         boolean indexEquals = indexLinear == indexBinary;
         boolean valuesEqual = valueLinear == random && valueBinary == random;
 
-        if(!indexEquals)
-            fail("Indexes NOT EQUAL");
-        
-        if(!valuesEqual)
-            fail("Values NOT EQUAL");
-        
-    
+        assertTrue(indexEquals);
+        assertTrue(valuesEqual);
     }
 
     @Test
@@ -71,8 +94,8 @@ class TestManager {
 
             int random = (int)Utility.random(1, max);
 
-            int indexLinear = dataManager.findNumberBinary(data, random, 0, data.length - 1);
-            int indexBinary = dataManager.findNumberLinear(data, random, 0);
+            int indexLinear = dataManager.findNumberBinary(data, new IteratedValue<Integer>(random), 0, data.length - 1).value;
+            int indexBinary = dataManager.findNumberLinear(data, new IteratedValue<Integer>(random), 0).value;
 
             if(indexLinear == -1 || indexBinary == -1)
                 continue;
@@ -94,7 +117,7 @@ class TestManager {
 
     @Test 
     @DisplayName("Random Array")
-    public void compareSearchMethods() {
+    public void randomizedCompare() {
         int max = 5000;
 
         int[] data = new int[max];
@@ -111,10 +134,10 @@ class TestManager {
 
             int random = (int)Utility.random(1, max);
 
-            int indexLinear = dataManager.findNumberBinary(data, random, 0, data.length - 1);
-            int indexBinary = dataManager.findNumberLinear(data, random, 0);
+            int indexLinear = dataManager.findNumberBinary(data, new IteratedValue<Integer>(random), 0, data.length - 1).value;
+            int indexBinary = dataManager.findNumberLinear(data, new IteratedValue<Integer>(random), 0).value;
 
-            if(indexLinear == -1 || indexBinary == -1)
+            if(indexLinear == -1 && indexBinary == -1)
                 continue;
                 
             int valueLinear = dataManager.getData()[indexLinear];
@@ -122,9 +145,7 @@ class TestManager {
 
             boolean valuesEqual = valueLinear == random && valueBinary == random;
 
-            if(!valuesEqual)
-                fail("Values NOT EQUAL");
-            
+            assertTrue(valuesEqual);
         }
     }
 }
