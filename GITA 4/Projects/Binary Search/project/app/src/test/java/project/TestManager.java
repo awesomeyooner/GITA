@@ -10,6 +10,10 @@ import project.util.Utility;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
+
+import javax.xml.crypto.Data;
+
 import org.junit.jupiter.api.DisplayName;
 
 class TestManager {
@@ -20,22 +24,23 @@ class TestManager {
     //     assertEquals(1, 1);
     // }
 
+    //Checks if the amount of iterations is equal to the index at which is it was found (since its ordered i + 1)
     @Test
     @DisplayName("Check Linear Iterations")
     public void compareLinearIteration(){
-        int max = 5000;
+        int size = 5000;
 
-        int[] data = new int[max];
-
-        for(int i = 0; i < max; i++){
+        int[] data = new int[size];
+        
+        for(int i = 0; i < size; i++){
             data[i] = i + 1;
         }
 
-        DataManager dataManager = new DataManager(data);
+        int low = 1;
+        int high = 5000;
+        int random = (int)Utility.random(low, high);
 
-        int random = (int)Utility.random(1, max);
-
-        IteratedValue<Integer> resultLinear = dataManager.findNumberLinear(data, new IteratedValue<Integer>(random), 0);
+        IteratedValue<Integer> resultLinear = DataManager.findNumberLinear(data, new IteratedValue<Integer>(random), 0);
 
         int indexLinear = resultLinear.value;
 
@@ -44,104 +49,81 @@ class TestManager {
         assertEquals(indexLinear + 1, iterationsLinear);
     }
 
+    //checks if both search methods have the same behavior through an array with defined values
     @Test
-    @DisplayName("Iteration Test")
-    public void testIterationCalculator(){
-        int max = 5000;
+    @DisplayName("Check Equals Sytstematically Generated Array")
+    public void checkEqualsSystematic(){
+        int size = 5000;
+        int low = 1;
+        int high = 5000;
 
-        int[] data = new int[max];
+        int[] unsorted = new int[size];
 
-        for(int i = 0; i < max; i++){
-            data[i] = i + 1;
+        for(int i = 0; i < size; i++){
+            unsorted[i] = i + 1;
         }
 
-        DataManager dataManager = new DataManager(data);
-
-        int random = (int)Utility.random(1, max);
-
-        IteratedValue<Integer> resultLinear = dataManager.findNumberLinear(data, new IteratedValue<Integer>(random), 0);
-        IteratedValue<Integer> resultBinary = dataManager.findNumberBinary(data, new IteratedValue<Integer>(random), 0, data.length - 1);
-        
-        int indexLinear = resultLinear.value;
-        int indexBinary = resultBinary.value;
-
-        int valueLinear = dataManager.getData()[indexLinear];
-        int valueBinary = dataManager.getData()[indexBinary];
-
-        boolean indexEquals = indexLinear == indexBinary;
-        boolean valuesEqual = valueLinear == random && valueBinary == random;
-
-        assertTrue(indexEquals);
-        assertTrue(valuesEqual);
-    }
-
-    @Test
-    @DisplayName("Systematic Array")
-    public void systematicCompare(){
-        int max = 5000;
-
-        int[] data = new int[max];
-
-        for(int i = 0; i < max; i++){
-            data[i] = i + 1;
-        }
-
-        DataManager dataManager = new DataManager(data);
+        int[] sorted = unsorted.clone();
+        Arrays.sort(sorted);
 
         int iterations = 5000;
 
         for(int i = 0; i < iterations; i++){
+            int random = (int)Utility.random(low, high);
 
-            int random = (int)Utility.random(1, max);
+            IteratedValue<Integer> resultLinear = DataManager.findNumberLinear(unsorted, new IteratedValue<Integer>(random), 0);
+            IteratedValue<Integer> resultBinary = DataManager.findNumberBinary(sorted, new IteratedValue<Integer>(random), 0, sorted.length - 1);
+            
+            int indexLinear = resultLinear.value;
+            int indexBinary = resultBinary.value;
 
-            int indexLinear = dataManager.findNumberBinary(data, new IteratedValue<Integer>(random), 0, data.length - 1).value;
-            int indexBinary = dataManager.findNumberLinear(data, new IteratedValue<Integer>(random), 0).value;
+            int valueLinear = unsorted[indexLinear];
+            int valueBinary = sorted[indexBinary];
 
+            //fail since it should ALWAYS find the target
             if(indexLinear == -1 || indexBinary == -1)
-                continue;
+                fail("Could Not find!");
 
-            int valueLinear = dataManager.getData()[indexLinear];
-            int valueBinary = dataManager.getData()[indexBinary];
-
-            boolean indexEquals = indexLinear == indexBinary;
             boolean valuesEqual = valueLinear == random && valueBinary == random;
 
-            if(!indexEquals)
-                fail("Indexes NOT EQUAL");
-            
-            if(!valuesEqual)
-                fail("Values NOT EQUAL");
-            
+            assertTrue(valuesEqual);
         }
     }
 
+    //checks if both search methods have the same behavior through an array with randomyl defined values
     @Test 
-    @DisplayName("Random Array")
-    public void randomizedCompare() {
-        int max = 5000;
+    @DisplayName("Check Equals Randomly Generated Array")
+    public void checkEqualsRandom() {
+        int size = 5000;
+        int low = 1;
+        int high = 5000;
 
-        int[] data = new int[max];
+        int[] unsorted = new int[size];
 
-        for(int i = 0; i < max; i++){
-            data[i] = (int)Utility.random(1, max);
+        for(int i = 0; i < size; i++){
+            unsorted[i] = (int)Utility.random(low, high);
         }
 
-        DataManager dataManager = new DataManager(data);
+        int[] sorted = unsorted.clone();
+        Arrays.sort(sorted);
 
         int iterations = 5000;
 
         for(int i = 0; i < iterations; i++){
 
-            int random = (int)Utility.random(1, max);
+            int random = (int)Utility.random(low, high);
 
-            int indexLinear = dataManager.findNumberBinary(data, new IteratedValue<Integer>(random), 0, data.length - 1).value;
-            int indexBinary = dataManager.findNumberLinear(data, new IteratedValue<Integer>(random), 0).value;
+            IteratedValue<Integer> resultLinear = DataManager.findNumberLinear(unsorted, new IteratedValue<Integer>(random), 0);
+            IteratedValue<Integer> resultBinary = DataManager.findNumberBinary(sorted, new IteratedValue<Integer>(random), 0, sorted.length - 1);
+            
+            int indexLinear = resultLinear.value;
+            int indexBinary = resultBinary.value;
 
             if(indexLinear == -1 && indexBinary == -1)
                 continue;
-                
-            int valueLinear = dataManager.getData()[indexLinear];
-            int valueBinary = dataManager.getData()[indexBinary];
+
+            int valueLinear = unsorted[indexLinear];
+            int valueBinary = sorted[indexBinary];
 
             boolean valuesEqual = valueLinear == random && valueBinary == random;
 

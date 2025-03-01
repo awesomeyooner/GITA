@@ -4,9 +4,13 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import project.DataManager.IteratedValue;
 import project.util.Button;
 import project.util.FieldLabel;
 import project.util.TextArea;
@@ -19,15 +23,15 @@ import project.util.Utility;
 public class FieldManager extends JFrame implements ActionListener{
 
     //program specific
-    DataManager dataManager = new DataManager(5000);
+    private DataManager dataManager = new DataManager(5000, 1, 5000);
  
     //declare panel
     private final JPanel panel = new JPanel(new GridLayout(0, 2));
 
     //field labels
     private final FieldLabel sizeField = new FieldLabel("Size: ", true);
-
-    private final FieldLabel[] fields = {sizeField};
+    private final FieldLabel iterationsField = new FieldLabel("Iterations: ", true);
+    private final FieldLabel[] fields = {sizeField, iterationsField};
     
     //text areas
     private final TextArea outputArea = new TextArea("", 40, 70);
@@ -44,7 +48,7 @@ public class FieldManager extends JFrame implements ActionListener{
 
         outputArea.setText("Creating Array with size: " + String.valueOf(size));
 
-        dataManager.populateData(size);
+        dataManager.populateWithRandomData(size, 1, 5000);
     });
 
 
@@ -76,64 +80,70 @@ public class FieldManager extends JFrame implements ActionListener{
     }
 
     public void action(){
-        if(outputArea.displayError(FieldLabel.getAccumulatedErrors(fields)))
+        if(outputArea.displayError(iterationsField.getError()))
             return;
 
         outputArea.setText("");
 
-        iterateRecursive(5000);
-        iterateBinary(5000);
+        int iterations = (int)iterationsField.getDouble();
+
+        repetitiveSearch(iterations);
     }
 
-    public void iterateBinary(int loops){
-        int totalIterations = 0;
-        int successfulFinds = 0;
-        
-        for(int i = 0; i < loops; i ++){
-            int find = (int)Utility.random(1, 5000);
+    public void repetitiveSearch(int iterations){
+        int totalLinearIterations = 0;
+        int totalBinaryIterations = 0;
+        int totalSuccessfulFinds = 0;
 
-            //int indexFound = dataManager.findNumberBinary(find);
+        int totalLinearFailures = 0;
+        int totalBinaryFailures = 0;
 
-            // int numIterations = indexFound;
+        int low = 1;
+        int high = 5000;
 
-            // if(indexFound == -1)
-            //     continue;
-            // else{
-            //     totalIterations += iterations;
-            //     successfulFinds++;
-            // }
-        }
+        //repeated test
+        for(int i = 0; i < iterations; i++){
 
-        int averageIterations = totalIterations / successfulFinds;
+            //choose a random number to find
+            int random = (int)Utility.random(low, high);
 
-        outputArea.append(
-            "Successful Finds: " + successfulFinds + "\n" + 
-            "Average Iterations: " + averageIterations
-        );
-    }
+            //objects to store results
+            IteratedValue<Integer> resultLinear = dataManager.findNumberLinear(random);
+            IteratedValue<Integer> resultBinary = dataManager.findNumberBinary(random);
+            
+            //how many iterations it took to find the target
+            int iterationsLinear = resultLinear.iterations;
+            int iterationsBinary = resultBinary.iterations;
 
-    public void iterateRecursive(int loops){
-        int totalIterations = 0;
-        int successfulFinds = 0;
-        
-        for(int i = 0; i < loops; i ++){
-            int find = (int)Utility.random(1, 5000);
+            //index of each found target
+            int indexLinear = resultLinear.value;
+            int indexBinary = resultBinary.value;
 
-            int iterations = dataManager.findNumberLinear(find).value;
+            if(indexLinear == -1)
+                totalLinearFailures++;
 
-            if(iterations == -1)
+            if(indexBinary == -1)
+                totalBinaryFailures++;
+
+            //if either fail to find their targets, then skip this iteration. If only one fails, then crash the program anyways
+            if(indexLinear == -1 && indexBinary == -1)
                 continue;
-            else{
-                totalIterations += iterations;
-                successfulFinds++;
-            }
+
+            //update statistical varaibles
+            totalSuccessfulFinds++;
+            totalLinearIterations += iterationsLinear;
+            totalBinaryIterations += iterationsBinary;
         }
 
-        int averageIterations = totalIterations / successfulFinds;
+        double averageIterationsLinear = (double)totalLinearIterations / (double)totalSuccessfulFinds;
+        double averageIterationsBinary = (double)totalBinaryIterations / (double)totalSuccessfulFinds;
 
         outputArea.append(
-            "Successful Finds: " + successfulFinds + "\n" + 
-            "Average Iterations: " + averageIterations
+            "Total: " + totalSuccessfulFinds + "\n" +
+            "Avg Linear: " + averageIterationsLinear + "\n" +
+            "Avg Binary: " + averageIterationsBinary + "\n" +
+            "Linear Fails: " + totalLinearFailures + "\n" +
+            "Binary Fails: " + totalBinaryFailures
         );
     }
 

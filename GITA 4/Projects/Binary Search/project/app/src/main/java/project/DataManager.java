@@ -34,12 +34,37 @@ public class DataManager {
 
     private int[] data;
     
-    public DataManager(int size){
-        populateData(size);
+    /**
+     * Creates a new DataManager Object and fills the array with RANDOM data from low to high
+     * @param size size of the data buffer
+     */
+    public DataManager(int size, int low, int high){
+        populateWithRandomData(size, low, high);
+    }
+
+    /**
+     * Creates a new DataManager Object and fills the array with DEFINED data, increments from "start"
+     * @param size size of the data buffer
+     * @param start the initial value (data[i])
+     */
+    public DataManager(int size, int start){
+        populateWithSystematicData(size, start);
     }
 
     public DataManager(int[] array){
         setData(array);
+    }
+
+    public boolean isPopulated(){
+        try{
+            boolean isNonZero = data.length != 0;
+            
+            return isNonZero;
+        }
+        //if the exception is thrown, then its empty
+        catch(NullPointerException e){
+            return false;
+        }
     }
 
     public void setData(int[] array){
@@ -50,13 +75,21 @@ public class DataManager {
         return data;
     }
 
-    public void populateData(int max){
-        data = new int[max];
+    public void populateWithRandomData(int size, int low, int high){
+        data = new int[size];
 
-        for(int i = 0; i < max; i++){
-            int random = (int)Utility.random(1, (double)max);
+        for(int i = 0; i < size; i++){
+            int random = (int)Utility.random((double)low, (double)high);
 
             data[i] = random;
+        }
+    }
+
+    public void populateWithSystematicData(int size, int start){
+        data = new int[size];
+
+        for(int i = 0; i < size; i++){
+            data[i] = i + start;
         }
     }
     
@@ -68,14 +101,14 @@ public class DataManager {
         return findNumberBinary(copy, new IteratedValue<Integer>(find), 0, data.length - 1);
     }
 
-    public IteratedValue<Integer> findNumberBinary(int[] array, IteratedValue<Integer> find, int low, int high){
+    public static IteratedValue<Integer> findNumberBinary(int[] array, IteratedValue<Integer> find, int low, int high){
         find.update();
         
         int index = (low + high) / 2;
 
         boolean equal = array[index] == find.value;
 
-        boolean greater = array[index] > find.value;
+        boolean lesser = array[index] < find.value;
 
         //if you're at the last number and its not equal, return -1 indicating nothing has been found
         if(low > high)
@@ -83,7 +116,7 @@ public class DataManager {
         else if(equal)
             return new IteratedValue<Integer>(find.iterations, index);
         else{
-            if(!greater)
+            if(lesser)
                 return findNumberBinary(array, find, index + 1, high);
             else
                 return findNumberBinary(array, find, low, index - 1);
@@ -91,14 +124,10 @@ public class DataManager {
     }
 
     public IteratedValue<Integer> findNumberLinear(int find){
-        int[] copy = data.clone();
-
-        Arrays.sort(copy);
-
-        return findNumberLinear(copy, new IteratedValue<Integer>(find), 0);
+        return findNumberLinear(data, new IteratedValue<Integer>(find), 0);
     }
 
-    public IteratedValue<Integer> findNumberLinear(int[] array, IteratedValue<Integer> find, int index){
+    public static IteratedValue<Integer> findNumberLinear(int[] array, IteratedValue<Integer> find, int index){
         if(index < 0)
             throw new IllegalArgumentException("index cannot be negative!");
 
