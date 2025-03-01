@@ -32,7 +32,8 @@ public class DataManager {
         }
     }
 
-    private int[] data;
+    private int[] unsorted;
+    private int[] sorted;
     
     /**
      * Creates a new DataManager Object and fills the array with RANDOM data from low to high
@@ -57,7 +58,7 @@ public class DataManager {
 
     public boolean isPopulated(){
         try{
-            boolean isNonZero = data.length != 0;
+            boolean isNonZero = unsorted.length != 0;
             
             return isNonZero;
         }
@@ -68,37 +69,45 @@ public class DataManager {
     }
 
     public void setData(int[] array){
-        data = array.clone();
+        unsorted = array.clone();
+
+        sorted = unsorted.clone();
+        Arrays.sort(sorted);
     }
 
-    public int[] getData(){
-        return data;
+    public int[] getUnsortedData(){
+        return unsorted;
+    }
+
+    public int[] getSortedData(){
+        return sorted;
     }
 
     public void populateWithRandomData(int size, int low, int high){
-        data = new int[size];
+        unsorted = new int[size];
 
         for(int i = 0; i < size; i++){
             int random = (int)Utility.random((double)low, (double)high);
 
-            data[i] = random;
+            unsorted[i] = random;
         }
+
+        sorted = unsorted.clone();
+        Arrays.sort(sorted);
     }
 
     public void populateWithSystematicData(int size, int start){
-        data = new int[size];
+        unsorted = new int[size];
 
         for(int i = 0; i < size; i++){
-            data[i] = i + start;
+            unsorted[i] = i + start;
         }
+
+        sorted = unsorted.clone();
     }
     
     public IteratedValue<Integer> findNumberBinary(int find){
-        int[] copy = data.clone();
-
-        Arrays.sort(copy);
-
-        return findNumberBinary(copy, new IteratedValue<Integer>(find), 0, data.length - 1);
+        return findNumberBinary(sorted, new IteratedValue<Integer>(find), 0, sorted.length - 1);
     }
 
     public static IteratedValue<Integer> findNumberBinary(int[] array, IteratedValue<Integer> find, int low, int high){
@@ -124,7 +133,7 @@ public class DataManager {
     }
 
     public IteratedValue<Integer> findNumberLinear(int find){
-        return findNumberLinear(data, new IteratedValue<Integer>(find), 0);
+        return findNumberLinear(unsorted, new IteratedValue<Integer>(find), 0);
     }
 
     public static IteratedValue<Integer> findNumberLinear(int[] array, IteratedValue<Integer> find, int index){

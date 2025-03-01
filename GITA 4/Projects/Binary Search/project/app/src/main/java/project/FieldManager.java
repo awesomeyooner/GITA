@@ -83,7 +83,7 @@ public class FieldManager extends JFrame implements ActionListener{
         if(outputArea.displayError(iterationsField.getError()))
             return;
 
-        outputArea.setText("");
+        outputArea.setText("Number Array Search Analysis" + "\n");
 
         int iterations = (int)iterationsField.getDouble();
 
@@ -139,11 +139,12 @@ public class FieldManager extends JFrame implements ActionListener{
         double averageIterationsBinary = (double)totalBinaryIterations / (double)totalSuccessfulFinds;
 
         outputArea.append(
-            "Total: " + totalSuccessfulFinds + "\n" +
-            "Avg Linear: " + averageIterationsLinear + "\n" +
-            "Avg Binary: " + averageIterationsBinary + "\n" +
-            "Linear Fails: " + totalLinearFailures + "\n" +
-            "Binary Fails: " + totalBinaryFailures
+            "Array Size: " + "\t" + "\t" + dataManager.getUnsortedData().length + "\n" +
+            "Total Successful Searches: " + "\t" + totalSuccessfulFinds + "\n" +
+            "Average Iterations Linear: " + "\t" + averageIterationsLinear + "\n" +
+            "Average Iterations Binary: " + "\t" + averageIterationsBinary + "\n" +
+            "Times Linear Search Failed: " + "\t" + totalLinearFailures + "\n" +
+            "Times Binary Search Failed: " + "\t" + totalBinaryFailures
         );
     }
 

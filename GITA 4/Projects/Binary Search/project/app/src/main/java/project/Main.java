@@ -43,9 +43,6 @@ public class Main {
         int[] sorted = data.clone();
         Arrays.sort(sorted);
 
-        //create data manager class to handle the array
-        DataManager dataManager = new DataManager(data);
-
         //number of test iterations
         int iterations = 5000;
 
@@ -83,8 +80,8 @@ public class Main {
             totalBinaryIterations += iterationsBinary;
 
             //the value of the target (should be equal to "random")
-            int valueLinear = dataManager.getData()[indexLinear];
-            int valueBinary = dataManager.getData()[indexBinary];
+            int valueLinear = sorted[indexLinear];
+            int valueBinary = sorted[indexBinary];
 
             //booleans for test conditions
             boolean indexEquals = indexLinear == indexBinary;
