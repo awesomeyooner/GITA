@@ -63,6 +63,10 @@ public class FieldLabel {
         return Double.parseDouble(getText());
     }
 
+    public int getInt(){
+        return Integer.parseInt(getText());
+    }
+
     public void clearText(){
         field.setText("");
     }

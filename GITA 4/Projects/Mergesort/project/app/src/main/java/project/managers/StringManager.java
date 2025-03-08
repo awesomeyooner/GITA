@@ -35,15 +35,11 @@ public class StringManager {
 
                 if(lesser){
                     buffer = Utility.insertAt(buffer, currentUnsorted, j);
-                    System.out.println("Insert: " + currentUnsorted);
-                    Utility.printArray(buffer);
                     break;
                 }
 
                 if(j != buffer.length - 1 && Utility.atEndOfArray(buffer, j)){
                     buffer = Utility.append(buffer, currentUnsorted);
-                    System.out.println("Appended: " + currentUnsorted);
-                    Utility.printArray(buffer);
                     break;
                 }
             }
@@ -81,15 +77,11 @@ public class StringManager {
 
                 if(greater){
                     buffer = Utility.insertAt(buffer, currentUnsorted, j);
-                    System.out.println("Insert: " + currentUnsorted);
-                    Utility.printArray(buffer);
                     break;
                 }
 
                 if(j != buffer.length - 1 && Utility.atEndOfArray(buffer, j)){
                     buffer = Utility.append(buffer, currentUnsorted);
-                    System.out.println("Appended: " + currentUnsorted);
-                    Utility.printArray(buffer);
                     break;
                 }
             }

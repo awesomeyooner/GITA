@@ -61,9 +61,23 @@ public class Utility {
     }
 
     public static <T> void printArray(T[] array){
+        System.out.println(arrayToString(array));
+    }
+
+    public static <T> String arrayToString(T[] array){
+        if(array == null)
+            return "";
+
+        String buffer = "";
+
         for(T value : array){
-            System.out.println(value);
+            if(value == null)
+                continue;
+                
+            buffer += value.toString() + "\n";
         }
+
+        return buffer;
     }
 
     public static double random(double lower, double upper){

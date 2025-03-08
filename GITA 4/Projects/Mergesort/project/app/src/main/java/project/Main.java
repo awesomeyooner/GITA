@@ -16,9 +16,9 @@ public class Main {
     
     public static void main(String[] args){
         //First method to run 
-        //FieldManager.initialize();
+        FieldManager.initialize();
 
-       test();
+        //test();
     }
 
     public static void test(){
@@ -27,13 +27,7 @@ public class Main {
 
         String[] sorted = StringManager.mergeSortAZ(arrayA, arrayB);
 
-        System.out.println("\n");
-
-        for(String string : sorted){
-            System.out.println(string);
-        }
-
-        System.out.println("\n");
+        Utility.printArray(sorted);
     }
 }
  

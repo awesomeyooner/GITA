@@ -4,12 +4,15 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import project.managers.AlphabeticManager;
+import project.managers.StringManager;
 import project.util.Button;
 import project.util.FieldLabel;
 import project.util.TextArea;
@@ -22,36 +25,89 @@ import project.util.Utility;
 public class FieldManager extends JFrame implements ActionListener{
 
     //program specific
-    private DataManager dataManager = new DataManager(5000, 1, 5000);
- 
+    private String[] fruits;
+    private String[] vegetables;
+
     //declare panel
     private final JPanel panel = new JPanel(new GridLayout(0, 2));
 
     //field labels
     private final FieldLabel sizeField = new FieldLabel("Size: ", true);
-    private final FieldLabel iterationsField = new FieldLabel("Iterations: ", true);
-    private final FieldLabel[] fields = {sizeField, iterationsField};
+    private final FieldLabel itemField = new FieldLabel("Item: ", false);
+    private final FieldLabel[] fields = {sizeField, itemField};
     
     //text areas
     private final TextArea outputArea = new TextArea("", 40, 70);
     private final TextArea[] textAreas = {outputArea};
 
     //button
-    private final Button actionButton = new Button("Action!", this::action);
-
-    private final Button populateButton = new Button("Populate!", () -> {
+    private final Button clearButton = new Button("Clear Arrays!", () -> {
         if(outputArea.displayError(FieldLabel.getAccumulatedErrors(fields)))
             return;
 
-        int size = (int)sizeField.getDouble();
+        int size = sizeField.getInt();
 
-        outputArea.setText("Creating Array with size: " + String.valueOf(size));
+        fruits = new String[size];
+        vegetables = new String[size];
 
-        dataManager.populateWithRandomData(size, 1, 5000);
+        outputFruitsAndVegetables();
     });
 
+    private final Button appendFruitButton = new Button("Append Fruit!", () -> {
+        if(outputArea.displayError(FieldLabel.getAccumulatedErrors(fields)))
+            return;
 
-    private final Button[] buttons = {actionButton, populateButton};
+        int size = sizeField.getInt();
+        String item = itemField.getText();
+
+        if(fruits == null || fruits.length != size)
+            fruits = new String[size];
+        
+        fruits = Utility.append(fruits, item);
+
+        outputFruitsAndVegetables();
+    });
+
+    private final Button appendVegetableButton = new Button("Append Vegetable!", () -> {
+        if(outputArea.displayError(FieldLabel.getAccumulatedErrors(fields)))
+            return;
+
+        int size = sizeField.getInt();
+        String item = itemField.getText();
+
+        if(vegetables == null || vegetables.length != size)
+            vegetables = new String[size];
+        
+        vegetables = Utility.append(vegetables, item);
+
+        outputFruitsAndVegetables();
+    });
+
+    private final Button searchButton = new Button("Search Item!", () -> {
+        if(outputArea.displayError(FieldLabel.getAccumulatedErrors(fields)))
+            return;
+
+        String find = itemField.getText();
+
+        int indexFruits = AlphabeticManager.findStringBinary(StringManager.sortAZ(fruits), find).index;
+        int indexVegetables = AlphabeticManager.findStringBinary(StringManager.sortAZ(vegetables), find).index;
+
+        outputFruitsAndVegetables();
+
+        outputArea.append("-----------------------" + "\n");
+
+        if(indexFruits == -1 && indexVegetables == -1)
+            outputArea.append("Did not find " + find + " in either arrays");
+        else{
+            if(indexFruits != -1)
+                outputArea.append("Found " + find + " in Fruits!");
+            if(indexVegetables != -1)
+                outputArea.append("Found " + find + " in Vegetables!");
+        }
+        
+    });
+
+    private final Button[] buttons = {clearButton, appendFruitButton, appendVegetableButton, searchButton};
 
     public FieldManager(){
         //Put titlebar on frame
@@ -79,72 +135,32 @@ public class FieldManager extends JFrame implements ActionListener{
     }
 
     public void action(){
-        if(outputArea.displayError(iterationsField.getError()))
+        if(outputArea.displayError(FieldLabel.getAccumulatedErrors(fields)))
             return;
-
-        outputArea.setText("Number Array Search Analysis" + "\n");
-
-        int iterations = (int)iterationsField.getDouble();
-
-        repetitiveSearch(iterations);
     }
 
-    public void repetitiveSearch(int iterations){
-        int totalLinearIterations = 0;
-        int totalBinaryIterations = 0;
-        int totalSuccessfulFinds = 0;
+    public void outputFruitsAndVegetables(){
+        outputArea.setText("");
 
-        int totalLinearFailures = 0;
-        int totalBinaryFailures = 0;
-
-        int low = 1;
-        int high = 5000;
-
-        //repeated test
-        for(int i = 0; i < iterations; i++){
-
-            //choose a random number to find
-            int random = (int)Utility.random(low, high);
-
-            //objects to store results
-            IteratedValue<Integer> resultLinear = dataManager.findNumberLinear(random);
-            IteratedValue<Integer> resultBinary = dataManager.findNumberBinary(random);
-            
-            //how many iterations it took to find the target
-            int iterationsLinear = resultLinear.iterations;
-            int iterationsBinary = resultBinary.iterations;
-
-            //index of each found target
-            int indexLinear = resultLinear.value;
-            int indexBinary = resultBinary.value;
-
-            if(indexLinear == -1)
-                totalLinearFailures++;
-
-            if(indexBinary == -1)
-                totalBinaryFailures++;
-
-            //if either fail to find their targets, then skip this iteration. If only one fails, then crash the program anyways
-            if(indexLinear == -1 && indexBinary == -1)
-                continue;
-
-            //update statistical varaibles
-            totalSuccessfulFinds++;
-            totalLinearIterations += iterationsLinear;
-            totalBinaryIterations += iterationsBinary;
+        if(fruits != null){
+            outputArea.append("Sorted Fruits:" + "\n");
+            outputArea.append(Utility.arrayToString(StringManager.sortAZ(fruits)));
         }
 
-        double averageIterationsLinear = (double)totalLinearIterations / (double)totalSuccessfulFinds;
-        double averageIterationsBinary = (double)totalBinaryIterations / (double)totalSuccessfulFinds;
+        outputArea.append("-----------------------" + "\n");
 
-        outputArea.append(
-            "Array Size: " + "\t" + "\t" + dataManager.getUnsortedData().length + "\n" +
-            "Total Successful Searches: " + "\t" + totalSuccessfulFinds + "\n" +
-            "Average Iterations Linear: " + "\t" + averageIterationsLinear + "\n" +
-            "Average Iterations Binary: " + "\t" + averageIterationsBinary + "\n" +
-            "Times Linear Search Failed: " + "\t" + totalLinearFailures + "\n" +
-            "Times Binary Search Failed: " + "\t" + totalBinaryFailures
-        );
+        if(vegetables != null){
+            outputArea.append("Sorted Vegetables:" + "\n");
+            outputArea.append(Utility.arrayToString(StringManager.sortAZ(vegetables)));
+        }
+
+        outputArea.append("-----------------------" + "\n");
+
+        if(fruits != null && vegetables != null){
+            outputArea.append("Sorted and Merged:" + "\n");
+            outputArea.append(Utility.arrayToString(StringManager.mergeSortAZ(fruits, vegetables)));
+        }
+
     }
 
     public void addComponents(){
