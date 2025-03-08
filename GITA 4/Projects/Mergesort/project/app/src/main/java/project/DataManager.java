@@ -2,35 +2,10 @@ package project;
 
 import java.util.Arrays;
 
+import project.managers.NumericManager;
 import project.util.Utility;
 
 public class DataManager {
-
-    public static class IteratedValue<T>{
-        public int iterations;
-        public T value;
-
-        public IteratedValue(int iterations, T value){
-            this.iterations = iterations;
-            this.value = value;
-        }
-
-        public IteratedValue(T value){
-            this(0, value);
-        }
-
-        public IteratedValue<T> update(T newValue){
-            value = newValue;
-            iterations++;
-
-            return this;
-        }
-
-        public IteratedValue<T> update(){
-            iterations++;
-            return this;
-        }
-    }
 
     private int[] unsorted;
     private int[] sorted;
@@ -107,50 +82,10 @@ public class DataManager {
     }
     
     public IteratedValue<Integer> findNumberBinary(int find){
-        return findNumberBinary(sorted, new IteratedValue<Integer>(find), 0, sorted.length - 1);
-    }
-
-    public static IteratedValue<Integer> findNumberBinary(int[] array, IteratedValue<Integer> find, int low, int high){
-        find.update();
-        
-        int index = (low + high) / 2;
-
-        boolean equal = array[index] == find.value;
-
-        boolean lesser = array[index] < find.value;
-
-        //if you're at the last number and its not equal, return -1 indicating nothing has been found
-        if(low > high)
-            return new IteratedValue<Integer>(find.iterations, -1);
-        else if(equal)
-            return new IteratedValue<Integer>(find.iterations, index);
-        else{
-            if(lesser)
-                return findNumberBinary(array, find, index + 1, high);
-            else
-                return findNumberBinary(array, find, low, index - 1);
-        }
+        return NumericManager.findNumberBinary(sorted, new IteratedValue<Integer>(find), 0, sorted.length - 1);
     }
 
     public IteratedValue<Integer> findNumberLinear(int find){
-        return findNumberLinear(unsorted, new IteratedValue<Integer>(find), 0);
+        return NumericManager.findNumberLinear(unsorted, find);
     }
-
-    public static IteratedValue<Integer> findNumberLinear(int[] array, IteratedValue<Integer> find, int index){
-        if(index < 0)
-            throw new IllegalArgumentException("index cannot be negative!");
-
-        find.update();
-
-        boolean equal = array[index] == find.value;
-
-        //if you're at the last number and its not equal, return -1 indicating nothing has been found
-        if(index == array.length - 1 && !equal)
-            return new IteratedValue<Integer>(find.iterations, -1);
-        else if(equal)
-            return new IteratedValue<Integer>(find.iterations, index);
-        else
-            return findNumberLinear(array, find, index + 1);
-    }
-
 }

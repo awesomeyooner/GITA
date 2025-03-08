@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import project.DataManager.IteratedValue;
 import project.util.Button;
 import project.util.FieldLabel;
 import project.util.TextArea;

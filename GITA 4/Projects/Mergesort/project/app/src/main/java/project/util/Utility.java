@@ -32,7 +32,7 @@ public class Utility {
     }
 
     public static <T> T[] pop(T[] array){
-        for(int i = array.length; i >= 0; i--){
+        for(int i = array.length - 1; i >= 0; i--){
             if(array[i] != null){
                 array[i] = null;
                 break;
@@ -40,6 +40,26 @@ public class Utility {
         }
 
         return array;
+    }
+
+    public static <T> T[] insertAt(T[] array, T insert, int index){
+        
+        for(int i = array.length - 1; i >= index; i--){
+            if(array[i] == null)
+                continue;
+
+            array[i + 1] = array[i];
+        }
+
+        array[index] = insert;
+
+        return array;
+    }
+
+    public static <T> void printArray(T[] array){
+        for(T value : array){
+            System.out.println(value);
+        }
     }
 
     public static double random(double lower, double upper){
