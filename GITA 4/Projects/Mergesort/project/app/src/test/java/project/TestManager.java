@@ -5,6 +5,7 @@ package project;
 
 import org.junit.jupiter.api.Test;
 
+import project.managers.StringManager;
 import project.util.Utility;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,4 +23,32 @@ class TestManager {
     // public void debug(){
     //     assertEquals(1, 1);
     // }
+
+    @Test
+    @DisplayName("String Forward Sort Test")
+    public void checkStringForwardSort(){
+
+        String[] unsorted = {"Z", "B", "A", "C", "E", "D", "F"};
+        String[] correctlySorted = {"A", "B", "C", "D", "E", "F", "Z"};
+
+        String[] sortedFromMethod = StringManager.sortAZ(unsorted);
+
+        for(int i = 0; i < correctlySorted.length; i++){
+            assertEquals(correctlySorted[i], sortedFromMethod[i]);
+        }
+    }
+
+    @Test
+    @DisplayName("String Reverse Sort Test")
+    public void checkStringReverseSort(){
+
+        String[] unsorted = {"Z", "B", "A", "C", "E", "D", "F"};
+        String[] correctlySorted = {"Z", "F", "E", "D", "C", "B", "A"};
+
+        String[] sortedFromMethod = StringManager.sortZA(unsorted);
+
+        for(int i = 0; i < correctlySorted.length; i++){
+            assertEquals(correctlySorted[i], sortedFromMethod[i]);
+        }
+    }
 }

@@ -18,43 +18,106 @@ public class StringManager {
                 continue;
             }
 
-            String current = unsorted[i];
-            String previous = unsorted[i - 1];
+            String currentUnsorted = unsorted[i];
 
-            //positive if the first is higher up than the parameter
-            //negative if the first is lesser (closer to A) than the parameter
-            //zero if they are the same
-            int lexiDelta = current.toLowerCase().compareTo(previous.toLowerCase());
+            for(int j = 0; j < buffer.length; j++){
+                if(buffer[j] == null)
+                    continue;
 
-            //if current is CLOSER TO A than previous
-            boolean lesser = lexiDelta < 0;
+                String currentBuffer = buffer[j];
+                
+                //positive if the first is higher up than the parameter
+                //negative if the first is lesser (closer to A) than the parameter
+                //zero if they are the same
+                int lexiDelta = currentUnsorted.toLowerCase().compareTo(currentBuffer.toLowerCase());
 
-            if(!lesser){
-                buffer[i] = current;
-                System.out.println("Not Inserted");
-                Utility.printArray(buffer);
-            }
-            else{
-                for(int j = 0; j < buffer.length; j++){
-                    if(buffer[j] == null)
-                        continue;
+                boolean lesser = lexiDelta < 0;
 
-                    String currentBuffer = buffer[j];
-                    
-                    int lexiDeltaBuffer = current.toLowerCase().compareTo(currentBuffer.toLowerCase());
+                if(lesser){
+                    buffer = Utility.insertAt(buffer, currentUnsorted, j);
+                    System.out.println("Insert: " + currentUnsorted);
+                    Utility.printArray(buffer);
+                    break;
+                }
 
-                    boolean lesserBuffer = lexiDeltaBuffer < 0;
-
-                    if(lesserBuffer){
-                        buffer = Utility.insertAt(buffer, current, j);
-                        System.out.println("Insert" + current);
-                        Utility.printArray(buffer);
-                        break;
-                    }
+                if(j != buffer.length - 1 && Utility.atEndOfArray(buffer, j)){
+                    buffer = Utility.append(buffer, currentUnsorted);
+                    System.out.println("Appended: " + currentUnsorted);
+                    Utility.printArray(buffer);
+                    break;
                 }
             }
         }
 
         return buffer;
+    }
+
+    public static String[] sortZA(String[] unsorted){
+        String[] buffer = new String[unsorted.length];
+
+        for(int i = 0; i < unsorted.length; i++){
+            if(unsorted[i] == null)
+                continue;
+
+            if(i == 0){
+                buffer[0] = unsorted[0];
+                continue;
+            }
+
+            String currentUnsorted = unsorted[i];
+
+            for(int j = 0; j < buffer.length; j++){
+                if(buffer[j] == null)
+                    continue;
+
+                String currentBuffer = buffer[j];
+                
+                //positive if the first is higher up than the parameter
+                //negative if the first is lesser (closer to A) than the parameter
+                //zero if they are the same
+                int lexiDelta = currentUnsorted.toLowerCase().compareTo(currentBuffer.toLowerCase());
+
+                boolean greater = lexiDelta > 0;
+
+                if(greater){
+                    buffer = Utility.insertAt(buffer, currentUnsorted, j);
+                    System.out.println("Insert: " + currentUnsorted);
+                    Utility.printArray(buffer);
+                    break;
+                }
+
+                if(j != buffer.length - 1 && Utility.atEndOfArray(buffer, j)){
+                    buffer = Utility.append(buffer, currentUnsorted);
+                    System.out.println("Appended: " + currentUnsorted);
+                    Utility.printArray(buffer);
+                    break;
+                }
+            }
+        }
+
+        return buffer;
+    }
+
+    //This is incredibly inefficient! I wish to change this in the future
+    public static String[] mergeArrays(String[] a, String[] b){
+        String[] buffer = new String[a.length + b.length];
+
+        for(int i = 0; i < a.length; i++){
+            buffer = Utility.append(buffer, a[i]);
+        }
+
+        for(int i = 0; i < b.length; i++){
+            buffer = Utility.append(buffer, b[i]);
+        }
+
+        return buffer;
+    }
+
+    public static String[] mergeSortAZ(String[] a, String[] b){
+        return sortAZ(mergeArrays(a, b));
+    }
+
+    public static String[] mergeSortZA(String[] a, String[] b){
+        return sortZA(mergeArrays(a, b));
     }
 }

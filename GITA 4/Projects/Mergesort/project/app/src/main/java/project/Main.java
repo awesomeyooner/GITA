@@ -18,14 +18,14 @@ public class Main {
         //First method to run 
         //FieldManager.initialize();
 
-       // test();
-
-       System.out.println("c".compareTo("z"));
+       test();
     }
 
     public static void test(){
-        String[] array = {"Z", "B", "A", "C", "E", "D", "F"};
-        String[] sorted = StringManager.sortAZ(array);
+        String[] arrayA = {"Z", "B", "A", "C", "E", "D", "F"};
+        String[] arrayB = {"Z", "B", "A", "C", "E", "D", "F"};
+
+        String[] sorted = StringManager.mergeSortAZ(arrayA, arrayB);
 
         System.out.println("\n");
 
@@ -34,13 +34,6 @@ public class Main {
         }
 
         System.out.println("\n");
-
-        // String find = "Cucumber";
-        // IteratedIndexedValue<String> output = AlphabeticManager.findStringBinary(array, find);
-
-        // System.out.println(output);
-        
-        // System.out.println(array[output.index]);
     }
 }
  

@@ -56,6 +56,10 @@ public class Utility {
         return array;
     }
 
+    public static <T> boolean atEndOfArray(T[] array, int index){
+        return array[index + 1] == null;
+    }
+
     public static <T> void printArray(T[] array){
         for(T value : array){
             System.out.println(value);
