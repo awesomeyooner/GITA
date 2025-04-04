@@ -26,6 +26,12 @@ class GameManager{
 
         this.player.update();
 
-        this.enemyManager.update();
+        this.enemyManager.update(this.player);
+
+        this.displayStats();
+    }
+
+    displayStats(){
+        Utility.textCenter("Points: " + this.enemyManager.totalSegmentsEliminated, 100, 50, 40);
     }
 }

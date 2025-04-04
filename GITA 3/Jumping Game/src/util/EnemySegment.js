@@ -36,6 +36,7 @@ class EnemySegment extends Entity{
             this.setHeadingY(this.getHeading().getY() - (gravity));
         }
         else{
+            this.setHeadingY(0);
             this.snapToFloor();
         }
     }

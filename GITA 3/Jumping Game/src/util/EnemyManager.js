@@ -4,14 +4,37 @@ class EnemyManager{
         this.maxEnemies = maxEnemies;
 
         this.enemies = new Array();
+
+        this.totalSegmentsEliminated = 0;
     }
 
-    update(){
+    update(player){
         for(var enemy of this.enemies){
             if(!enemy.isActive)
                 continue;
 
             enemy.update();
+
+            for(var bullet of player.bulletManager.getProjectiles()){
+                for(var segment of enemy.segments){
+                    if(bullet.isActive && segment.isActive && segment.collides(bullet)){
+                        bullet.isActive = false;
+                        segment.isActive = false;
+                        this.totalSegmentsEliminated++;
+                    }
+                }
+               
+            }
+
+            for(var bomb of player.bombManager.getProjectiles()){
+                for(var segment of enemy.segments){
+                    if(bomb.isActive && segment.isActive && segment.collides(bomb)){
+                        bomb.isActive = false;
+                        segment.isActive = false;
+                        this.totalSegmentsEliminated++;
+                    }
+                }
+            }
         }
     }
 

@@ -13,7 +13,7 @@ class Player extends Entity{
 
         this.crouching = false;
 
-        this.bulletManager = new ProjectileManager(20, 10);
+        this.bulletManager = new ProjectileManager(50, 10);
         this.bombManager = new BombManager(20, 10, 50, 5, "black");
     }
 

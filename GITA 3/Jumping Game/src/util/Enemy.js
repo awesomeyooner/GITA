@@ -53,8 +53,11 @@ class Enemy extends Entity{
     reset(active = false){
         this.isActive = active;
 
-        for(var segment of this.segments){
+        for(var i = 0; i < this.segments.length; i++){
+            var segment = this.segments[i];
+
             segment.isActive = active;
+            segment.setY(this.getCartesianY() + (i * segment.size));
         }
 
         this.set(width / 2, GROUND_Y + (this.size / 2));
@@ -109,6 +112,7 @@ class Enemy extends Entity{
             this.setHeadingY(this.getHeading().getY() - (gravity));
         }
         else{
+            this.setHeadingY(0);
             this.snapToFloor();
         }
     }
