@@ -89,7 +89,7 @@ const jsonData =
         "image": "assets/projects/GITA3/Jumping Game/image.png",
         "link": "assets/projects/GITA3/Jumping Game/index.html",
         "date": "1/17/2025",
-        "description": "Still in progress... however its a game with gravity!"
+        "description": "2D Game with gravity!"
     },
 ]
 
