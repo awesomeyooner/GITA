@@ -15,6 +15,12 @@ class EnemyManager{
 
             enemy.update();
 
+            if(enemy.collides(player)){
+                player.health--;
+                enemy.isActive = false;
+                continue;
+            }
+
             for(var bullet of player.bulletManager.getProjectiles()){
                 for(var segment of enemy.segments){
                     if(bullet.isActive && segment.isActive && segment.collides(bullet)){
@@ -38,18 +44,22 @@ class EnemyManager{
 
             for(var bullet of enemy.bulletManager.getProjectiles()){
 
-                if(bullet.isActive && player.isActive && player.collides(bullet)){
-                    bullet.isActive = false;
-                    player.health--;
+                for(var segment of player.segments){
+                    if(bullet.isActive && segment.isActive && segment.collides(bullet)){
+                        bullet.isActive = false;
+                        player.health--;
+                    }
                 }
                 
             }
 
             for(var bomb of enemy.bombManager.getProjectiles()){
 
-                if(bomb.isActive && player.isActive && player.collides(bomb)){
-                    bomb.isActive = false;
-                    player.health--;
+                for(var segment of player.segments){
+                    if(bomb.isActive && segment.isActive && segment.collides(bomb)){
+                        bomb.isActive = false;
+                        player.health--;
+                    }
                 }
                 
             }

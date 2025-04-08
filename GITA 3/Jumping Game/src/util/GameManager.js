@@ -14,6 +14,16 @@ class GameManager{
 
     update(){
         background("skyblue");
+
+        if(!this.player.isActive){
+            Utility.textCenter(
+                "Game Over!",
+                Utility.cartesianToNativeX(0),
+                Utility.cartesianToNativeY(0),
+                100
+            );
+        }
+
         Utility.rectFromCartesian(
             -width/2, 
             HORIZON_Y,

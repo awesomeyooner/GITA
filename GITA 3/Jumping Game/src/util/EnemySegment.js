@@ -16,15 +16,16 @@ class EnemySegment extends Entity{
     }
 
     update(origin){
-        if(!super.update())
-            return;
-        
+
         this.applyGravity();
         
         this.move();
 
         this.setX(origin.getCartesianX());
         
+        if(!super.update())
+            return;
+    
         this.drawEntity();
     }
 
@@ -36,7 +37,7 @@ class EnemySegment extends Entity{
             this.setHeadingY(this.getHeading().getY() - (gravity));
         }
         else{
-            this.setHeadingY(0);
+            // this.setHeadingY(0);
             this.snapToFloor();
         }
     }

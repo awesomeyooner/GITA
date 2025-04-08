@@ -1,6 +1,6 @@
 class Player extends Entity{
 
-    constructor(size, speed){
+    constructor(size, speed, maxSegments = 3){
         super(
             size,
             0,
@@ -11,16 +11,49 @@ class Player extends Entity{
             "blue"
         );
 
+        this.maxSegments = maxSegments;
+
+        this.segments = new Array();
+
         this.crouching = false;
 
         this.bulletManager = new ProjectileManager(50, 10);
         this.bombManager = new BombManager(20, 10, 50, 5, "black");
+
+        this.resetSegments();
+    }
+
+    resetSegments(){
+        for(var i = 0; i < this.maxSegments; i++){
+            this.segments.push(new EnemySegment(
+                this.size,
+                this.maxHealth,
+                this,
+                i,
+                this.speed,
+                this.color
+            ));
+        }
+    }
+
+    getActiveSegments(){
+        var total = 0;
+
+        for(var segment of this.segments){
+            if(segment.isActive)
+                total++;
+        }
+
+        return total;
     }
 
     update(){
         if(!super.update())
             return;
-        
+
+        if(this.getActiveSegments() == 0)
+            this.isActive = false;
+
         this.bulletManager.update();
         this.bombManager.update();
 
@@ -28,7 +61,16 @@ class Player extends Entity{
         
         this.move();
         this.drawEntity();
+
+        this.refreshSegments();
     }
+
+    refreshSegments(){
+        for(var i = 0; i < this.segments.length; i++){
+            this.segments[i].numActiveBelow = this.getNumberOfActiveSegmentsBelow(i);
+        }
+    }
+
 
     shoot(direction){
         var headLevel = this.crouching ? 0 : this.size * 2;
@@ -47,19 +89,44 @@ class Player extends Entity{
     drawEntity(){
         push();
         fill(this.color);
-        circle(this.getNativeX(), this.getNativeY(), this.size);
+        // circle(this.getNativeX(), this.getNativeY(), this.size);
 
-        if(!this.crouching){
-            circle(this.getNativeX(), this.getNativeY() - this.size, this.size);
-            circle(this.getNativeX(), this.getNativeY() - (2 * this.size), this.size);
+        for(var i = 0; i < this.segments.length; i++){
+            if(i != 0 && this.crouching)
+                this.segments[i].isActive = false;
+            else if(i != 0 && !this.crouching)
+                this.segments[i].isActive = true;
+
+            this.segments[i].update(this);
         }
+
+        // if(!this.crouching){
+        //     circle(this.getNativeX(), this.getNativeY() - this.size, this.size);
+        //     circle(this.getNativeX(), this.getNativeY() - (2 * this.size), this.size);
+        // }
 
         pop();
     }
 
+    getNumberOfActiveSegmentsBelow(index){
+        var total = 0;
+
+        for(var i = 0; i < index; i++){
+            if(this.segments[i].isActive)
+                total++;
+        }
+
+        return total;
+    }
+
     jump(strength = 10){
-        if(!this.isAboveFloor())
+        if(!this.isAboveFloor()){
             this.setHeadingY(strength);
+
+            for(var segment of this.segments){
+                segment.setHeadingY(strength);
+            }
+        }
     }
 
     applyGravity(){
