@@ -35,7 +35,36 @@ class EnemyManager{
                     }
                 }
             }
+
+            for(var bullet of enemy.bulletManager.getProjectiles()){
+
+                if(bullet.isActive && player.isActive && player.collides(bullet)){
+                    bullet.isActive = false;
+                    player.health--;
+                }
+                
+            }
+
+            for(var bomb of enemy.bombManager.getProjectiles()){
+
+                if(bomb.isActive && player.isActive && player.collides(bomb)){
+                    bomb.isActive = false;
+                    player.health--;
+                }
+                
+            }
         }
+    }
+
+    getNumberOfActiveEnemies(){
+        var total = 0;
+
+        for(var enemy of this.enemies){
+            if(enemy.isActive)
+                total++;
+        }
+
+        return total;
     }
 
     resetEnemies(){

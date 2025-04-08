@@ -7,7 +7,7 @@ class Player extends Entity{
             0,
             true,
             speed,
-            1,
+            10,
             "blue"
         );
 
@@ -20,6 +20,7 @@ class Player extends Entity{
     update(){
         if(!super.update())
             return;
+        
         this.bulletManager.update();
         this.bombManager.update();
 

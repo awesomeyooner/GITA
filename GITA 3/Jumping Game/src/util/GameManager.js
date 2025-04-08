@@ -32,6 +32,10 @@ class GameManager{
     }
 
     displayStats(){
-        Utility.textCenter("Points: " + this.enemyManager.totalSegmentsEliminated, 100, 50, 40);
+        Utility.textCorner("Points: " + this.enemyManager.totalSegmentsEliminated * 10, 20, 50, 40);
+        Utility.textCorner("Bombs: " + this.player.bombManager.getNumberOfInactiveProjectiles(), 20, 100, 40);
+        Utility.textCorner("Bullets: " + this.player.bulletManager.getNumberOfInactiveProjectiles(), 20, 150, 40);
+        Utility.textCorner("Enemies: " + this.enemyManager.getNumberOfActiveEnemies(), 20, 200, 40);
+        Utility.textCorner("Health: " + this.player.health, 20, 250, 40);
     }
 }

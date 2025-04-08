@@ -15,6 +15,7 @@ class Enemy extends Entity{
 
         this.maxSegments = maxSegments;
 
+        this.bulletManager = new ProjectileManager(50, 5, 10, 0, "red");
         this.bombManager = new BombManager(20, 10, 50, 5, "black");
 
         this.resetSegments();
@@ -33,6 +34,21 @@ class Enemy extends Entity{
         }
     }
 
+    shoot(direction = new Vector(-1, 0)){
+        var headLevel = this.crouching ? 0 : this.size * 2;
+        var offset = new Point(0, headLevel);
+
+        this.bulletManager.shoot(this.plus(offset), direction);
+    }
+
+    launchBomb(direction = new Vector(-1, 1)){
+        var headLevel = this.crouching ? 0 : this.size * 2;
+        var offset = new Point(0, headLevel);
+
+        this.bombManager.shoot(this.plus(offset), direction);
+    }
+
+
     update(){
         if(!super.update())
             return;
@@ -41,6 +57,7 @@ class Enemy extends Entity{
             this.isActive = false;
         
         this.bombManager.update();
+        this.bulletManager.update();
 
         this.applyGravity();
         
@@ -48,6 +65,23 @@ class Enemy extends Entity{
         this.drawEntity();
 
         this.refreshSegments();
+
+        this.procProjectiles();
+    }
+
+    procProjectiles(){
+        var within = 200;
+
+        var proc = Math.floor(Math.random() * within);
+
+        var bulletChance = 5; // 5 in 1000
+        var bombChance = within - 5; // 5 in 1000;
+
+        if(proc == bulletChance)
+            this.shoot();
+        
+        if(proc == bombChance)
+            this.launchBomb();
     }
 
     reset(active = false){
@@ -61,13 +95,6 @@ class Enemy extends Entity{
         }
 
         this.set(width / 2, GROUND_Y + (this.size / 2));
-    }
-
-    launchBomb(direction){
-        var headLevel = this.getActiveSegments() * this.size;
-        var offset = new Point(0, headLevel);
-
-        this.bombManager.shoot(this.plus(offset), direction);
     }
 
     drawEntity(){

@@ -27,6 +27,21 @@ class ProjectileManager{
         return this.projectiles;
     }
 
+    getMaxProjectiles(){
+        return this.maxProjectiles;
+    }
+
+    getNumberOfActiveProjectiles(){
+        var total = 0;
+
+        for(var bullet of this.projectiles){
+            if(bullet.isActive)
+                total++;
+        }
+
+        return total;
+    }
+
     getNumberOfInactiveProjectiles(){
         var total = 0;
 
