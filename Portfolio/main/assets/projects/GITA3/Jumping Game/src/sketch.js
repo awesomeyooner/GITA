@@ -10,9 +10,21 @@ function setup() {
   frameRate(60);
 
   keyboard.initialize(window);
-  //keyboard.configureBinding("c", () => print("hello"));
+  
+  keyboard.configureBinding("w", () => gameManager.player.jump(), BindType.WHILE_PRESSED);
+  
+  keyboard.configureBinding("s", () => gameManager.player.crouching = true, BindType.ON_PRESS);
+  keyboard.configureBinding("s", () => gameManager.player.crouching = false, BindType.ON_RELEASE);
 
-  // mouse.configureBinding(() => gameManager.getHelicopter().shoot(new Vector(0, -1)), MouseState.ON_PRESS);
+  mouse.configureBinding(() => gameManager.player.shoot(new Vector(1, 0)), MouseState.ON_PRESS);
+  keyboard.configureBinding(" ", () => gameManager.player.shoot(new Vector(1, 0)), BindType.WHILE_PRESSED);
+  keyboard.configureBinding("e", () => gameManager.player.launchBomb(new Vector(1, 1)), BindType.ON_PRESS);
+  keyboard.configureBinding("f", () => gameManager.player.launchBomb(new Vector(1, 1)), BindType.WHILE_PRESSED);
+
+  keyboard.configureBinding("q", () => gameManager.enemyManager.spawnEnemy(), BindType.ON_PRESS);
+
+  keyboard.configureBinding("r", () => gameManager.enemyManager.removeFeet(), BindType.ON_PRESS);
+
   // mouse.configureBinding(() => print("RELEASE"), MouseState.ON_RELEASE);
   // mouse.configureBinding(() => print("NEUTRAL"), MouseState.WHILE_UP);
   // mouse.configureBinding(() => print("HELD"), MouseState.WHILE_DOWN);
@@ -22,8 +34,7 @@ function setup() {
 
 function draw(){
   mouse.update(mouseIsPressed);
-
-  gameManager.player.setWantedHeading(keyboard.getHeading().getUnitVector(), true);
+  keyboard.update();
 
   gameManager.update();
 }

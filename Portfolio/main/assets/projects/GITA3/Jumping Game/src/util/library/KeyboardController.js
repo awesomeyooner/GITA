@@ -47,33 +47,31 @@ class KeyboardController{
             if(this.#keys.get(key) == null || this.#bindings.get(key) == null)
                 continue;
 
-            this.#bindings.get(key).refresh(this.#keys.get(key)); //refresh the value at each binding with the state of the key
-            
-            var bind = this.#bindings.get(key);
-
-            switch(this.#bindings.get(key).bindType){
-                case BindType.ON_PRESS:
-                    if(bind.state && !bind.previousState) //if pressed and previously not pressed
-                        bind.action();
-                    break;
-
-                case BindType.ON_RELEASE:
-                    if(!bind.state && bind.previousState) //if not pressed and previously pressed
-                        bind.action();
-                    break;
+            for(var bind of this.#bindings.get(key)){
+                bind.refresh(this.#keys.get(key)); //refresh the value at each binding with the state of the key
                 
-                case BindType.WHILE_PRESSED:
-                    if(bind.state)
-                        bind.action();
-                    break;
+                switch(bind.bindType){
+                    case BindType.ON_PRESS:
+                        if(bind.state && !bind.previousState) //if pressed and previously not pressed
+                            bind.action();
+                        break;
 
-                case BindType.WHILE_RELEASED:
-                    if(!bind.state)
-                        bind.action();
-                    break;
+                    case BindType.ON_RELEASE:
+                        if(!bind.state && bind.previousState) //if not pressed and previously pressed
+                            bind.action();
+                        break;
+                    
+                    case BindType.WHILE_PRESSED:
+                        if(bind.state)
+                            bind.action();
+                        break;
+
+                    case BindType.WHILE_RELEASED:
+                        if(!bind.state)
+                            bind.action();
+                        break;
+                }
             }
-
-            this.#bindings.get(key)();
         }
     }
 
@@ -118,7 +116,16 @@ class KeyboardController{
     }
 
     configureBinding(key, action, bindType){
-        this.#bindings.set(key, new Keybind(key, action, bindType));
+        if(this.#bindings.get(key) == null){
+            this.#bindings.set(key, new Array());
+        }
+
+        this.#keys.set(key, false);
+
+        var bindings = this.#bindings.get(key);
+        bindings.push(new Keybind(key, action, bindType));
+
+       this.#bindings.set(key, bindings);
     }
 
 }

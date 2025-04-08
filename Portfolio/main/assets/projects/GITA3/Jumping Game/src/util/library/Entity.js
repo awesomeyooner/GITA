@@ -23,9 +23,16 @@ class Entity extends Point{
             return true;
     }
 
+    reset(origin, active){
+        this.setPoint(origin);
+        this.isActive = active;
+    }
+
     drawEntity(){
+        push();
         fill(this.color);
         circle(this.getNativeX(), this.getNativeY(), this.size);
+        pop();
     }
 
     setHeading(newHeading, useSpeed = false){

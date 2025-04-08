@@ -64,7 +64,9 @@ class Point{
 
     plus(otherPoint){
         var sumX = this.#x + otherPoint.getCartesianX();
-        var sumY = this.#y + otherPoint.getCartesianY()
+        var sumY = this.#y + otherPoint.getCartesianY();
+
+        //this.set(sumX, sumY);
 
         return new Point(sumX, sumY);
     }
