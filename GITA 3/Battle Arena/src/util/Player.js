@@ -19,6 +19,10 @@ class Player extends Entity{
             color
         );
 
+        this.initialize();
+    }
+
+    initialize(){
         CollisionManager.addArrayOfEntities(this.projectileManager.getProjectiles(), 
             CollisionType.BULLET,
             (selfEvent, collidedEvent) => {
