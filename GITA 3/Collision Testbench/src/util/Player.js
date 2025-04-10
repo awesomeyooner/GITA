@@ -19,7 +19,28 @@ class Player extends Entity{
             color
         );
 
-        
+        CollisionManager.addArrayOfEntities(this.projectileManager.getProjectiles(), 
+            CollisionType.BULLET,
+            (selfEvent, collidedEvent) => {
+                
+                if(selfEvent.type !== collidedEvent.type && selfEvent.entity.bounces != 0){
+                    selfEvent.entity.isActive = false;
+                }
+            }
+        );
+
+        CollisionManager.addEntity(this,
+            CollisionType.PLAYER,
+            (selfEvent, collidedEvent) => {
+                if(selfEvent.type !== collidedEvent.type){
+
+                    if(collidedEvent.entity.bounces != 0){
+                        selfEvent.entity.health--;
+                        collidedEvent.entity.isActive = false;
+                    }
+                }
+            }
+        );
     }
 
     update(){

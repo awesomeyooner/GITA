@@ -50,16 +50,16 @@ class Projectile extends Entity{
         this.bounces = 0;
     }
 
-    collides(object, runnable, extraConditional = (projectile) => true){
+    // collides(object, runnable = () => {}, extraConditional = (projectile) => true){
 
-        if(super.collides(object) && extraConditional(this)){
-            this.isActive = false;
+    //     if(super.collides(object) && extraConditional(this)){
+    //         this.isActive = false;
             
-            runnable();
+    //         runnable();
 
-            return true;
-        }
-        else
-            return false;
-    }
+    //         return true;
+    //     }
+    //     else
+    //         return false;
+    // }
 }

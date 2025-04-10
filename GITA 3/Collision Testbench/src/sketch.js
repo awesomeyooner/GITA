@@ -2,7 +2,7 @@
 var mouse = new Mouse();
 var keyboard = new KeyboardController();
 
-var gameManager = new GameManager();
+const gameManager = GameManager.getInstance();
 
 function setup() {
   createCanvas(1600, 800);
