@@ -47,6 +47,7 @@ class Projectile extends Entity{
         this.setPoint(origin);
         this.setHeading(direction.withMagnitude(this.speed));
         this.isActive = true;
+        this.health = this.maxHealth;
         this.bounces = 0;
     }
 

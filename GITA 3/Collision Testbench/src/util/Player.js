@@ -1,26 +1,13 @@
-class Player extends Entity{
+class Player extends Gunner{
 
     constructor(size, speed, maxBullets = 50, maxHealth = 10, color = "blue"){
         super(
             size,
-            0,
-            0,
-            true,
             speed,
+            maxBullets,
             maxHealth,
             color
         );
-
-        this.projectileManager = new ProjectileManager(
-            maxBullets, 
-            10, 
-            10, 
-            2, 
-            10,
-            color
-        );
-
-        this.initialize();
     }
 
     initialize(){
@@ -28,8 +15,8 @@ class Player extends Entity{
             CollisionType.BULLET,
             (selfEvent, collidedEvent) => {
                 
-                if(selfEvent.type !== collidedEvent.type && selfEvent.entity.bounces != 0){
-                    selfEvent.entity.health--;
+                if(selfEvent.type !== collidedEvent.type && collidedEvent.type !== CollisionType.PLAYER){
+                    selfEvent.entity.incrementHealth(-1);
                 }
             }
         );
@@ -39,26 +26,15 @@ class Player extends Entity{
             (selfEvent, collidedEvent) => {
                 if(selfEvent.type !== collidedEvent.type){
 
-                    if(collidedEvent.entity.bounces != 0){
-                        selfEvent.entity.health--;
-                        collidedEvent.entity.isActive = false;
-                    }
+                    if(collidedEvent.type == CollisionType.ENEMY)
+                        selfEvent.entity.incrementHealth(-1);
+
+                    // if(collidedEvent.entity.bounces != 0){
+                    //     selfEvent.entity.health--;
+                    //     collidedEvent.entity.isActive = false;
+                    // }
                 }
             }
         );
-    }
-
-    update(){
-        if(!super.update())
-            return;
-
-        this.move();
-        this.drawEntity();
-
-        this.projectileManager.update();
-    }
-
-    shoot(direction){
-        this.projectileManager.shoot(this, direction);
     }
 }

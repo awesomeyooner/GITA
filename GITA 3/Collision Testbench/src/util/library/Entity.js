@@ -93,12 +93,93 @@ class Entity extends Point{
     }
 
     /**
+     * Increments the health and sets `isActive` to `false` if it makes the new health <=0
+     * @param {number} increment how much health to add, make negaive to subtract 
+     */
+    incrementHealth(increment){
+        this.health += increment;
+
+        if(this.health <= 0)
+            this.isActive = false;
+    }
+
+    /**
+     * Sets the health to the given value
+     * @param {number} newHealth new health to set 
+     */
+    setHealth(newHealth){
+        this.health = newHealth;
+
+        if(this.health <= 0)
+            this.isActive = false;
+    }
+
+    /**
+     * Sets the health back to max
+     */
+    resetHealth(){
+        this.health = this.maxHealth;
+    }
+
+    /**
      * Updates the position with the velocity vector
      * @param {Vector} heading The velocity vector to use, defaults to the internal heading
      */
     move(heading = this.movement){
         this.setX((this.getCartesianX() + heading.getX()));
         this.setY((this.getCartesianY() + heading.getY()));
+    }
+
+    /**
+     * Moves towards the target
+     * @param {Entity} target The targeted entity to go to 
+     */
+    pursuit(target){
+        var heading = this.getVector(target).times(-1);
+
+        this.setHeading(heading, true);
+    }
+
+    /**
+     * Gets the closest target in a given array of targets
+     * @param {Array} targets Array of targets
+     * @return {Entity} The closest target
+     */
+    getClosestTarget(targets){
+
+        if(targets.length <= 0)
+            throw new Error("Targets is empty!");
+
+        var closest = this.getDistance(targets[i]);
+        var indexOfClosest = 0;
+
+        for(var i = 0; i < targets.length; i++){
+        
+            var distance = this.getDistance(targets[i]);
+
+            if(distance < closest){
+                closest = distance;
+                indexOfClosest = i;
+            }
+        }
+
+        return targets[i];
+    }
+
+    /**
+     * Moves both entities so that they don't no clip each other
+     * @param {Entity} otherEntity The Other entity to compare 
+     */
+    applyAntiNoClip(otherEntity){
+
+        if(!this.collides(otherEntity))
+            return;
+
+        var maxDistance = this.getDistanceBetweenEdges(otherEntity);
+
+        var vector = otherEntity.getVector(this).withMagnitude(maxDistance);
+
+        this.move(vector);
     }
 
     /**
@@ -175,8 +256,30 @@ class Entity extends Point{
      * @returns True if the entities overlap
      */
     collides(otherEntity){
-        var maxDistance = (this.size / 2) + (otherEntity.size / 2);
+        var maxDistance = this.getMaxDistanceBeforeCollision(otherEntity);
 
         return this.getDistance(otherEntity) < maxDistance;
+    }
+
+    /**
+     * Gets the max distance to another entity before colliding
+     * @param {Entity} otherEntity The other entity to compare to 
+     * @returns The max distance
+     */
+    getMaxDistanceBeforeCollision(otherEntity){
+        var maxDistance = (this.size / 2) + (otherEntity.size / 2);
+
+        return maxDistance;
+    }
+
+    /**
+     * Gets the distance between the edges of two entites;
+     * @param {Entity} otherEntity The other entity to compare to 
+     * @return The distance between the edges
+     */
+    getDistanceBetweenEdges(otherEntity){
+        var distance = this.getDistance(otherEntity) - (this.size / 2) - (otherEntity.size / 2);
+
+        return distance;
     }
 }

@@ -24,6 +24,7 @@ class GameManager{
         this.player.update();
 
         CollisionManager.update();
+        EnemyManager.getInstance().update(this.player);
 
         this.#displayStats();
     }
@@ -33,6 +34,13 @@ class GameManager{
             this.player.health,
             100,
             50,
+            20
+        );
+
+        Utility.textCorner(
+            this.player.projectileManager.getNumberOfActiveProjectiles(),
+            100,
+            100,
             20
         );
     }
