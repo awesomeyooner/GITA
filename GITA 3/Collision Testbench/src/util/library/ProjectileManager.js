@@ -1,6 +1,6 @@
 class ProjectileManager{
 
-    constructor(maxProjectiles = 10, speed = 1, size = 10, maxBounces = 0, color = "blue"){
+    constructor(maxProjectiles = 10, speed = 1, size = 10, health = 1, maxBounces = 0, color = "blue"){
         this.projectiles = new Array();
         this.maxProjectiles = maxProjectiles;
 
@@ -8,16 +8,18 @@ class ProjectileManager{
             size,
             maxBounces,
             speed,
+            health,
             color
         );
     }
 
-    resetProjectiles(size = 10, maxBounces = 0, speed = 1, color = "blue"){
+    resetProjectiles(size = 10, maxBounces = 0, speed = 1, health = 1, color = "blue"){
         for(var i = 0; i < this.maxProjectiles; i++){
             this.projectiles[i] = new Projectile(
                 size, //size
                 maxBounces, //bounces
                 speed, //speed
+                health, //health
                 color //color
             );
         }

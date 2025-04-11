@@ -15,16 +15,21 @@ class Player extends Entity{
             maxBullets, 
             10, 
             10, 
-            1, 
+            2, 
+            10,
             color
         );
 
+        this.initialize();
+    }
+
+    initialize(){
         CollisionManager.addArrayOfEntities(this.projectileManager.getProjectiles(), 
             CollisionType.BULLET,
             (selfEvent, collidedEvent) => {
                 
                 if(selfEvent.type !== collidedEvent.type && selfEvent.entity.bounces != 0){
-                    selfEvent.entity.isActive = false;
+                    selfEvent.entity.health--;
                 }
             }
         );

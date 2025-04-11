@@ -1,13 +1,13 @@
 class Projectile extends Entity{
 
-    constructor(size, maxBounces = 0, speed = 3, color = "blue"){
+    constructor(size, maxBounces = 0, speed = 3, health = 1, color = "blue"){
         super(
             size, //size
             0, //x
             0, //y
             false, //is active
             speed, //speed
-            1, //health
+            health, //health
             color //color
         );
 
@@ -29,7 +29,7 @@ class Projectile extends Entity{
 
     update(){
 
-        if(!this.isActive)
+        if(!super.update())
             return;
         
         this.move();
