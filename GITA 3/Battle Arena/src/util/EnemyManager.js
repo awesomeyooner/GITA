@@ -1,68 +1,52 @@
 class EnemyManager{
 
+    static instance = new EnemyManager();
+
     constructor(maxEnemies = 100){
         this.maxEnemies = maxEnemies;
 
         this.enemies = new Array();
 
-        this.totalSegmentsEliminated = 0;
+        this.initialize();
     }
 
-    update(player){
+    static getInstance(){
+        return this.instance;
+    }
+
+    initialize(){
+        this.reset(50, 2);
+    }
+
+    update(target){
         for(var enemy of this.enemies){
-            if(!enemy.isActive)
-                continue;
-
+            enemy.pursuit(target);
             enemy.update();
+        }
+    }
 
-            if(enemy.collides(player)){
-                player.health--;
-                enemy.isActive = false;
+    reset(size, speed, maxBullets = 10, maxHealth = 3, color = "red"){
+        for(var i = 0; i < this.maxEnemies; i++){
+            this.enemies[i] = new Enemy(
+                size,
+                speed,
+                maxBullets,
+                maxHealth,
+                color
+            );
+
+            this.enemies[i].isActive = false;
+        }
+    }
+
+    respawnOneEnemy(origin){
+
+        for(var enemy of this.enemies){
+            if(enemy.isActive)
                 continue;
-            }
 
-            for(var bullet of player.bulletManager.getProjectiles()){
-                for(var segment of enemy.segments){
-                    if(bullet.isActive && segment.isActive && segment.collides(bullet)){
-                        bullet.isActive = false;
-                        segment.isActive = false;
-                        this.totalSegmentsEliminated++;
-                    }
-                }
-               
-            }
-
-            for(var bomb of player.bombManager.getProjectiles()){
-                for(var segment of enemy.segments){
-                    if(bomb.isActive && segment.isActive && segment.collides(bomb)){
-                        bomb.isActive = false;
-                        segment.isActive = false;
-                        this.totalSegmentsEliminated++;
-                    }
-                }
-            }
-
-            for(var bullet of enemy.bulletManager.getProjectiles()){
-
-                for(var segment of player.segments){
-                    if(bullet.isActive && segment.isActive && segment.collides(bullet)){
-                        bullet.isActive = false;
-                        player.health--;
-                    }
-                }
-                
-            }
-
-            for(var bomb of enemy.bombManager.getProjectiles()){
-
-                for(var segment of player.segments){
-                    if(bomb.isActive && segment.isActive && segment.collides(bomb)){
-                        bomb.isActive = false;
-                        player.health--;
-                    }
-                }
-                
-            }
+            enemy.reset(origin);
+            break;
         }
     }
 
