@@ -150,11 +150,14 @@ class Entity extends Point{
         if(targets.length <= 0)
             throw new Error("Targets is empty!");
 
-        var closest = this.getDistance(targets[i]);
+        var closest = this.getDistance(targets[0]);
         var indexOfClosest = 0;
 
         for(var i = 0; i < targets.length; i++){
-        
+            
+            if(!targets[i].isActive)
+                continue;
+
             var distance = this.getDistance(targets[i]);
 
             if(distance < closest){
@@ -163,7 +166,7 @@ class Entity extends Point{
             }
         }
 
-        return targets[i];
+        return targets[indexOfClosest];
     }
 
     /**

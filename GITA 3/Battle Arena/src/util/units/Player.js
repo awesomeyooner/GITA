@@ -10,6 +10,21 @@ class Player extends Gunner{
         );
     }
 
+    update(enemies){
+        super.update();
+
+        var closest = this.getClosestTarget(enemies);
+
+        closest.color = "blue";
+    }
+
+    shootWithAutoAim(enemies){
+        var closest = this.getClosestTarget(enemies);
+
+        this.shoot(closest.getVector(this).getUnitVector());
+
+    }
+
     initialize(){
         CollisionManager.addArrayOfEntities(this.projectileManager.getProjectiles(), 
             CollisionType.BULLET,

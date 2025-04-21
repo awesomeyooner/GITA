@@ -21,10 +21,10 @@ class GameManager{
     update(){
         background("skyblue");
 
-        this.player.update();
-
+        
         CollisionManager.update();
         EnemyManager.getInstance().update(this.player);
+        this.player.update(EnemyManager.getInstance().enemies);
 
         this.#displayStats();
     }

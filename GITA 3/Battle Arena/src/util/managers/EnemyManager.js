@@ -15,7 +15,7 @@ class EnemyManager{
     }
 
     initialize(){
-        this.reset(50, 2);
+        this.reset(50, 1);
     }
 
     update(target){
@@ -59,43 +59,5 @@ class EnemyManager{
         }
 
         return total;
-    }
-
-    resetEnemies(){
-        for(var i = 0; i < this.maxEnemies; i++){
-            this.enemies[i] = new Enemy(
-                40,
-                2,
-                3
-            );
-
-            this.enemies[i].reset(false);
-        }
-    }
-
-    removeFeet(){
-        for(var enemy of this.enemies){
-            if(!enemy.isActive)
-                continue;
-
-            for(var segment of enemy.segments){
-                if(segment.isActive){
-                    segment.isActive = false;
-                    break;
-                }
-            }
-
-            enemy.refreshSegments();
-        }
-    }
-
-    spawnEnemy(){
-        for(var enemy of this.enemies){
-            if(!enemy.isActive){
-                enemy.reset(true);
-                enemy.setHeading(new Vector(-1, 0), true);
-                break;
-            }
-        }
     }
 }
