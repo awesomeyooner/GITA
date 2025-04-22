@@ -19,6 +19,8 @@ function setup() {
 
   keyboard.configureBinding("q", () => EnemyManager.getInstance().respawnOneEnemy(mouse.copy()), BindType.ON_PRESS);
   keyboard.configureBinding("e", () => EnemyManager.getInstance().respawnOneEnemy(mouse.copy()), BindType.WHILE_PRESSED);
+
+  keyboard.configureBinding("r", () => gameManager.player.placeBarricade(mouse.copy()), BindType.ON_PRESS);
   
   // keyboard.configureBinding("s", () => gameManager.player.crouching = true, BindType.ON_PRESS);
   // keyboard.configureBinding("s", () => gameManager.player.crouching = false, BindType.ON_RELEASE);

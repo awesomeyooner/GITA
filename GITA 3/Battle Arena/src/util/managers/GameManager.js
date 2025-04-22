@@ -43,5 +43,12 @@ class GameManager{
             100,
             20
         );
+
+        Utility.textCorner(
+            this.player.barricadeManager.getNumberOfActiveProjectiles(),
+            100,
+            150,
+            20
+        );
     }
 }

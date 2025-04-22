@@ -40,7 +40,12 @@ class Enemy extends Gunner{
     }
 
     update(){
-        super.update();
+        super.update()
+
+        if(!this.isActive)
+            return;
+        
+        this.displayHealthBar();
 
         if(this.health == 1)
             this.color = "red";

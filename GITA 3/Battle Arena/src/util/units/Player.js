@@ -8,14 +8,26 @@ class Player extends Gunner{
             maxHealth,
             color
         );
+
+        this.barricadeManager = new BarricadeManager(1);
     }
 
     update(enemies){
         super.update();
+        this.barricadeManager.update();
+
+        if(!this.isActive)
+            return;
+
+        this.displayHealthBar();
 
         var closest = this.getClosestTarget(enemies);
 
         closest.color = "blue";
+    }
+
+    placeBarricade(point){
+        this.barricadeManager.shoot(point, new Vector(0, 0));
     }
 
     shootWithAutoAim(enemies){

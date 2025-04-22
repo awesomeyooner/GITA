@@ -1,16 +1,18 @@
 class ProjectileManager{
 
-    constructor(maxProjectiles = 10, speed = 1, size = 10, health = 1, maxBounces = 0, color = "blue"){
+    constructor(maxProjectiles = 10, speed = 1, size = 10, health = 1, maxBounces = 0, color = "blue", override = false){
         this.projectiles = new Array();
         this.maxProjectiles = maxProjectiles;
 
-        this.resetProjectiles(
-            size,
-            maxBounces,
-            speed,
-            health,
-            color
-        );
+        if(!override){
+            this.resetProjectiles(
+                size,
+                maxBounces,
+                speed,
+                health,
+                color
+            );
+        }
     }
 
     resetProjectiles(size = 10, maxBounces = 0, speed = 1, health = 1, color = "blue"){

@@ -1,4 +1,4 @@
-class Barricade extends Entity{
+class Barricade extends Projectile{
 
     constructor(maxHealth, size = 40){
         super(
@@ -11,6 +11,5 @@ class Barricade extends Entity{
             "brown"
         );
     }
-
 
 }

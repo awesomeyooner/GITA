@@ -1,12 +1,36 @@
-class BarricadeManager{
+class BarricadeManager extends ProjectileManager{
 
-    static instance = new BarricadeManager();
+    constructor(health, size = 40, maxBarricades = 100){
+        super(
+            maxBarricades,
+            0,
+            size,
+            health,
+            0,
+            "brown",
+            true
+        );
 
-    constructor(maxBarricades = 100){
-
+        this.resetProjectiles(health, size);
     }
 
-    static getInstance(){
-        return this.instance;
+    resetProjectiles(health, size = 40){
+        for(var i = 0; i < this.maxProjectiles; i++){
+            this.projectiles[i] = new Barricade(
+                health, //health
+                size //size
+            );
+
+            // CollisionManager.addEntity(
+            //     this.projectiles[i],
+            //     CollisionType.BARRICADE,
+            //     (selfEvent, collidedEvent) => {
+                
+            //         if(selfEvent.type !== collidedEvent.type && collidedEvent.type === CollisionType.BULLET){
+            //             selfEvent.entity.incrementHealth(-1);
+            //         }
+            //     }
+            // );
+        }
     }
 }

@@ -59,6 +59,21 @@ class Entity extends Point{
         pop();
     }
 
+    displayHealthBar(){
+        push();
+
+        fill("red");
+        stroke("black");
+
+        Utility.rectCenter(
+            this.getNativeX(),
+            this.getNativeY() + (this.size * 0.75),
+            (this.health / this.maxHealth) * this.size * 1.15,
+            this.size * 0.1
+        )
+        pop();
+    }
+
     /**
      * Sets the Velocity Vector
      * @param {Vector} newHeading The new velocity vector

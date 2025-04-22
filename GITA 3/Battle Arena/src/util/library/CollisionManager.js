@@ -1,7 +1,8 @@
 const CollisionType  = {
     PLAYER: "player",
     ENEMY: "enemy",
-    BULLET: "bullet"
+    BULLET: "bullet",
+    BARRICADE: "barricade"
 }
 
 class CollisionEvent{
