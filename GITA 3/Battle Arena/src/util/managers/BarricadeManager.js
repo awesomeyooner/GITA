@@ -20,17 +20,6 @@ class BarricadeManager extends ProjectileManager{
                 health, //health
                 size //size
             );
-
-            // CollisionManager.addEntity(
-            //     this.projectiles[i],
-            //     CollisionType.BARRICADE,
-            //     (selfEvent, collidedEvent) => {
-                
-            //         if(selfEvent.type !== collidedEvent.type && collidedEvent.type === CollisionType.BULLET){
-            //             selfEvent.entity.incrementHealth(-1);
-            //         }
-            //     }
-            // );
         }
     }
 }

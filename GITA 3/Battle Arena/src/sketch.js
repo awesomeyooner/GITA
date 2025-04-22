@@ -11,11 +11,11 @@ function setup() {
 
   keyboard.initialize(window);
 
-  // mouse.configureBinding(() => gameManager.player.shoot(mouse.getVector(gameManager.player)), MouseState.ON_PRESS);
-  mouse.configureBinding(() => gameManager.player.shootWithAutoAim(EnemyManager.getInstance().enemies), MouseState.ON_PRESS);
+  mouse.configureBinding(() => gameManager.player.shoot(mouse.getVector(gameManager.player)), MouseState.ON_PRESS);
+  // mouse.configureBinding(() => gameManager.player.shootWithAutoAim(EnemyManager.getInstance().enemies), MouseState.ON_PRESS);
   
-  // keyboard.configureBinding(" ", () => gameManager.player.shoot(mouse.getVector(gameManager.player)), BindType.WHILE_PRESSED);
-  keyboard.configureBinding(" ", () => gameManager.player.shootWithAutoAim(EnemyManager.getInstance().enemies), BindType.WHILE_PRESSED);
+  keyboard.configureBinding(" ", () => gameManager.player.shoot(mouse.getVector(gameManager.player)), BindType.WHILE_PRESSED);
+  // keyboard.configureBinding(" ", () => gameManager.player.shootWithAutoAim(EnemyManager.getInstance().enemies), BindType.WHILE_PRESSED);
 
   keyboard.configureBinding("q", () => EnemyManager.getInstance().respawnOneEnemy(mouse.copy()), BindType.ON_PRESS);
   keyboard.configureBinding("e", () => EnemyManager.getInstance().respawnOneEnemy(mouse.copy()), BindType.WHILE_PRESSED);

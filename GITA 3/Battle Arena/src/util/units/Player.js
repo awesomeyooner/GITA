@@ -9,7 +9,9 @@ class Player extends Gunner{
             color
         );
 
-        this.barricadeManager = new BarricadeManager(1);
+        this.barricadeManager = new BarricadeManager(3);
+
+        this.initialize();
     }
 
     update(enemies){
@@ -53,13 +55,33 @@ class Player extends Gunner{
             (selfEvent, collidedEvent) => {
                 if(selfEvent.type !== collidedEvent.type){
 
-                    if(collidedEvent.type == CollisionType.ENEMY)
+                    if(collidedEvent.type === CollisionType.ENEMY)
                         selfEvent.entity.incrementHealth(-1);
-
+                    else if(collidedEvent.type === CollisionType.BARRICADE)
+                        selfEvent.entity.incrementHealth(-1);
                     // if(collidedEvent.entity.bounces != 0){
                     //     selfEvent.entity.health--;
                     //     collidedEvent.entity.isActive = false;
                     // }
+                }
+            }
+        );
+
+        CollisionManager.addArrayOfEntities(
+            this.barricadeManager.getProjectiles(),
+            CollisionType.BARRICADE,
+            (selfEvent, collidedEvent) => {
+            
+                if(selfEvent.type !== collidedEvent.type){
+                    if(collidedEvent.type === CollisionType.BULLET)
+                        selfEvent.entity.incrementHealth(-1);
+                    else if(collidedEvent.type === CollisionType.ENEMY)
+                        selfEvent.entity.incrementHealth(-1);
+                    else if(collidedEvent.type === CollisionType.PLAYER)
+                        selfEvent.entity.setHealth(0);
+                }
+                else{
+                    selfEvent.entity.applyAntiNoClip(collidedEvent.entity);
                 }
             }
         );

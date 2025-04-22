@@ -21,6 +21,16 @@ class GameManager{
     update(){
         background("skyblue");
 
+        if(!this.player.isActive){
+            Utility.textCenter(
+                "Game Over!",
+                Utility.cartesianToNativeX(0),
+                Utility.cartesianToNativeY(0),
+                100
+            );
+
+            return;
+        }
         
         CollisionManager.update();
         EnemyManager.getInstance().update(this.player);
@@ -31,21 +41,21 @@ class GameManager{
 
     #displayStats(){
         Utility.textCorner(
-            this.player.health,
+            "Health: " + this.player.health,
             100,
             50,
             20
         );
 
         Utility.textCorner(
-            this.player.projectileManager.getNumberOfActiveProjectiles(),
+            "Bullets: " + this.player.projectileManager.getNumberOfActiveProjectiles(),
             100,
             100,
             20
         );
 
         Utility.textCorner(
-            this.player.barricadeManager.getNumberOfActiveProjectiles(),
+            "Barricades: " + this.player.barricadeManager.getNumberOfActiveProjectiles(),
             100,
             150,
             20

@@ -20,7 +20,7 @@ class Gunner extends Entity{
             color
         );
 
-        this.initialize();
+        // this.initialize();
     }
 
     initialize(){}

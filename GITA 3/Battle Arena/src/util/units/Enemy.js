@@ -8,6 +8,8 @@ class Enemy extends Gunner{
             maxHealth,
             color
         );
+
+        this.initialize();
     }
 
     initialize(){
@@ -16,7 +18,7 @@ class Enemy extends Gunner{
             (selfEvent, collidedEvent) => {
                 
                 if(selfEvent.type !== collidedEvent.type && selfEvent.entity.bounces != 0){
-                    selfEvent.entity.health--;
+                    selfEvent.entity.incrementHealth(-1);
                 }
             }
         );
@@ -30,6 +32,8 @@ class Enemy extends Gunner{
                     if(collidedEvent.type === CollisionType.BULLET)
                         selfEvent.entity.incrementHealth(-1);
                     else if(collidedEvent.type === CollisionType.PLAYER)
+                        selfEvent.entity.setHealth(0);
+                    else if(collidedEvent.type === CollisionType.BARRICADE)
                         selfEvent.entity.setHealth(0);
                 }
                 else{
