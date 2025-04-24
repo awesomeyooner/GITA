@@ -39,6 +39,11 @@ class Entity extends Point{
     }
 
     /**
+     * Base method for initializing Entity
+     */
+    initialize(){}
+
+    /**
      * 
      * @param {Point} origin 
      * @param {boolean} active 

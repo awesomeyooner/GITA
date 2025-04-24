@@ -13,15 +13,15 @@ class Enemy extends Gunner{
     }
 
     initialize(){
-        CollisionManager.addArrayOfEntities(this.projectileManager.getProjectiles(), 
-            CollisionType.BULLET,
-            (selfEvent, collidedEvent) => {
+        // CollisionManager.addArrayOfEntities(this.projectileManager.getProjectiles(), 
+        //     CollisionType.BULLET,
+        //     (selfEvent, collidedEvent) => {
                 
-                if(selfEvent.type !== collidedEvent.type && selfEvent.entity.bounces != 0){
-                    selfEvent.entity.incrementHealth(-1);
-                }
-            }
-        );
+        //         if(selfEvent.type !== collidedEvent.type && selfEvent.entity.bounces != 0){
+        //             selfEvent.entity.incrementHealth(-1);
+        //         }
+        //     }
+        // );
 
         CollisionManager.addEntity(this,
             CollisionType.ENEMY,
@@ -34,6 +34,8 @@ class Enemy extends Gunner{
                     else if(collidedEvent.type === CollisionType.PLAYER)
                         selfEvent.entity.setHealth(0);
                     else if(collidedEvent.type === CollisionType.BARRICADE)
+                        selfEvent.entity.setHealth(0);
+                    else if(collidedEvent.type === CollisionType.FORTRESS)
                         selfEvent.entity.setHealth(0);
                 }
                 else{

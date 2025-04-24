@@ -8,6 +8,20 @@ class GameManager{
             50,
             5
         );
+
+        this.playerFortress = new Fortress(
+            PLAYER_FORTRESS_LOCATION,
+            100,
+            100,
+            "blue"
+        );
+
+        this.enemyFortress = new Fortress(
+            ENEMY_FORTRESS_LOCATION,
+            100,
+            100,
+            "red"
+        );
     }
 
     static getInstance(){
@@ -22,13 +36,7 @@ class GameManager{
         background("skyblue");
 
         if(!this.player.isActive){
-            Utility.textCenter(
-                "Game Over!",
-                Utility.cartesianToNativeX(0),
-                Utility.cartesianToNativeY(0),
-                100
-            );
-
+            this.#displayGameOver();
             return;
         }
         
@@ -36,7 +44,19 @@ class GameManager{
         EnemyManager.getInstance().update(this.player);
         this.player.update(EnemyManager.getInstance().enemies);
 
+        this.playerFortress.update();
+        this.enemyFortress.update();
+
         this.#displayStats();
+    }
+
+    #displayGameOver(){
+        Utility.textCenter(
+            "Game Over!",
+            Utility.cartesianToNativeX(0),
+            Utility.cartesianToNativeY(0),
+            100
+        );
     }
 
     #displayStats(){
