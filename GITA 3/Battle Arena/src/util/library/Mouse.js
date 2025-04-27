@@ -5,21 +5,21 @@ const MouseState = {
     ON_RELEASE: "on_release"
 }
 
-class Mouse extends Point{
+class Mouse{
 
-    #isMousePressed = false;
+    static #isMousePressed = false;
 
-    #onPress;
-    #onRelease;
-    #whileDown;
-    #whileUp;
+    static #onPress;
+    static #onRelease;
+    static #whileDown;
+    static #whileUp;
 
-    constructor(){
-        super(0, 0);
-    }
+    static #point = new Point();
 
-    update(newMousePressed){
-        this.set(Utility.nativeToCartesianX(mouseX), Utility.nativeToCartesianY(mouseY));        
+    constructor(){}
+
+    static update(newMousePressed){
+        this.#point.set(Utility.nativeToCartesianX(mouseX), Utility.nativeToCartesianY(mouseY));
 
         if(this.#onRelease != null && this.#isMousePressed && !newMousePressed) //going from held to not held aka RELEASE
             this.#onRelease();
@@ -34,7 +34,7 @@ class Mouse extends Point{
             this.#whileUp();
     }
 
-    configureBinding(method, state){
+    static configureBinding(method, state){
         switch(state){
             case MouseState.WHILE_DOWN:
                 this.#whileDown = method;
@@ -54,7 +54,11 @@ class Mouse extends Point{
         }
     }
 
-    isPressed(){
+    static get(){
+        return this.#point;
+    }
+
+    static isPressed(){
         return this.#isMousePressed;
     }
 }
