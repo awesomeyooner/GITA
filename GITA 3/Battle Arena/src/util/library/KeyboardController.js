@@ -76,8 +76,8 @@ class KeyboardController{
     }
 
     printKeys(){
-        for(var key of keyboard.getKeys().keys()){
-            print(key + ": " + keyboard.getKeys().get(key));
+        for(var key of this.getKeys().keys()){
+            print(key + ": " + this.getKeys().get(key));
         }
     }
 
