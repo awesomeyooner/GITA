@@ -1,6 +1,6 @@
 class Fortress extends Entity{
 
-    constructor(origin, size, health, color){
+    constructor(origin, size, health, color, type){
         super(
             size, // size
             origin.getCartesianX(),
@@ -11,7 +11,7 @@ class Fortress extends Entity{
             color
         );
 
-        this.initialize();
+        this.initialize(type);
     }
 
     update(){
@@ -24,24 +24,41 @@ class Fortress extends Entity{
         this.displayHealthBar();
     }
 
-    initialize(){
-        CollisionManager.addEntity(
-            this,
-            CollisionType.FORTRESS,
-            (selfEvent, collidedEvent) => {
-                if(selfEvent.type !== collidedEvent.type){
+    initialize(type){
 
-                    switch(collidedEvent.type){
-                        case CollisionType.ENEMY:
-                            selfEvent.entity.incrementHealth(-1);
-                            break;
-                        case CollisionType.BULLET:
-                            selfEvent.entity.incrementHealth(-1);
-                            break;
+        if(type == CollisionType.FORTRESS_ENEMY)
+            CollisionManager.addEntity(
+                this,
+                CollisionType.FORTRESS_ENEMY,
+                (selfEvent, collidedEvent) => {
+                    if(selfEvent.type !== collidedEvent.type){
+
+                        switch(collidedEvent.type){
+                            case CollisionType.BULLET:
+                                selfEvent.entity.incrementHealth(-1);
+                                break;
+                        }
                     }
                 }
-            }
-        )
+            );
+        else if(type == CollisionType.FORTRESS_PLAYER)
+            CollisionManager.addEntity(
+                this,
+                CollisionType.FORTRESS_PLAYER,
+                (selfEvent, collidedEvent) => {
+                    if(selfEvent.type !== collidedEvent.type){
+
+                        switch(collidedEvent.type){
+                            case CollisionType.ENEMY:
+                                selfEvent.entity.incrementHealth(-1);
+                                break;
+                            case CollisionType.BULLET:
+                                selfEvent.entity.incrementHealth(-1);
+                                break;
+                        }
+                    }
+                }
+            );
     }
 
     

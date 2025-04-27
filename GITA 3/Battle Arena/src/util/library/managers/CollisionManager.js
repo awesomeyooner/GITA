@@ -4,7 +4,8 @@ const CollisionType  = {
     BULLET: "bullet",
     BARRICADE: "barricade",
     TURRET: "turret",
-    FORTRESS: "fortress"
+    FORTRESS_PLAYER: "fortress_player",
+    FORTRESS_ENEMY: "fortress_enemy"
 }
 
 class CollisionEvent{

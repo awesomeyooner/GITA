@@ -20,7 +20,7 @@ class Turret extends Gunner{
                 if(selfEvent.type !== collidedEvent.type && collidedEvent.type === CollisionType.ENEMY){
                     selfEvent.entity.incrementHealth(-1);
                 }
-                else if(collidedEvent.type === CollisionType.FORTRESS)
+                else if(collidedEvent.type === CollisionType.FORTRESS_ENEMY)
                     selfEvent.entity.setHealth(0);
             }
         );

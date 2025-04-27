@@ -55,6 +55,24 @@ class Entity extends Point{
     }
 
     /**
+     * Resets the entity around a certain point
+     * @param {Point} origin 
+     * @param {number} maxRadius 
+     */
+    resetWithinRadius(origin, maxRadius){
+        var radius = Utility.random(0, maxRadius);
+
+        var angle = Utility.random(0, 2 * Math.PI);
+
+        var x = radius * Math.cos(angle);
+        var y = radius * Math.sin(angle);
+
+        var point = new Point(x, y);
+
+        this.reset(origin.plus(point));
+    }
+
+    /**
      * Paints the entity onto the screen, override for a custom drawing
      */
     drawEntity(){

@@ -21,6 +21,7 @@ function setup() {
 
   Keyboard.configureBinding("t", () => gameManager.player.turretManager.respawnOne(Mouse.get().copy()), BindType.ON_PRESS);
 
+  Keyboard.configureBinding("g", () => EnemyManager.getInstance().respawnOneAroundPoint(gameManager.enemyFortress, 100), BindType.WHILE_PRESSED);
   gameManager.initialize();
 }
 

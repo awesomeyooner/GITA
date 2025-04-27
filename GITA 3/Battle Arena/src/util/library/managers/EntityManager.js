@@ -35,6 +35,17 @@ class EntityManager{
         }
     }
 
+    respawnOneAroundPoint(origin, maxRadius){
+
+        for(var entity of this.entities){
+            if(entity.isActive)
+                continue;
+
+            entity.resetWithinRadius(origin, maxRadius);
+            break;
+        }
+    }
+
     getNumberOfActiveEntities(){
         var total = 0;
 

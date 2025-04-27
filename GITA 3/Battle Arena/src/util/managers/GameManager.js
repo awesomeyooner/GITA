@@ -13,14 +13,16 @@ class GameManager{
             PLAYER_FORTRESS_LOCATION,
             100,
             100,
-            "blue"
+            "blue",
+            CollisionType.FORTRESS_PLAYER
         );
 
         this.enemyFortress = new Fortress(
             ENEMY_FORTRESS_LOCATION,
             100,
             100,
-            "red"
+            "red",
+            CollisionType.FORTRESS_ENEMY
         );
 
         this.statsDisplay = new StatManager();
@@ -110,14 +112,14 @@ class GameManager{
         }
         
         CollisionManager.update();
-        EnemyManager.getInstance().update(this.player);
+        EnemyManager.getInstance().update(this.playerFortress);
         this.player.update(EnemyManager.getInstance().entities);
 
         this.playerFortress.update();
         this.enemyFortress.update();
 
         this.statsDisplay.display(Point.fromNative(50, 50), 20);
-        this.controlsDisplay.display(Point.fromNative(width - 250, height - 100), 20);
+        this.controlsDisplay.display(Point.fromNative(width - 250, height - 150), 20);
     }
 
     isGameOver(){

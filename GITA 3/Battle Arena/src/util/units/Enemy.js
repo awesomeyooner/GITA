@@ -35,7 +35,7 @@ class Enemy extends Gunner{
                         selfEvent.entity.setHealth(0);
                     else if(collidedEvent.type === CollisionType.BARRICADE)
                         selfEvent.entity.setHealth(0);
-                    else if(collidedEvent.type === CollisionType.FORTRESS)
+                    else if(collidedEvent.type === CollisionType.FORTRESS_PLAYER)
                         selfEvent.entity.setHealth(0);
                 }
                 else{
