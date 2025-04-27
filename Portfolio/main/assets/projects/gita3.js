@@ -91,6 +91,13 @@ const jsonData =
         "date": "1/17/2025",
         "description": "2D Game with gravity!"
     },
+    {
+        "header": "Battle Arena",
+        "image": "assets/projects/GITA3/Battle Arena/image.png",
+        "link": "assets/projects/GITA3/Battle Arena/index.html",
+        "date": "4/26/2025",
+        "description": "2D Large Scale Battlefield with collisions!"
+    },
 ]
 
 /*
