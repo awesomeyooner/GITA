@@ -10,6 +10,7 @@ class Player extends Gunner{
         );
 
         this.barricadeManager = new BarricadeManager(3);
+        this.turretManager = new TurretManager(10);
 
         this.initialize();
     }
@@ -17,13 +18,21 @@ class Player extends Gunner{
     update(enemies){
         super.update();
         this.barricadeManager.update();
+        this.turretManager.update(enemies);
 
         if(!this.isActive)
             return;
 
         this.displayHealthBar();
 
+        this.highlightClosest(enemies);
+    }
+
+    highlightClosest(enemies){
         var closest = this.getClosestTarget(enemies);
+
+        if(closest === null)
+            return;
 
         closest.color = "blue";
     }
@@ -44,8 +53,15 @@ class Player extends Gunner{
             CollisionType.BULLET,
             (selfEvent, collidedEvent) => {
                 
-                if(selfEvent.type !== collidedEvent.type && collidedEvent.type !== CollisionType.PLAYER){
-                    selfEvent.entity.incrementHealth(-1);
+                if(selfEvent.type !== collidedEvent.type && collidedEvent.type){
+                    switch(collidedEvent.type){
+                        case CollisionType.ENEMY:
+                            selfEvent.entity.incrementHealth(-1);
+                            break;
+                        case CollisionType.FORTRESS:
+                            selfEvent.entity.incrementHealth(-1);
+                            break;
+                    }
                 }
             }
         );
@@ -73,12 +89,14 @@ class Player extends Gunner{
             (selfEvent, collidedEvent) => {
             
                 if(selfEvent.type !== collidedEvent.type){
-                    if(collidedEvent.type === CollisionType.BULLET)
-                        selfEvent.entity.incrementHealth(-1);
-                    else if(collidedEvent.type === CollisionType.ENEMY)
-                        selfEvent.entity.incrementHealth(-1);
-                    else if(collidedEvent.type === CollisionType.PLAYER)
-                        selfEvent.entity.setHealth(0);
+                    switch(collidedEvent.type){
+                        case CollisionType.ENEMY:
+                            selfEvent.entity.incrementHealth(-1);
+                            break;
+                        case CollisionType.PLAYER:
+                            selfEvent.entity.setHealth(0);
+                            break;
+                    }
                 }
                 else{
                     selfEvent.entity.applyAntiNoClip(collidedEvent.entity);

@@ -1,11 +1,9 @@
-class EnemyManager{
+class EnemyManager extends EntityManager{
 
     static instance = new EnemyManager();
 
     constructor(maxEnemies = 100){
-        this.maxEnemies = maxEnemies;
-
-        this.enemies = new Array();
+        super(maxEnemies);
 
         this.initialize();
     }
@@ -19,15 +17,15 @@ class EnemyManager{
     }
 
     update(target){
-        for(var enemy of this.enemies){
-            enemy.pursuit(target);
-            enemy.update();
+        for(var entity of this.entities){
+            entity.pursuit(target);
+            entity.update();
         }
     }
 
     reset(size, speed, maxBullets = 10, maxHealth = 3, color = "red"){
-        for(var i = 0; i < this.maxEnemies; i++){
-            this.enemies[i] = new Enemy(
+        for(var i = 0; i < this.maxEntities; i++){
+            this.entities[i] = new Enemy(
                 size,
                 speed,
                 maxBullets,
@@ -35,29 +33,7 @@ class EnemyManager{
                 color
             );
 
-            this.enemies[i].isActive = false;
+            this.entities[i].isActive = false;
         }
-    }
-
-    respawnOneEnemy(origin){
-
-        for(var enemy of this.enemies){
-            if(enemy.isActive)
-                continue;
-
-            enemy.reset(origin);
-            break;
-        }
-    }
-
-    getNumberOfActiveEnemies(){
-        var total = 0;
-
-        for(var enemy of this.enemies){
-            if(enemy.isActive)
-                total++;
-        }
-
-        return total;
     }
 }

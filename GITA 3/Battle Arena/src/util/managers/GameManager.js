@@ -57,6 +57,13 @@ class GameManager{
                     )
                 );
 
+                this.statsDisplay.addEntry(
+                    new StatEntry(
+                        "Turrets",
+                        () => this.player.turretManager.getNumberOfActiveEntities() + " / " + this.player.turretManager.maxEntities
+                    )
+                );
+
             // Add Entries for Controls
                 this.controlsDisplay.addEntry(
                     new StatEntry(
@@ -85,6 +92,13 @@ class GameManager{
                         () => "Spawn Barricade"
                     )
                 );
+
+                this.controlsDisplay.addEntry(
+                    new StatEntry(
+                        "T",
+                        () => "Spawn Turret"
+                    )
+                );
     }
 
     update(){
@@ -97,7 +111,7 @@ class GameManager{
         
         CollisionManager.update();
         EnemyManager.getInstance().update(this.player);
-        this.player.update(EnemyManager.getInstance().enemies);
+        this.player.update(EnemyManager.getInstance().entities);
 
         this.playerFortress.update();
         this.enemyFortress.update();

@@ -13,7 +13,33 @@ class Turret extends Gunner{
     }
 
     initialize(){
+        CollisionManager.addArrayOfEntities(this.projectileManager.getProjectiles(), 
+            CollisionType.BULLET,
+            (selfEvent, collidedEvent) => {
+                
+                if(selfEvent.type !== collidedEvent.type && collidedEvent.type === CollisionType.ENEMY){
+                    selfEvent.entity.incrementHealth(-1);
+                }
+                else if(collidedEvent.type === CollisionType.FORTRESS)
+                    selfEvent.entity.setHealth(0);
+            }
+        );
 
+        CollisionManager.addEntity(this,
+            CollisionType.TURRET,
+            (selfEvent, collidedEvent) => {
+                if(selfEvent.type !== collidedEvent.type){
+
+                    if(collidedEvent.type === CollisionType.ENEMY)
+                        selfEvent.entity.setHealth(0);
+                    else if(collidedEvent.type === CollisionType.BARRICADE)
+                        selfEvent.entity.setHealth(0);
+
+                }
+                else
+                    selfEvent.entity.applyAntiNoClip(collidedEvent.entity);
+            }
+        );
     }
 
     update(enemies){
@@ -22,21 +48,26 @@ class Turret extends Gunner{
         if(!this.isActive)
             return;
 
+        this.displayHealthBar();
         this.shootAtClosest(enemies);
     }
 
     shootAtClosest(enemies){
 
-        var proc = 20; //20 in 1000
+        var proc = 20; //1 in proc
 
-        var random = Math.round(Utility.random(0, 1000));
+        var random = Math.round(Utility.random(0, proc));
 
-        if(proc != random)
+        if(0 != random)
             return
 
         var closest = this.getClosestTarget(enemies);
 
-        this.shoot(closest);
+        if(closest === null)
+            return;
+
+        this.shoot(closest.getVector(this));
+        this.incrementHealth(-1);
     }
 
 

@@ -162,7 +162,7 @@ class Entity extends Point{
 
     /**
      * Gets the closest target in a given array of targets
-     * @param {Array} targets Array of targets
+     * @param {Array<Entity>} targets Array of targets
      * @return {Entity} The closest target
      */
     getClosestTarget(targets){
@@ -170,8 +170,8 @@ class Entity extends Point{
         if(targets.length <= 0)
             throw new Error("Targets is empty!");
 
-        var closest = this.getDistance(targets[0]);
-        var indexOfClosest = 0;
+        var closest = Infinity;
+        var indexOfClosest = -1;
 
         for(var i = 0; i < targets.length; i++){
             
@@ -186,7 +186,24 @@ class Entity extends Point{
             }
         }
 
-        return targets[indexOfClosest];
+        if(indexOfClosest == -1)
+            return null;
+        else
+            return targets[indexOfClosest];
+    }
+
+    /**
+     * Highlights the closest entity within an array of Entitiesa
+     * @param {Array<Entity>} targets 
+     * @param {string} color 
+     */
+    highlightClosest(targets, color = "blue"){
+        var closest = this.getClosestTarget(enemies);
+
+        if(closest === null)
+            return;
+
+        closest.color = color;
     }
 
     /**

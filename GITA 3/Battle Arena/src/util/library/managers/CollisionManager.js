@@ -3,6 +3,7 @@ const CollisionType  = {
     ENEMY: "enemy",
     BULLET: "bullet",
     BARRICADE: "barricade",
+    TURRET: "turret",
     FORTRESS: "fortress"
 }
 

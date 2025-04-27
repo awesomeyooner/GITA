@@ -13,11 +13,13 @@ function setup() {
   Keyboard.configureBinding(" ", () => gameManager.player.shoot(Mouse.get().getVector(gameManager.player)), BindType.WHILE_PRESSED);
   // Keyboard.configureBinding(" ", () => gameManager.player.shootWithAutoAim(EnemyManager.getInstance().enemies), BindType.WHILE_PRESSED);
 
-  Keyboard.configureBinding("q", () => EnemyManager.getInstance().respawnOneEnemy(Mouse.get().copy()), BindType.ON_PRESS);
-  Keyboard.configureBinding("e", () => EnemyManager.getInstance().respawnOneEnemy(Mouse.get().copy()), BindType.WHILE_PRESSED);
+  Keyboard.configureBinding("q", () => EnemyManager.getInstance().respawnOne(Mouse.get().copy()), BindType.ON_PRESS);
+  Keyboard.configureBinding("e", () => EnemyManager.getInstance().respawnOne(Mouse.get().copy()), BindType.WHILE_PRESSED);
 
   Keyboard.configureBinding("r", () => gameManager.player.placeBarricade(Mouse.get().copy()), BindType.ON_PRESS);
   Keyboard.configureBinding("f", () => gameManager.player.placeBarricade(Mouse.get().copy()), BindType.WHILE_PRESSED);
+
+  Keyboard.configureBinding("t", () => gameManager.player.turretManager.respawnOne(Mouse.get().copy()), BindType.ON_PRESS);
 
   gameManager.initialize();
 }

@@ -31,14 +31,14 @@ class Fortress extends Entity{
             (selfEvent, collidedEvent) => {
                 if(selfEvent.type !== collidedEvent.type){
 
-                    if(collidedEvent.type === CollisionType.ENEMY)
-                        selfEvent.entity.incrementHealth(-1);
-                    else if(collidedEvent.type === CollisionType.BULLET)
-                        selfEvent.entity.incrementHealth(-1);
-                    // if(collidedEvent.entity.bounces != 0){
-                    //     selfEvent.entity.health--;
-                    //     collidedEvent.entity.isActive = false;
-                    // }
+                    switch(collidedEvent.type){
+                        case CollisionType.ENEMY:
+                            selfEvent.entity.incrementHealth(-1);
+                            break;
+                        case CollisionType.BULLET:
+                            selfEvent.entity.incrementHealth(-1);
+                            break;
+                    }
                 }
             }
         )
