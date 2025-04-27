@@ -34,6 +34,12 @@ class Mouse{
             this.#whileUp();
     }
 
+    /**
+     * Adds a function to the binds
+     * @param {Function} method 
+     * @param {MouseState} state 
+     * @example configureBinding(() => console.log("Hello World!"), MouseState.ON_PRESS);
+     */
     static configureBinding(method, state){
         switch(state){
             case MouseState.WHILE_DOWN:

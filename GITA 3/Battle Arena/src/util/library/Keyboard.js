@@ -115,6 +115,13 @@ class Keyboard{
         return new Vector(dx, dy).getUnitVector();
     }
 
+    /**
+     * Adds a binding
+     * @param {string} key 
+     * @param {Function} action 
+     * @param {BindType} bindType 
+     * @example configureBinding("r", () => console.log("Hello World!"), BindType.ON_PRESS);
+     */
     static configureBinding(key, action, bindType){
         if(this.#bindings.get(key) == null){
             this.#bindings.set(key, new Array());
