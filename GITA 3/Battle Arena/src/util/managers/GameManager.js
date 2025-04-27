@@ -48,6 +48,7 @@ class GameManager{
         this.enemyFortress.update();
 
         this.#displayStats();
+        this.#displayControls();
     }
 
     #displayGameOver(){
@@ -61,23 +62,60 @@ class GameManager{
 
     #displayStats(){
         Utility.textCorner(
-            "Health: " + this.player.health,
+            "Health: " + this.player.health + " / " + this.player.maxHealth,
             100,
             50,
             20
         );
 
         Utility.textCorner(
-            "Bullets: " + this.player.projectileManager.getNumberOfActiveProjectiles(),
+            "Bullets: " + this.player.projectileManager.getNumberOfActiveProjectiles() + " / " + this.player.projectileManager.maxProjectiles,
             100,
             100,
             20
         );
 
         Utility.textCorner(
-            "Barricades: " + this.player.barricadeManager.getNumberOfActiveProjectiles(),
+            "Barricades: " + this.player.barricadeManager.getNumberOfActiveProjectiles() + " / " + this.player.barricadeManager.maxProjectiles,
             100,
             150,
+            20
+        );
+
+        Utility.textCorner(
+            "Framerate: " + getFrameRate(),
+            100,
+            200,
+            20
+        );
+    }
+
+    #displayControls(){
+        Utility.textCorner(
+            "WASD: Move",
+            width - 200,
+            height - 200,
+            20
+        );
+
+        Utility.textCorner(
+            "LMB, Space: Shoot",
+            width - 200,
+            height - 150,
+            20
+        );
+
+        Utility.textCorner(
+            "Q / E: Spawn Enemy",
+            width - 200,
+            height - 100,
+            20
+        );
+
+        Utility.textCorner(
+            "R: Spawn Barricade",
+            width - 200,
+            height - 50,
             20
         );
     }
