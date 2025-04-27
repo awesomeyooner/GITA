@@ -22,6 +22,9 @@ class GameManager{
             100,
             "red"
         );
+
+        this.statsDisplay = new StatManager();
+        this.controlsDisplay = new StatManager();
     }
 
     static getInstance(){
@@ -30,13 +33,65 @@ class GameManager{
 
     initialize(){
 
+        // Add Entries for Displaying Information
+
+            // Add Entries for Game Stats
+                this.statsDisplay.addEntry(
+                    new StatEntry(
+                        "Health",
+                        () => this.player.health + " / " + this.player.maxHealth
+                    )
+                );
+
+                this.statsDisplay.addEntry(
+                    new StatEntry(
+                        "Bullets",
+                        () => this.player.projectileManager.getNumberOfActiveProjectiles() + " / " + this.player.projectileManager.maxProjectiles
+                    )
+                );
+
+                this.statsDisplay.addEntry(
+                    new StatEntry(
+                        "Barricades",
+                        () => this.player.barricadeManager.getNumberOfActiveProjectiles() + " / " + this.player.barricadeManager.maxProjectiles
+                    )
+                );
+
+            // Add Entries for Controls
+                this.controlsDisplay.addEntry(
+                    new StatEntry(
+                        "WASD",
+                        () => "Move"
+                    )
+                );
+
+                this.controlsDisplay.addEntry(
+                    new StatEntry(
+                        "LMB, SPACE",
+                        () => "Shoot"
+                    )
+                );
+
+                this.controlsDisplay.addEntry(
+                    new StatEntry(
+                        "Q / E",
+                        () => "Spawn Enemy"
+                    )
+                );
+
+                this.controlsDisplay.addEntry(
+                    new StatEntry(
+                        "R / F",
+                        () => "Spawn Barricade"
+                    )
+                );
     }
 
     update(){
         background("skyblue");
 
-        if(!this.player.isActive){
-            this.#displayGameOver();
+        if(this.isGameOver()){
+            this.displayGameOver();
             return;
         }
         
@@ -47,76 +102,27 @@ class GameManager{
         this.playerFortress.update();
         this.enemyFortress.update();
 
-        this.#displayStats();
-        this.#displayControls();
+        this.statsDisplay.display(Point.fromNative(50, 50), 20);
+        this.controlsDisplay.display(Point.fromNative(width - 250, height - 100), 20);
     }
 
-    #displayGameOver(){
+    isGameOver(){
+        var isPlayerDead = !this.player.isActive;
+        var isEnemyFortressDead = !this.enemyFortress.isActive;
+        var isPlayerFortressDead = !this.playerFortress.isActive;
+
+        if(isPlayerDead || isEnemyFortressDead || isPlayerFortressDead)
+            return true;
+        else
+            return false;
+    }
+
+    displayGameOver(){
         Utility.textCenter(
             "Game Over!",
             Utility.cartesianToNativeX(0),
             Utility.cartesianToNativeY(0),
             100
-        );
-    }
-
-    #displayStats(){
-        Utility.textCorner(
-            "Health: " + this.player.health + " / " + this.player.maxHealth,
-            100,
-            50,
-            20
-        );
-
-        Utility.textCorner(
-            "Bullets: " + this.player.projectileManager.getNumberOfActiveProjectiles() + " / " + this.player.projectileManager.maxProjectiles,
-            100,
-            100,
-            20
-        );
-
-        Utility.textCorner(
-            "Barricades: " + this.player.barricadeManager.getNumberOfActiveProjectiles() + " / " + this.player.barricadeManager.maxProjectiles,
-            100,
-            150,
-            20
-        );
-
-        Utility.textCorner(
-            "Framerate: " + getFrameRate(),
-            100,
-            200,
-            20
-        );
-    }
-
-    #displayControls(){
-        Utility.textCorner(
-            "WASD: Move",
-            width - 200,
-            height - 200,
-            20
-        );
-
-        Utility.textCorner(
-            "LMB, Space: Shoot",
-            width - 200,
-            height - 150,
-            20
-        );
-
-        Utility.textCorner(
-            "Q / E: Spawn Enemy",
-            width - 200,
-            height - 100,
-            20
-        );
-
-        Utility.textCorner(
-            "R: Spawn Barricade",
-            width - 200,
-            height - 50,
-            20
         );
     }
 }

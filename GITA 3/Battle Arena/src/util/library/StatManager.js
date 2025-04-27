@@ -31,8 +31,8 @@ class StatManager{
         for(var i = 0; i < this.stats.length; i++){
             var stat = this.stats.at(i);
 
-            Utility.textCenter(
-                stat.text + ": " + stat.getter(),
+            Utility.textCorner(
+                stat.text + ": \t" + stat.getter(),
                 point.getNativeX(),
                 point.getNativeY() + (i * size * 1.25),
                 size

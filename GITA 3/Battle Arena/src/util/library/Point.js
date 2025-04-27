@@ -12,6 +12,13 @@ class Point{
         this.#y = y;
     }
 
+    static fromNative(x, y){
+        return new Point(
+            Utility.nativeToCartesianX(x),
+            Utility.nativeToCartesianY(y)
+        );
+    }
+
     /**
      * Gets the point
      * @returns Itself
