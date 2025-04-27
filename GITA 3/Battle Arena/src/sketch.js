@@ -1,6 +1,5 @@
 
 var mouse = new Mouse();
-var keyboard = new KeyboardController();
 
 const gameManager = GameManager.getInstance();
 
@@ -9,31 +8,31 @@ function setup() {
   //angleMode(DEGREES);
   frameRate(60);
 
-  keyboard.initialize(window);
+  Keyboard.initialize(window);
 
   mouse.configureBinding(() => gameManager.player.shoot(mouse.getVector(gameManager.player)), MouseState.ON_PRESS);
   // mouse.configureBinding(() => gameManager.player.shootWithAutoAim(EnemyManager.getInstance().enemies), MouseState.ON_PRESS);
   
-  keyboard.configureBinding(" ", () => gameManager.player.shoot(mouse.getVector(gameManager.player)), BindType.WHILE_PRESSED);
-  // keyboard.configureBinding(" ", () => gameManager.player.shootWithAutoAim(EnemyManager.getInstance().enemies), BindType.WHILE_PRESSED);
+  Keyboard.configureBinding(" ", () => gameManager.player.shoot(mouse.getVector(gameManager.player)), BindType.WHILE_PRESSED);
+  // Keyboard.configureBinding(" ", () => gameManager.player.shootWithAutoAim(EnemyManager.getInstance().enemies), BindType.WHILE_PRESSED);
 
-  keyboard.configureBinding("q", () => EnemyManager.getInstance().respawnOneEnemy(mouse.copy()), BindType.ON_PRESS);
-  keyboard.configureBinding("e", () => EnemyManager.getInstance().respawnOneEnemy(mouse.copy()), BindType.WHILE_PRESSED);
+  Keyboard.configureBinding("q", () => EnemyManager.getInstance().respawnOneEnemy(mouse.copy()), BindType.ON_PRESS);
+  Keyboard.configureBinding("e", () => EnemyManager.getInstance().respawnOneEnemy(mouse.copy()), BindType.WHILE_PRESSED);
 
-  keyboard.configureBinding("r", () => gameManager.player.placeBarricade(mouse.copy()), BindType.ON_PRESS);
-  keyboard.configureBinding("f", () => gameManager.player.placeBarricade(mouse.copy()), BindType.WHILE_PRESSED);
+  Keyboard.configureBinding("r", () => gameManager.player.placeBarricade(mouse.copy()), BindType.ON_PRESS);
+  Keyboard.configureBinding("f", () => gameManager.player.placeBarricade(mouse.copy()), BindType.WHILE_PRESSED);
   
-  // keyboard.configureBinding("s", () => gameManager.player.crouching = true, BindType.ON_PRESS);
-  // keyboard.configureBinding("s", () => gameManager.player.crouching = false, BindType.ON_RELEASE);
+  // Keyboard.configureBinding("s", () => gameManager.player.crouching = true, BindType.ON_PRESS);
+  // Keyboard.configureBinding("s", () => gameManager.player.crouching = false, BindType.ON_RELEASE);
 
   // mouse.configureBinding(() => gameManager.player.shoot(new Vector(1, 0)), MouseState.ON_PRESS);
-  // keyboard.configureBinding(" ", () => gameManager.player.shoot(new Vector(1, 0)), BindType.WHILE_PRESSED);
-  // keyboard.configureBinding("e", () => gameManager.player.launchBomb(new Vector(1, 1)), BindType.ON_PRESS);
-  // keyboard.configureBinding("f", () => gameManager.player.launchBomb(new Vector(1, 1)), BindType.WHILE_PRESSED);
+  // Keyboard.configureBinding(" ", () => gameManager.player.shoot(new Vector(1, 0)), BindType.WHILE_PRESSED);
+  // Keyboard.configureBinding("e", () => gameManager.player.launchBomb(new Vector(1, 1)), BindType.ON_PRESS);
+  // Keyboard.configureBinding("f", () => gameManager.player.launchBomb(new Vector(1, 1)), BindType.WHILE_PRESSED);
 
-  // keyboard.configureBinding("q", () => gameManager.enemyManager.spawnEnemy(), BindType.ON_PRESS);
+  // Keyboard.configureBinding("q", () => gameManager.enemyManager.spawnEnemy(), BindType.ON_PRESS);
 
-  // keyboard.configureBinding("r", () => gameManager.enemyManager.removeFeet(), BindType.ON_PRESS);
+  // Keyboard.configureBinding("r", () => gameManager.enemyManager.removeFeet(), BindType.ON_PRESS);
 
   // mouse.configureBinding(() => print("RELEASE"), MouseState.ON_RELEASE);
   // mouse.configureBinding(() => print("NEUTRAL"), MouseState.WHILE_UP);
@@ -44,15 +43,9 @@ function setup() {
 
 function draw(){
   mouse.update(mouseIsPressed);
-  keyboard.update();
+  Keyboard.update();
 
-  gameManager.player.setHeading(keyboard.getHeading(), true);
+  gameManager.player.setHeading(Keyboard.getHeading(), true);
 
   gameManager.update();
-}
-
-function logData(){
-  for(var key of keyboard.getKeys().keys()){
-    print(key + ": " + keyboard.getKeys().get(key));
-  }
 }

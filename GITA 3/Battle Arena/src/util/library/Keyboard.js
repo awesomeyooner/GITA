@@ -23,26 +23,26 @@ class Keybind{
     }
 }
 
-class KeyboardController{
+class Keyboard{
 
-    #keys = new Map();
-    #bindings = new Map();
+    static #keys = new Map();
+    static #bindings = new Map();
 
     constructor(){
 
     }
 
-    initialize(window){
+    static initialize(window){
         window.addEventListener("keydown", function(event){
-            keyboard.keyDown(event.key);
+            Keyboard.keyDown(event.key);
           });
         
           window.addEventListener("keyup", function(event){
-            keyboard.keyUp(event.key);
+            Keyboard.keyUp(event.key);
           })
     }
 
-    update(){
+    static update(){
         for(var key of this.#bindings.keys()){
             if(this.#keys.get(key) == null || this.#bindings.get(key) == null)
                 continue;
@@ -75,25 +75,25 @@ class KeyboardController{
         }
     }
 
-    printKeys(){
+    static printKeys(){
         for(var key of this.getKeys().keys()){
             print(key + ": " + this.getKeys().get(key));
         }
     }
 
-    keyUp(key){
+    static keyUp(key){
         this.#keys.set(key, false);
     }
 
-    keyDown(key){
+    static keyDown(key){
         this.#keys.set(key, true);
     }
 
-    getKeys(){
+    static getKeys(){
         return this.#keys;
     }
 
-    getHeading(){
+    static getHeading(){
         var dx = 0;
         var dy = 0;
 
@@ -115,7 +115,7 @@ class KeyboardController{
         return new Vector(dx, dy).getUnitVector();
     }
 
-    configureBinding(key, action, bindType){
+    static configureBinding(key, action, bindType){
         if(this.#bindings.get(key) == null){
             this.#bindings.set(key, new Array());
         }
