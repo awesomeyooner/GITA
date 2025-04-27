@@ -66,6 +66,13 @@ class GameManager{
                     )
                 );
 
+                this.statsDisplay.addEntry(
+                    new StatEntry(
+                        "Enemies",
+                        () => EnemyManager.getInstance().getNumberOfActiveEntities() + " / " + EnemyManager.getInstance().maxEntities
+                    )
+                );
+
             // Add Entries for Controls
                 this.controlsDisplay.addEntry(
                     new StatEntry(
@@ -112,7 +119,7 @@ class GameManager{
         }
         
         CollisionManager.update();
-        EnemyManager.getInstance().update(this.playerFortress);
+        EnemyManager.getInstance().update(this.playerFortress, this.enemyFortress);
         this.player.update(EnemyManager.getInstance().entities);
 
         this.playerFortress.update();

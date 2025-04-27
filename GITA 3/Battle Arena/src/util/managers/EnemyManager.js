@@ -2,7 +2,7 @@ class EnemyManager extends EntityManager{
 
     static instance = new EnemyManager();
 
-    constructor(maxEnemies = 100){
+    constructor(maxEnemies = 200){
         super(maxEnemies);
 
         this.initialize();
@@ -16,11 +16,20 @@ class EnemyManager extends EntityManager{
         this.reset(50, 1);
     }
 
-    update(target){
+    update(target, base){
         for(var entity of this.entities){
             entity.pursuit(target);
             entity.update();
         }
+
+        this.spawnOneInEvery(2, base, 200);
+    }
+
+    spawnOneInEvery(proc, origin, radius = 0){
+        var random = Math.round(Utility.random(0, proc));
+
+        if(random === 0)
+            this.respawnOneAroundPoint(origin, radius);
     }
 
     reset(size, speed, maxBullets = 10, maxHealth = 3, color = "red"){
