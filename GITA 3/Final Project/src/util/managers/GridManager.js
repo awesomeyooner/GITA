@@ -5,6 +5,8 @@ class GridManager{
     constructor(){
         this.grid = new Array();
 
+        this.size = 20;
+
         this.initialize();
     }
 
@@ -13,12 +15,11 @@ class GridManager{
     }
 
     initialize(){
-        var size = 20;
         
-        var rows = Math.round(HEIGHT / size) + 1;
-        var cols = Math.round(WIDTH / size) + 1;
+        var rows = Math.round(HEIGHT / this.size) + 1;
+        var cols = Math.round(WIDTH / this.size) + 1;
 
-        this.populateGrid(rows, cols, size);
+        this.populateGrid(rows, cols, this.size);
     }
 
     populateGrid(rows, columns, size){
@@ -33,7 +34,7 @@ class GridManager{
         }
     }
 
-    update(entities, debug = false){
+    update(point, entities, debug = false){
 
         for(var row of this.grid){
             for(var cell of row){
@@ -41,5 +42,31 @@ class GridManager{
                 cell.update(debug);
             }
         }
+
+        var cell = this.getCellFromPoint(point);
+
+        if(cell == null)
+            return;
+
+        cell.color = "blue";
+        cell.drawEntity();
+    }
+
+    /**
+     * 
+     * @param {Point} point 
+     * @returns Cell
+     */
+    getCellFromPoint(point){
+        //really inefficient but optimize later
+
+        for(var row of this.grid){
+            for(var cell of row){
+                if(cell.isStandingOver(point))
+                    return cell;
+            }
+        }
+
+        return null;
     }
 }

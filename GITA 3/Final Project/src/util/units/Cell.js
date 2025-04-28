@@ -10,6 +10,8 @@ class Cell extends Entity{
             1,
             "gray"
         );
+
+        this.parent = null;
     }
 
     initialize(){
@@ -70,5 +72,24 @@ class Cell extends Entity{
         for(var entity of entities){
             this.checkOccupancy(entity);
         }
+    }
+
+    /**
+     * 
+     * @param {Point} point 
+     * @return True if the given point is over this box
+     */
+    isStandingOver(point, debug = false){
+        var difference = this.minus(point);
+
+        var withinHorizontally = Math.abs(difference.getCartesianX()) <= (this.size / 2);
+        var withinVertically = Math.abs(difference.getCartesianY()) <= (this.size / 2);
+
+        if(debug && withinHorizontally && withinVertically){
+            this.color = "blue";
+            this.drawEntity();
+        }
+
+        return withinHorizontally && withinVertically;
     }
 }
