@@ -31,4 +31,27 @@ class Shapes{
         );
     }
 
+    /**
+     * Draws a circle at given point
+     * @param {Number} x 
+     * @param {Number} y 
+     * @param {Number} radius 
+     */
+    static circleCenter(x, y, radius){
+        circle(x, y, radius);
+    }
+
+    /**
+     * Draws a circle at the given point
+     * @param {Point} center 
+     * @param {Number} radius 
+     */
+    static circleCenterFromPoint(center, radius){
+        this.circleCenter(
+            center.getNativeX(),
+            center.getNativeY(),
+            radius
+        );
+    }
+
 }

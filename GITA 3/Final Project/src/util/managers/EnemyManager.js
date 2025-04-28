@@ -2,7 +2,7 @@ class EnemyManager extends EntityManager{
 
     static instance = new EnemyManager();
 
-    constructor(maxEnemies = 200){
+    constructor(maxEnemies = 3){
         super(maxEnemies);
 
         this.initialize();
@@ -18,7 +18,7 @@ class EnemyManager extends EntityManager{
 
     update(target, base){
         for(var entity of this.entities){
-            entity.pursuit(target);
+            entity.pursuitPath(CORNERS, 50, true);
             entity.update();
         }
 

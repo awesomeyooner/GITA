@@ -179,6 +179,116 @@ class Entity extends Point{
     }
 
     /**
+     * Moves towards the next step of the given path
+     * @param {Array<Point>} path 
+     * @param {number} lookahead 
+     */
+    pursuitPath(path, lookahead = 50, debug = false){
+
+        var pursuitedPoint;
+        var indexOfPursuited;
+        var timeOfPursuited;
+
+        for(var i = 0; i < path.length; i++){
+            var initial = path[i].toVector();
+            var deltaInitialAndReference = path[i].minus(this).toVector();
+            var final;
+            var pursuited;
+            var time;
+
+            if(i == path.length - 1){ //if its the last one basically
+                final = path[0].toVector(); //make the last connect with first
+            }
+            else
+                final = path[i + 1].toVector(); //if not, then just make it the next
+
+            var vector = final.plus(initial.times(-1));
+
+            var radicand = 
+                (Math.pow(lookahead, 2) / Math.pow(vector.getMagnitude(), 2)) - 
+                (Math.pow(deltaInitialAndReference.getMagnitude(), 2) / Math.pow(vector.getMagnitude(), 2)) + 
+                Math.pow(deltaInitialAndReference.dot(vector) / Math.pow(vector.getMagnitude(), 2), 2);
+
+            if(radicand >= 0){
+                time = 
+                    Math.sqrt(radicand) - 
+                    (deltaInitialAndReference.dot(vector) / Math.pow(vector.getMagnitude(), 2));
+                    
+                if(time > 1)
+                    time = 1;
+                else if(time < 0)
+                    time = 0;
+
+                pursuited = vector.times(time).plus(initial).toPoint();
+            }
+            else{
+                time = -deltaInitialAndReference.dot(vector) / (vector.dot(vector));
+
+                if(time > 1)
+                    time = 1;
+                else if(time < 0)
+                    time = 0;
+
+                pursuited = vector.times(time).plus(initial).toPoint();
+            }
+
+            if(pursuitedPoint == null){
+                pursuitedPoint = pursuited;
+                indexOfPursuited = i;
+                timeOfPursuited = time;
+
+                continue;
+            }
+
+            if(i == indexOfPursuited){
+                pursuitedPoint = pursuited;
+                timeOfPursuited = time;
+            }
+
+            var atEndOfPath = timeOfPursuited == 1;
+            var isLookingAtNext = i - indexOfPursuited == 1 || (indexOfPursuited == path.length - 1 && i == 0);
+            var analyzedIsShorter = i != indexOfPursuited && this.getVector(pursuitedPoint).getMagnitude() > this.getVector(pursuited).getMagnitude();
+
+            if(isLookingAtNext && (analyzedIsShorter || atEndOfPath)){
+                pursuitedPoint = pursuited;
+                indexOfPursuited = i;
+                timeOfPursuited = time;
+            }
+        }
+
+        
+        if(debug){
+            Shapes.circleCenterFromPoint(pursuitedPoint, 10);
+            this.drawPath(path);
+        }
+
+        this.setHeading(this.getVector(pursuitedPoint).times(-1), true);
+    }
+
+    /**
+     * Draws the given path
+     * @param {Array<Point>} path 
+     */
+    drawPath(path){
+
+        for(var i = 0; i < path.length; i++){
+            var initial = path[i];
+            var final;
+
+            if(i == path.length - 1){ //if its the last one basically
+                final = path[0]; //make the last connect with first
+            }
+            else
+                final = path[i + 1]; //if not, then just make it the next
+
+                Utility.drawLine(
+                    initial,
+                    final
+                );
+        }
+    }
+
+    /**
      * Gets the closest target in a given array of targets
      * @param {Array<Entity>} targets Array of targets
      * @return {Entity} The closest target
