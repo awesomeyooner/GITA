@@ -69,4 +69,8 @@ class GridManager{
 
         return null;
     }
+
+    getNeighboringCells(cell){
+
+    }
 }
