@@ -29,7 +29,7 @@ class GridManager{
             for(var c = 0; c < columns; c++){
                 var x = Math.round(-columns / 2 + c) * size;
                 var y = Math.round(-rows / 2 + r) * size;
-                this.grid[r][c] = new Cell(x, y, size);
+                this.grid[r][c] = new Cell(x, y, r, c, size);
             }
         }
     }
