@@ -27,8 +27,13 @@ class Cell extends Entity{
     update(debug = false){
         super.update();
 
-        if(this.isActive)
-            this.color = "gray";
+        if(this.isActive){
+            if(this.heuristic == 0)
+                this.color = "gray";
+            else if(this.heuristic > 0)
+                this.color = "white";
+
+        }
         else
             this.color = "black";
 
@@ -75,7 +80,7 @@ class Cell extends Entity{
     }
 
     getGCost(){
-        return this.gCost;
+        return this.gCost + this.heuristic;
     }
 
     getHCost(){

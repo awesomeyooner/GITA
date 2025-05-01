@@ -40,6 +40,18 @@ class GridManager{
             for(var cell of row){
                 cell.checkOccupancyWithEntities(entities);
                 cell.update(debug);
+
+                if(cell.isActive)
+                    continue;
+
+                var neighbors = this.getNeighboringCells(cell);
+
+                for(var neighbor of neighbors){
+                    if(!neighbor.isActive)
+                        continue;
+
+                    neighbor.heuristic = Infinity;
+                }
             }
         }
 
