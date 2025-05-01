@@ -81,25 +81,36 @@ class PathFinder{
                 }
             }
         }
+
+        return new Array();
     }
 
     drawPath(path){
 
-        for(var i = 0; i < path.length; i++){
+        if(path.length <= 1)
+            return;
+
+        for(var i = 0; i < path.length - 1; i++){
+
             var initial = path[i];
-            var final;
-
-            if(i == path.length - 1){ //if its the last one basically
-                final = path[i]; //make the last connect with first
-            }
-            else
-                final = path[i + 1]; //if not, then just make it the next
-
-                Utility.drawLine(
-                    initial,
-                    final
-                );
+            var final = path[i + 1];
+            
+            push();
+            // strokeWeight(1);
+            // stroke("green");
+            Utility.drawLine(
+                initial,
+                final
+            );
+            pop();
         }
+    }
+
+    tracePath(path){
+        for(var cell of path){
+            cell.color = "purple";
+            cell.drawEntity();
+        }        
     }
 
     getPath(start, end){
@@ -115,17 +126,5 @@ class PathFinder{
         path.reverse();
 
         return path;
-    }
-
-    tracePath(start, end){
-        var path = this.getPath(start, end);
-        this.drawPath(path);
-
-        for(var cell of path){
-            cell.color = "purple";
-            // cell.drawEntity();
-        }
-
-        
     }
 }

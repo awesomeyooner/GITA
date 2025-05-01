@@ -189,18 +189,15 @@ class Entity extends Point{
         var indexOfPursuited;
         var timeOfPursuited;
 
-        for(var i = 0; i < path.length; i++){
+        if(path.length <= 1)
+            return;
+
+        for(var i = 0; i < path.length - 1; i++){
             var initial = path[i].toVector();
+            var final = path[i + 1].toVector();
             var deltaInitialAndReference = path[i].minus(this).toVector();
-            var final;
             var pursuited;
             var time;
-
-            if(i == path.length - 1){ //if its the last one basically
-                final = path[0].toVector(); //make the last connect with first
-            }
-            else
-                final = path[i + 1].toVector(); //if not, then just make it the next
 
             var vector = final.plus(initial.times(-1));
 
@@ -265,26 +262,24 @@ class Entity extends Point{
         this.setHeading(this.getVector(pursuitedPoint).times(-1), true);
     }
 
-    /**
-     * Draws the given path
-     * @param {Array<Point>} path 
-     */
     drawPath(path){
 
-        for(var i = 0; i < path.length; i++){
+        if(path.length <= 1)
+            return;
+
+        for(var i = 0; i < path.length - 1; i++){
+
             var initial = path[i];
-            var final;
-
-            if(i == path.length - 1){ //if its the last one basically
-                final = path[0]; //make the last connect with first
-            }
-            else
-                final = path[i + 1]; //if not, then just make it the next
-
-                Utility.drawLine(
-                    initial,
-                    final
-                );
+            var final = path[i + 1];
+            
+            push();
+            strokeWeight(3);
+            stroke("green");
+            Utility.drawLine(
+                initial,
+                final
+            );
+            pop();
         }
     }
 
