@@ -21,11 +21,7 @@ class EnemyManager extends EntityManager{
             if(entity == null)
                 continue;
 
-            var path = PathFinder.getInstance().findPath(target, entity);
-
-            // PathFinder.getInstance().drawPath(path);
-            entity.pursuitPath(path, 50, true);
-            entity.update();
+            entity.update(target);
         }
 
         this.spawnOneInEvery(2, base, 200);

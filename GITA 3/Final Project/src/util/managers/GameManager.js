@@ -121,17 +121,12 @@ class GameManager{
 
         GridManager.getInstance().update(this.player, this.player.barricadeManager.getProjectiles(), true);
 
-        // var path = PathFinder.getInstance().findPath(this.player, new Point(100, 100));
-        
-        // PathFinder.getInstance().drawPath(path);
-        // PathFinder.getInstance().tracePath(path);
-
         // CollisionManager.update();
-        EnemyManager.getInstance().update(this.playerFortress, this.enemyFortress);
+        EnemyManager.getInstance().update(this.player, this.enemyFortress);
         this.player.update(EnemyManager.getInstance().entities);
 
         this.playerFortress.update();
-        // this.enemyFortress.update();
+        this.enemyFortress.update();
 
         this.statsDisplay.display(Point.fromNative(50, 50), 20);
         this.controlsDisplay.display(Point.fromNative(width - 250, height - 150), 20);

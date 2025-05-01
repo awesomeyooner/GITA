@@ -45,7 +45,15 @@ class Enemy extends Gunner{
         );
     }
 
-    update(){
+    update(target){
+        
+        var path = PathFinder.getInstance().findPath(target, this);
+
+        if(path.length == 0)
+            this.pursuit(target);
+        else
+            this.pursuitPath(path, 50, true);
+
         super.update()
 
         if(!this.isActive)
