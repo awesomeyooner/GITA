@@ -7,6 +7,9 @@ class GridManager{
 
         this.size = 20;
 
+        this.rows = Math.round(HEIGHT / this.size) + 1;
+        this.cols = Math.round(WIDTH / this.size) + 1;
+
         this.initialize();
     }
 
@@ -15,11 +18,8 @@ class GridManager{
     }
 
     initialize(){
-        
-        var rows = Math.round(HEIGHT / this.size) + 1;
-        var cols = Math.round(WIDTH / this.size) + 1;
 
-        this.populateGrid(rows, cols, this.size);
+        this.populateGrid(this.rows, this.cols, this.size);
     }
 
     populateGrid(rows, columns, size){
@@ -50,6 +50,8 @@ class GridManager{
 
         cell.color = "blue";
         cell.drawEntity();
+
+        // console.log(this.getNeighboringCells(cell).length);
     }
 
     /**
@@ -70,7 +72,36 @@ class GridManager{
         return null;
     }
 
+    /**
+     * Returns a list of all the neighboring cells
+     * @param {Cell} cell 
+     * @return Array of cells
+     */
     getNeighboringCells(cell){
+        
+        var neighbors = new Array();
 
+        for(var row = -1; row <= 1; row++){
+            for(var col = -1; col <= 1; col++){
+                var x = cell.gridX + row;
+                var y = cell.gridY + col;
+
+                // if the x is out of bounds
+                if(x < 0 || x > this.rows - 1)
+                    continue;
+
+                // if the y is out of bounds
+                if(y < 0 || y > this.cols - 1)
+                    continue;
+
+                // if the x and y is the target cell
+                if(row == 0 && col == 0)
+                    continue;
+
+                neighbors.push(this.grid[x, y]);
+            }
+        }
+
+        return neighbors;
     }
 }

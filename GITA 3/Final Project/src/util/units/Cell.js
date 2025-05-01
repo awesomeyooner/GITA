@@ -17,6 +17,9 @@ class Cell extends Entity{
         this.gridY = gridY;
 
         this.heuristic = 0;
+
+        this.gCost = 0;
+        this.hCost = 0;
     }
 
     initialize(){}
@@ -41,16 +44,46 @@ class Cell extends Entity{
         pop();
     }
 
-    getGCost(start){
-        return this.getDistance(start);
+    /**
+     * Gets the grid distance from this cell to another cell
+     * @param {Cell} other 
+     */
+    getGridDistance(other){
+        
+        var gridDeltaX = Math.abs(this.gridX - other.gridX);
+        var gridDeltaY = Math.abs(this.gridY - other.gridY);
+
+        var distance = 0;
+
+        var horizontalDistance = this.size;
+        var diagonalDistance = this.size * Math.sqrt(2);
+
+        if(gridDeltaX <= gridDeltaY){
+            var diagonal = gridDeltaX * diagonalDistance;
+            var horizontal = (gridDeltaY - gridDeltaX) * horizontalDistance;
+
+            distance = diagonal + horizontal;
+        }
+        else{
+            var diagonal = gridDeltaY * diagonalDistance;
+            var horizontal = (gridDeltaX - gridDeltaY) * horizontalDistance;
+
+            distance = diagonal + horizontal;
+        }
+
+        return distance;
     }
 
-    getHCost(end){
-        return this.getDistance(end) + this.heuristic;
+    getGCost(){
+        return this.gCost;
     }
 
-    getFCost(start, end){
-        return this.getGCost(start) + this.getHCost(end);
+    getHCost(){
+        return this.hCost;
+    }
+
+    getFCost(){
+        return this.gCost + this.hCost;
     }
 
     getCellWithLowestFCost(cells, start, end){
@@ -115,10 +148,11 @@ class Cell extends Entity{
      */
     equals(other){
         var coordinatesSame = this.getDistance(other) == 0;
+        var gridCoordinatesSame = this.gridX == other.gridX && this.gridY == other.gridY;
         var parentsSame = this.parent == other.parent;
         var heuristicSame = this.heuristic = other.heuristic;
 
-        return coordinatesSame && heuristicSame;
+        return coordinatesSame && gridCoordinatesSame && heuristicSame;
     }
 
     /**
@@ -133,5 +167,20 @@ class Cell extends Entity{
                 break;
             }
         }
+    }
+
+    /**
+     * 
+     * @param {Array<Cell>} cells 
+     * @param {Cell} contain
+     * @return True if the cells contains the given cell
+     */
+    static doesSetContainCell(cells, contain){
+        for(var cell of cells){
+            if(cell.equals(contain))
+                return true;
+        }
+
+        return false;
     }
 }
