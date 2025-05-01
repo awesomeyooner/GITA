@@ -123,7 +123,7 @@ class PathFinder{
             current = current.parent;
         }
 
-        path.reverse();
+        // path.reverse();
 
         return path;
     }

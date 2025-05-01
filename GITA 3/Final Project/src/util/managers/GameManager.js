@@ -126,7 +126,7 @@ class GameManager{
         // PathFinder.getInstance().drawPath(path);
         // PathFinder.getInstance().tracePath(path);
 
-        CollisionManager.update();
+        // CollisionManager.update();
         EnemyManager.getInstance().update(this.playerFortress, this.enemyFortress);
         this.player.update(EnemyManager.getInstance().entities);
 

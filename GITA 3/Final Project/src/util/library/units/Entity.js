@@ -206,6 +206,7 @@ class Entity extends Point{
                 (Math.pow(deltaInitialAndReference.getMagnitude(), 2) / Math.pow(vector.getMagnitude(), 2)) + 
                 Math.pow(deltaInitialAndReference.dot(vector) / Math.pow(vector.getMagnitude(), 2), 2);
 
+            // if the path intersects the lookahead circle
             if(radicand >= 0){
                 time = 
                     Math.sqrt(radicand) - 
@@ -218,6 +219,7 @@ class Entity extends Point{
 
                 pursuited = vector.times(time).plus(initial).toPoint();
             }
+            // if the path is not within the lookahead
             else{
                 time = -deltaInitialAndReference.dot(vector) / (vector.dot(vector));
 
