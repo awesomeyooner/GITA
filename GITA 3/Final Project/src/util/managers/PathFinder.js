@@ -22,6 +22,10 @@ class PathFinder{
         var startCell = grid.getCellFromPoint(start);
         var endCell = grid.getCellFromPoint(end);
 
+        if(startCell == null || endCell == null){
+            return new Array();
+        }
+
         var openSet = new Array();
         var closedSet = new Array();
 
@@ -47,8 +51,9 @@ class PathFinder{
 
             // if the current cell is the target, end
             if(currentCell.equals(endCell)){
-                this.tracePath(startCell, endCell);
-                break;
+                return this.getPath(startCell, endCell);
+                // this.tracePath(startCell, endCell);
+                // break;
             }
 
             var neighbors = grid.getNeighboringCells(currentCell);
@@ -78,7 +83,26 @@ class PathFinder{
         }
     }
 
-    tracePath(start, end){
+    drawPath(path){
+
+        for(var i = 0; i < path.length; i++){
+            var initial = path[i];
+            var final;
+
+            if(i == path.length - 1){ //if its the last one basically
+                final = path[i]; //make the last connect with first
+            }
+            else
+                final = path[i + 1]; //if not, then just make it the next
+
+                Utility.drawLine(
+                    initial,
+                    final
+                );
+        }
+    }
+
+    getPath(start, end){
         var path = new Array();
 
         var current = end;
@@ -90,9 +114,18 @@ class PathFinder{
 
         path.reverse();
 
+        return path;
+    }
+
+    tracePath(start, end){
+        var path = this.getPath(start, end);
+        this.drawPath(path);
+
         for(var cell of path){
             cell.color = "purple";
-            cell.drawEntity();
+            // cell.drawEntity();
         }
+
+        
     }
 }

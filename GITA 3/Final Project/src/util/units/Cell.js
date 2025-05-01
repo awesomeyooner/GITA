@@ -150,7 +150,7 @@ class Cell extends Entity{
         var coordinatesSame = this.getDistance(other) == 0;
         var gridCoordinatesSame = this.gridX == other.gridX && this.gridY == other.gridY;
         var parentsSame = this.parent == other.parent;
-        var heuristicSame = this.heuristic = other.heuristic;
+        var heuristicSame = this.heuristic == other.heuristic;
 
         return coordinatesSame && gridCoordinatesSame && heuristicSame;
     }

@@ -98,7 +98,7 @@ class GridManager{
                 if(row == 0 && col == 0)
                     continue;
 
-                neighbors.push(this.grid[x, y]);
+                neighbors.push(this.grid[x][y]);
             }
         }
 
