@@ -34,7 +34,7 @@ class GridManager{
         }
     }
 
-    update(point, entities, debug = false){
+    update(point, entities, inflation = 1, debug = false){
 
         for(var row of this.grid){
             for(var cell of row){
@@ -44,13 +44,15 @@ class GridManager{
                 if(cell.isActive)
                     continue;
 
-                var neighbors = this.getNeighboringCells(cell);
+                for(var i = 0; i < inflation; i++){
+                    var neighbors = this.getNeighboringCells(cell);
 
-                for(var neighbor of neighbors){
-                    if(!neighbor.isActive)
-                        continue;
+                    for(var neighbor of neighbors){
+                        if(!neighbor.isActive)
+                            continue;
 
-                    neighbor.heuristic = Infinity;
+                        neighbor.heuristic = Infinity;
+                    }
                 }
             }
         }
