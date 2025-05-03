@@ -78,14 +78,14 @@ class GridManager{
     getCellFromPoint(point){
         //really inefficient but optimize later
 
-        var x = point.getCartesianX() / this.size + this.cols - 1;
-        var y = point.getCartesianY() / this.size + this.rows - 1;
+        // var x = point.getCartesianX() / this.size + this.cols - 1;
+        // var y = point.getCartesianY() / this.size + this.rows - 1;
 
-        if(this.isGridCoordinateOutOfBounds(x, y))
-            return null;
+        // if(this.isGridCoordinateOutOfBounds(point.getCartesianX(), point.get))
+        //     return null;
 
-        for(var row of this.grid){
-            for(var cell of row){
+        for(var column of this.grid){
+            for(var cell of column){
                 if(cell.isStandingOver(point))
                     return cell;
             }
