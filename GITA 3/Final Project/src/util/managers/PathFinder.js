@@ -31,7 +31,11 @@ class PathFinder{
 
         openSet.push(startCell);
 
+        var iterations = 0;
+
         while(openSet.length > 0){
+            iterations++;
+
             var currentCell = openSet[0];
 
             // currentCell = node in the open set with the lowest F Cost
@@ -51,6 +55,7 @@ class PathFinder{
 
             // if the current cell is the target, end
             if(currentCell.equals(endCell)){
+                console.log(iterations);
                 return this.getPath(startCell, endCell);
                 // this.tracePath(startCell, endCell);
                 // break;

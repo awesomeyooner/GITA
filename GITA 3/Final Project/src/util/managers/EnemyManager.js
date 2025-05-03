@@ -2,7 +2,7 @@ class EnemyManager extends EntityManager{
 
     static instance = new EnemyManager();
 
-    constructor(maxEnemies = 3){
+    constructor(maxEnemies = 1){
         super(maxEnemies);
 
         this.initialize();

@@ -20,6 +20,8 @@ class Cell extends Entity{
 
         this.gCost = 0;
         this.hCost = 0;
+
+        this.inflation = 30;
     }
 
     initialize(){}
@@ -105,16 +107,36 @@ class Cell extends Entity{
 
     /**
      * 
+     * @returns If this cell is walkable
+     */
+    isWalkable(){
+        return this.isActive;
+    }
+
+    setWalkable(setToWalkable){
+
+        // If once walkable but going to not walkable
+        if(this.isWalkable() && !setToWalkable)
+            GridManager.getInstance().inflateCellsWithinRadius(this, this.inflation);
+
+        else if(!this.isWalkable() && setToWalkable)
+            GridManager.getInstance().deflateCellsWithinRadius(this, this.inflation);
+
+        this.isActive = setToWalkable;
+    }
+
+    /**
+     * 
      * @param {Entity} entity 
+     * @return True if it is occupied by entity
      */
     checkOccupancy(entity){
         if(!entity.isActive)
-            return;
+            return false;
 
         // im too lazy to do the correct way so im just gonna treat each cell as a circle
 
-        if(this.collides(entity))
-            this.isActive = false;
+        return this.collides(entity);
     }
 
     /**
@@ -122,9 +144,18 @@ class Cell extends Entity{
      * @param {Array<Entity>} entities 
      */
     checkOccupancyWithEntities(entities){
+        var isOccupied = false;
+
         for(var entity of entities){
-            this.checkOccupancy(entity);
+            if(this.checkOccupancy(entity)){
+                isOccupied = true;
+                this.setWalkable(false);
+                break;
+            }
         }
+
+        if(!isOccupied)
+            this.setWalkable(true);
     }
 
     /**

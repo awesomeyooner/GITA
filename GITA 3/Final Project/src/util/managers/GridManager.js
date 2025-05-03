@@ -44,16 +44,9 @@ class GridManager{
                 if(cell.isActive)
                     continue;
 
-                for(var i = 0; i < inflation; i++){
-                    var neighbors = this.getCellsWithinRadius(cell, inflation);
+                cell.inflation = inflation;
 
-                    for(var neighbor of neighbors){
-                        if(!neighbor.isActive)
-                            continue;
-
-                        neighbor.heuristic = 1000;
-                    }
-                }
+                this.inflateCellsWithinRadius(cell, inflation);
             }
         }
     }
@@ -65,6 +58,9 @@ class GridManager{
      */
     getCellFromPoint(point){
         //really inefficient but optimize later
+
+        // var x = point.getCartesianX() / this.size;
+        // var y = point.getCartesianY() / this.size;
 
         for(var row of this.grid){
             for(var cell of row){
@@ -149,5 +145,26 @@ class GridManager{
         }
 
         return cells;
+    }
+
+    setHeuristicOfCellsWithinRadius(cell, radius, heuristic){
+        var neighbors = this.getCellsWithinRadius(cell, radius);
+
+        for(var neighbor of neighbors){
+            if(!neighbor.isActive)
+                continue;
+
+            neighbor.heuristic = heuristic;
+        }
+
+        cell.heuristic = heuristic;
+    }
+
+    inflateCellsWithinRadius(cell, radius){
+        this.setHeuristicOfCellsWithinRadius(cell, radius, 1000);
+    }
+
+    deflateCellsWithinRadius(cell, radius){
+        this.setHeuristicOfCellsWithinRadius(cell, radius, 0);
     }
 }
