@@ -36,6 +36,8 @@ class GridManager{
 
     update(point, entities, inflation = 1, debug = false){
 
+        this.grid[20][20].isActive = false;
+
         for(var row of this.grid){
             for(var cell of row){
                 cell.checkOccupancyWithEntities(entities);
@@ -45,7 +47,7 @@ class GridManager{
                     continue;
 
                 for(var i = 0; i < inflation; i++){
-                    var neighbors = this.getNeighboringCells(cell);
+                    var neighbors = this.getCellsWithinRadius(cell, 60);
 
                     for(var neighbor of neighbors){
                         if(!neighbor.isActive)
@@ -117,5 +119,47 @@ class GridManager{
         }
 
         return neighbors;
+    }
+
+    /**
+     * 
+     * @param {Cell} cell 
+     * @param {Number} radius In Pixels
+     */
+    getCellsWithinRadius(cell, radius){
+        
+        var cells = new Array();
+
+        var gridRadius = Math.round(radius / this.size);
+
+        var padding = Math.floor(gridRadius / 2);
+        
+        for(var row = -gridRadius; row <= gridRadius; row++){
+            
+            
+            // var bound = Math.abs(row) <= padding ? padding : -Math.abs(row);
+            var bound = -Math.abs(row);
+
+            for(var col = -(gridRadius + bound); col <= (gridRadius + bound); col++){
+                var x = cell.gridX + row;
+                var y = cell.gridY + col;
+
+                // if the x is out of bounds
+                if(x < 0 || x > this.rows - 1)
+                    continue;
+
+                // if the y is out of bounds
+                if(y < 0 || y > this.cols - 1)
+                    continue;
+
+                // if the x and y is the target cell
+                if(row == 0 && col == 0)
+                    continue;
+
+                cells.push(this.grid[x][y]);
+            }
+        }
+
+        return cells;
     }
 }
