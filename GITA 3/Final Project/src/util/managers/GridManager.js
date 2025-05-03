@@ -81,7 +81,8 @@ class GridManager{
         var x = point.getCartesianX() / this.size + this.cols - 1;
         var y = point.getCartesianY() / this.size + this.rows - 1;
 
-        // if(x < 0 || x > this.cols)
+        if(this.isGridCoordinateOutOfBounds(x, y))
+            return null;
 
         for(var row of this.grid){
             for(var cell of row){
@@ -91,6 +92,16 @@ class GridManager{
         }
 
         return null;
+    }
+
+    isGridCoordinateOutOfBounds(x, y){
+        if(x < 0 || x > this.cols)
+            return true;
+
+        if(y < 0 || y > this.rows)
+            return true;
+
+        return false;
     }
 
     /**
@@ -107,12 +118,7 @@ class GridManager{
                 var x = cell.gridX + col;
                 var y = cell.gridY + row;
 
-                // if the x is out of bounds
-                if(x < 0 || x > this.cols - 1)
-                    continue;
-
-                // if the y is out of bounds
-                if(y < 0 || y > this.rows - 1)
+                if(this.isGridCoordinateOutOfBounds(x, y))
                     continue;
 
                 // if the x and y is the target cell
@@ -149,12 +155,7 @@ class GridManager{
                 var x = cell.gridX + col;
                 var y = cell.gridY + row;
 
-                // if the x is out of bounds
-                if(x < 0 || x > this.cols - 1)
-                    continue;
-
-                // if the y is out of bounds
-                if(y < 0 || y > this.rows - 1)
+                if(this.isGridCoordinateOutOfBounds(x, y))
                     continue;
 
                 // if the x and y is the target cell
