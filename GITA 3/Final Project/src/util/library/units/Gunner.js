@@ -30,7 +30,7 @@ class Gunner extends Entity{
             return;
 
         this.move();
-        this.drawEntity();
+        // this.drawEntity();
 
         this.projectileManager.update();
     }

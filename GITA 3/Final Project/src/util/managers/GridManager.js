@@ -34,7 +34,7 @@ class GridManager{
         }
     }
 
-    update(entities, inflation = 30, debug = false){
+    update(point, entities, inflation = 30, debug = false){
 
         for(var row of this.grid){
             for(var cell of row){
@@ -49,6 +49,25 @@ class GridManager{
                 this.inflateCellsWithinRadius(cell, inflation);
             }
         }
+
+        this.paintCellFromPoint(point);
+    }
+
+    /**
+     * Paints the cell that the point is standing over
+     * @param {Point} point 
+     * @param {String} color
+     */
+    paintCellFromPoint(point, color = "blue"){
+        var cell = this.getCellFromPoint(point);
+
+        if(cell == null)
+            return;
+
+        cell.color = color;
+        cell.drawEntity();
+
+        console.log(cell.gridX + " : " + cell.gridY);
     }
 
     /**
@@ -59,8 +78,10 @@ class GridManager{
     getCellFromPoint(point){
         //really inefficient but optimize later
 
-        // var x = point.getCartesianX() / this.size;
-        // var y = point.getCartesianY() / this.size;
+        var x = point.getCartesianX() / this.size + this.cols - 1;
+        var y = point.getCartesianY() / this.size + this.rows - 1;
+
+        // if(x < 0 || x > this.cols)
 
         for(var row of this.grid){
             for(var cell of row){

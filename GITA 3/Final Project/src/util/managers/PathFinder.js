@@ -55,7 +55,7 @@ class PathFinder{
 
             // if the current cell is the target, end
             if(currentCell.equals(endCell)){
-                console.log(iterations);
+                // console.log(iterations);
                 return this.getPath(startCell, endCell);
                 // this.tracePath(startCell, endCell);
                 // break;
