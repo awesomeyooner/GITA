@@ -23,13 +23,13 @@ class GridManager{
     }
 
     populateGrid(rows, columns, size){
-        for(var r = 0; r < rows; r++){
-            this.grid[r] = new Array();
+        for(var c = 0; c < columns; c++){
+            this.grid[c] = new Array();
 
-            for(var c = 0; c < columns; c++){
+            for(var r = 0; r < rows; r++){
                 var x = Math.round(-columns / 2 + c) * size;
                 var y = Math.round(-rows / 2 + r) * size;
-                this.grid[r][c] = new Cell(x, y, r, c, size);
+                this.grid[c][r] = new Cell(x, y, c, r, size);
             }
         }
     }
@@ -104,15 +104,15 @@ class GridManager{
 
         for(var row = -1; row <= 1; row++){
             for(var col = -1; col <= 1; col++){
-                var x = cell.gridX + row;
-                var y = cell.gridY + col;
+                var x = cell.gridX + col;
+                var y = cell.gridY + row;
 
                 // if the x is out of bounds
-                if(x < 0 || x > this.rows - 1)
+                if(x < 0 || x > this.cols - 1)
                     continue;
 
                 // if the y is out of bounds
-                if(y < 0 || y > this.cols - 1)
+                if(y < 0 || y > this.rows - 1)
                     continue;
 
                 // if the x and y is the target cell
@@ -146,15 +146,15 @@ class GridManager{
                 if(Math.abs(row) > gridRadius || Math.abs(col) > gridRadius)
                     continue;
 
-                var x = cell.gridX + row;
-                var y = cell.gridY + col;
+                var x = cell.gridX + col;
+                var y = cell.gridY + row;
 
                 // if the x is out of bounds
-                if(x < 0 || x > this.rows - 1)
+                if(x < 0 || x > this.cols - 1)
                     continue;
 
                 // if the y is out of bounds
-                if(y < 0 || y > this.cols - 1)
+                if(y < 0 || y > this.rows - 1)
                     continue;
 
                 // if the x and y is the target cell
