@@ -34,9 +34,7 @@ class GridManager{
         }
     }
 
-    update(point, entities, inflation = 1, debug = false){
-
-        this.grid[20][20].isActive = false;
+    update(entities, inflation = 30, debug = false){
 
         for(var row of this.grid){
             for(var cell of row){
@@ -47,27 +45,17 @@ class GridManager{
                     continue;
 
                 for(var i = 0; i < inflation; i++){
-                    var neighbors = this.getCellsWithinRadius(cell, 60);
+                    var neighbors = this.getCellsWithinRadius(cell, inflation);
 
                     for(var neighbor of neighbors){
                         if(!neighbor.isActive)
                             continue;
 
-                        neighbor.heuristic = Infinity;
+                        neighbor.heuristic = 1000;
                     }
                 }
             }
         }
-
-        var cell = this.getCellFromPoint(point);
-
-        if(cell == null)
-            return;
-
-        cell.color = "blue";
-        cell.drawEntity();
-
-        // console.log(this.getNeighboringCells(cell).length);
     }
 
     /**
@@ -134,13 +122,13 @@ class GridManager{
 
         var padding = Math.floor(gridRadius / 2);
         
-        for(var row = -gridRadius; row <= gridRadius; row++){
-            
-            
-            // var bound = Math.abs(row) <= padding ? padding : -Math.abs(row);
-            var bound = -Math.abs(row);
+        for(var row = -(gridRadius + padding); row <= (gridRadius + padding); row++){
 
-            for(var col = -(gridRadius + bound); col <= (gridRadius + bound); col++){
+            for(var col = -(gridRadius + padding - Math.abs(row)); col <= (gridRadius + padding - Math.abs(row)); col++){
+
+                if(Math.abs(row) > gridRadius || Math.abs(col) > gridRadius)
+                    continue;
+
                 var x = cell.gridX + row;
                 var y = cell.gridY + col;
 

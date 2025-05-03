@@ -2,7 +2,7 @@ class EnemyManager extends EntityManager{
 
     static instance = new EnemyManager();
 
-    constructor(maxEnemies = 1){
+    constructor(maxEnemies = 3){
         super(maxEnemies);
 
         this.initialize();
@@ -16,12 +16,12 @@ class EnemyManager extends EntityManager{
         this.reset(50, 1);
     }
 
-    update(target, base){
+    update(target, base, debug = false){
         for(var entity of this.entities){
             if(entity == null)
                 continue;
 
-            entity.update(target);
+            entity.update(target, debug);
         }
 
         this.spawnOneInEvery(2, base, 200);
