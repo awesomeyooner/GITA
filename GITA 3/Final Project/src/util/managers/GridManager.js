@@ -66,8 +66,6 @@ class GridManager{
 
         cell.color = color;
         cell.drawEntity();
-
-        console.log(cell.gridX + " : " + cell.gridY);
     }
 
     /**
@@ -76,29 +74,21 @@ class GridManager{
      * @returns Cell
      */
     getCellFromPoint(point){
-        //really inefficient but optimize later
+        var x = Math.round(point.getCartesianX() / this.size + (this.cols - 1) / 2);
+        var y = Math.round(point.getCartesianY() / this.size + (this.rows - 1) / 2);
 
-        // var x = point.getCartesianX() / this.size + this.cols - 1;
-        // var y = point.getCartesianY() / this.size + this.rows - 1;
+        if(this.isGridCoordinateOutOfBounds(x, y))
+            return null;
 
-        // if(this.isGridCoordinateOutOfBounds(point.getCartesianX(), point.get))
-        //     return null;
-
-        for(var column of this.grid){
-            for(var cell of column){
-                if(cell.isStandingOver(point))
-                    return cell;
-            }
-        }
-
-        return null;
+        return this.grid[x][y];
     }
 
+
     isGridCoordinateOutOfBounds(x, y){
-        if(x < 0 || x > this.cols)
+        if(x < 0 || x > this.cols - 1)
             return true;
 
-        if(y < 0 || y > this.rows)
+        if(y < 0 || y > this.rows - 1)
             return true;
 
         return false;
