@@ -1,15 +1,5 @@
 package test_project;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-
-import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
 /*
  * Name: Aaron Yoon
  * Date: Aug 16
@@ -19,50 +9,45 @@ import java.io.IOException;
 public class Main {
     
     public static void main(String[] args){
-        JFrame.setDefaultLookAndFeelDecorated(true);
+        // MyThing bob = new MyThing(4);
 
-        //create a new frame called my_frame 
-        JFrame frame = new JFrame("my_frame");
+        // System.out.println(bob.value);
 
-        //set the size of the frame
-        frame.setSize(new Dimension(500, 500));
+        // modify(bob);
 
-        //create a close button
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // System.out.println(bob.value);
 
-        //declare some labels for the frame
-        JLabel labelOne = new JLabel("This is my label");
-        JLabel labelTwo = new JLabel("This is my OTHER label");
+        String oldSeq = "0000011";
+        String segment = "11";
 
-        //declare a font for the labels
-        Font headlineOneFont = new Font("Arial", Font.BOLD, 36);
-        Font headlineTwoFont = new Font("Arial", Font.BOLD, 24);
-        Font standardFont = new Font("Arial", Font.PLAIN, 12);
+        String newSeq = "";
 
-        //set the layout of the the frame, determines how components look on the frame
-        frame.setLayout(new FlowLayout());
+        for(int i = 0; i < oldSeq.length() - 1; i++){
+            String sub = oldSeq.substring(i, i + 2);
+            
+            if(sub.equals(segment)){
+                String pre = oldSeq.substring(0, i);
+                String post = oldSeq.substring(i + 2, oldSeq.length());
+                newSeq = pre + post;
+                break;
+            }
+        }
 
-        //apply settings to labelOne
-        labelOne.setFont(headlineOneFont);
-        labelOne.setOpaque(true);
-        labelOne.setBackground(Color.BLACK);
-        labelOne.setForeground(Color.BLUE);
+        System.out.println(newSeq);
+    }
 
-        //apply settings to labelTwo
-        labelTwo.setFont(headlineTwoFont);
-        labelTwo.setOpaque(true);
-        labelTwo.setBackground(Color.ORANGE);
-        labelTwo.setForeground(Color.BLUE);
+    public static void modify(MyThing thing){
+        thing.value = 100;
+    }
 
-        //add the labels to the frame   
-        frame.add(labelOne);
-        frame.add(labelTwo);
+    public static class MyThing{
 
-        //make the frame visible
-        frame.setVisible(true);
+        public double value;
 
-        //set backgorund
-        frame.getContentPane().setBackground(Color.RED);
-        
+        public MyThing(double value){
+            this.value = value;
+        }
+
+
     }
 }
