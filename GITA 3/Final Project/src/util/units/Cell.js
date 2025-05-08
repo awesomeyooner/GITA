@@ -52,8 +52,8 @@ class Cell extends Entity{
     }
 
     /**
-     * Gets the grid distance from this cell to another cell
-     * @param {Cell} other 
+     * Gets the grid distance from this cell to another cell (Manhatten Distance)
+     * @param {Cell} other The other cell to get the distance to
      */
     getGridDistance(other){
         
@@ -81,24 +81,41 @@ class Cell extends Entity{
         return distance;
     }
 
+    /**
+     * Gets the G Cost of this cell
+     * @returns The G Cost
+     */
     getGCost(){
         return this.gCost + this.heuristic;
     }
 
+    /**
+     * Gets the H Cost of this cell
+     * @returns The H Cost
+     */
     getHCost(){
         return this.hCost;
     }
 
+    /**
+     * Gets the F Cost of this cell
+     * @returns The F Cost
+     */
     getFCost(){
-        return this.gCost + this.hCost;
+        return this.getGCost() + this.getHCost();
     }
 
-    getCellWithLowestFCost(cells, start, end){
+    /**
+     * Returns the cell with the lowest F Cost in an Array of Cells
+     * @param {Array<Cell>} cells An array of cells
+     * @returns 
+     */
+    getCellWithLowestFCost(cells){
         var lowestFCost = Infinity;
         var cellWithLowestFCost = null;
 
         for(var cell of cells){
-            if(cell.getFCost(start, end) < lowestFCost)
+            if(cell.getFCost() < lowestFCost)
                 cellWithLowestFCost = cell;
         }
 
@@ -106,13 +123,17 @@ class Cell extends Entity{
     }
 
     /**
-     * 
+     * Returns if the cell is walkable or not
      * @returns If this cell is walkable
      */
     isWalkable(){
         return this.isActive;
     }
 
+    /**
+     * Sets the cell walkable based on the flag, will also inflate and deflate neighbors accordingly
+     * @param {Boolean} setToWalkable Whether to set the cell to walkable or not
+     */
     setWalkable(setToWalkable){
 
         // If once walkable but going to not walkable
