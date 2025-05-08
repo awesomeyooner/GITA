@@ -123,8 +123,10 @@ class GameManager{
 
         
         EnemyManager.getInstance().update(this.player, this.enemyFortress, true);
+       
         this.player.update(EnemyManager.getInstance().entities);
 
+        GridManager.getInstance().paintCellFromPoint(this.player);
         this.playerFortress.update();
         this.enemyFortress.update();
 

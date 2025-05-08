@@ -128,7 +128,9 @@ class PathFinder{
             current = current.parent;
         }
 
-        // path.reverse();
+        path.push(start);
+
+        path.reverse();
 
         return path;
     }
