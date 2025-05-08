@@ -29,7 +29,7 @@ class PathFinder{
         if(!startCell.isActive || !endCell.isActive)
             return new Array();
 
-        if(startCell.heuristic > 0 || endCell.heuristic > 0)
+        if(endCell.heuristic > 0)
             return new Array();
 
         var openSet = new Array();
@@ -79,12 +79,12 @@ class PathFinder{
                 if(!neighbor.isActive || Cell.doesSetContainCell(closedSet, neighbor))
                     continue;
 
-                var costToGoToNeighbor = currentCell.getGCost() + currentCell.getGridDistance(neighbor);
+                var costToGoToNeighbor = currentCell.getGCost() + currentCell.getDistance(neighbor);
 
                 // if the new path is shorter OR if the neighbor is not in the open set
                 if(costToGoToNeighbor < neighbor.getGCost() || !Cell.doesSetContainCell(openSet, neighbor)){
                     neighbor.gCost = costToGoToNeighbor;
-                    neighbor.hCost = neighbor.getGridDistance(endCell);
+                    neighbor.hCost = neighbor.getDistance(endCell);
                     neighbor.parent = currentCell;
 
                     if(!Cell.doesSetContainCell(openSet, neighbor))

@@ -15,7 +15,7 @@ class Player extends Gunner{
         this.initialize();
     }
 
-    update(enemies){
+    update(enemies, debug = false){
         super.update();
         this.barricadeManager.update();
         this.turretManager.update(enemies);
@@ -25,7 +25,8 @@ class Player extends Gunner{
 
         this.displayHealthBar();
 
-        // this.highlightClosest(enemies);
+        if(debug)
+            this.highlightClosest(enemies);
     }
 
     highlightClosest(enemies){

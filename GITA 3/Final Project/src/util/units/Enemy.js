@@ -52,7 +52,7 @@ class Enemy extends Gunner{
         if(path.length == 0)
             this.pursuit(target);
         else
-            this.pursuitPath(path, 50, debug);
+            this.pursuitPath(path, 75, debug);
 
         super.update()
 
