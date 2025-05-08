@@ -25,7 +25,7 @@ class Player extends Gunner{
 
         this.displayHealthBar();
 
-        this.highlightClosest(enemies);
+        // this.highlightClosest(enemies);
     }
 
     highlightClosest(enemies){

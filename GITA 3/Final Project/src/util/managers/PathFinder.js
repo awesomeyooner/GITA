@@ -26,6 +26,12 @@ class PathFinder{
             return new Array();
         }
 
+        if(!startCell.isActive || !endCell.isActive)
+            return new Array();
+
+        if(startCell.heuristic > 0 || endCell.heuristic > 0)
+            return new Array();
+
         var openSet = new Array();
         var closedSet = new Array();
 
