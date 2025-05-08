@@ -11,10 +11,10 @@ class PathFinder{
     }
 
     /**
-     * 
-     * @param {Point} start 
-     * @param {Point} end 
-     * @param {Array<Array<Cell>>} grid 
+     * Returns an array of points representing the path
+     * @param {Point} start The start of the path
+     * @param {Point} end The end of the path
+     * @return {Array<Point>} The path, will be empty if the algorithm cannot find a path
      */
     findPath(start, end){
         var grid = GridManager.getInstance();
@@ -63,7 +63,7 @@ class PathFinder{
             if(currentCell.equals(endCell)){
                 console.log(iterations);
                 return this.getPath(startCell, endCell);
-                // this.tracePath(startCell, endCell);
+                // this.paintPath(startCell, endCell);
                 // break;
             }
 
@@ -96,6 +96,10 @@ class PathFinder{
         return new Array();
     }
 
+    /**
+     * Draws a line through each cell to represent the path
+     * @param {Array<Point>} path The path
+     */
     drawPath(path){
 
         if(path.length <= 1)
@@ -117,13 +121,24 @@ class PathFinder{
         }
     }
 
-    tracePath(path){
+    /**
+     * Paints the cells that make up a path
+     * @param {Array<Cell>} path The path to paint
+     * @param {String} color The color of the cells to paint, defaults to `"purple"`
+     */
+    paintPath(path, color = "purple"){
         for(var cell of path){
-            cell.color = "purple";
+            cell.color = color;
             cell.drawEntity();
         }        
     }
 
+    /**
+     * Returns an array of cells representing the path
+     * @param {Cell} start Start cell
+     * @param {Cell} end End Cell
+     * @returns {Array<Cell>} The path represented as an array of cells, 0 is the start
+     */
     getPath(start, end){
         var path = new Array();
 

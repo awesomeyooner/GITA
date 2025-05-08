@@ -25,8 +25,10 @@ class Player extends Gunner{
 
         this.displayHealthBar();
 
-        if(debug)
+        if(debug){
             this.highlightClosest(enemies);
+            GridManager.getInstance().paintCellFromPoint(this);
+        }
     }
 
     highlightClosest(enemies){

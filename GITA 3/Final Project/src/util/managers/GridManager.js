@@ -22,6 +22,12 @@ class GridManager{
         this.populateGrid(this.rows, this.cols, this.size);
     }
 
+    /**
+     * Populates the grid with the given rows, columns, and size (base length) of each cell  
+     * @param {Number} rows Number of Rows
+     * @param {Number} columns Number of Columns
+     * @param {Number} size Size (base length) of each Cell
+     */
     populateGrid(rows, columns, size){
         for(var c = 0; c < columns; c++){
             this.grid[c] = new Array();
@@ -34,7 +40,13 @@ class GridManager{
         }
     }
 
-    update(point, entities, inflation = 30, debug = false){
+    /**
+     * Refreshes the grid with the given obstacles
+     * @param {Array<Entity>} entities Obstacles
+     * @param {Number} inflation Inflation radius of each obstacle, in pixels
+     * @param {Boolean} debug Flag if you want to display debug information, default `false`
+     */
+    update(entities, inflation = 30, debug = false){
 
         for(var row of this.grid){
             for(var cell of row){
@@ -49,15 +61,12 @@ class GridManager{
                 this.inflateCellsWithinRadius(cell, inflation);
             }
         }
-
-        if(debug)
-            this.paintCellFromPoint(point);
     }
 
     /**
      * Paints the cell that the point is standing over
-     * @param {Point} point 
-     * @param {String} color
+     * @param {Point} point Point to paint
+     * @param {String} color Color to use
      */
     paintCellFromPoint(point, color = "blue"){
         var cell = this.getCellFromPoint(point);
@@ -70,9 +79,9 @@ class GridManager{
     }
 
     /**
-     * 
-     * @param {Point} point 
-     * @returns Cell
+     * Returns the cell that this point is standing over
+     * @param {Point} point The Point to get the cell from
+     * @returns The Cell
      */
     getCellFromPoint(point){
         var x = Math.round(point.getCartesianX() / this.size + (this.cols - 1) / 2);
@@ -85,6 +94,12 @@ class GridManager{
     }
 
 
+    /**
+     * Returns if the given grid coordinates are out of bounds
+     * @param {Number} x The X Coordinate
+     * @param {Number} y The Y Coordinate
+     * @returns True if the given x and y coordinates are out of the grids range
+     */
     isGridCoordinateOutOfBounds(x, y){
         if(x < 0 || x > this.cols - 1)
             return true;
@@ -96,9 +111,9 @@ class GridManager{
     }
 
     /**
-     * Returns a list of all the neighboring cells
-     * @param {Cell} cell 
-     * @return Array of cells
+     * Returns an array of all the neighboring cells
+     * @param {Cell} cell The reference cell
+     * @return Array of cells representing the neighbors, no order
      */
     getNeighboringCells(cell){
         
@@ -124,9 +139,9 @@ class GridManager{
     }
 
     /**
-     * 
-     * @param {Cell} cell 
-     * @param {Number} radius In Pixels
+     * Returns an array of cells that are within the reference cell's radius
+     * @param {Cell} cell The reference cell
+     * @param {Number} radius The radius to check, in pixels
      */
     getCellsWithinRadius(cell, radius){
         
@@ -160,6 +175,12 @@ class GridManager{
         return cells;
     }
 
+    /**
+     * Sets the heuristic of all the cells within the radius of the reference cell
+     * @param {Cell} cell The reference cell
+     * @param {Number} radius The radius to check, in pixels
+     * @param {Number} heuristic The heuristic to set
+     */
     setHeuristicOfCellsWithinRadius(cell, radius, heuristic){
         var neighbors = this.getCellsWithinRadius(cell, radius);
 
@@ -173,10 +194,20 @@ class GridManager{
         cell.heuristic = heuristic;
     }
 
+    /**
+     * Sets the heuristic of all the cells within the radius of the reference cell to 1000
+     * @param {Cell} cell The reference cell
+     * @param {Number} radius The radius to check, in pixels
+     */
     inflateCellsWithinRadius(cell, radius){
         this.setHeuristicOfCellsWithinRadius(cell, radius, 1000);
     }
 
+    /**
+     * Sets the heuristic of all the cells within the radius of the reference cell to 0
+     * @param {Cell} cell The reference cell
+     * @param {Number} radius The radius to check, in pixels
+     */
     deflateCellsWithinRadius(cell, radius){
         this.setHeuristicOfCellsWithinRadius(cell, radius, 0);
     }
