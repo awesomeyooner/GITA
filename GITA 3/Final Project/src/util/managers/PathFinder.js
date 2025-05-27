@@ -26,7 +26,7 @@ class PathFinder{
             return new Array();
         }
 
-        if(!startCell.isActive || !endCell.isActive)
+        if(!endCell.isActive)
             return new Array();
 
         if(endCell.heuristic > 0)
