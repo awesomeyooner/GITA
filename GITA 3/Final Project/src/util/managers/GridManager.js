@@ -41,14 +41,6 @@ class GridManager{
     }
 
     /**
-     * Gets the number of cells in the grid
-     * @returns The number of cells
-     */
-    getMaxSize(){
-        return this.rows * this.cols;
-    }
-
-    /**
      * Refreshes the grid with the given obstacles
      * @param {Array<Entity>} entities Obstacles
      * @param {Number} inflation Inflation radius of each obstacle, in pixels
