@@ -1,4 +1,4 @@
-class Cell extends Entity{
+class Cell extends HeapEntity{
 
     constructor(x, y, gridX, gridY, size){
         super(
@@ -210,6 +210,22 @@ class Cell extends Entity{
         var heuristicSame = this.heuristic == other.heuristic;
 
         return coordinatesSame && gridCoordinatesSame && heuristicSame;
+    }
+
+    /**
+     * 
+     * @param {Cell} other 
+     */
+    compareTo(other){
+        var compare = this.getFCost() - other.getFCost();
+
+        if(compare == 0)
+            compare = this.getHCost() - other.getHCost();
+
+        if(compare == 0)
+            return 0;
+        else
+            return -compare / Math.abs(compare);
     }
 
     /**

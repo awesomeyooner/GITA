@@ -32,29 +32,17 @@ class PathFinder{
         if(endCell.heuristic > 0)
             return new Array();
 
-        var openSet = new Array();
+        var openSet = new Heap(grid.getMaxSize());
         var closedSet = new Array();
 
-        openSet.push(startCell);
+        openSet.add(startCell);
 
         var iterations = 0;
 
-        while(openSet.length > 0){
+        while(openSet.currentItemCount > 0){
             iterations++;
 
-            var currentCell = openSet[0];
-
-            // currentCell = node in the open set with the lowest F Cost
-            for(var i = 1; i < openSet.length; i++){
-                var openIsFCheaper = openSet[i].getFCost() < currentCell.getFCost();
-                var costSameButOpenIsHCheaper = openSet[i].getFCost() == currentCell.getFCost() && openSet[i].getHCost() < currentCell.getHCost();
-
-                if(openIsFCheaper || costSameButOpenIsHCheaper)
-                    currentCell = openSet[i];
-            }
-
-            // remove the current cell from the open set
-            Cell.removeCellFromSet(openSet, currentCell);
+            var currentCell = openSet.removeFirst();
 
             // add the current cell to the closed set
             closedSet.push(currentCell);
@@ -82,13 +70,13 @@ class PathFinder{
                 var costToGoToNeighbor = currentCell.getGCost() + currentCell.getDistance(neighbor);
 
                 // if the new path is shorter OR if the neighbor is not in the open set
-                if(costToGoToNeighbor < neighbor.getGCost() || !Cell.doesSetContainCell(openSet, neighbor)){
+                if(costToGoToNeighbor < neighbor.getGCost() || !openSet.contains(neighbor)){
                     neighbor.gCost = costToGoToNeighbor;
                     neighbor.hCost = neighbor.getDistance(endCell);
                     neighbor.parent = currentCell;
 
-                    if(!Cell.doesSetContainCell(openSet, neighbor))
-                        openSet.push(neighbor);
+                    if(!openSet.contains(neighbor))
+                        openSet.add(neighbor);
                 }
             }
         }
