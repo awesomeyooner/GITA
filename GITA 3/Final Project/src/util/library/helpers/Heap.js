@@ -53,7 +53,7 @@ class Heap{
         if(item.heapIndex > this.currentItemCount - 1)
             return false;
 
-        return this.items.at(0).equals(item);
+        return this.items.at(item.heapIndex).equals(item);
     }
 
     /**
