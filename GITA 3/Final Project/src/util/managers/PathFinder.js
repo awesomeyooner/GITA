@@ -55,30 +55,40 @@ class PathFinder{
                 // break;
             }
 
-            var neighbors = grid.getNeighboringCells(currentCell);
+            for(var row = -1; row <= 1; row++){
+                for(var col = -1; col <= 1; col++){
+                    var x = currentCell.gridX + col;
+                    var y = currentCell.gridY + row;
 
-            // for every neighbor of the current node
-            for(var neighbor of neighbors){
+                    if(grid.isGridCoordinateOutOfBounds(x, y))
+                        continue;
 
-                if(neighbor == null)
-                    continue;
+                    // if the x and y is the target cell
+                    if(row == 0 && col == 0)
+                        continue;
 
-                // if the neighbor is not traversable OR is the neighbor is in the closed set, skip
-                if(!neighbor.isActive || Cell.doesSetContainCell(closedSet, neighbor))
-                    continue;
+                    var neighbor = grid.grid[x][y];
 
-                var costToGoToNeighbor = currentCell.getGCost() + currentCell.getDistance(neighbor);
+                    if(neighbor == null)
+                        continue;
 
-                // if the new path is shorter OR if the neighbor is not in the open set
-                if(costToGoToNeighbor < neighbor.getGCost() || !openSet.contains(neighbor)){
-                    neighbor.gCost = costToGoToNeighbor;
-                    neighbor.hCost = neighbor.getDistance(endCell);
-                    neighbor.parent = currentCell;
+                    // if the neighbor is not traversable OR is the neighbor is in the closed set, skip
+                    if(!neighbor.isActive || Cell.doesSetContainCell(closedSet, neighbor))
+                        continue;
 
-                    if(!openSet.contains(neighbor))
-                        openSet.add(neighbor);
-                    else
-                        openSet.updateItem(neighbor);
+                    var costToGoToNeighbor = currentCell.getGCost() + currentCell.getDistance(neighbor);
+
+                    // if the new path is shorter OR if the neighbor is not in the open set
+                    if(costToGoToNeighbor < neighbor.getGCost() || !openSet.contains(neighbor)){
+                        neighbor.gCost = costToGoToNeighbor;
+                        neighbor.hCost = neighbor.getDistance(endCell);
+                        neighbor.parent = currentCell;
+
+                        if(!openSet.contains(neighbor))
+                            openSet.add(neighbor);
+                        else
+                            openSet.updateItem(neighbor);
+                    }
                 }
             }
         }
