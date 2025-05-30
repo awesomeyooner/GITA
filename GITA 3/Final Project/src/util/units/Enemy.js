@@ -61,11 +61,13 @@ class Enemy extends Gunner{
         
         this.displayHealthBar();
 
-        if(this.health == 1)
-            this.color = "red";
-        else if(this.health == 2)
-            this.color = "orange";
-        else if(this.health == 3)
+        var percent = this.health / this.maxHealth;
+        
+        if(percent >= 0.67)
             this.color = "yellow";
+        else if(percent >= 0.34)
+            this.color = "orange";
+        else if(percent > 0)
+            this.color = "red";
     }
 }
