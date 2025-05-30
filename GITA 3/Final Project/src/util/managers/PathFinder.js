@@ -77,6 +77,8 @@ class PathFinder{
 
                     if(!openSet.contains(neighbor))
                         openSet.add(neighbor);
+                    else
+                        openSet.updateItem(neighbor);
                 }
             }
         }
