@@ -5,7 +5,7 @@ class GridManager{
     constructor(){
         this.grid = new Array();
 
-        this.size = 20;
+        this.size = 50;
 
         this.rows = Math.round(HEIGHT / this.size) + 1;
         this.cols = Math.round(WIDTH / this.size) + 1;

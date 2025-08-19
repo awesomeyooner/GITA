@@ -98,6 +98,13 @@ const jsonData =
         "date": "4/26/2025",
         "description": "2D Large Scale Battlefield with collisions!"
     },
+    {
+        "header": "Final Project",
+        "image": "assets/projects/GITA3/Final Project/image.png",
+        "link": "assets/projects/GITA3/Final Project/index.html",
+        "date": "5/30/2025",
+        "description": "2D Large Scale Battlefield with collisions, and also dynamic pathing!"
+    },
 ]
 
 /*

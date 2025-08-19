@@ -2,7 +2,7 @@ class EnemyManager extends EntityManager{
 
     static instance = new EnemyManager();
 
-    constructor(maxEnemies = 1){
+    constructor(maxEnemies = 5){
         super(maxEnemies);
 
         this.initialize();
@@ -34,7 +34,7 @@ class EnemyManager extends EntityManager{
             this.respawnOneAroundPoint(origin, radius);
     }
 
-    reset(size, speed, maxBullets = 10, maxHealth = 3, color = "red"){
+    reset(size, speed, maxBullets = 10, maxHealth = 20, color = "red"){
         for(var i = 0; i < this.maxEntities; i++){
             this.entities[i] = new Enemy(
                 size,

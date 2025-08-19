@@ -119,8 +119,8 @@ class GameManager{
         }
 
         CollisionManager.update();
-        GridManager.getInstance().update(this.player.barricadeManager.getProjectiles(), 50, true);
-        EnemyManager.getInstance().update(this.player, this.enemyFortress, true);
+        GridManager.getInstance().update(this.player.barricadeManager.getProjectiles(), 50, false);
+        EnemyManager.getInstance().update(this.playerFortress, this.enemyFortress, false);
        
         this.player.update(EnemyManager.getInstance().entities);
 
